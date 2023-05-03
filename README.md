@@ -36,4 +36,27 @@ HackReactor FEC
   ### ExpressJS
   ### MongoDB
   
+## File Structure
+root
+  client
+     dist
+           index.html
+           bundle.js
+           bundle.js.map
+           css
+            
+     src
+            components
+              product detail : each file will be the mini component of segment
+              reviews
+              related
+              Q&A
+                
+                each of these will be each persons responsibility
+                each component
+  server
+  gitignore
+  package.json
+  config.js
+  
   
