@@ -1,7 +1,7 @@
 # PLUMBERSFEC
 HackReactor FEC
 
-To make new branch:
+#To make new branch: \n
   Step 1: Clone the master repo(if you haven't already, if you have then skip to step 2)
    > git clone <url of master repo>     
   Step 2: Create new Branch
