@@ -51,9 +51,6 @@ root
               reviews
               related
               Q&A
-                
-                each of these will be each persons responsibility
-                each component
   server
   gitignore
   package.json
