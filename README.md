@@ -24,5 +24,16 @@ HackReactor FEC
       master
       *<name of new branch>
    ```
+   
+   
+## DEPENDENCIES 
+
+  ### Webpack, Webpack CLI
+  ### Nodemon
+  ### eslint using HR linter config
+  ### ReactJS, Modal
+  ### Redux
+  ### ExpressJS
+  ### MongoDB
   
   
