@@ -37,9 +37,10 @@ HackReactor FEC
   ### MongoDB
   
 ## File Structure
+```
 root
-  client
-     dist
+    client
+        dist
            index.html
            bundle.js
            bundle.js.map
@@ -55,5 +56,6 @@ root
   gitignore
   package.json
   config.js
+```
   
   
