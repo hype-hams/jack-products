@@ -38,24 +38,37 @@ HackReactor FEC
   
 ## File Structure
 ```
-root
-    client
-        dist
-           index.html
-           bundle.js
-           bundle.js.map
-           css
-            
-     src
-            components
-              product detail : each file will be the mini component of segment
-              reviews
-              related
-              Q&A
-  server
-  gitignore
-  package.json
-  config.js
+📦PLUMBERSFEC
+ ┣ 📂client
+ ┃ ┣ 📂dist
+ ┃ ┃ ┣ 📂css
+ ┃ ┃ ┃ ┗ 📜styles.css
+ ┃ ┃ ┣ 📜bundle.js //will generate automatically when webpack is configured
+ ┃ ┃ ┣ 📜bundle.js.map //will generate automatically when webpack is configured
+ ┃ ┃ ┗ 📜index.html
+ ┃ ┗ 📂src
+ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┃ ┣ 📂product_detail //feel free to add more files
+ ┃ ┃ ┃ ┃ ┗ 📜product_detail_main.jsx
+ ┃ ┃ ┃ ┣ 📂questions_and_answers //feel free to add more files
+ ┃ ┃ ┃ ┃ ┗ 📜questions_main.jsx
+ ┃ ┃ ┃ ┣ 📂related_items //feel free to add more files
+ ┃ ┃ ┃ ┃ ┗ 📜related_items_main.jsx
+ ┃ ┃ ┃ ┣ 📂reviews //feel free to add more files
+ ┃ ┃ ┃ ┃ ┗ 📜reviews_main.jsx
+ ┃ ┃ ┃ ┗ 📜App.jsx
+ ┃ ┃ ┗ 📜index.jsx
+ ┣ 📂server
+ ┃ ┣ 📂src //empty for now
+ ┃ ┗ 📜index.js
+ ┣ 📜.babelrc
+ ┣ 📜.gitignore
+ ┣ 📜README.md
+ ┣ 📜config.js //in .gitignore, do not push to repo
+ ┣ 📜.env //in .gitignore, do not push to repo
+ ┣ 📜package-lock.json
+ ┣ 📜package.json 
+ ┗ 📜webpack.config.js
 ```
   
   

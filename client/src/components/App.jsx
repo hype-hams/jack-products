@@ -1,0 +1,2 @@
+//App.jsx to unify all the components later on, do not delete until otherwise..
+//Only make new .jsx files in your own component folders until otherwise (this is to avoid merge conflicts or complications)
