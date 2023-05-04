@@ -21,8 +21,8 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 app.get('/', controllers)
 app.post('/', controllers)
 //product q_a
-app.get('/', controllers)
-app.post('/', controllers)
+app.get('/controllers', controllers/*.temp*/)
+app.post('/controllers', controllers.q_a/*.temp*/)
 //related
 app.get('/', controllers)
 app.post('/', controllers)
