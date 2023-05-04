@@ -16,9 +16,3 @@ module.exports = {
     // Will post a new question to the db
       // req will vary based off how modal looks
   },
-
-  postAnswer: (req, res) => {
-    // Will post a new answer to a specific question in the db
-      // req will vary based off how modal looks
-  }
-};
