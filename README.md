@@ -54,7 +54,7 @@ HackReactor FEC
  ┃ ┃ ┃ ┃ ┗ 📜questions_main.jsx
  ┃ ┃ ┃ ┣ 📂related_items //feel free to add more files
  ┃ ┃ ┃ ┃ ┗ 📜related_items_main.jsx
- ┃ ┃ ┃ ┣ 📂reviews //feel free to add more files
+ ┃ ┃ ┃ ┣ 📂reviews   //feel free to add more files
  ┃ ┃ ┃ ┃ ┗ 📜reviews_main.jsx
  ┃ ┃ ┃ ┗ 📜App.jsx
  ┃ ┃ ┗ 📜index.jsx
