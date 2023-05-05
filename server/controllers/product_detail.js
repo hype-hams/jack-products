@@ -1,19 +1,20 @@
-require("dotenv").config();
+/* eslint-disable camelcase */
+require('dotenv').config();
 const axios = require('axios');
+
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 
 module.exports = {
-
-  // Retrieves the list of products
+  // Retrieves the list of products, defalut page = 1, defalut count = 5
   getProduct: (req, res) => {
     axios.get(`${url}/products`, {
       headers: {
-        Authorization: `${process.env.API_KEY}`
+        Authorization: `${process.env.API_KEY}`,
       },
       params: {
         page: req.query.page,
-        count: req.query.count
-      }
+        count: req.query.count,
+      },
     })
       .then((response) => {
         res.status(200).send(response.data);
@@ -26,11 +27,11 @@ module.exports = {
 
   // Returns all product level information for a specified product id
   getProductById: (req, res) => {
-    const product_id = req.params.product_id;
+    const { product_id } = req.params;
     axios.get(`${url}/products/${product_id}`, {
       headers: {
-        Authorization: `${process.env.API_KEY}`
-      }
+        Authorization: `${process.env.API_KEY}`,
+      },
     })
       .then((response) => {
         res.status(200).send(response.data);
@@ -43,11 +44,11 @@ module.exports = {
 
   // Returns the all styles available for the given product
   getStyles: (req, res) => {
-    const product_id = req.params.product_id;
+    const { product_id } = req.params;
     axios.get(`${url}/products/${product_id}/styles`, {
       headers: {
-        Authorization: `${process.env.API_KEY}`
-      }
+        Authorization: `${process.env.API_KEY}`,
+      },
     })
       .then((response) => {
         res.status(200).send(response.data);
@@ -60,11 +61,11 @@ module.exports = {
 
   // Returns the id's of products related to the product specified
   getRelated: (req, res) => {
-    const product_id = req.params.product_id;
+    const { product_id } = req.params;
     axios.get(`${url}/products/${product_id}/related`, {
       headers: {
-        Authorization: `${process.env.API_KEY}`
-      }
+        Authorization: `${process.env.API_KEY}`,
+      },
     })
       .then((response) => {
         res.status(200).send(response.data);
@@ -79,8 +80,8 @@ module.exports = {
   addCart: (req, res) => {
     axios.post(`${url}/cart`, req.body, {
       headers: {
-        Authorization: `${process.env.API_KEY}`
-      }
+        Authorization: `${process.env.API_KEY}`,
+      },
     })
       .then((response) => {
         res.status(201).send(response.data);
@@ -96,8 +97,8 @@ module.exports = {
   getCart: (req, res) => {
     axios.get(`${url}/cart`, {
       headers: {
-        Authorization: `${process.env.API_KEY}`
-      }
+        Authorization: `${process.env.API_KEY}`,
+      },
     })
       .then((response) => {
         res.status(200).send(response.data);
@@ -114,8 +115,8 @@ module.exports = {
     console.log('addInteraction body: ', req.body);
     axios.post(`${url}/interactions`, req.body, {
       headers: {
-        Authorization: `${process.env.API_KEY}`
-      }
+        Authorization: `${process.env.API_KEY}`,
+      },
     })
       .then((response) => {
         res.status(201).send(response.data);
@@ -124,5 +125,5 @@ module.exports = {
         console.log('Err occurs in product_detail addInteraction: ', err);
         res.status(500).send(err.message);
       });
-  }
+  },
 };
