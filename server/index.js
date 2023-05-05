@@ -4,7 +4,8 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
-const router = require('./routes.js');
+const router = require('./routes');
+
 
 const app = express();
 
@@ -12,7 +13,8 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan('tiny'));
 
-app.use('/classes', router);
+app.use('/api', router);
+
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
