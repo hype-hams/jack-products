@@ -23,10 +23,14 @@ router.post('/interactions', controllers.details.addInteraction);
 //returns related product_ids based on product
 router.get('/related/:product_id', controllers.related.getRelatedProducts);
 
-// reviews
+// //related
+// router.get('/', controllers)
+// router.post('/', controllers)
+
+//reviews:Eric
 router.get('/reviews', controllers.reviews.getReviews);
-router.get('/reviews', controllers.reviews.getProductBreakdown);
+router.get('/reviews/meta', controllers.reviews.getProductBreakdown);
 router.post('/reviews', controllers.reviews.postReview);
-router.put('/reviews', controllers.reviews.putHelpful);
-router.put('/reviews', controllers.reviews.reportReview);
+router.put('/reviews/:review_id/helpful', controllers.reviews.putHelpful);
+router.put('/reviews/:review_id/report', controllers.reviews.reportReview);
 module.exports = router;
