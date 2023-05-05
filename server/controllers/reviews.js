@@ -7,14 +7,17 @@ const serverAPI = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`;
 
 module.exports = {
   getReviews: (req, res) => { //needs product id
-    const queryParams = req.query.product_id
-
     const options = {
-      method: 'get',
-      url: serverAPI + `?product_id=${queryParams}&count=${req.query.count}`,
-      headers: headAuth
+      method: 'GET',
+      url: serverAPI,
+      headers: headAuth,
+      params: {
+        page: req.query.page,
+        count: req.query.count,
+        sort: req.query.sort,
+        product_id: req.query.product_id
+      }
     };
-
     return axios(options)
       .then((response) => {
         res.status(200).send(response.data)
@@ -22,6 +25,23 @@ module.exports = {
       .catch((err) => {
         res.status(500).send(err)
       })
+  },
+  getProductBreakdown: (req, res) => {
+    const options = {
+      method : 'GET',
+      url: serverAPI + `/meta`,
+      headers: headAuth,
+      params: {
+        product_id: req.query.product_id
+      }
+    }
+    return axios(options)
+    .then((response) => {
+      res.status(202).send(response.data)
+    })
+    .catch((err) => {
+      res.status(500).send(err)
+    })
   },
   postReview: (req, res) => {
     axios.post(serverAPI, req.body, {
@@ -35,7 +55,6 @@ module.exports = {
       })
   },
   putHelpful: (req, res) => {
-    //req.params = {review_id: value}
       axios.put(serverAPI + `/${req.body.review_id}/helpful`, req.body, {
       headers: headAuth
     })
@@ -56,19 +75,8 @@ module.exports = {
     .catch((err) => {
       res.status(500).send(err)
     })
-  },
-  getProductBreakdown: (req, res) => {
-    console.log('breakdown', req.query)
-    axios.get(serverAPI + `/meta?product_id=${req.query.product_id}`, {
-      headers:headAuth
-    })
-    .then((response) => {
-      res.status(202).send(response.data)
-    })
-    .catch((err) => {
-      res.status(500).send(err)
-    })
   }
+
 };
 
 
