@@ -9,7 +9,6 @@ const router = require('./routes.js')
 //controllers
 // const controllers = require('./controllers');
 
-
 const app = express();
 
 app.use(express.json());
@@ -21,20 +20,23 @@ app.use('/classes', router)
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
 //product details
-// app.get('/', controllers)
-// app.post('/', controllers)
+// Retrieves the list of products
+app.get('/products', controllers.details.getProduct);
+// Returns all product level information for a specified product id
+app.get('/products/:product_id', controllers.details.getProductById);
+// Returns the all styles available for the given product
+app.get('/products/:product_id/styles', controllers.details.getStyles);
+// Returns the id's of products related to the product specified
+app.get('/products/:product_id/related', controllers.details.getRelated);
+// Adds a product to the cart. format: {'sku_id':xxx, 'count':xxx}
+app.post('/cart', controllers.details.addCart);
+// Retrieves list of products added to the cart by a user
+app.get('/cart', controllers.details.getCart);
 
-// //product q_a
-// app.get('/', controllers)
-// app.post('/', controllers)
+// Adds an interation to the db
+app.post('/interactions', controllers.details.addInteraction);
 
-// //related
-// app.get('/', controllers)
-// app.post('/', controllers)
 
-//reviews
-// app.get('/reviews', controllers.reviews.getReviews)
-// app.post('/reviews', controllers.reviews.postReview)
 
 const PORT = process.env.PORT || 3000;
 
