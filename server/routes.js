@@ -12,7 +12,7 @@ const router = require('express').Router();
 // router.post('/', controllers)
 
 // //related
-// router.get('/', controllers)
+router.get('/related/:product_id', controllers.related.getRelatedProductID);
 // router.post('/', controllers)
 
 //reviews
