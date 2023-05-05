@@ -7,7 +7,8 @@
     "test": "test",
     "client-dev": "npx webpack --watch",
     "server-dev": "nodemon server/index.js",
-    "lint" : "./node_modules/.bin/eslint"
+    "lint": "eslint",
+    "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",
