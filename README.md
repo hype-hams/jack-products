@@ -1,7 +1,7 @@
 # PLUMBERSFEC
 HackReactor FEC
 
-## To make new branch: 
+## To make new branch:
   ### Step 1: Clone the master repo(if you haven't already, if you have then skip to step 2)
   ```
    > git clone <url of master repo>
@@ -24,9 +24,37 @@ HackReactor FEC
       master
       *<name of new branch>
    ```
-   
-   
-## DEPENDENCIES 
+  ### Step 5: Rebasing and merging into branches
+  Stash work before doing so
+  ```
+  > git stash
+  ```
+  Move to branch
+  ```
+  > git checkout main (whater your main branch in called)
+  ```
+  Pull down from GH
+  ```
+  > git pull origin main
+  ```
+  Move to branch and merge
+  ```
+  > git checkout 'BRANCH_NAME'
+
+  > git merge main
+  ```
+  Now head to VSCode to resolve conflict issues for rebase
+
+  After rebase merge is complete, reload in stashed items
+  ```
+  > git stash list (to view what will be added back in)
+  > git stash pop (to add back to branch)
+  ```
+
+
+
+
+## DEPENDENCIES
 
   ### Webpack, Webpack CLI
   ### Nodemon
@@ -35,7 +63,7 @@ HackReactor FEC
   ### Redux
   ### ExpressJS
   ### MongoDB
-  
+
 ## File Structure
 ```
 📦PLUMBERSFEC
@@ -67,8 +95,8 @@ HackReactor FEC
  ┣ 📜config.js //in .gitignore, do not push to repo
  ┣ 📜.env //in .gitignore, do not push to repo
  ┣ 📜package-lock.json
- ┣ 📜package.json 
+ ┣ 📜package.json
  ┗ 📜webpack.config.js
 ```
-  
-  
+
+
