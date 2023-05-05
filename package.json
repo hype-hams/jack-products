@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest --verbose",
     "client-dev": "npx webpack --watch",
-    "server-dev": "nodemon server/app.js"
+    "server-dev": "nodemon server/index.js",
+    "lint": "eslint",
+    "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",

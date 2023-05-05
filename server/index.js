@@ -1,10 +1,11 @@
-//Router calls go here (fill in later)
-require("dotenv").config();
-const express = require("express");
-const path = require("path");
-const cors = require("cors");
-const morgan = require("morgan");
-const router = require('./routes.js')
+// Router calls go here (fill in later)
+require('dotenv').config();
+const express = require('express');
+const path = require('path');
+const cors = require('cors');
+const morgan = require('morgan');
+const router = require('./routes');
+
 
 const app = express();
 
@@ -14,12 +15,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan('tiny'));
 
-//Routes
-app.use('/api', router)
-
-//Static Files
-app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use('/api', router);
 
 
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
-module.exports = app;
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT);
+console.log(`Server listening at http://localhost:${PORT}`);
