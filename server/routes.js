@@ -18,10 +18,10 @@ router.get('/cart', controllers.details.getCart);
 router.post('/interactions', controllers.details.addInteraction);
 
 // //product q_a
-// router.get('/', controllers)
-// router.post('/', controllers)
-//returns related product_ids based on product
-router.get('/related/:product_id', controllers.related.getRelatedProducts);
+router.get('/q_a', controllers.q_a.getQuestions)
+router.get('/q_a', controllers.q_a.getAllAnswers)
+router.post('/q_a', controllers.q_a.postQuestion)
+// router.post('/q_a', controllers.q_a.postAnswer)
 
 // //related
 // router.get('/', controllers)
