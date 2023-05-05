@@ -15,10 +15,10 @@ const router = require('express').Router();
 // router.get('/', controllers)
 // router.post('/', controllers)
 
-//reviews
+//reviews:Eric
 router.get('/reviews', controllers.reviews.getReviews);
-router.get('/reviews', controllers.reviews.getProductBreakdown);
+router.get('/reviews/meta', controllers.reviews.getProductBreakdown);
 router.post('/reviews', controllers.reviews.postReview);
-router.put('/reviews', controllers.reviews.putHelpful);
-router.put('/reviews', controllers.reviews.reportReview);
+router.put('/reviews/:review_id/helpful', controllers.reviews.putHelpful);
+router.put('/reviews/:review_id/report', controllers.reviews.reportReview);
 module.exports = router;
