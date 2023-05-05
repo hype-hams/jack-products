@@ -14,17 +14,14 @@ router.get('/products/:product_id/related', controllers.details.getRelated);
 router.post('/cart', controllers.details.addCart);
 // Retrieves list of products added to the cart by a user
 router.get('/cart', controllers.details.getCart);
-
 // Adds an interation to the db
 router.post('/interactions', controllers.details.addInteraction);
 
 // //product q_a
 // router.get('/', controllers)
 // router.post('/', controllers)
-
-// //related
-// router.get('/', controllers)
-// router.post('/', controllers)
+//returns related product_ids based on product
+router.get('/related/:product_id', controllers.related.getRelatedProducts);
 
 // reviews
 router.get('/reviews', controllers.reviews.getReviews);
