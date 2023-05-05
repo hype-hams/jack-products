@@ -8,10 +8,10 @@ const router = require('express').Router();
 // router.post('/', controllers)
 
 // //product q_a
-router.get('/controllers', controllers.q_a.getQuestions)
-router.get('/controllers', controllers.q_a.getAllAnswers)
-router.post('/controllers', controllers.q_a.postQuestion)
-router.post('/controllers', controllers.q_a.postAnswer)
+router.get('/q_a', controllers.q_a.getQuestions)
+router.get('/q_a', controllers.q_a.getAllAnswers)
+router.post('/q_a', controllers.q_a.postQuestion)
+// router.post('/q_a', controllers.q_a.postAnswer)
 
 // //related
 // router.get('/', controllers)
