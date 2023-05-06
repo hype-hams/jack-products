@@ -9,7 +9,24 @@ const AddReview = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [bodyText, setBodyText] = useState('');
   const [minBody, setMinBody] = useState('50');
+  const [rating, setRating] = useState(1);
 
+  const BuildStars = () => {
+      <div className="star-rating">
+        {[...Array(5)].map((star, index) => {
+          index += 1;
+          return (
+            <button
+              type="button"
+              key={index}
+              className={index <= rating ? "on" : "off"}
+              onClick={() => setRating(index)}>
+              <span className="star">&#9733</span>
+            </button>
+          )
+        })}
+      </div>
+  }
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -32,6 +49,9 @@ const AddReview = () => {
           </div>
 
           <div className="stars">Star Rating
+          {
+            <BuildStars />
+          }
           </div>
 
           <div className="recommend">
@@ -50,12 +70,22 @@ const AddReview = () => {
           </div>
 
           <div>Characteristics</div>
-          <div>Review Summar</div>
 
+          <div className="review-summary">
+            <label>Review Summary</label><br></br>
+            <input type="text"
+              placeholder="Example: Best purchase ever!"
+              size="30"
+              maxLength="60"
+              required></input>
+          </div>
+    <br></br>
           <div className="review-body">
-            <label>Review Body</label>
+            <label>Review Body</label><br></br>
             <textarea maxLength = '1000'
-              size="1000"
+              required
+              rows="10"
+              cols="70"
               placeholder = 'Why did you like the product or not?' onChange = {(e)=> {
                             setBodyText(e.target.value)
                             // let inputBodyLength = inputBody.split('').length;
@@ -68,15 +98,16 @@ const AddReview = () => {
                           }}>
 
              </textarea>
-                    <p>Minimum required characters left:{minBody}</p>
-
-            </div>
-
+                    <small style={{color:'gray'}}>
+                      Minimum required characters left:{minBody}
+                    </small>
+          </div>
+  <br></br>
           <div className="upload">
             <label>Upload Photos</label>
             <input type="file"></input>
           </div>
-
+  <br></br>
           <div className="username">
             <label>Username:</label>
             <input type="text"
@@ -86,9 +117,8 @@ const AddReview = () => {
               required
             ></input><br></br>
             <small style={{color:'gray'}}>For privacy reasons, do not use your full name or email address.</small>
-
           </div>
-
+  <br></br>
           <div className="email">
             <label>Email:</label>
               <input type="email"
@@ -99,7 +129,7 @@ const AddReview = () => {
               ></input><br></br>
               <small style={{color:'gray'}}>For authentication reasons. You will not be emailed.</small>
           </div>
-
+  <br></br>
           <button
             type="submit">Submit Review</button>
         </form>
