@@ -4,28 +4,27 @@ import Modal from 'react-modal';
 import Stars from './Stars.jsx';
 
 Modal.setAppElement("#root");
-
+const possibleStars = [1, 2, 3, 4, 5]
 const AddReview = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [bodyText, setBodyText] = useState('');
   const [minBody, setMinBody] = useState('50');
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(0)
 
   const BuildStars = () => {
-      <div className="star-rating">
-        {[...Array(5)].map((star, index) => {
-          index += 1;
-          return (
-            <button
-              type="button"
-              key={index}
-              className={index <= rating ? "on" : "off"}
-              onClick={() => setRating(index)}>
-              <span className="star">&#9733</span>
-            </button>
-          )
-        })}
-      </div>
+    return (
+            <div className="stars">
+              {possibleStars.map(rate => <i
+                key={rate}
+                className={"fas fa-star "
+                + ((rate <= rating) ? 'in-rate ' : '')
+                + ((rate <= hover) ? 'in-hover' : '')}
+                onClick={() => setRating(rate)}
+                onMouseEnter={() => {setHover(rate); setRating(null);}}
+                onMouseLeave={() => setHover(null)}></i>)}
+            </div>
+    );
   }
 
   const toggleModal = () => {
@@ -49,9 +48,7 @@ const AddReview = () => {
           </div>
 
           <div className="stars">Star Rating
-          {
-            <BuildStars />
-          }
+
           </div>
 
           <div className="recommend">
@@ -132,6 +129,9 @@ const AddReview = () => {
   <br></br>
           <button
             type="submit">Submit Review</button>
+          <button type='button'
+            onClick={toggleModal}
+          >Cancel</button>
         </form>
       </Modal>
     </div>
