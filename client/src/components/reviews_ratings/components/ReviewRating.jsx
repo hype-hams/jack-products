@@ -2,26 +2,28 @@ import React, {useState,useEffect} from 'react';
 import ReviewList from './ReviewList.jsx';
 import testData from '../testdata/reviewdata.json';
 
-import AddReview from './AddReview.jsx';
+import SortBar from './SortBar.jsx';
+import AddReview from './AddReview/AddReview.jsx';
 
 const ReviewRating = () => {
   const [masterList, setMasterList] = useState([]);
-
+  const [sortBar, setSortBar] = useState('relevant');
 
   useEffect(() => {
     setMasterList(testData.results)
   }, [])
 
+  //ratings filter needs to pass down without without influence on sorbar. should combo
   return (
     <div>
       <h2>Ratings & Reviews</h2>
 
       <div>
         <div>
-          <h4>Rating Breakdown</h4>
+          <section><h4>Rating Breakdown</h4></section>
         </div>
         <div>
-          <h4>Product Breakdown</h4>
+          <section><h4>Product Breakdown</h4></section>
         </div>
       </div>
 
