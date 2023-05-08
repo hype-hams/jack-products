@@ -10,7 +10,7 @@ function Style({ style, handleClick }) {
   };
   return (
     <div onClick={thumbnailOnClick}>
-      <img src={style.photos[0].thumbnail_url} alt="thumbnail of style" className="style-thumbnails" />
+      <img src={style.photos[0].thumbnail_url ? style.photos[0].thumbnail_url : 'https://shenandoahcountyva.us/bos/wp-content/uploads/sites/4/2018/01/picture-not-available-clipart-12.jpg'} alt="thumbnail of style" className="style-thumbnails" />
     </div>
   );
 }

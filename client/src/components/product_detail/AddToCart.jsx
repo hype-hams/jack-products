@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 function AddToCart({ skus }) {
   const skusArr = Object.entries(skus)
     .map((item) => ({ sku_id: item[0], quantity: item[1].quantity, size: item[1].size }));
+  console.log('skusArr: ', skusArr);
 
   return (
     <div className="selectors">
@@ -19,9 +20,10 @@ function AddToCart({ skus }) {
       <label>
         <select id="quantity-selector" defaultValue="-">
           <option>-</option>
-          <option>1</option>
+          {skusArr.map((item) => (<option key={item.sku_id}>{item.quantity}</option>))}
+          {/* <option>1</option>
           <option>2</option>
-          <option>3</option>
+          <option>3</option> */}
         </select>
       </label>
       <br />

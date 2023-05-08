@@ -34,8 +34,8 @@ function ProductDetail({ product, styles }) {
             {style.sale_price ? style.sale_price : style.original_price}
           </small>
           <p>
-            <b>STYLE</b>
-            {` >  ${style.name}`}
+            <b>STYLE &gt; </b>
+            {style.name}
           </p>
           <div className="style-thumbnails-div">
             {styles.results.map((item) => (<Style style={item} handleClick={handleThumbnailOnClick} key={item.style_id} />))}
