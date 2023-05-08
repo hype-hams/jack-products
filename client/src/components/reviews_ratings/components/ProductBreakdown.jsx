@@ -67,7 +67,9 @@ const ProductBreakdown = ({charObj}) => {
   if(charPresent === 'Comfort' || charPresent === 'Quality') {
     charTextLow = 'Poor'
     charTextHigh= 'Perfect'
-
+  } else {
+    charTextLow = 'Too Small'
+    charTextHigh = 'Too Big'
   }
 // for each id match and display
 // let charTable = productRating.map((id, val, ind) => <ProductBreakdown id={productRating.id} val={productRating.value} key={ind}/>)
