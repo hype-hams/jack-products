@@ -10,6 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
+  min-width: 800px;
 }
 
 .product-detail-div {
@@ -19,6 +20,7 @@ body {
 
 .image-gallery-div {
   max-height: 600px;
+  min-width: 400px;
   width: 100%;
   overflow: hidden; /* image doesn't overflow the div */
 }
@@ -31,6 +33,7 @@ body {
 
 .product-detail-div__right {
   width: 100%;
+  min-width: 400px;
   margin-left: 20px;
 }
 

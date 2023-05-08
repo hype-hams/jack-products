@@ -30,8 +30,12 @@ function ProductDetail({ product, styles }) {
           <h3>{product.category}</h3>
           <h1>{product.name}</h1>
           <small>
-            $
-            {style.sale_price ? style.sale_price : style.original_price}
+            {style.sale_price ? (
+              <p>
+                <s>{`$${style.original_price}`}</s>
+                <span style={{ color: 'red' }}>{` $${style.sale_price}`}</span>
+              </p>
+            ) : `$${style.original_price}`}
           </small>
           <p>
             <b>STYLE &gt; </b>
