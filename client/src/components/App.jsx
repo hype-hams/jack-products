@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable import/no-cycle */
 /* eslint-disable react/jsx-no-constructed-context-values */
@@ -9,6 +10,7 @@ import ProductDetail from './product_detail/Product_detail_main.jsx';
 
 export const ProductContext = createContext(null);
 /* using useContext instruction:
+  import React, { useContext } from 'react';
   import { ProductContext } from '../App.jsx';
   const { product, setProduct } = useContext(ProductContext);
 */
