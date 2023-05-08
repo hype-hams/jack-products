@@ -5,8 +5,8 @@
   "main": "config.js",
   "scripts": {
     "test": "jest --verbose",
-    "client-dev": "npx webpack --watch",
-    "server-dev": "nodemon server/index.js",
+    "client-dev": "npx webpack --config ./webpack.config.js --watch",
+    "server-dev": "nodemon server/app.js",
     "lint": "eslint",
     "lint:fix": "npm run lint -- --fix"
   },
