@@ -71,8 +71,8 @@ function AddToCart({ skus }) {
           promises.push(axios.post('/api/cart', { sku_id: id }));
         }
         const responses = await Promise.all(promises);
-        responses.forEach((response) => {
-          console.log('Add to cart response: ', response.data);
+        responses.forEach((response, index) => {
+          console.log(`Add to cart response${index + 1}: ${response.data}`);
         });
       };
       multipleRequestsBasedOnCounts();
