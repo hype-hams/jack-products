@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import Modal from 'react-modal';
 
-const Modal = ({comparedProductName, currProductName, features})=> {
+const The_Modal = ({comparedProductName, currProductName, features})=> {
     
     return (
         <table>
@@ -11,12 +12,12 @@ const Modal = ({comparedProductName, currProductName, features})=> {
             </tr>
                 {features.map(item=>
                 <tr>
-                    <td>{item.item === currProductName ? '✅' : null}</td>
-                    <td>{item.value} {item.feature}</td>
-                    <td>{item.item === comparedProductName ? '✅' : null}</td>
+                    <td>{item.currProductFeature ? '✅' : null}</td>
+                    <td>{item.value_feature}</td>
+                    <td>{item.comparedProductFeature ? '✅' : null}</td>
                 </tr>)}
         </table>
     );
 }
-export default Modal;
+export default The_Modal;
 

@@ -3,7 +3,7 @@ import RelatedItemCard from './RelatedItemCard.jsx'
 import axios from 'axios';
 import Promise from 'bluebird'
 
-const RelatedItemsList = ({IDlist,  currProduct}) => {
+const RelatedItemsList = ({IDlist,  currProduct, handleRelatedItemClick}) => {
     const [list, setList] = useState ([])
     const [responses, setResponses] = useState([]);
     // console.log(IDList)
@@ -34,7 +34,7 @@ const RelatedItemsList = ({IDlist,  currProduct}) => {
 
     return (
         <div>
-        {list.map(card=><RelatedItemCard card={card} currProduct={ currProduct}/>)}
+        {list.map(card=><RelatedItemCard card={card} currProduct={ currProduct} handleRelatedItemClick={handleRelatedItemClick} />)}
         </div>
     )
 }

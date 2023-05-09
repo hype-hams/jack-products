@@ -7,6 +7,7 @@
 
 import React, { useState, useEffect, createContext } from 'react';
 import ProductDetail from './product_detail/Product_detail_main.jsx';
+import RelatedItems from './related_items/RelatedItems.jsx';
 
 export const ProductContext = createContext(null);
 /* using useContext instruction:
@@ -44,6 +45,7 @@ function App(props) {
       setRelated(relatedData);
       console.log('relatedData: ', relatedData);
 
+
       setLoading(false);
     } catch (err) {
       console.log('Error occurs in fetching data: ', err);
@@ -69,8 +71,7 @@ function App(props) {
             <ProductContext.Provider value={{ product, setProduct }}>
               <ProductDetail product={product} styles={styles} />
               <div className="related-items">
-                <p>Fake Related Component</p>
-                {related.map((item) => <div key={item} onClick={() => handleRelatedItemClick(item)}>{item}</div>)}
+                    <RelatedItems currProduct={product} IDlist={related} handleRelatedItemClick={handleRelatedItemClick} />
               </div>
             </ProductContext.Provider>
           </div>
@@ -82,3 +83,6 @@ function App(props) {
 
 // {/* <ProductDetail /> */}
 export default App;
+
+
+// {related.map((item) => <div key={item} onClick={() => handleRelatedItemClick(item)}>{item}</div>)}
