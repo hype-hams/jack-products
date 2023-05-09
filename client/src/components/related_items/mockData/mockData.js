@@ -1,4 +1,5 @@
-var data = [
+import React from "react";
+const data = [
     {
         category: 'plumbing',
         name: 'pipe',
@@ -20,5 +21,5 @@ var data = [
     }
 ];
 
-export default data;
+export default data
 
