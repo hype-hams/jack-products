@@ -41,6 +41,11 @@ body {
   margin-top: 50px;
 }
 
+.share-on-social-media {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .style-thumbnails-div {
   display: flex;
   flex-wrap: wrap;
