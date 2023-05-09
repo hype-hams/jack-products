@@ -2,8 +2,14 @@
 //Also, feel free to add as many .jsx files in this folder
 import React from 'react';
 
-const Reviews_main = () => {
+const mainList = () => {
 
+
+  return (
+    <ol>
+      {/* Map sublists to here, creating a new sublist for each question */}
+    </ol>
+  )
 }
 
-default export Reviews_main
+export default mainList;

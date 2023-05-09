@@ -14,22 +14,23 @@ router.get('/products/:product_id/related', controllers.details.getRelated);
 router.post('/cart', controllers.details.addCart);
 // Retrieves list of products added to the cart by a user
 router.get('/cart', controllers.details.getCart);
-
 // Adds an interation to the db
 router.post('/interactions', controllers.details.addInteraction);
 
 // //product q_a
-// router.get('/', controllers)
-// router.post('/', controllers)
+router.get('/q_a', controllers.q_a.getQuestions)
+router.get('/q_a', controllers.q_a.getAllAnswers)
+router.post('/q_a', controllers.q_a.postQuestion)
+// router.post('/q_a', controllers.q_a.postAnswer)
 
 // //related
 // router.get('/', controllers)
 // router.post('/', controllers)
 
-// reviews
+//reviews:Eric
 router.get('/reviews', controllers.reviews.getReviews);
-router.get('/reviews', controllers.reviews.getProductBreakdown);
+router.get('/reviews/meta', controllers.reviews.getProductBreakdown);
 router.post('/reviews', controllers.reviews.postReview);
-router.put('/reviews', controllers.reviews.putHelpful);
-router.put('/reviews', controllers.reviews.reportReview);
+router.put('/reviews/:review_id/helpful', controllers.reviews.putHelpful);
+router.put('/reviews/:review_id/report', controllers.reviews.reportReview);
 module.exports = router;
