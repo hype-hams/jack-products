@@ -1,30 +1,38 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function AddToCart({ skus }) {
-  const [selectedSize, setSelectedSize] = useState('SELECT SIZE');
+  // const [selectedSize, setSelectedSize] = useState('SELECT SIZE');
   const [selectedQty, setSelectedQty] = useState('-');
+  const [sizeOptions, setSizeOptions] = useState(<option>SELECT SIZE</option>);
   const [qtyOptions, setQtyOptions] = useState(<option>-</option>);
   // If the size has not been selected, the Quantity Selector dropdown will be disabled.
-  const [dropdownDisabled, setDropdownDisabled] = useState(true);
+  const [sizeDropdown, setSizeDropdown] = useState(false);
+  const [qtyDropdown, setQtyDropdown] = useState(true);
 
-  const skusArr = Object.entries(skus)
-    .map((item) => ({ sku_id: item[0], quantity: item[1].quantity, size: item[1].size }));
-  console.log('skusArr: ', skusArr);
+  useEffect(() => {
+    console.log('skus: ', skus);
+    if (!skus[0].size) {
+      setSizeDropdown(true);
+      setSizeOptions(<option>OUT OF STOCK</option>);
+    } else {
+      const sizeOptionsArr = skus.map((item) => (
+        <option key={item.sku_id} value={item.size}>{item.size}</option>));
+      setSizeOptions([sizeOptions, ...sizeOptionsArr]);
+    }
+  }, []);
 
   const handleSizeChange = (e) => {
     const currentSize = e.target.value;
-    setSelectedSize(currentSize);
     console.log('currentSize', currentSize);
     if (currentSize === 'SELECT SIZE') {
-      setDropdownDisabled(true);
+      setQtyDropdown(true);
       setQtyOptions(<option>-</option>);
     } else {
-      setDropdownDisabled(false);
-      setSelectedQty(1); // Once a size has been selected, the dropdown should default to 1.
-      const qtyForSelectedSize = skusArr.find((item) => item.size === currentSize).quantity;
+      setQtyDropdown(false);
+      const qtyForSelectedSize = skus.find((item) => item.size === currentSize).quantity;
       // The maximum selection has a hard limit of 15
       const limit = qtyForSelectedSize > 15 ? 15 : qtyForSelectedSize;
       const qtyOptionsArr = [];
@@ -42,17 +50,12 @@ function AddToCart({ skus }) {
   return (
     <div className="selectors">
       <label>
-        <select id="size-selector" value={selectedSize} onChange={handleSizeChange}>
-          <option value="SELECT SIZE">SELECT SIZE</option>
-          {skusArr.map((item) => (
-            <option key={item.sku_id} value={item.size}>
-              {item.size}
-            </option>
-          ))}
+        <select id="size-selector" disabled={sizeDropdown} onChange={handleSizeChange}>
+          {sizeOptions}
         </select>
       </label>
       <label>
-        <select id="quantity-selector" disabled={dropdownDisabled} value={selectedQty} onChange={handleQtyChange}>
+        <select id="quantity-selector" disabled={qtyDropdown} value={selectedQty} onChange={handleQtyChange}>
           {qtyOptions}
         </select>
       </label>

@@ -21,6 +21,9 @@ function ProductDetail({ product, styles }) {
     setStyle(newStyle[0]); // filter return an array
   };
 
+  const skusArray = Object.entries(style.skus)
+    .map((item) => ({ sku_id: item[0], quantity: item[1].quantity, size: item[1].size }));
+
   return (
     <div className="product-detail-section">
       <div className="product-detail-div">
@@ -44,7 +47,7 @@ function ProductDetail({ product, styles }) {
           <div className="style-thumbnails-div">
             {styles.results.map((item) => (<Style style={item} handleClick={handleThumbnailOnClick} key={item.style_id} />))}
           </div>
-          <AddToCart skus={style.skus} />
+          <AddToCart skus={skusArray} />
         </div>
       </div>
       <div className="product-description"><p>{product.description}</p></div>
