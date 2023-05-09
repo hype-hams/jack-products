@@ -1,51 +1,60 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
-import testData from '../testdata/reviewdata.json';
+// import testData from '../testdata/reviewdata.json';
 
-import SortBar from './SortBar.jsx';
 import AddReview from './AddReview/AddReview.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
+import SortBar from './SortBar.jsx';
 
-const ReviewRating = () => {
-  const [masterList, setMasterList] = useState([]);
-  const [sortBar, setSortBar] = useState('relevant');
+const ReviewRating = ({product}) => {
+
+  const [reviewList, setReviewList] = useState([]);
   const [productRating, setProductRating] = useState([]);
   const [recommended, setRecommended] = useState([]);
   const [avgRate, setAvgRate] = useState('');
   const [rating, setRating] = useState([]);
 
+  const [dropSort, setDropSort] = useState('relevant');
+
+  const getReviews = () => {
+    axios.get('/api/reviews', {
+      params: {
+        product_id: product,
+        sort: dropSort,
+        count: 100
+      }
+    })
+    .then((response) => {
+      console.log('review rating get req', response.data)
+      setReviewList(response.data)
+    })
+  }
+
   const getMeta = () => {
-    axios.get('/api/reviews/meta?product_id=40344')
+    axios.get(`/api/reviews/meta?product_id=${product}`)
       .then(response => {
-        console.log(Object.values(response.data.characteristics))
-        console.log(Object.entries(response.data.ratings))
+        // console.log('chars',(response.data.characteristics))
+        // console.log(Object.entries(response.data.ratings))
         setProductRating(Object.values(response.data.characteristics))
         setRecommended(response.data.recommended)
         //WILL GIVE OBJ
-        // setRating(response.data.ratings)
-
-          //WILL GIVE ARRAY OF OBJECTS
         setAvgRate(response.data.ratings)
+        //WILL GIVE ARRAY OF OBJECTS
         setRating(Object.entries(response.data.ratings).map(entry => { return {id: Number(entry[0]), val: Number(entry[1])}}).reverse())
       })
 
   }
 
   useEffect(() => {
-    setMasterList(testData.results)
+    getReviews()
     getMeta()
-  }, [])
+  }, [dropSort])
 
-  // let recommendLine = recommended.map((recObj, ind) =>
-  //   <RatingBreakdown recObj={recObj} key={ind}/>)
-
-  // let ratingTable = rating.map((rateObj, ind) =>
-  //   <RatingBreakdown rateObj={rateObj} key={ind} />)
 
   let charTable = productRating.map((charObj, ind) =>     <ProductBreakdown charObj={charObj} key={ind}/>)
-  // let rateTable = rating.map((rateObj, ind) =>     <RatingBreakdown rateObj={rateObj} key={ind} recommended={recommended}/>)
+
 
   //ratings filter needs to pass do wn without without influence on sorbar. should combo
   return (
@@ -69,14 +78,17 @@ const ReviewRating = () => {
       </div>
 
       <div>
+        <header>Reviews</header>
+        <SortBar dropSort={dropSort}
+        setDropSort={setDropSort}/>
         <div>
           <ReviewList
-          masterList={masterList}
-          setMasterList={setMasterList}/>
+            setReviewList={setReviewList}
+            reviewList={reviewList}/>
         </div>
 
         <div>
-          <AddReview />
+          <AddReview productRating={productRating}/>
         </div>
       </div>
 
