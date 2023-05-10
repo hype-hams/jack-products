@@ -6,6 +6,7 @@
 
 import React, { useState, useEffect, createContext } from 'react';
 import ProductDetail from './product_detail/Product_detail_main.jsx';
+import RelatedItems from './related_items/RelatedItems.jsx';
 
 export const ProductContext = createContext(null);
 /* using useContext instruction:
@@ -68,8 +69,7 @@ function App(props) {
             <ProductContext.Provider value={{ product, setProduct }}>
               <ProductDetail product={product} styles={styles} />
               <div className="related-items">
-                <p>Related Component</p>
-                {related.map((item) => <div key={item} onClick={() => handleRelatedItemClick(item)}>{item}</div>)}
+                    <RelatedItems key={product.id} currProduct={product} currPhotoURL={styles.results[0].photos[0].thumbnail_url} IDlist={related} handleRelatedItemClick={handleRelatedItemClick} />
               </div>
             </ProductContext.Provider>
           </div>
@@ -77,6 +77,10 @@ function App(props) {
       }
     </div>
   );
-}
+};
 
+// {/* <ProductDetail /> */}
 export default App;
+
+
+// {related.map((item) => <div key={item} onClick={() => handleRelatedItemClick(item)}>{item}</div>)}
