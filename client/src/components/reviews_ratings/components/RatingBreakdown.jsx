@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import Stars from './Stars.jsx';
 
-const RatingBreakdown = ({rating, recommended, avgRate, product}) => {
+const RatingBreakdown = ({rating, recommended, avgRate, productId}) => {
   let recommendPercent = Number(recommended.true)/(Number(recommended.true) + Number(recommended.false)) * 100;
 
   const totalRatings = () => {
@@ -38,7 +38,7 @@ const RatingBreakdown = ({rating, recommended, avgRate, product}) => {
     <section>
       <div>
         <Stars rating={rating}
-          product={product}/>
+          productId={productId}/>
         {/* TODO: style stars here */}
         <small>{totalRatings()}&ensp;reviews</small>
       </div>

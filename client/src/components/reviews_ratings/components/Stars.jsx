@@ -5,12 +5,12 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-const Stars = ({product, rating}) => {
+const Stars = ({productId, rating}) => {
   const [avgRate, setAvgRate] = useState('')
   const [avg, setAvg] = useState('')
   //Grabs star information from server
   const getStars = () => {
-    axios.get(`/api/reviews/meta?product_id=${product}`)
+    axios.get(`/api/reviews/meta?product_id=${productId}`)
       .then(response => {
         console.log('this is stars data', response.data.ratings)
         setAvgRate(response.data.ratings)

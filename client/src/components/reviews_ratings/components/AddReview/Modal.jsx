@@ -1,10 +1,10 @@
 import React, {useState, useRef} from 'react';
 import axios from 'axios';
 import AddCharacteristics from './AddCharacteristics.jsx'
-import '../review.css';
+// import '../review.css';
 
 
-const Modal = ({showModal, setShowModal, productRating, productName, product}) => {
+const Modal = ({showModal, setShowModal, productRating, productName, productId}) => {
   const modalRef = useRef(null);
   const [bodyText, setBodyText] = useState('');
   const [minBody, setMinBody] = useState('50');

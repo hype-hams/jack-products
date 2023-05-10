@@ -7,7 +7,7 @@ import AddCharacteristics from './AddCharacteristics.jsx'
 
 Modal.setAppElement("#root");
 
-const AddReview = ({productRating, productName, product}) => {
+const AddReview = ({productRating, productName, productId}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [bodyText, setBodyText] = useState('');
   const [minBody, setMinBody] = useState('50');
@@ -22,7 +22,7 @@ const AddReview = ({productRating, productName, product}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // let revForm = {
-    //   product_id: {product},
+    //   product_id: {productId},
     //   rating: ,
     //   summary: ,
     //   body: ,

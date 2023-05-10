@@ -3,13 +3,12 @@ import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
 // import testData from '../testdata/reviewdata.json';
 import Modal from './AddReview/Modal.jsx';
-import './review.css'
 
 import ProductBreakdown from './ProductBreakdown.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import SortBar from './SortBar.jsx';
 
-const ReviewRating = ({product, productName}) => {
+const ReviewRating = ({productId, productName}) => {
 
   const [reviewList, setReviewList] = useState([]);
   const [productRating, setProductRating] = useState([]);
@@ -30,7 +29,7 @@ const ReviewRating = ({product, productName}) => {
   const getReviews = () => {
     axios.get('/api/reviews', {
       params: {
-        product_id: product,
+        product_id: productId,
         sort: dropSort,
         count: 5
       }
@@ -42,7 +41,7 @@ const ReviewRating = ({product, productName}) => {
   }
 
   const getMeta = () => {
-    axios.get(`/api/reviews/meta?product_id=${product}`)
+    axios.get(`/api/reviews/meta?product_id=${productId}`)
       .then(response => {
 
         setProductRating(Object.values(response.data.characteristics))
@@ -74,7 +73,7 @@ const ReviewRating = ({product, productName}) => {
           <section className="breakdown">
             <h4>Rating Breakdown</h4>
             {/* {rateTable} */}
-            <RatingBreakdown recommended={recommended} rating={rating} avgRate={avgRate} product={product}/>
+            <RatingBreakdown recommended={recommended} rating={rating} avgRate={avgRate} productId={productId}/>
           </section>
         </div>
         <div>
@@ -96,7 +95,7 @@ const ReviewRating = ({product, productName}) => {
 
         <div>
           <Modal showModal={showModal}
-          product={product}
+          productId={productId}
           productName={productName}
           productRating={productRating}
           setShowModal={setShowModal}/>

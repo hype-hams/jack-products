@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import ReviewHelpers from './ReviewHelpers.jsx';
-import './review.css'
 const ProductBreakdown = ({charObj}) => {
 
 //size, length. comfort, quality, width, fit

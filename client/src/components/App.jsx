@@ -6,6 +6,7 @@
 
 import React, { useState, useEffect, createContext } from 'react';
 import ProductDetail from './product_detail/Product_detail_main.jsx';
+import ReviewRating from './reviews_ratings/components/ReviewRating.jsx'
 
 export const ProductContext = createContext(null);
 /* using useContext instruction:
@@ -21,6 +22,9 @@ function App(props) {
   const [styles, setStyles] = useState([]);
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [productId, setProductId] = useState('40344')
+  const [productName, setProductName] = useState('Camo Onesie');
 
   const fetchDataById = async (id = 40346) => {
     try {
@@ -71,11 +75,16 @@ function App(props) {
                 <p>Related Component</p>
                 {related.map((item) => <div key={item} onClick={() => handleRelatedItemClick(item)}>{item}</div>)}
               </div>
+              <div className="rating-review">
+                <ReviewRating productId={productId}
+                  productName={productName}/>
+              </div>
             </ProductContext.Provider>
           </div>
         )
       }
     </div>
+
   );
 }
 
