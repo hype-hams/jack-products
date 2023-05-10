@@ -68,7 +68,7 @@ function App(props) {
             <ProductContext.Provider value={{ product, setProduct }}>
               <ProductDetail product={product} styles={styles} />
               <div className="related-items">
-                <p>Fake Related Component</p>
+                <p>Related Component</p>
                 {related.map((item) => <div key={item} onClick={() => handleRelatedItemClick(item)}>{item}</div>)}
               </div>
             </ProductContext.Provider>
