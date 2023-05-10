@@ -9,6 +9,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,
+    assetModuleFilename: 'images/[name][ext]',
   },
   devtool: 'source-map',
   module: {
