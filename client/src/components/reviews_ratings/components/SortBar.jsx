@@ -1,17 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import React from 'react';
 
-const SortBar = ({dropSort, setDropSort}) => {
-
-  //helpful = yes-no descending
-  //newest = date
-  //relevant = date + helpful with date being more important  DEFAULT
-  // useEffect(() => {
-  //   setReviewList(reviewList)
-  // }, [])
+const SortBar = ({setDropSort}) => {
   return (
     <div>
-     <select
+     <select id="sortbar"
       onChange={(e) => {
         e.preventDefault()
         const selection = e.target.value
@@ -24,8 +16,6 @@ const SortBar = ({dropSort, setDropSort}) => {
       </select>
     </div>
   )
-
-
-}
+};
 
 export default SortBar;

@@ -2,129 +2,147 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 
-const AddCharacteristics = ({setChars, chars}) => {
-  // const [chars, setChars] = useState(chars)
-
-  const temp = [];
-
-  const activeCharacteristics = () =>
-  {  axios({
-      method: 'GET',
-      url: '/api/reviews/meta?product_id=40344'
-    })
-    .then((response) => {
-      let incoming = Object.keys(response.data.characteristics)
-      // console.log(incoming)
-      incoming.forEach(el => {
-        temp.push({name: el,
-          val1: allCharacteristics[el][1],
-          val2: allCharacteristics[el][2],
-          val3: allCharacteristics[el][3],
-          val4: allCharacteristics[el][4],
-          val5: allCharacteristics[el][5],
-        })
-      })
-    })}
-
-  useEffect(() => {
-    // setTimeout(() => setChars(temp), 400)
-    // setChars(temp)
-    // setChars(temp)
-    activeCharacteristics()
-  },[])
-
-
-  const allCharacteristics = {
-    Size: { //135232
-      1: 'A size too small',
-      2: '1/2 a size too small',
-      3: 'Perfect',
-      4: '1/2 a size too big',
-      5: 'A size too wide',
-    },
-    Width: { //135233
-      1: 'Too narrow',
-      2: 'Slightly narrow',
-      3: 'Perfect',
-      4: 'Slightly Wide',
-      5: 'A size too wide',
-    },
-    Comfort: { //135221
-      1: 'Uncomfortable',
-      2: 'Slightly uncomfortable',
-      3: 'Ok',
-      4: 'Comfortable',
-      5: 'Perfect'
-    },
-    Quality: { //135222
-      1: 'Poor',
-      2: 'Below average',
-      3: 'What I expected',
-      4: 'Pretty great',
-      5: 'Perfect'
-    },
-    Length: { //135220
-      1: 'Runs short',
-      2: 'Runs slighty short',
-      3: 'Perfect',
-      4: 'Runs slightly long',
-      5: 'Runs long'
-    },
-    Fit: { //135219
-      1: 'Runs tight',
-      2: 'Runs slightly tight',
-      3: 'Perfect',
-      4: 'Runs slightly long',
-      5: 'Runs long'
-    }
+const AddCharacteristics = ({charObj}) => {
+  //Checks characteristics on product
+  const presentCharacteristics = {
+    135219: 'Fit',
+    135220: 'Length',
+    135221: 'Comfort',
+    135222: 'Quality',
+    135232: 'Size',
+    135233: 'Width'
+  };
+  //alias
+  const charOption = presentCharacteristics[charObj.id];
+  //sets each button based on alias
+  let char1;
+  let char2;
+  let char3;
+  let char4;
+  let char5;
+  if (charOption === 'Fit') {
+    char1 = 'Runs tight'
+    char2 = 'Runs slightly tight'
+    char3 = 'Perfect'
+    char4 = 'Runs slightly long'
+    char5 = 'Runs long'
   }
-//posting characteristics = id number and value => key: value
-  const Rows = (props) => {
-    const {name, val1, val2, val3, val4, val5} = props;
-    return (<tr>
-      <td>{name}</td>
-      <td><input type="radio" value="1" name={name}></input>{val1}</td>
-      <td><input type="radio" value="2" name={name}></input>{val2}</td>
-      <td><input type="radio" value="3" name={name}></input>{val3}</td>
-      <td><input type="radio" value="4" name={name}></input>{val4}</td>
-      <td><input type="radio" value="5" name={name}></input>{val5}</td>
-    </tr>
-    )
+  if (charOption === 'Size') {
+    char1 = 'A size too small'
+    char2 = '1/2 a size too small'
+    char3 = 'Perfect'
+    char4 = '1/2 a size too big'
+    char5 = 'A size too wide'
   }
-
-  const Table = ({chars}) => {
-    // const {data} = props
-    // console.log('this is data', data)
-    return(
-      <table>
-        <thead>
-          <tr>
-          <th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>{chars}</td></tr>
-          {
-            chars.map(row =>
-              // console.log('this is row', row)
-
-              <Rows name={row.name}
-                val1={row.val1}
-                val2={row.val2}
-                val3={row.val3}
-                val4={row.val4}
-                val5={row.val5} />
-            )
-          }
-        </tbody>
-      </table>
-    )
+  if (charOption === 'Width') {
+    char1 = 'Too narrow'
+    char2 = 'Slightly narrow'
+    char3 = 'Perfect'
+    char4 = 'Slightly Wide'
+    char5 = 'A size too wide'
   }
+  if (charOption === 'Comfort') {
+    char1 = 'Uncomfortable'
+    char2 = 'Slightly uncomfortable'
+    char3 = 'Ok'
+    char4 = 'Comfortable'
+    char5 = 'Perfect'
+  }
+  if (charOption === 'Quality') {
+    char1 = 'Poor'
+    char2 = 'Below average'
+    char3 = 'What I expected'
+    char4 = 'Pretty great'
+    char5 = 'Perfect'
+  }
+  if (charOption === 'Length') {
+    char1 = 'Runs short',
+    char2 = 'Runs slightly short',
+    char3 = 'Perfect',
+    char4 = 'Runs slightly long',
+    char5 = 'Runs long'
+  }
+  // const allCharacteristics = {
+  //   Size: { //135232
+  //     1: 'A size too small',
+  //     2: '1/2 a size too small',
+  //     3: 'Perfect',
+  //     4: '1/2 a size too big',
+  //     5: 'A size too wide',
+  //   },
+  //   Width: { //135233
+  //     1: 'Too narrow',
+  //     2: 'Slightly narrow',
+  //     3: 'Perfect',
+  //     4: 'Slightly Wide',
+  //     5: 'A size too wide',
+  //   },
+  //   Comfort: { //135221
+  //     1: 'Uncomfortable',
+  //     2: 'Slightly uncomfortable',
+  //     3: 'Ok',
+  //     4: 'Comfortable',
+  //     5: 'Perfect'
+  //   },
+  //   Quality: { //135222
+  //     1: 'Poor',
+  //     2: 'Below average',
+  //     3: 'What I expected',
+  //     4: 'Pretty great',
+  //     5: 'Perfect'
+  //   },
+  //   Length: { //135220
+  //     1: 'Runs short',
+  //     2: 'Runs slighty short',
+  //     3: 'Perfect',
+  //     4: 'Runs slightly long',
+  //     5: 'Runs long'
+  //   },
+  //   Fit: { //135219
+  //     1: 'Runs tight',
+  //     2: 'Runs slightly tight',
+  //     3: 'Perfect',
+  //     4: 'Runs slightly long',
+  //     5: 'Runs long'
+  //   }
+  // }
+
 
   return (
-    <div>
-      <Table chars={chars} />
-    </div>
+    <section>
+      <label>{charOption}:</label>
+      <label>
+        <input name={charObj.id}
+          type="radio"
+          value="1"/>
+        <small>{char1}</small>
+      </label>
+      <label>
+        <input name={charObj.id}
+          type="radio"
+          value="2"/>
+        <small>{char2}</small>
+      </label>
+      <label>
+        <input name={charObj.id}
+          type="radio"
+          value="3"/>
+        <small>{char3}</small>
+      </label>
+      <label>
+        <input name={charObj.id}
+          type="radio"
+          value="4"/>
+        <small>{char4}</small>
+      </label>
+      <label>
+        <input name={charObj.id}
+          type="radio"
+          value="5"/>
+        <small>{char5}</small>
+      </label>
+
+    </section>
   )
 
 };

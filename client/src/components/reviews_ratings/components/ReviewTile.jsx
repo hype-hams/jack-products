@@ -3,11 +3,6 @@ import Stars from './Stars.jsx';
 import ReviewHelpers from './ReviewHelpers.jsx';
 import axios from 'axios';
 const ReviewTile = ({revObj}) => {
-
-
-  //VISIBLE revObj: ratings, date, name, email verif, summary, body, recc, helpful, images, response
-  //HIDEN : review_id
-
   // revObj = {
   //   key:revObj.review_id,
   //   id:revObj.review_id,
@@ -23,6 +18,7 @@ const ReviewTile = ({revObj}) => {
   // }
 
   const helpfulCheck = () => {
+
     let yescheck = document.getElementById('yeshelp');
     let nocheck = document.getElementById('nohelp');
     if(yescheck.checked || nocheck.checked) {
@@ -33,6 +29,7 @@ const ReviewTile = ({revObj}) => {
     }
     if(yescheck.checked) {
       //NEED TO GRAB HELPFULLES DATA
+      console.log('yes was checked  ')
       ReviewHelpers.markHelpful(revObj.review_id)
     } else {
       console.log('no was checked')
@@ -77,12 +74,16 @@ const ReviewTile = ({revObj}) => {
           <div className="review-body">
             <BodyLength />
           </div>
+          <div className="seller-response">
+            {ReviewHelpers.sellerResponse(revObj.response)}
+          </div>
 
           <div className="recommend">
             {ReviewHelpers.checkRecommend(revObj.recommend)}
           </div>
-
-          <div className="helpful-checker">
+        </div>
+        <section>
+          <div id="helpful-checker">
             <label>Was this helpful?</label>
             <input id="yeshelp"
               type="radio"
@@ -103,7 +104,8 @@ const ReviewTile = ({revObj}) => {
               found this helpful
             </small>
           </div>
-        </div>
+
+        </section>
       </form>
     </div>
   )

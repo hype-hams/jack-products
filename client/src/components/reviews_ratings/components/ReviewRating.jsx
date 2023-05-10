@@ -2,13 +2,13 @@ import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
 // import testData from '../testdata/reviewdata.json';
+import Modal from './AddReview/Modal.jsx';
 
-import AddReview from './AddReview/AddReview.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import SortBar from './SortBar.jsx';
 
-const ReviewRating = ({product}) => {
+const ReviewRating = ({product, productName}) => {
 
   const [reviewList, setReviewList] = useState([]);
   const [productRating, setProductRating] = useState([]);
@@ -17,13 +17,21 @@ const ReviewRating = ({product}) => {
   const [rating, setRating] = useState([]);
 
   const [dropSort, setDropSort] = useState('relevant');
+//MODAL REDO
+  const [showModal, setShowModal] = useState(false);
+
+  const addReview = (e) => {
+    e.preventDefault
+    setShowModal(!showModal)
+    return <Modal showModal={showModal} setShowModal={setShowModal}/>
+  }
 
   const getReviews = () => {
     axios.get('/api/reviews', {
       params: {
         product_id: product,
         sort: dropSort,
-        count: 100
+        count: 5
       }
     })
     .then((response) => {
@@ -35,8 +43,7 @@ const ReviewRating = ({product}) => {
   const getMeta = () => {
     axios.get(`/api/reviews/meta?product_id=${product}`)
       .then(response => {
-        // console.log('chars',(response.data.characteristics))
-        // console.log(Object.entries(response.data.ratings))
+
         setProductRating(Object.values(response.data.characteristics))
         setRecommended(response.data.recommended)
         //WILL GIVE OBJ
@@ -66,7 +73,7 @@ const ReviewRating = ({product}) => {
           <section>
             <h4>Rating Breakdown</h4>
             {/* {rateTable} */}
-            <RatingBreakdown recommended={recommended} rating={rating} avgRate={avgRate}/>
+            <RatingBreakdown recommended={recommended} rating={rating} avgRate={avgRate} product={product}/>
           </section>
         </div>
         <div>
@@ -79,17 +86,21 @@ const ReviewRating = ({product}) => {
 
       <div>
         <header>Reviews</header>
-        <SortBar dropSort={dropSort}
-        setDropSort={setDropSort}/>
+        <SortBar
+          setDropSort={setDropSort}/>
         <div>
           <ReviewList
-            setReviewList={setReviewList}
             reviewList={reviewList}/>
         </div>
 
         <div>
-          <AddReview productRating={productRating}/>
+          <Modal showModal={showModal}
+          product={product}
+          productName={productName}
+          productRating={productRating}
+          setShowModal={setShowModal}/>
         </div>
+
       </div>
 
     </div>

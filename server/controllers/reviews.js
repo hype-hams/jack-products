@@ -20,7 +20,24 @@ module.exports = {
     };
     return axios(options)
       .then((response) => {
-        res.status(200).send(response.data);
+        let sortTerm = req.query.sort
+        if(sortTerm === undefined) {
+           response.data.results
+        } else if(sortTerm === 'newest') {
+           response.data.results.sort((a, b)=> {
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+          })
+        } else if (sortTerm === 'helpful') {
+           response.data.results.sort((a, b) => {
+            return a.helpfulness > b.helpfulness
+          })
+        } else if (sortTerm === 'relevant') {
+          response.data.results.sort((a, b) => {
+            // dynamic sort based on days since post * helpful
+            return ((500/(new Date(b.date).getTime()*86400000))*b.helpfulness) - ((500/(new Date(a.date).getTime()*86400000))*a.helpfulness)
+          })
+        }
+        res.status(200).send(response.data.results)
       })
       .catch((err) => {
         res.status(500).send(err);
