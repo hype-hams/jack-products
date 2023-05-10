@@ -2,7 +2,7 @@ import React from 'react';
 
 const SortBar = ({setDropSort}) => {
   return (
-    <div>
+    <div className="sortbar">
      <select id="sortbar"
       onChange={(e) => {
         e.preventDefault()
