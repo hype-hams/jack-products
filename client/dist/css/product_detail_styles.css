@@ -1,0 +1,102 @@
+/*this will be the main css file, feel free to add in more css files in this folder*/
+/* However you may need to let the group know since everyone is going to need to pull any
+updates or changes*/
+body {
+  font-family: sans-serif, arial;
+  margin: 50px;
+}
+
+.product-detail-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  min-width: 800px;
+}
+
+.product-detail-div {
+  min-height: 600px;
+  display: flex;
+}
+
+.image-gallery-div {
+  max-height: 600px;
+  min-width: 400px;
+  width: 100%;
+  overflow: hidden; /* image doesn't overflow the div */
+}
+
+#main-photo {
+  display: block;
+  max-width: 800px;
+  object-fit: cover; /* images cover the entire div without stretching */
+}
+
+.product-detail-div__right {
+  width: 100%;
+  min-width: 400px;
+  margin-left: 20px;
+}
+
+.product-description {
+  margin-top: 20px;
+}
+
+.share-on-social-media {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* style-thumbnails-div contains all the style thumbnails */
+.style-thumbnails-div {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 150px;
+  gap: 20px 20px;
+}
+/* style-each-thumbnail-div contains one checkmark and one thumbnail img */
+.style-each-thumbnail-div{
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.checkmark {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.style-each-thumbnail-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: rgb(255, 230, 230);
+}
+
+.selectors {
+  margin-top: 30px;
+}
+
+#size-selector,
+#quantity-selector {
+  min-height: 50px;
+  padding: 10px;
+  padding-right: 50px;
+  margin-right: 20px;
+  border: 0;
+  outline: 1px solid;
+  border-right: 16px solid transparent;
+}
+
+#addToCart-btn {
+  min-height: 50px;
+  padding: 10px;
+  padding-right: 150px;
+  margin-right: 20px;
+  margin-top: 20px;
+  background-color: transparent;
+  border-width: 1px;
+  border-color: black;
+}
