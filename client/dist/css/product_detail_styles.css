@@ -77,3 +77,14 @@ body {
   border-width: 1px;
   border-color: black;
 }
+
+.question {
+  padding: 5px;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  display: inline-block;
+  border-style: solid;
+  border-radius: 25px;
+  border-color: rgb(167, 162, 162);
+  border-width: 2px;
+}

@@ -8,6 +8,7 @@
 import React, { useState, useEffect, createContext } from 'react';
 import ProductDetail from './product_detail/Product_detail_main.jsx';
 import RelatedItems from './related_items/RelatedItems.jsx';
+import QA from './questions_and_answers/Q&A.jsx'
 
 export const ProductContext = createContext(null);
 /* using useContext instruction:
@@ -71,7 +72,10 @@ function App(props) {
             <ProductContext.Provider value={{ product, setProduct }}>
               <ProductDetail product={product} styles={styles} />
               <div className="related-items">
-                    <RelatedItems currProduct={product} IDlist={related} handleRelatedItemClick={handleRelatedItemClick} />
+                  {/* <RelatedItems currProduct={product} IDlist={related} handleRelatedItemClick={handleRelatedItemClick} /> */}
+              </div>
+              <div className="Q&A">
+                <QA productID={product.id} />
               </div>
             </ProductContext.Provider>
           </div>

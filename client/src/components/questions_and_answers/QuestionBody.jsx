@@ -1,7 +1,8 @@
 /* eslint-disable no-trailing-spaces */
 import React from 'react';
-import Answers from './Answers';
+import Answers from './Answers.jsx';
 
+const { useState } = React;
 
 // Maybe use div here to render it as multiple variables rather than a list
 // Here we return the basic Structure of the individual questions
@@ -24,19 +25,26 @@ import Answers from './Answers';
   */
 // const { useState } = React;
 
-function QuestionBody(question) {
-
-  // const [answers, setAnswers] = useState({});
+function QuestionBody({ question, answers }) {
+  // console.log('QUESTION HERE: ', question)
 
   return (
     <div className="question">
       <span className="asker_ name">{question.asker_name}</span>
-      <p className="question_body">{question.question_body}</p>
+      <p className="question_body">
+        Q:
+        {' '}
+        {question.question_body}
+      </p>
       <button type="button" className="reply">Write an Answer</button>
+      <span>
+        Helpfullness:
+        {question.question_helpfulness}
+      </span>
 
       <hr />
 
-      <Answers question={question} />
+      <Answers answers={answers} />
     </div>
   );
 }

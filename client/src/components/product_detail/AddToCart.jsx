@@ -5,6 +5,7 @@
 import React, { useState, useEffect } from 'react';
 
 function AddToCart({ skus }) {
+  console.log('Skus: ', skus)
   const skusArr = Object.entries(skus)
     .map((item) => ({ sku_id: item[0], quantity: item[1].quantity, size: item[1].size }));
   console.log('skusArr: ', skusArr);
