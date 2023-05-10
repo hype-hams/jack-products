@@ -53,13 +53,13 @@ function ProductDetail({ product, styles }) {
       <div className="product-description"><p>{product.description}</p></div>
       <div className="share-on-social-media">
         <a className="fb-share-button" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" rel="noreferrer">
-          <img src="https://mississippiriverdelta.org/files/2021/04/download-icon-share-facebook-svg-eps-png-psd-ai-vector-el-fonts-facebook-share-png-1600_522.png" alt="facebook-share" width="10%" />
+          <img src="https://mississippiriverdelta.org/files/2021/04/download-icon-share-facebook-svg-eps-png-psd-ai-vector-el-fonts-facebook-share-png-1600_522.png" alt="facebook-share" width="7%" />
         </a>
         <a className="twitter-share-button" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHeBJpTHmu42JlXBIpJaQpzO86vaBNBevrFq4ZsvgGO15cDMP29qRmyBJ9pipIMaYZtg&usqp=CAU" alt="twitter-share" width="10%" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHeBJpTHmu42JlXBIpJaQpzO86vaBNBevrFq4ZsvgGO15cDMP29qRmyBJ9pipIMaYZtg&usqp=CAU" alt="twitter-share" width="7%" />
         </a>
         <a className="pinterest-share-button" target="_blank" rel="noreferrer" href="https://www.pinterest.com/pin/create/button/">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1Ev4FtVSjkHTnLVaXCmGMDWK2AvY4MTMbXv-YPvEEE0VIuh64erHSx15eeHWC3jVc9g&usqp=CAU" alt="pinterest-share" width="10%" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1Ev4FtVSjkHTnLVaXCmGMDWK2AvY4MTMbXv-YPvEEE0VIuh64erHSx15eeHWC3jVc9g&usqp=CAU" alt="pinterest-share" width="7%" />
         </a>
       </div>
     </div>
