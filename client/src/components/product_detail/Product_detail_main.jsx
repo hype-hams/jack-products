@@ -45,7 +45,7 @@ function ProductDetail({ product, styles }) {
             {style.name}
           </p>
           <div className="style-thumbnails-div">
-            {styles.results.map((item) => (<Style style={item} handleClick={handleThumbnailOnClick} key={item.style_id} />))}
+            {styles.results.map((item) => (<Style style={item} selectedStyleId={style.style_id} handleClick={handleThumbnailOnClick} key={item.style_id} />))}
           </div>
           <AddToCart skus={skusArray} />
         </div>
