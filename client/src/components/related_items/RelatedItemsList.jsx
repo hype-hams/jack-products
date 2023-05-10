@@ -6,7 +6,7 @@ import Promise from 'bluebird'
 const RelatedItemsList = ({IDlist,  currProduct, handleRelatedItemClick}) => {
     const [list, setList] = useState ([])
     const [responses, setResponses] = useState([]);
-    // console.log(IDList)
+
     const GETRelatedProductsProps = ()=>{
         const url = `http://localhost:3000/api/products` 
         const promises = IDlist.map(id=> axios.get(`${url}/${id}`));
@@ -14,7 +14,6 @@ const RelatedItemsList = ({IDlist,  currProduct, handleRelatedItemClick}) => {
             setResponses(props)
         });
     };
-
 
     const listHandler = ()=>{
         const data = []
@@ -33,13 +32,9 @@ const RelatedItemsList = ({IDlist,  currProduct, handleRelatedItemClick}) => {
         listHandler();
     }, [responses]);
 
-    //useEffect(()=>{
-
-    // })
-
     return (
         <div className='RelatedItemsList'>
-            {list.map(card=><RelatedItemCard card={card} currProduct={ currProduct} handleRelatedItemClick={handleRelatedItemClick} />)}
+            {list.map(card=><RelatedItemCard key={card.id} card={card} currProduct={ currProduct} handleRelatedItemClick={handleRelatedItemClick} />)}
         </div>
     )
 }

@@ -11,6 +11,7 @@ const RelatedItemCard = ({card,  currProduct, handleRelatedItemClick}) => {
         axios.get(`${url}/${id}/styles`).then((res)=>{
             setPhotoURL(res.data.results[0].photos[0].thumbnail_url);
         }).catch(err=>{
+            
             console.error(err);
         })
     }

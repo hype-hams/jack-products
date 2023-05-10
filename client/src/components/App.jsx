@@ -70,7 +70,7 @@ function App(props) {
             <ProductContext.Provider value={{ product, setProduct }}>
               <ProductDetail product={product} styles={styles} />
               <div className="related-items">
-                    <RelatedItems currProduct={product} currPhotoURL={styles.results[0].photos[0].thumbnail_url} IDlist={related} handleRelatedItemClick={handleRelatedItemClick} />
+                    <RelatedItems key={product.id} currProduct={product} currPhotoURL={styles.results[0].photos[0].thumbnail_url} IDlist={related} handleRelatedItemClick={handleRelatedItemClick} />
               </div>
             </ProductContext.Provider>
           </div>
