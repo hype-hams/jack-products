@@ -1,0 +1,321 @@
+[
+    {
+        "review_id": 841473,
+        "rating": 2,
+        "summary": "Comfy but bust",
+        "recommend": false,
+        "response": null,
+        "body": "kLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        "date": "2021-09-24T00:00:00.000Z",
+        "reviewer_name": "chesterTheTester",
+        "helpfulness": 18,
+        "photos": [
+            {
+                "id": 1595483,
+                "url": "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632507567/ikwo1zz6f4mbyumxllpv.png"
+            }
+        ]
+    },
+    {
+        "review_id": 841474,
+        "rating": 2,
+        "summary": "Comfy but bust",
+        "recommend": false,
+        "response": null,
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        "date": "2021-09-24T00:00:00.000Z",
+        "reviewer_name": "chester",
+        "helpfulness": 7,
+        "photos": [
+            {
+                "id": 1595484,
+                "url": "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632507833/cvczxthqer4dnzgoeduz.png"
+            }
+        ]
+    },
+    {
+        "review_id": 1277832,
+        "rating": 5,
+        "summary": "asdfasd",
+        "recommend": true,
+        "response": null,
+        "body": "asdafsddfdsafdsfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf",
+        "date": "2022-12-12T00:00:00.000Z",
+        "reviewer_name": "asdfsadf",
+        "helpfulness": 1,
+        "photos": []
+    },
+    {
+        "review_id": 1277822,
+        "rating": 4,
+        "summary": "ghjghj",
+        "recommend": true,
+        "response": null,
+        "body": "ghjghjghjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+        "date": "2022-12-12T00:00:00.000Z",
+        "reviewer_name": "tytyu",
+        "helpfulness": 1,
+        "photos": [
+            {
+                "id": 2456834,
+                "url": "blob:http://127.0.0.1:8080/a18f62db-229c-45cd-8113-9be9b61638e9"
+            },
+            {
+                "id": 2456836,
+                "url": "blob:http://127.0.0.1:8080/762e9cc0-4b5d-4721-b0d5-6eb993d8fb0b"
+            },
+            {
+                "id": 2456838,
+                "url": "blob:http://127.0.0.1:8080/1421d0c3-c605-46df-8765-a86b52e67591"
+            },
+            {
+                "id": 2456835,
+                "url": "blob:http://127.0.0.1:8080/96e17841-54bd-4249-85c1-42cce2a93980"
+            },
+            {
+                "id": 2456837,
+                "url": "blob:http://127.0.0.1:8080/743353c1-b57e-4915-9895-ecb528991c92"
+            }
+        ]
+    },
+    {
+        "review_id": 1277820,
+        "rating": 4,
+        "summary": "testsetststset",
+        "recommend": true,
+        "response": null,
+        "body": "setsetsetsetsetsetsetsetsetsetsetsetsetsetsetsetset",
+        "date": "2022-12-12T00:00:00.000Z",
+        "reviewer_name": "wavyj",
+        "helpfulness": 1,
+        "photos": []
+    },
+    {
+        "review_id": 1176526,
+        "rating": 1,
+        "summary": "test",
+        "recommend": false,
+        "response": null,
+        "body": "testtesttesttesttesttesttesttesttesttesttesttesttest",
+        "date": "2022-04-16T00:00:00.000Z",
+        "reviewer_name": "name",
+        "helpfulness": 1,
+        "photos": [
+            {
+                "id": 2259560,
+                "url": "https://res.cloudinary.com/cloverhong/image/upload/v1650147010/vawo4fuixnncv3dqc4ov.jpg"
+            }
+        ]
+    },
+    {
+        "review_id": 841523,
+        "rating": 5,
+        "summary": "asdfasdfdsaf",
+        "recommend": false,
+        "response": null,
+        "body": "asdfasdfasdfasdfsadfsadfasdfdsafsadfdsfasdfdafsdfasdf",
+        "date": "2021-09-24T00:00:00.000Z",
+        "reviewer_name": "asdfasdfsa",
+        "helpfulness": 1,
+        "photos": [
+            {
+                "id": 1595494,
+                "url": "https://www.linkpicture.com/q/Screen-Shot-2021-09-23-at-5.15.16-PM.png"
+            }
+        ]
+    },
+    {
+        "review_id": 1095077,
+        "rating": 5,
+        "summary": "Great for sous vide (disregard reviews by those who didn't read the product description)",
+        "recommend": true,
+        "response": null,
+        "body": "We've been very happy with their pressure cookers (4, 6 and 8 qt) and wanted a good multi-cooker to cover our slow-cooking needs. This offered sous vide which neither the All-Clad nor the Cuisinart had. We've got two sous vide immersion devices which work great but aren't good for long, 24-hour (or more) jobs because of evaporation (you have to cover the pot with foil). Made some over-the-top ribs and there was no drop in the water level during the entire 24-hour period. Highly recommend!",
+        "date": "2021-11-21T00:00:00.000Z",
+        "reviewer_name": "donot report this review",
+        "helpfulness": 0,
+        "photos": [
+            {
+                "id": 2100566,
+                "url": "https://res.cloudinary.com/drbwyfh4x/image/upload/v1637535526/xzcaurk1lhfoz0rbvjg8.jpg"
+            },
+            {
+                "id": 2100567,
+                "url": "https://res.cloudinary.com/drbwyfh4x/image/upload/v1637535526/glb9mu5cfmj9dk9bypfq.jpg"
+            }
+        ]
+    },
+    {
+        "review_id": 1095063,
+        "rating": 4,
+        "summary": "Great jacket for living in the Bay Area!!!",
+        "recommend": false,
+        "response": null,
+        "body": "I'm a corporate pilot and I frequently pack for 3-5 day trips. This bag fits everything I need. It's a little more snug than the previous 22 bag but that makes sense as this is a slightly smaller bag overall. I purchased this bag because the handles on my previous bag were beginning to wear, I wanted the extra protection of a hard shell, and I wanted a separate laptop/tech compartment so I didn't have to carry an additional backpack or risk the laptop being bent inside the suitcase. And also I didn't want to pay $4-500 on an airline quality case.",
+        "date": "2021-11-19T00:00:00.000Z",
+        "reviewer_name": "someone you loved",
+        "helpfulness": 0,
+        "photos": [
+            {
+                "id": 2100560,
+                "url": "urlplaceholder/review_5_photo_number_1.jpg"
+            },
+            {
+                "id": 2100561,
+                "url": "urlplaceholder/review_5_photo_number_2.jpg"
+            }
+        ]
+    },
+    {
+        "review_id": 1276109,
+        "rating": 4,
+        "summary": "sdfssdfsfdsf",
+        "recommend": false,
+        "response": null,
+        "body": "sdfasdfasiudhfsajk sad jkfhalsjdhfl asjdk fshfsakj fsfdsd",
+        "date": "2022-08-01T00:00:00.000Z",
+        "reviewer_name": "dgfdfgf",
+        "helpfulness": 0,
+        "photos": [
+            {
+                "id": 2455788,
+                "url": "http://res.cloudinary.com/dtoqwbb6x/image/upload/v1659381144/anemjfm9c6juttm8uda6.jpg"
+            }
+        ]
+    },
+    {
+        "review_id": 1276107,
+        "rating": 5,
+        "summary": "1231231231231312312312312312",
+        "recommend": true,
+        "response": null,
+        "body": "asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf",
+        "date": "2022-08-01T00:00:00.000Z",
+        "reviewer_name": "asdf",
+        "helpfulness": 0,
+        "photos": []
+    },
+    {
+        "review_id": 1276091,
+        "rating": 4,
+        "summary": "asd",
+        "recommend": false,
+        "response": null,
+        "body": "adsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsads",
+        "date": "2022-07-30T00:00:00.000Z",
+        "reviewer_name": "ads",
+        "helpfulness": 0,
+        "photos": [
+            {
+                "id": 2455767,
+                "url": "http://res.cloudinary.com/dtoqwbb6x/image/upload/v1659207529/kkobqp9ofzfrs40yspr4.png"
+            }
+        ]
+    },
+    {
+        "review_id": 1275250,
+        "rating": 3,
+        "summary": "",
+        "recommend": false,
+        "response": null,
+        "body": "The summary is optional and body has to be 50 characters50 characters50 characters50 characters50 characters.",
+        "date": "2022-06-10T00:00:00.000Z",
+        "reviewer_name": "jibbly",
+        "helpfulness": 0,
+        "photos": [
+            {
+                "id": 2455216,
+                "url": "photo.com/url"
+            }
+        ]
+    },
+    {
+        "review_id": 1277812,
+        "rating": 4,
+        "summary": "great purchase",
+        "recommend": true,
+        "response": null,
+        "body": "dwaonaowdnoawndoawhndioauncwioanwcoawhodhoawhdoahwnd",
+        "date": "2022-12-11T00:00:00.000Z",
+        "reviewer_name": "wad",
+        "helpfulness": 0,
+        "photos": []
+    },
+    {
+        "review_id": 1277810,
+        "rating": 4,
+        "summary": "awdawddwa",
+        "recommend": true,
+        "response": null,
+        "body": "aldwnloawndlanconacinwoicnoawncoanwoindoaknwdlkanwldnkaklsd",
+        "date": "2022-12-11T00:00:00.000Z",
+        "reviewer_name": "wadwad",
+        "helpfulness": 0,
+        "photos": []
+    },
+    {
+        "review_id": 1277809,
+        "rating": 4,
+        "summary": "awhdno",
+        "recommend": true,
+        "response": null,
+        "body": "ndwaondoawndklanwdlnadlwnalwndklancancoajwocjnoanwc",
+        "date": "2022-12-11T00:00:00.000Z",
+        "reviewer_name": "wadbniwbd",
+        "helpfulness": 0,
+        "photos": []
+    },
+    {
+        "review_id": 841526,
+        "rating": 3,
+        "summary": "asdfasdfsafsdaf",
+        "recommend": true,
+        "response": null,
+        "body": "asdfasdhsdvnsdvndkvdnvdkvndknvkdnvkdnvdfsafsdfsadfsdaf",
+        "date": "2021-09-24T00:00:00.000Z",
+        "reviewer_name": "asdfsdagfasdgdsag",
+        "helpfulness": 0,
+        "photos": [
+            {
+                "id": 1595495,
+                "url": "https://www.linkpicture.com/q/Screen-Shot-2021-09-23-at-5.15.16-PM.png"
+            }
+        ]
+    },
+    {
+        "review_id": 841505,
+        "rating": 2,
+        "summary": "headline",
+        "recommend": false,
+        "response": null,
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "date": "2021-09-24T00:00:00.000Z",
+        "reviewer_name": "chester",
+        "helpfulness": 0,
+        "photos": []
+    },
+    {
+        "review_id": 841504,
+        "rating": 2,
+        "summary": "headline",
+        "recommend": false,
+        "response": null,
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "date": "2021-09-24T00:00:00.000Z",
+        "reviewer_name": "chester",
+        "helpfulness": 0,
+        "photos": []
+    },
+    {
+        "review_id": 841469,
+        "rating": 5,
+        "summary": "my dude",
+        "recommend": true,
+        "response": null,
+        "body": "duuuudesdfbasdfgfdsgdfhdfhasdfbdfzhfhsfgasdgasgsadgsdag",
+        "date": "2021-09-24T00:00:00.000Z",
+        "reviewer_name": "jackson11",
+        "helpfulness": 0,
+        "photos": []
+    }
+]
