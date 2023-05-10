@@ -21,6 +21,10 @@
   },
   "homepage": "https://github.com/Beach-Plum-Partiers/PLUMBERSFEC#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.4.0",
     "babel-loader": "^9.1.2",
     "bluebird": "^3.7.2",

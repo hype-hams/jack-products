@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
 // import testData from '../testdata/reviewdata.json';
 import Modal from './AddReview/Modal.jsx';
+import './review.css'
 
 import ProductBreakdown from './ProductBreakdown.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
@@ -65,27 +66,27 @@ const ReviewRating = ({product, productName}) => {
 
   //ratings filter needs to pass do wn without without influence on sorbar. should combo
   return (
-    <div>
+    <div className="RR-module">
       <h2>Ratings & Reviews</h2>
 
-      <div>
+      <div className="breakdown-box">
         <div>
-          <section>
+          <section className="breakdown">
             <h4>Rating Breakdown</h4>
             {/* {rateTable} */}
             <RatingBreakdown recommended={recommended} rating={rating} avgRate={avgRate} product={product}/>
           </section>
         </div>
         <div>
-          <section>
+          <section className="breakdown">
             <h4>Product Breakdown</h4>
             {charTable}
           </section>
         </div>
       </div>
 
-      <div>
-        <header>Reviews</header>
+      <div className="review-box">
+        <header><b>Reviews</b></header>
         <SortBar
           setDropSort={setDropSort}/>
         <div>

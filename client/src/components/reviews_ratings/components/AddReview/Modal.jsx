@@ -1,6 +1,7 @@
 import React, {useState, useRef} from 'react';
 import axios from 'axios';
 import AddCharacteristics from './AddCharacteristics.jsx'
+import '../review.css';
 
 
 const Modal = ({showModal, setShowModal, productRating, productName, product}) => {
@@ -21,13 +22,13 @@ const Modal = ({showModal, setShowModal, productRating, productName, product}) =
 
   return (
 
-    <div>
+    <div className="modal-button">
       <button
         onClick={() => setShowModal(!showModal)}>
         Add Review
       </button>
     {showModal ? (
-      <div name="modal-container"
+      <div className="modal-container"
         style={{
           position: "absolute",
           display: "flex",
@@ -48,7 +49,7 @@ const Modal = ({showModal, setShowModal, productRating, productName, product}) =
           setShowModal(false);
         }}
       >
-        <div style={{ backgroundColor: "white" }} ref={modalRef} name="modal-form">
+        <div style={{ backgroundColor: "white" }} ref={modalRef} className="modal-form">
           <form>
             <h1>Write Your Review</h1>
             <h3>About your {productName}</h3>

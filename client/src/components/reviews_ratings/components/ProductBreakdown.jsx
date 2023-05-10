@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import ReviewHelpers from './ReviewHelpers.jsx';
-
+import './review.css'
 const ProductBreakdown = ({charObj}) => {
 
 //size, length. comfort, quality, width, fit
@@ -33,11 +33,17 @@ const ProductBreakdown = ({charObj}) => {
 
   return (
       <div>
-        <label>{charPresent}</label>
-        <br></br>
-        <meter value={charObj.value} max='5'></meter>
-        <br></br>
-        <span style={{fontSize:'0.4em'}}>{charTextLow}&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{charTextHigh}</span>
+        <div className="product-name-bar">
+          <small className="product-name"
+          >{charPresent}</small>
+
+           <meter className="product-bar"
+          value={charObj.value} max='5'></meter>
+        </div>
+        <div className="product-word">
+          <label>{charTextLow}</label>
+          <label>{charTextHigh}</label>
+        </div>
       </div>
   )
 }
