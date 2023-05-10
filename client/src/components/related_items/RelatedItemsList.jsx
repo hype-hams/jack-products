@@ -12,29 +12,34 @@ const RelatedItemsList = ({IDlist,  currProduct, handleRelatedItemClick}) => {
         const promises = IDlist.map(id=> axios.get(`${url}/${id}`));
         Promise.all([...promises]).then(props=> {
             setResponses(props)
-        })
-    }
+        });
+    };
+
 
     const listHandler = ()=>{
         const data = []
         responses.forEach(res=>{
-            console.log(res.data)
             data.push(res.data);
         });
         setList(data)
-    }
+    };
+
 
     useEffect(()=>{
         GETRelatedProductsProps();
-    }, [IDlist])
+    }, [IDlist]);
 
     useEffect(()=>{
         listHandler();
-    }, [responses])
+    }, [responses]);
+
+    //useEffect(()=>{
+
+    // })
 
     return (
-        <div>
-        {list.map(card=><RelatedItemCard card={card} currProduct={ currProduct} handleRelatedItemClick={handleRelatedItemClick} />)}
+        <div className='RelatedItemsList'>
+            {list.map(card=><RelatedItemCard card={card} currProduct={ currProduct} handleRelatedItemClick={handleRelatedItemClick} />)}
         </div>
     )
 }
