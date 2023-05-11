@@ -2,7 +2,7 @@ import React from 'react';
 
 const SortBar = ({setDropSort}) => {
   return (
-    <div className="sortbar">
+    <section className="sortbar">
      <select id="sortbar"
       onChange={(e) => {
         e.preventDefault()
@@ -14,7 +14,7 @@ const SortBar = ({setDropSort}) => {
         <option value="helpful">Helpful</option>
         <option value="newest">Newest</option>
       </select>
-    </div>
+    </section>
   )
 };
 

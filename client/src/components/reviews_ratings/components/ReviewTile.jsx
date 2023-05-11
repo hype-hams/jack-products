@@ -2,6 +2,8 @@ import React from 'react';
 import Stars from './Stars.jsx';
 import ReviewHelpers from './ReviewHelpers.jsx';
 import axios from 'axios';
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const ReviewTile = ({revObj}) => {
   // revObj = {
   //   key:revObj.review_id,
@@ -16,23 +18,31 @@ const ReviewTile = ({revObj}) => {
   //   response:revObj.response,
   //   helpfulness:revObj.helpfulness,
   // }
+  const reviewStars = () => {
+    const result= []
+    for(let i = 0; i < 5; i++) {
+      if(i < revObj.rating) {
+      result.push(<FontAwesomeIcon icon={faStar} className="fa fa-star empty-star full-star" key={i}/>)
+      } else {
+        result.push(<FontAwesomeIcon icon={faStar} key={i+1337} className="fa fa-star empty-star" />)
+      }
+    }
+    return result
+  }
 
   const helpfulCheck = () => {
-
     let yescheck = document.getElementById('yeshelp');
-    let nocheck = document.getElementById('nohelp');
+    // let nocheck = document.getElementById('nohelp');
     if(yescheck.checked || nocheck.checked) {
       yescheck.disabled = true;
-      nocheck.disabled = true;
+      // nocheck.disabled = true;
       document.getElementById('yestext').style.color = 'gray';
-      document.getElementById('notext').style.color = 'gray';
+      // document.getElementById('notext').style.color = 'gray';
     }
     if(yescheck.checked) {
-      //NEED TO GRAB HELPFULLES DATA
+      //NEED TO GRAB HELPFULNESS DATA
       console.log('yes was checked  ')
       ReviewHelpers.markHelpful(revObj.review_id)
-    } else {
-      console.log('no was checked')
     }
   }
 
@@ -52,11 +62,23 @@ const ReviewTile = ({revObj}) => {
     )
   }
 
+  const reportReview = () => {
+    axios({
+      method: 'PUT',
+      url: '/api/reviews/:review_id/report',
+      data: {review_id: revObj.review_id}
+    })
+      .then((response) => {
+        console.log('review reported and removed pending investigation')
+        return true
+      })
+  }
+
   return (
     <div>
       <form>
         <div>
-          {revObj.rating}
+          {reviewStars()}
         </div>
 
         <div className="review-namedate">
@@ -91,18 +113,23 @@ const ReviewTile = ({revObj}) => {
               name="helpful"
               onClick={helpfulCheck}>
             </input><span id="yestext">Yes</span>
-            <input id="nohelp"
+            {/* <input id="nohelp"
               type="radio"
               value="no"
               name="helpful"
               onClick={helpfulCheck}>
-            </input><span id="notext">No</span>&ensp;
-            <small style={{color:'green'}}>
+            </input><span id="notext">No</span>&ensp; */}
+            <small className="helpful-review"
+              style={{color:'green'}}>
               {revObj.helpfulness}&nbsp;
             </small>
             <small style={{color:'gray'}}>
               found this helpful
             </small>
+          </div>
+          <div className="report-review">
+            <button type="button"
+              onClick={reportReview}>Report Review</button>
           </div>
 
         </section>

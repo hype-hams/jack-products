@@ -40,36 +40,6 @@ return (
       <button type="button" onClick={uploadFiles}>Upload</button>
   </section>
   )
-  // );
-  // return (
-  //   <div>
-  //     {uploadImage && (
-  //       <div>
-  //         <img
-  //           alt="not found"
-  //           width={"100px"}
-  //           src={URL.createObjectURL(uploadImage)}
-  //         />
-  //         <br />
-  //         <button onClick={() => setUploadImage('')}>Remove</button>
-  //       </div>
-  //     )}
-
-  //     <br />
-  //     <br />
-
-  //     <input
-  //       type="file"
-  //       id="myImage"
-  //       onChange={(event) => {
-  //         console.log(event.target.files[0]);
-  //         // thumbnails()
-  //         setUploadImage(event.target.files[]);
-  //       }}
-  //     />
-  //   </div>
-  // );
-
 }
 
 export default UploadPhotos

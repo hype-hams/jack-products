@@ -111,42 +111,43 @@ const AddCharacteristics = ({charObj, characteristics, setCharacteristics}) => {
   }
 
   return (
-    <section>
-      <label>{charOption}:</label>
+    <section className="add-char">
+      <label className="add-review-char"
+        >{charOption}:</label>
       <label>
         <input name={charObj.id}
           type="radio"
           value="1"
           onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
-        <small>{char1}</small>
+        <small className="review-char-text">{char1}</small>
       </label>
       <label>
         <input name={charObj.id}
           type="radio"
           value="2"
           onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
-        <small>{char2}</small>
+        <small className="review-char-text">{char2}</small>
       </label>
       <label>
         <input name={charObj.id}
           type="radio"
           value="3"
           onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
-        <small>{char3}</small>
+        <small className="review-char-text">{char3}</small>
       </label>
       <label>
         <input name={charObj.id}
           type="radio"
           value="4"
           onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
-        <small>{char4}</small>
+        <small className="review-char-text">{char4}</small>
       </label>
       <label>
         <input name={charObj.id}
           type="radio"
           value="5"
           onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
-        <small>{char5}</small>
+        <small className="review-char-text">{char5}</small>
       </label>
 
     </section>

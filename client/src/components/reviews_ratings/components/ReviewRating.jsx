@@ -1,7 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
-// import testData from '../testdata/reviewdata.json';
 import Modal from './AddReview/Modal.jsx';
 
 import ProductBreakdown from './ProductBreakdown.jsx';
@@ -15,11 +14,11 @@ const ReviewRating = ({productId, productName}) => {
   const [recommended, setRecommended] = useState([]);
   const [avgRate, setAvgRate] = useState('');
   const [rating, setRating] = useState([]);
-
   const [dropSort, setDropSort] = useState('relevant');
 //MODAL REDO
   const [showModal, setShowModal] = useState(false);
-
+//RatingStarFilter
+  const [ratingFilter, setRatingFilter] = useState('');
   const addReview = (e) => {
     e.preventDefault
     setShowModal(!showModal)
@@ -73,7 +72,11 @@ const ReviewRating = ({productId, productName}) => {
           <section className="breakdown">
             <h4>Rating Breakdown</h4>
             {/* {rateTable} */}
-            <RatingBreakdown recommended={recommended} rating={rating} avgRate={avgRate} productId={productId}/>
+            <RatingBreakdown recommended={recommended}
+              setRatingFilter={setRatingFilter}
+              rating={rating}
+              avgRate={avgRate}
+              productId={productId}/>
           </section>
         </div>
         <div>
