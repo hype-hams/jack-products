@@ -23,9 +23,9 @@ router.get('/q_a', controllers.q_a.getAllAnswers)
 router.post('/q_a', controllers.q_a.postQuestion)
 // router.post('/q_a', controllers.q_a.postAnswer)
 
-// //related
-// router.get('/', controllers)
-// router.post('/', controllers)
+// related:cesar
+router.get('/related/:product_id', controllers.related.getRelatedProducts);
+
 
 //reviews:Eric
 router.get('/reviews', controllers.reviews.getReviews);
