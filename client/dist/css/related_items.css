@@ -3,6 +3,16 @@
     flex-direction: row;
 }
 
+
+
+
+
+.OutfitList{
+    display: flex;
+    flex-direction: row;
+}
+
+
 .Modal-backg {
     background-color: rgba(0, 0, 0, 0.2);
     height: 100vh;
@@ -15,7 +25,7 @@
     align-items: center;
 }
 
-.Modal-inside{
+.Modal-inside {
   background-color: white;
   padding: 20px;
   width: 50%;
