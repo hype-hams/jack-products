@@ -45,8 +45,6 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^14.0.0",
     "babel-cli": "^6.26.0",
     "babel-jest": "^29.5.0",
     "babel-plugin-styled-components": "^2.1.1",
