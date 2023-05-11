@@ -104,3 +104,17 @@
   justify-content: flex-end;
   color: gray
 }
+/* Add Review  (set stars) */
+#personal-rating {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: gold;
+}
+.off {
+  color: #ccc;
+}
+

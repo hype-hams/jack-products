@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 
-const AddCharacteristics = ({charObj}) => {
+const AddCharacteristics = ({charObj, characteristics, setCharacteristics}) => {
   //Checks characteristics on product
   const presentCharacteristics = {
     135219: 'Fit',
@@ -106,7 +106,9 @@ const AddCharacteristics = ({charObj}) => {
   //     5: 'Runs long'
   //   }
   // }
-
+  const setCharObj = (charID, value) => {
+    setCharacteristics({...characteristics, [charID]: Number(value)})
+  }
 
   return (
     <section>
@@ -114,31 +116,36 @@ const AddCharacteristics = ({charObj}) => {
       <label>
         <input name={charObj.id}
           type="radio"
-          value="1"/>
+          value="1"
+          onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
         <small>{char1}</small>
       </label>
       <label>
         <input name={charObj.id}
           type="radio"
-          value="2"/>
+          value="2"
+          onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
         <small>{char2}</small>
       </label>
       <label>
         <input name={charObj.id}
           type="radio"
-          value="3"/>
+          value="3"
+          onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
         <small>{char3}</small>
       </label>
       <label>
         <input name={charObj.id}
           type="radio"
-          value="4"/>
+          value="4"
+          onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
         <small>{char4}</small>
       </label>
       <label>
         <input name={charObj.id}
           type="radio"
-          value="5"/>
+          value="5"
+          onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
         <small>{char5}</small>
       </label>
 
