@@ -9,13 +9,16 @@ const RelatedItemCard = ({card,  currProduct, handleRelatedItemClick}) => {
     const GETPhotoURL = (id = card.id) =>{
         const url = `http://localhost:3000/api/products`
         axios.get(`${url}/${id}/styles`).then((res)=>{
-            setPhotoURL(res.data.results[0].photos[0].thumbnail_url);
-        }).catch(err=>{
-            
+            const thumbnail_url = res.data.results[0].photos[0].thumbnail_url;
+            if(thumbnail_url !== null){
+                setPhotoURL(thumbnail_url);
+            } else {
+                setPhotoURL('images/image-not-found-icon.png');
+            }
+        }).catch(err=> {
             console.error(err);
-        })
+        });
     }
-
     
     useEffect(()=>{
         GETPhotoURL();
@@ -23,16 +26,14 @@ const RelatedItemCard = ({card,  currProduct, handleRelatedItemClick}) => {
 
     return (
         <div className='RelatedItemCard'>
-            <ul>
                 <div onClick={()=>{handleRelatedItemClick(card.id)}} >
-                    <img src={`${photoURL}`} />
-                    <li>Category: {card.category}</li>
-                    <li>Name: {card.name}</li>
-                    <li>Price: {card.default_price}</li>
-                    <li>Rating:{card.rating}</li>
+                    <img src={`${photoURL}`} /> 
+                    <p>{card.category}</p>
+                    <h2>{card.name}</h2>
+                    <p>${card.default_price}</p>
+                    <p>{card.rating}</p>
                 </div>
                 <Pre_Modal card={card}  currProduct={currProduct} />
-            </ul>
         </div>
     );
 } 

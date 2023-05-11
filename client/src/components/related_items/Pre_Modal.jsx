@@ -1,15 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Modal from './Modal.jsx';
-const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
+
 const Pre_Modal = ({ card , currProduct})=> {
     const [features, setFeatures] = useState([])
     const [showModal,setShowModal] = useState(false);
