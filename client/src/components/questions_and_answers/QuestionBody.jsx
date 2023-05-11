@@ -25,8 +25,7 @@ const { useState } = React;
   */
 // const { useState } = React;
 
-function QuestionBody({ question, answers }) {
-
+function QuestionBody({ question, answers, modalType, setModalType, modalIsOpen }) {
   const [answersAll, setAnswersAll] = useState(false);
 
   return (
@@ -37,11 +36,23 @@ function QuestionBody({ question, answers }) {
         {' '}
         {question.question_body}
       </p>
-      <button type="button" className="reply">Write an Answer</button>
       <span>
         Helpfullness:
+        &emsp;
         {question.question_helpfulness}
       </span>
+      <button type="button" className="report">Report</button>
+      <button
+        type="button"
+        className="reply"
+        onClick={() => {
+          setModalType(['Reply', question]);
+          modalIsOpen(true);
+        }}
+      >
+        Reply
+
+      </button>
 
       <hr />
 
@@ -54,7 +65,7 @@ function QuestionBody({ question, answers }) {
           if (!answersAll) {
             event.target.innerHTML = 'Show less Answers';
           } else {
-            event.target.innerHTML = 'Show more Answers'
+            event.target.innerHTML = 'Show more Answers';
           }
           setAnswersAll(!answersAll);
         }}

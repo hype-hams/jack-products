@@ -29,9 +29,10 @@ function Answers({ answers, answersAll }) {
             <span className="date" />
             <span className="answer-helpfulness">
               Helpfullness:
-              &ensp;
+              &emsp;
               {item.helpfulness}
             </span>
+            <button type="button" className="report">Report</button>
           </span>
           <hr />
         </div>

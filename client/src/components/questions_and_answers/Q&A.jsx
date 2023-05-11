@@ -14,7 +14,7 @@ function QA({ productID }) {
   const [collapsed, setCollapsed] = useState(false);
   const [answers, setAnswers] = useState({});
   const [modalIsOpen, setIsOpen] = useState(false);
-
+  const [modalType, setModalType] = useState([]);
 
   const getQuestionsByProductID = async () => {
     // Retrieve questions from productID
@@ -59,13 +59,15 @@ function QA({ productID }) {
                 type="button"
                 className="Question-button"
                 onClick={() => {
-                  setIsOpen(!modalIsOpen);
+                  setModalType('Question', null);
+                  setIsOpen(true);
+                  document.querySelector('body').style.overflow = 'hidden';
                 }}
               >
                 Submit a Question
 
               </button>
-              {modalIsOpen && <Modal closeModal={setIsOpen} />}
+              {modalIsOpen && <Modal closeModal={setIsOpen} modalType={modalType} setModalType={setModalType} />}
             </div>
           </div>
         ) : (
@@ -75,21 +77,23 @@ function QA({ productID }) {
               type="button"
               className="Question-button"
               onClick={() => {
-                setIsOpen(!modalIsOpen);
+                setModalType(['Question', null]);
+                setIsOpen(true);
+                document.querySelector('body').style.overflow = 'hidden';
               }}
             >
               Submit a Question
             </button>
-            {modalIsOpen && <Modal closeModal={setIsOpen} />}
+            {modalIsOpen && <Modal closeModal={setIsOpen} modalType={modalType} setModalType={setModalType} />}
             <ol>
               {
                 questionsAll ? (
-                  questions.map((item) => <QuestionBody question={item} answers={answers} />)
+                  questions.map((item) => <QuestionBody question={item} answers={answers} modalType={modalType} setModalType={setModalType} modalIsOpen={setIsOpen} />)
                 ) : (
-                  topTwo.map((item) => <QuestionBody question={item} answers={answers} />)
+                  topTwo.map((item) => <QuestionBody question={item} answers={answers} modalType={modalType} setModalType={setModalType} modalIsOpen={setIsOpen} />)
                 )
               }
-              {questions.map((item) => <QuestionBody question={item} answers={answers} />)}
+              {questions.map((item) => <QuestionBody question={item} answers={answers} modalType={modalType} setModalType={setModalType} modalIsOpen={setIsOpen} />)}
             </ol>
           </div>
         )
