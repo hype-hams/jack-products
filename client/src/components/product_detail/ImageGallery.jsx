@@ -4,18 +4,39 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import imageNotAvailable from './images/imageNotAvailable.png';
+import leftArrow from './images/leftArrow.png';
+import rightArrow from './images/rightArrow.png';
 
 function ImageGallery({ photos }) {
   const [image, setImage] = useState(photos[0]);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   const handleThumbnailClick = (e) => {
     e.preventDefault();
     const index = e.target.name;
     setImage(photos[index]);
+    setPhotoIndex(index);
+  };
+
+  const handleLeftArrowClick = () => {
+    if (photoIndex > 0) {
+      const index = photoIndex - 1;
+      setImage(photos[index]);
+      setPhotoIndex(index);
+    }
+  };
+
+  const handleRightArrowClick = () => {
+    if (photoIndex < photos.length - 1) {
+      const index = photoIndex + 1;
+      setImage(photos[index]);
+      setPhotoIndex(index);
+    }
   };
 
   useEffect(() => {
     setImage(photos[0]); // Update the currently displayed image when the photos prop changes
+    setPhotoIndex(0); // without this, if index was 5 before, after you chose a new style, index won't reset to 0
   }, [photos]);
 
   return (
@@ -27,6 +48,8 @@ function ImageGallery({ photos }) {
           </div>
         ))}
       </div>
+      <div className="left-arrow-div" onClick={handleLeftArrowClick}><img src={leftArrow} width="100%" alt="leftArrow" /></div>
+      <div className="right-arrow-div" onClick={handleRightArrowClick}><img src={rightArrow} width="100%" alt="rightArrow" /></div>
       <img src={image.url || imageNotAvailable} className="main-photo-img" alt="mainphoto" />
     </div>
   );
