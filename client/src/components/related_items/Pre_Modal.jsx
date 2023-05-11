@@ -50,6 +50,7 @@ const Pre_Modal = ({ card , currProduct})=> {
         setFeatures(filterFeatures());
         setShowModal(!showModal);
     }
+
     const closeModal = ()=>{
         setShowModal(false)
     }
@@ -57,19 +58,23 @@ const Pre_Modal = ({ card , currProduct})=> {
     return (
         <div>
             <button onClick={clickHandler}>⭐</button>
-            <Modal showModal={showModal} closeModal={closeModal}>
+            <Modal key={card.id} showModal={showModal} closeModal={closeModal}>
                 <table>
-                    <tr>
-                        <th>{currProduct.name}</th>
-                        <th> </th>
-                        <th>{card.name}</th>
-                    </tr>
-                        {features.map(item=>
+                    <thead>
                         <tr>
+                            <th>{currProduct.name}</th>
+                            <th> </th>
+                            <th>{card.name}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {features.map(item=>
+                        <tr key={item.value_feature}>
                             <td>{item.currProductFeature ? '✅' : null}</td>
                             <td>{item.value_feature}</td>
                             <td>{item.comparedProductFeature ? '✅' : null}</td>
                         </tr>)}
+                    </tbody>
                 </table>
             </Modal>
         </div>

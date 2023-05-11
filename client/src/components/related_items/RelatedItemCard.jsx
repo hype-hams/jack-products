@@ -15,7 +15,7 @@ const RelatedItemCard = ({card,  currProduct, handleRelatedItemClick}) => {
             } else {
                 setPhotoURL('images/image-not-found-icon.png');
             }
-        }).catch(err=> {
+        }).catch(err=>{
             console.error(err);
         });
     }
@@ -33,7 +33,7 @@ const RelatedItemCard = ({card,  currProduct, handleRelatedItemClick}) => {
                     <p>${card.default_price}</p>
                     <p>{card.rating}</p>
                 </div>
-                <Pre_Modal card={card}  currProduct={currProduct} />
+                <Pre_Modal key={card.id} card={card}  currProduct={currProduct} />
         </div>
     );
 } 
