@@ -78,7 +78,7 @@ const ReviewTile = ({revObj}) => {
             {ReviewHelpers.sellerResponse(revObj.response)}
           </div>
 
-          <div className="recommend">
+          <div className="recommend-product">
             {ReviewHelpers.checkRecommend(revObj.recommend)}
           </div>
         </div>
