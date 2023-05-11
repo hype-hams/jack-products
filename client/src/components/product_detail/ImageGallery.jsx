@@ -12,7 +12,7 @@ function ImageGallery({ photos }) {
 
   const handleThumbnailClick = (e) => {
     e.preventDefault();
-    const index = e.target.name;
+    const index = Number(e.target.name); // fixed the bug: typeof e.target.name is string
     setImage(photos[index]);
     setPhotoIndex(index);
   };
