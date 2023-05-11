@@ -16,7 +16,6 @@ function Answers({ answers }) {
     <div>
       { answerArr.map((item) => (
         <div key={item.id}>
-          {console.log(item)}
           <span className="answerer">
             {item.answerer_name}
           &#10;
