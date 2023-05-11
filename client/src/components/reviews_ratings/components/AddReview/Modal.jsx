@@ -36,30 +36,98 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
     }
 };
 //submit modal hanlde
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   const form = {
+  //     product_id: productId,
+  //     rating: rating,
+  //     summary: summary,
+  //     body: bodyText,
+  //     recommend: recommend,
+  //     name: username,
+  //     email: email,
+  //     photos: photos,
+  //     characteristics: characteristics
+  //   }
+  //   console.log('this is submission', form)
+  //   axios.post(`./api/reviews?product_id=${form.product_id}`, form)
+  //   .then(() => {
+  //     console.log(`Posted review`)
+  //     setShowModal(false)
+  //   })
+  //   .catch((err) => {
+  //     console.log('failed to post review', err)
+  //   })
+  // }
+
+  //Validate Form and submit
+  const validateForm = (e) => {
     e.preventDefault()
-    const form = {
-      product_id: productId,
-      rating: rating,
-      summary: summary,
-      body: bodyText,
-      recommend: recommend,
-      name: username,
-      email: email,
-      photos: photos,
-      characteristics: characteristics
+    let validateRating = false;
+    let validateChar = false;
+    let validateBody = false;
+    let validateName = false;
+    let validateEmail = false;
+    if(rating > 0) {
+      validateRating = true
     }
-    axios.post(`./api/reviews?product_id=${form.product_id}`, form)
-    .then(() => {
-      console.log(`Posted review`)
-    })
-    .catch((err) => {
-      console.log('failed to post review', err)
-    })
+    if(Object.keys(characteristics).length === productRating.length) {
+      console.log('char is done')
+      validateChar = true
+    }
+    if(bodyText.length >= 50 && bodyText.length <= 1000) {
+      validateBody = true
+    }
+    if(username.length > 0) {
+      validateName = true
+    }
+    if(email.length > 0 && email.includes('@') && email.includes('.')) {
+      validateEmail = true
+    }
+    if(validateRating && validateChar && validateBody && validateName && validateEmail) {
+      const form = {
+        product_id: productId,
+        rating: rating,
+        summary: summary,
+        body: bodyText,
+        recommend: recommend,
+        name: username,
+        email: email,
+        photos: photos,
+        characteristics: characteristics
+      }
+      console.log('this is submission', form)
+      axios.post(`./api/reviews?product_id=${form.product_id}`, form)
+      .then(() => {
+        console.log(`Posted review`)
+        setShowModal(false)
+      })
+      .catch((err) => {
+        console.log('failed to post review', err)
+      })
+    } else {
+      let alertInfo = '';
+      if(!validateChar) {
+        alertInfo += 'Characteristics, '
+      }
+      if(!validateRating) {
+        alertInfo += 'Product Rating, '
+      }
+      if(!validateBody) {
+        alertInfo += 'Review Message, '
+      }
+      if(!validateName) {
+        alertInfo += 'Username, '
+      }
+      if(!validateEmail) {
+        alertInfo += 'Email, '
+      }
+      alertInfo = alertInfo.slice(0, -2)
+      alert(`Please fill out these fields: ${alertInfo}`)
+    }
   }
 
   return (
-
     <div className="modal-button">
       <button type="button"
         onClick={() => setShowModal(!showModal)}>
@@ -75,14 +143,17 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
         }}
       >
         <div ref={modalRef} className="Modal-inside">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={validateForm}>
             <h1>Write Your Review</h1>
             <h3>About your {productName}</h3>
             <section className="stars">
+              <label><b>Star Rating</b></label>
               <SetStars rating={rating} setRating={setRating}/>
             </section>
+
 <br></br>
-            <section className="recommend">
+            <section className="recommend"
+              id="modal-recommend">
               <p>Do you recommend this product?
                 <sup>*</sup>
               <input
@@ -127,7 +198,7 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
               </label><br></br>
               <textarea name="body"
               maxLength = '1000'
-                required
+
                 rows="10"
                 cols="70"
                 placeholder="Why did you like the product or not?"
@@ -139,9 +210,6 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
             </section>
 <br></br>
             <section className="upload">
-              {/* <label>Upload Photos</label> &ensp;
-              <input type="file"
-                name="photos"></input> */}
                 <UploadPhotos photos={photos} setPhotos={setPhotos}/>
             </section>
 <br></br>
@@ -154,7 +222,6 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
                 placeholder="Example: jackson11!"
                 size="30"
                 maxLength="60"
-                required
                 onChange={(e)=>{setUsername(e.target.value)}}
               ></input><br></br>
               <small style={{color:'gray'}}>For privacy reasons, do not use your full name or email address.</small>
@@ -169,7 +236,6 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
                   placeholder="Example: jackson11@email.com"
                   size="30"
                   maxLength="60"
-                  required
                   onChange={(e)=>{setEmail(e.target.value)}}
                 ></input><br></br>
                 <small style={{color:'gray'}}>For authentication reasons. You will not be emailed.</small>

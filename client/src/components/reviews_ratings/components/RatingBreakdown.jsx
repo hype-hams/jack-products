@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import Stars from './Stars.jsx';
 
-const RatingBreakdown = ({rating, recommended, avgRate, productId}) => {
+const RatingBreakdown = ({rating, recommended, setRatingFilter, avgRate, productId}) => {
   let recommendPercent = Number(recommended.true)/(Number(recommended.true) + Number(recommended.false)) * 100;
 
   const totalRatings = () => {
@@ -13,11 +13,16 @@ const RatingBreakdown = ({rating, recommended, avgRate, productId}) => {
       return totalVal
   }
 
+
+
   // Rating breakdown Bar
   const stars = rating.map((obj, ind) => (
     <section key={ind}>
       <label id={obj.id}>
-        <small>{obj.id} stars</small>
+        <small
+          onClick={(e)=>{setRatingFilter(e.target.value)}}>
+          {obj.id} stars
+        </small>
       </label> &ensp;
       <meter className="rating-bar"
         value={obj.val}
@@ -42,11 +47,11 @@ const RatingBreakdown = ({rating, recommended, avgRate, productId}) => {
         {/* TODO: style stars here */}
         <small>{totalRatings()}&ensp;reviews</small>
       </div>
-      <div>
-        <p>{recommendPercent.toFixed(2)}% of reviews recommend this product</p>
-      </div>
-      <div className="ratingbreakdown">
+      <div className="ratingBreakdown">
         {stars}
+      </div>
+      <div className="ratingBreakdown-recommend">
+        <p>{recommendPercent.toFixed(2)}% of reviews recommend this product</p>
       </div>
     </section>
   )
