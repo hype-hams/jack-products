@@ -8,7 +8,7 @@ import React, { useState, useEffect, createContext } from 'react';
 import ProductDetail from './product_detail/Product_detail_main.jsx';
 import RelatedItems from './related_items/RelatedItems.jsx';
 import QA from './questions_and_answers/Q&A.jsx'
-import ReviewRating from './reviews_ratings/components/ReviewRating.jsx'
+// import ReviewRating from './reviews_ratings/components/ReviewRating.jsx'
 
 export const ProductContext = createContext(null);
 /* using useContext instruction:
@@ -79,10 +79,10 @@ function App(props) {
               <div className="Q&A">
                 <QA productID={product.id} />
               </div>
-              <div className="rating-review">
+              {/* <div className="rating-review">
                 <ReviewRating productId={productId}
                   productName={productName}/>
-              </div>
+              </div> */}
             </ProductContext.Provider>
           </div>
         )

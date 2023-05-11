@@ -8,10 +8,13 @@ import Modal from './Modal.jsx';
 const { useState, useEffect } = React;
 
 function QA({ productID }) {
+  let topTwo = [];
   const [questions, setQuestions] = useState([]);
+  const [questionsAll, setQuestionsAll] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const [answers, setAnswers] = useState({});
   const [modalIsOpen, setIsOpen] = useState(false);
+
 
   const getQuestionsByProductID = async () => {
     // Retrieve questions from productID
@@ -21,6 +24,7 @@ function QA({ productID }) {
       console.log('parsed Data:  ', parsedQuestions);
       qCheck([parsedQuestions]);
       setQuestions(parsedQuestions.results);
+      topTwo = [questions[0], questions[1]];
 
       // Set Answers
       setAnswers(parsedQuestions.results[0].answers);
@@ -78,6 +82,13 @@ function QA({ productID }) {
             </button>
             {modalIsOpen && <Modal closeModal={setIsOpen} />}
             <ol>
+              {
+                questionsAll ? (
+                  questions.map((item) => <QuestionBody question={item} answers={answers} />)
+                ) : (
+                  topTwo.map((item) => <QuestionBody question={item} answers={answers} />)
+                )
+              }
               {questions.map((item) => <QuestionBody question={item} answers={answers} />)}
             </ol>
           </div>

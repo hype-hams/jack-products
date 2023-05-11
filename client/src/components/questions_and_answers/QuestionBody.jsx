@@ -26,7 +26,8 @@ const { useState } = React;
 // const { useState } = React;
 
 function QuestionBody({ question, answers }) {
-  // console.log('QUESTION HERE: ', question)
+
+  const [answersAll, setAnswersAll] = useState(false);
 
   return (
     <div className="question">
@@ -44,7 +45,22 @@ function QuestionBody({ question, answers }) {
 
       <hr />
 
-      <Answers answers={answers} />
+      <Answers answers={answers} answersAll={answersAll} />
+
+      <button
+        type="button"
+        className="moreAnswers"
+        onClick={(event) => {
+          if (!answersAll) {
+            event.target.innerHTML = 'Show less Answers';
+          } else {
+            event.target.innerHTML = 'Show more Answers'
+          }
+          setAnswersAll(!answersAll);
+        }}
+      >
+        Show more Answers
+      </button>
     </div>
   );
 }
