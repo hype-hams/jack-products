@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
@@ -18,16 +17,18 @@ function ImageGallery({ photos }) {
     setPhotoIndex(index);
   };
 
-  const handleLeftArrowClick = () => {
-    if (photoIndex > 0) {
+  const handleLeftArrowClick = (e) => {
+    e.preventDefault();
+    if (photoIndex > 0 && photoIndex <= photos.length - 1) { // fixed some bugs here
       const index = photoIndex - 1;
       setImage(photos[index]);
       setPhotoIndex(index);
     }
   };
 
-  const handleRightArrowClick = () => {
-    if (photoIndex < photos.length - 1) {
+  const handleRightArrowClick = (e) => {
+    e.preventDefault();
+    if (photoIndex >= 0 && photoIndex < photos.length - 1) { // fixed some bugs here
       const index = photoIndex + 1;
       setImage(photos[index]);
       setPhotoIndex(index);
@@ -36,14 +37,14 @@ function ImageGallery({ photos }) {
 
   useEffect(() => {
     setImage(photos[0]); // Update the currently displayed image when the photos prop changes
-    setPhotoIndex(0); // without this, if index was 5 before, after you chose a new style, index won't reset to 0
+    setPhotoIndex(0); // after switching to a new style, need to reset index to 0
   }, [photos]);
 
   return (
     <div className="image-gallery-div">
       <div className="image-gallery-thumbnails-div">
         {photos.map((item, index) => (
-          <div style={item.url === image.url ? { borderBottom: 'thick solid white' } : { borderBottom: 'none' }} onClick={handleThumbnailClick} key={item.url}>
+          <div style={(item.url === image.url) ? { borderBottom: 'thick solid white' } : { borderBottom: 'none' }} onClick={handleThumbnailClick} key={item.url}>
             <img src={item.thumbnail_url || imageNotAvailable} name={index} className="image-gallery-thumbnail-img" alt="thumbnail" />
           </div>
         ))}
@@ -56,10 +57,3 @@ function ImageGallery({ photos }) {
 }
 
 export default ImageGallery;
-
-/*
-
-    border-bottom-width: thick;
-    border-bottom-style: solid;
-    border-bottom-color: white;
-*/
