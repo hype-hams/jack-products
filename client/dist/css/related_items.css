@@ -10,7 +10,7 @@
     background: rgb(235, 233, 233);
     width: 220px;
     height: 400px;
-    margin: 15px; 
+    margin: 15px;
     background-size: cover;
     border-radius: 20px;
 }
@@ -24,12 +24,12 @@
 }
 
 /* .RelatedItemCardText p{
-    /* padding:50px; 
+    /* padding:50px;
     text-align: left;
 
 }
 .RelatedItemCard h2{
-    
+
 } */
 .RelatedItemCard:hover, .OutfitListCard:hover {
     background-color: white;

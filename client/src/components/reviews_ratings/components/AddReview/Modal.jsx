@@ -1,8 +1,7 @@
 import React, {useState, useRef} from 'react';
 import axios from 'axios';
 import AddCharacteristics from './AddCharacteristics.jsx'
-// import '../review.css';
-
+import SetStars from './SetStars.jsx';
 
 const Modal = ({showModal, setShowModal, productRating, productName, productId}) => {
   const modalRef = useRef(null);
@@ -28,20 +27,7 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
         Add Review
       </button>
     {showModal ? (
-      <div className="modal-container"
-        style={{
-          position: "absolute",
-          display: "flex",
-          direction: "row",
-          top: 0,
-          left: 0,
-          width: "100vw",
-          height: "100vh",
-          zIndex: "100",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "rgba(0,0,0,0.4)",
-        }}
+      <div className="Modal-backg"
         onClick={(e) => {
           if (modalRef.current.contains(e.target)) {
             return;
@@ -49,12 +35,12 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
           setShowModal(false);
         }}
       >
-        <div style={{ backgroundColor: "white" }} ref={modalRef} className="modal-form">
+        <div ref={modalRef} className="Modal-inside">
           <form>
             <h1>Write Your Review</h1>
             <h3>About your {productName}</h3>
             <section className="stars">
-
+              <SetStars />
             </section>
 <br></br>
             <section className="recommend">
