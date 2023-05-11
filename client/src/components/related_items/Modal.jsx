@@ -1,23 +1,22 @@
-import React, {useEffect, useState} from 'react';
-import Modal from 'react-modal';
+import React, {useState} from 'react';
 
-const The_Modal = ({comparedProductName, currProductName, features})=> {
-    
+
+const Modal = ({showModal, closeModal, children})=>{
+
+    // const [visible, setVisible] = useState(showModal)
+
     return (
-        <table>
-            <tr>
-                <th>{currProductName}</th>
-                <th>  </th>
-                <th>{comparedProductName}</th>
-            </tr>
-                {features.map(item=>
-                <tr>
-                    <td>{item.currProductFeature ? '✅' : null}</td>
-                    <td>{item.value_feature}</td>
-                    <td>{item.comparedProductFeature ? '✅' : null}</td>
-                </tr>)}
-        </table>
+        <div>
+            {showModal ? (
+                <div className='Modal-backg'>
+                    <div className='Modal-inside'>
+                        <button onClick={()=>{closeModal();}}>exit</button>
+                    {children}
+                </div> 
+            </div>): null}
+        </div>
+      
     );
 }
-export default The_Modal;
 
+export default Modal;

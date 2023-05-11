@@ -6,35 +6,35 @@ import Promise from 'bluebird'
 const RelatedItemsList = ({IDlist,  currProduct, handleRelatedItemClick}) => {
     const [list, setList] = useState ([])
     const [responses, setResponses] = useState([]);
-    // console.log(IDList)
+
     const GETRelatedProductsProps = ()=>{
         const url = `http://localhost:3000/api/products` 
         const promises = IDlist.map(id=> axios.get(`${url}/${id}`));
         Promise.all([...promises]).then(props=> {
             setResponses(props)
-        })
-    }
+        });
+    };
 
     const listHandler = ()=>{
         const data = []
         responses.forEach(res=>{
-            console.log(res.data)
             data.push(res.data);
         });
         setList(data)
-    }
+    };
+
 
     useEffect(()=>{
         GETRelatedProductsProps();
-    }, [IDlist])
+    }, [IDlist]);
 
     useEffect(()=>{
         listHandler();
-    }, [responses])
+    }, [responses]);
 
     return (
-        <div>
-        {list.map(card=><RelatedItemCard card={card} currProduct={ currProduct} handleRelatedItemClick={handleRelatedItemClick} />)}
+        <div className='RelatedItemsList'>
+            {list.map(card=><RelatedItemCard key={card.id} card={card} currProduct={ currProduct} handleRelatedItemClick={handleRelatedItemClick} />)}
         </div>
     )
 }

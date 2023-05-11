@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable import/no-cycle */
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable max-len */
@@ -9,6 +8,7 @@ import React, { useState, useEffect, createContext } from 'react';
 import ProductDetail from './product_detail/Product_detail_main.jsx';
 import RelatedItems from './related_items/RelatedItems.jsx';
 import QA from './questions_and_answers/Q&A.jsx'
+import ReviewRating from './reviews_ratings/components/ReviewRating.jsx'
 
 export const ProductContext = createContext(null);
 /* using useContext instruction:
@@ -24,6 +24,9 @@ function App(props) {
   const [styles, setStyles] = useState([]);
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [productId, setProductId] = useState('40344')
+  const [productName, setProductName] = useState('Camo Onesie');
 
   const fetchDataById = async (id = 40346) => {
     try {
@@ -45,7 +48,6 @@ function App(props) {
       const relatedData = await relatedResponse.json();
       setRelated(relatedData);
       console.log('relatedData: ', relatedData);
-
 
       setLoading(false);
     } catch (err) {
@@ -72,16 +74,21 @@ function App(props) {
             <ProductContext.Provider value={{ product, setProduct }}>
               <ProductDetail product={product} styles={styles} />
               <div className="related-items">
-                  {/* <RelatedItems currProduct={product} IDlist={related} handleRelatedItemClick={handleRelatedItemClick} /> */}
+                <RelatedItems key={product.id} currProduct={product} currPhotoURL={styles.results[0].photos[0].thumbnail_url} IDlist={related} handleRelatedItemClick={handleRelatedItemClick} />
               </div>
               <div className="Q&A">
                 <QA productID={product.id} />
+              </div>
+              <div className="rating-review">
+                <ReviewRating productId={productId}
+                  productName={productName}/>
               </div>
             </ProductContext.Provider>
           </div>
         )
       }
     </div>
+
   );
 };
 

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 // import Card from './RelatedItemCard.jsx'
 import OutfitListCard from './OutfitListCard.jsx'
 
-const OutfitList = ({currProduct}) => {
+const OutfitList = ({currProduct, currPhotoURL}) => {
     const [list, setList] = useState([]);
     
     
@@ -23,14 +23,14 @@ const OutfitList = ({currProduct}) => {
 
 
     return (
-        <div>
+        <div className='OutfitList'>
             <header>
                 <h2>Outfit List</h2>
             </header>
             <form onSubmit={addCard}>
                 <input type="submit" value="Add to Outfit" />
             </form>
-            {list.map(card=> <OutfitListCard card={card}/>)}
+            {list.map(card=> <OutfitListCard card={card} currPhotoURL={currPhotoURL}/>)}
         </div>
     )
 }
