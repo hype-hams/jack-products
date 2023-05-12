@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReviewHelpers from './ReviewHelpers.jsx';
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import {faStarHalfStroke} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -47,18 +48,19 @@ const Stars = ({productId, rating}) => {
     const partStar = partialStar(partialVal)
     const empty = 5 - Math.ceil(filled)
 
-    console.log('this is partial', partialVal)
+    console.log('this is partial' , partialVal)
     console.log('this is part Star', partStar)
     const result = []
     for(let i = 0; i < Math.floor(filled); i++) {
       result.push(<FontAwesomeIcon icon={faStar} className="fa fa-star empty-star full-star" key={i}/>)
     }
     if(partStar > 0) {
-      result.push(<FontAwesomeIcon icon={faStar} key={partStar} className="fa fa-star empty-star" id={"star-" + (partStar*100).toString()}/>)
+      //  result.push(<FontAwesomeIcon icon={faStar} key={partStar} className="fa fa-star empty-star" id={"star-" + (partStar*100).toString()}/>)
+      result.push(<FontAwesomeIcon icon={faStarHalfStroke} className="fa fa-star full-star"/>);
     }
     if(empty > 0) {
       for(let i = 0; i < empty; i++) {
-      result.push(<FontAwesomeIcon icon={faStar} key={i+1337} className="fa fa-star empty-star" />)
+        result.push(<FontAwesomeIcon icon={faStar} key={i+1337} className="fa fa-star empty-star" />)
       }
     }
     //if conditional to check and generate 1/4 stars
@@ -79,13 +81,9 @@ const Stars = ({productId, rating}) => {
       </p>
       <div className="avg-rating">
         <label>{renderStarBar()}</label>
-
       </div>
-
     </div>
   )
-
-
 
 
 }
