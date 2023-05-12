@@ -55,13 +55,24 @@ body {
 .image-gallery-thumbnails-div {
   position: absolute;
   left: 50px;
-  top: 20px;
-  width: 85px;
-  height: 680px;
+  top: 40px;
+  width: 80px;
+  height: 650px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow: hidden;
+
+  /* make the thumbnails list div scrollable */
+  overflow-y: auto;
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide the scrollbar for Chrome */
+.image-gallery-thumbnails-div::-webkit-scrollbar {
+  display: none;
 }
 
 .image-gallery-thumbnail-img {
@@ -69,8 +80,8 @@ body {
   border-width: 1px;
   border-style: solid;
   border-radius: 10%;
-  width: 83px;
-  height: 83px;
+  width: 78px;
+  height: 78px;
   object-fit: cover;
 }
 

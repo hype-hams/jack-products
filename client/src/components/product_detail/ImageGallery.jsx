@@ -1,16 +1,15 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import imageNotAvailable from './images/imageNotAvailable.png';
-import leftArrow from './images/leftArrow.png';
-import rightArrow from './images/rightArrow.png';
-// import upArrow from './images/upArrow.png';
-// import downArrow from './images/downArrow.png';
+// import leftArrow from './images/leftArrow.png';
+// import rightArrow from './images/rightArrow.png';
 
 function ImageGallery({ photos }) {
   const [image, setImage] = useState(photos[0]);
   const [photoIndex, setPhotoIndex] = useState(0);
+  const scrollRef = useRef(null);
 
   const handleThumbnailClick = (e) => {
     e.preventDefault();
@@ -25,6 +24,10 @@ function ImageGallery({ photos }) {
       const index = photoIndex - 1;
       setImage(photos[index]);
       setPhotoIndex(index);
+      scrollRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      });
     }
   };
 
@@ -34,6 +37,10 @@ function ImageGallery({ photos }) {
       const index = photoIndex + 1;
       setImage(photos[index]);
       setPhotoIndex(index);
+      scrollRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      });
     }
   };
 
@@ -46,7 +53,8 @@ function ImageGallery({ photos }) {
     <div className="image-gallery-div">
       <div className="image-gallery-thumbnails-div">
         {photos.map((item, index) => (
-          <div style={(item.url === image.url) ? { borderBottom: 'thick solid white' } : { borderBottom: 'none' }} onClick={handleThumbnailClick} key={item.url}>
+          // using photoIndex + 1 so that when handling right arrow click ref is the current one
+          <div ref={(index === photoIndex + 1) ? scrollRef : null} style={(index === photoIndex) ? { borderBottom: 'thick solid white' } : { borderBottom: 'none' }} onClick={handleThumbnailClick} key={item.url}>
             <img src={item.thumbnail_url || imageNotAvailable} name={index} className="image-gallery-thumbnail-img" alt="thumbnail" />
           </div>
         ))}
