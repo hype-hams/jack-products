@@ -24,10 +24,10 @@ function App(props) {
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [productId, setProductId] = useState('40344')
-  const [productName, setProductName] = useState('Camo Onesie');
+  // const [productId, setProductId] = useState('40344')
+  // const [productName, setProductName] = useState('Camo Onesie');
 
-  const fetchDataById = async (id = 40346) => {
+  const fetchDataById = async (id = 40344) => {
     try {
       setLoading(true); // clear the prev state
       // fetching Product data
@@ -71,13 +71,21 @@ function App(props) {
         ) : (
           <div>
             <ProductContext.Provider value={{ product, setProduct }}>
-              <ProductDetail product={product} styles={styles} />
-              <div className="related-items">
-                    <RelatedItems key={product.id} currProduct={product} currPhotoURL={styles.results[0].photos[0].thumbnail_url} IDlist={related} handleRelatedItemClick={handleRelatedItemClick} />
+              <div>
+                <ProductDetail product={product}
+                  styles={styles} />
               </div>
+              <div className="related-items">
+                <RelatedItems key={product.id}
+                  currProduct={product}
+                  currPhotoURL={styles.results[0].photos[0].thumbnail_url}
+                  IDlist={related}
+                  handleRelatedItemClick={handleRelatedItemClick} />
+              </div>
+
               <div className="rating-review">
-                <ReviewRating productId={productId}
-                  productName={productName}/>
+                <ReviewRating productId={product.id}
+                  productName={product.name}/>
               </div>
             </ProductContext.Provider>
           </div>
