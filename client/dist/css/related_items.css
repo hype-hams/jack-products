@@ -1,8 +1,100 @@
-.RelatedItemsList{
+
+/***Related Items list*****/
+.RelatedItemsList, .OutfitList {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
+.RelatedItemCard, .OutfitListCard {
+    background: rgb(235, 233, 233);
+    width: 220px;
+    height: 400px;
+    margin: 15px; 
+    background-size: cover;
+    border-radius: 20px;
+}
+
+.image{
+    height: auto;
+    width: 100%;
+    max-width: 220px ;
+    max-height: 220px;
+    border-radius: 10px;
+}
+
+/* .RelatedItemCardText p{
+    /* padding:50px; 
+    text-align: left;
+
+}
+.RelatedItemCard h2{
+    
+} */
+.RelatedItemCard:hover, .OutfitListCard:hover {
+    background-color: white;
+    cursor: pointer;
+    transform: scale(1.03);
+    transition: all 1s ease;
+}
+
+.ComparisonModalBttn {
+    border-radius: 50%;
+    background-color: skyblue;
+    border: none;
+    font-size: 16px;
+    /* margin: 4px 2px; */
+    width: 30px;
+    height: 30px;
+    float: right;
+}
+
+.ComparisonModalBttn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: lightseagreen;
+    cursor:pointer;
+    transform: scale(1.03);
+    transition-duration: 0.5s;
+}
+
+
+.OutfitListDeleteBttn {
+    border-radius: 50%;
+    background-color: #fd5c63;
+    border: none;
+    font-size: 16px;
+    /* margin: 4px 2px; */
+    width: 30px;
+    height: 30px;
+    float: right;
+}
+
+.OutfitListDeleteBttn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    cursor:pointer;
+    transform: scale(1.03);
+    transition-duration: 0.5s;
+    background-color: #AA0000;
+}
+
+
+
+/* .ComparisonModalBttn .icon{
+    background: url(images/comparison.png) no-repeat;
+    width: 20px;
+    height: 20px;
+} */
+
+
+/***For Outfit list***/
+
+
+
+
+
+
+/****Modal (will merge with erics later)****/
 .Modal-backg {
     background-color: rgba(0, 0, 0, 0.2);
     height: 100vh;
@@ -15,7 +107,7 @@
     align-items: center;
 }
 
-.Modal-inside{
+.Modal-inside {
   background-color: white;
   padding: 20px;
   width: 50%;

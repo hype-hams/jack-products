@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReviewHelpers from './ReviewHelpers.jsx';
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const Stars = ({productId, rating}) => {
@@ -37,7 +37,7 @@ const Stars = ({productId, rating}) => {
     const result = []
     for(let i = 0; i < filled; i ++) {
       // result.push(<span key={i} className= "fa fa-star empty-star full-star"></span>)
-      result.push(<FontAwesomeIcon icon={faStar} key={i}/>)
+      // result.push(<FontAwesomeIcon icon={faStar} key={i}/>)
 
     }
     // result.push(<FontAwesomeIcon icon="fa-solid fa-star" />)
