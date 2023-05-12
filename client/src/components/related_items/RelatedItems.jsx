@@ -10,7 +10,7 @@ const RelatedItems = ({currProduct, currPhotoURL, IDlist, handleRelatedItemClick
     return (
     <div className='RelatedItems'>
       <header>
-        <h2>Related Items</h2>
+        <h1>Related Items</h1>
       </header>
         <div>
           <RelatedItemsList key={currProduct.id} IDlist={IDlist} currProduct={currProduct} handleRelatedItemClick= {handleRelatedItemClick} />

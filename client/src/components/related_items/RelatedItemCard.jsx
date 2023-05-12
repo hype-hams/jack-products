@@ -25,15 +25,17 @@ const RelatedItemCard = ({card,  currProduct, handleRelatedItemClick}) => {
     },[]);
 
     return (
-        <div className='RelatedItemCard'>
-                <div onClick={()=>{handleRelatedItemClick(card.id)}} >
-                    <img src={`${photoURL}`} /> 
-                    <p>{card.category}</p>
-                    <h2>{card.name}</h2>
-                    <p>${card.default_price}</p>
-                    <p>{card.rating}</p>
-                </div>
-                <Pre_Modal key={card.id} card={card}  currProduct={currProduct} />
+        <div>
+            <Pre_Modal key={card.id} card={card}  currProduct={currProduct} />
+            <div className='RelatedItemCard'>
+                    <div className='RelatedItemCardText' onClick={()=>{handleRelatedItemClick(card.id)}} >
+                        <img className='image' src={`${photoURL}`} /> 
+                        <p>{card.category}</p>
+                        <h3>{card.name}</h3>
+                        <h4>${card.default_price}</h4>
+                        <p>{card.rating}</p>
+                    </div>
+            </div>
         </div>
     );
 } 

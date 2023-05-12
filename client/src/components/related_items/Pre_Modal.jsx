@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import Modal from './Modal.jsx';
+import { faCodeCompare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const Pre_Modal = ({ card , currProduct})=> {
     const [features, setFeatures] = useState([])
@@ -57,7 +60,7 @@ const Pre_Modal = ({ card , currProduct})=> {
 
     return (
         <div>
-            <button onClick={clickHandler}>⭐</button>
+            <button className="ComparisonModalBttn" onClick={clickHandler}><FontAwesomeIcon icon={faCodeCompare}/></button>
             <Modal key={card.id} showModal={showModal} closeModal={closeModal}>
                 <table>
                     <thead>

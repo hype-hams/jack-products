@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const OutfitListCard = ({card, onDelete , handleRelatedItemClick}) =>{
     const [photoURL, setPhotoURL] = useState('')
@@ -24,15 +26,17 @@ const OutfitListCard = ({card, onDelete , handleRelatedItemClick}) =>{
         GETPhotoURL();
     },[]);
     return (
-        <div className='OutfitListCard'>
-            <button onClick={onClickHandler}>Delete</button>
-                <div onClick={()=>{handleRelatedItemClick(card.id)}}>    
-                    <img src={`${photoURL}`} /> 
-                    <p>{card.category}</p>
-                    <h2>{card.name}</h2>
-                    <p>${card.default_price}</p>
-                    <p>{card.rating}</p>
-                </div>
+        <div>
+            <button className="OutfitListDeleteBttn" onClick={onClickHandler}><FontAwesomeIcon icon={faTrashCan} /></button>
+            <div className='OutfitListCard'>
+                    <div onClick={()=>{handleRelatedItemClick(card.id)}}>    
+                        <img className="image" src={`${photoURL}`} /> 
+                        <p>{card.category}</p>
+                        <h3>{card.name}</h3>
+                        <h4>${card.default_price}</h4>
+                        <p>{card.rating}</p>
+                    </div>
+            </div>
         </div>
     )
 
