@@ -3,7 +3,7 @@ import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
 
 
-const ReviewList = ({productId, setReviewList, reviewList, dropSort}) => {
+const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSort}) => {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null)
@@ -17,7 +17,7 @@ const ReviewList = ({productId, setReviewList, reviewList, dropSort}) => {
         params: {
           product_id: productId,
           sort: dropSort,
-          count: 4,
+          count: 5,
           page: page
         }
       })
@@ -37,6 +37,15 @@ const ReviewList = ({productId, setReviewList, reviewList, dropSort}) => {
     }
     getReviews();
   };
+  const starFilter = () => {
+    let result = []
+    for(let key in ratingFilter) {
+      if (ratingFilter[key] === true) {
+        result.push(Number(key))
+      }
+    }
+    return result
+  }
 
   useEffect(() => {
     // console.log(dropSort)
@@ -49,14 +58,26 @@ const ReviewList = ({productId, setReviewList, reviewList, dropSort}) => {
   }, [dropSort])
 
 
-  let alteredList = reviewList.map((revObj, ind) =>
-    <ReviewTile
-      setReviewList={setReviewList}
-      revObj={revObj}
-      key={ind}
-      />)
+  let alteredList = reviewList
+    .filter((tile) => {
+      if (starFilter().length > 0) {
+        console.log('this is tile rating', tile.rating)
+        return starFilter().includes(tile.rating) === true
+        // return
+      }
+      return true
+    })
+    .map((revObj, ind) =>
+      <ReviewTile
+        setReviewList={setReviewList}
+        revObj={revObj}
+        key={ind}/>)
+
   return (
     <div>
+      <section>
+        {starFilter()}
+      </section>
         <div>
         {
           alteredList.length !== 0 ? alteredList

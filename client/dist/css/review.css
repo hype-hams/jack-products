@@ -98,7 +98,7 @@
 .rating-bar {
   width: 250px;
 }
-.rating-number {
+.star-vote {
   display: flex;
   font-size: .4em;
   justify-content: flex-end;
@@ -116,6 +116,19 @@
 }
 .off {
   color: #ccc;
+}
+/* Review Tile */
+.review-tile {
+  max-width: 700px;
+  width: 100%;
+  overflow-wrap: break-word;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.review-star-name {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* SORT BAR */

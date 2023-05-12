@@ -18,7 +18,13 @@ const ReviewRating = ({productId, productName}) => {
 //MODAL REDO
   const [showModal, setShowModal] = useState(false);
 //RatingStarFilter
-  const [ratingFilter, setRatingFilter] = useState('');
+  const [ratingFilter, setRatingFilter] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false
+  });
   const addReview = (e) => {
     e.preventDefault
     setShowModal(!showModal)
@@ -49,6 +55,9 @@ const ReviewRating = ({productId, productName}) => {
         //WILL GIVE ARRAY OF OBJECTS
         setRating(Object.entries(response.data.ratings).map(entry => { return {id: Number(entry[0]), val: Number(entry[1])}}).reverse())
       })
+      .catch((err) => {
+        console.log('error on reviewrsating', err)
+      })
 
   }
 
@@ -72,6 +81,7 @@ const ReviewRating = ({productId, productName}) => {
             <h4>Rating Breakdown</h4>
             {/* {rateTable} */}
             <RatingBreakdown recommended={recommended}
+              ratingFilter={ratingFilter}
               setRatingFilter={setRatingFilter}
               rating={rating}
               avgRate={avgRate}
@@ -94,6 +104,7 @@ const ReviewRating = ({productId, productName}) => {
 
         <div>
           <ReviewList
+            ratingFilter={ratingFilter}
             reviewList={reviewList}
             dropSort={dropSort}
             setReviewList={setReviewList}
