@@ -27,6 +27,20 @@ body {
   overflow: hidden;
 }
 
+.up-arrow-div {
+  position: absolute;
+  width: 35px;
+  top: 5px;
+  left: 70px;
+}
+
+.down-arrow-div {
+  position: absolute;
+  width: 35px;
+  bottom: 5px;
+  left: 70px;
+}
+
 .left-arrow-div {
   position: absolute;
   width: 35px;

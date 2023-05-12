@@ -5,6 +5,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import imageNotAvailable from './images/imageNotAvailable.png';
 import leftArrow from './images/leftArrow.png';
 import rightArrow from './images/rightArrow.png';
+import upArrow from './images/upArrow.png';
+import downArrow from './images/downArrow.png';
 
 function ImageGallery({ photos }) {
   const [image, setImage] = useState(photos[0]);
@@ -58,6 +60,20 @@ function ImageGallery({ photos }) {
             <img src={item.thumbnail_url || imageNotAvailable} name={index} className="image-gallery-thumbnail-img" alt="thumbnail" />
           </div>
         ))}
+      </div>
+      <div
+        className="up-arrow-div"
+        style={!photoIndex ? { display: 'none' } : { display: 'block' }}
+        onClick={handleLeftArrowClick}
+      >
+        <img src={upArrow} width="100%" alt="leftArrow" />
+      </div>
+      <div
+        className="down-arrow-div"
+        style={(photoIndex === photos.length - 1) ? { display: 'none' } : { display: 'block' }}
+        onClick={handleRightArrowClick}
+      >
+        <img src={downArrow} width="100%" alt="rightArrow" />
       </div>
       <div
         className="left-arrow-div"
