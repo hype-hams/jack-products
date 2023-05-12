@@ -32,7 +32,8 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
   }
 
   const handleScroll = () => {
-    if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isLoading) {
+    if (window.innerHeight + document.documentElement.scrollTop >= 2315 || isLoading) {
+      console.log(document.documentElement.offsetHeight)
       return;
     }
     getReviews();
@@ -74,7 +75,7 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
 
   return (
     <div>
-        <div>
+        <div className="infinite-reviews">
         {
           alteredList.length !== 0 ? alteredList
           : <p>no reviews found</p>
