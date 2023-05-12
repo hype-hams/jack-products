@@ -5,6 +5,8 @@ import React, { useState, useEffect } from 'react';
 import imageNotAvailable from './images/imageNotAvailable.png';
 import leftArrow from './images/leftArrow.png';
 import rightArrow from './images/rightArrow.png';
+// import upArrow from './images/upArrow.png';
+// import downArrow from './images/downArrow.png';
 
 function ImageGallery({ photos }) {
   const [image, setImage] = useState(photos[0]);
@@ -49,8 +51,20 @@ function ImageGallery({ photos }) {
           </div>
         ))}
       </div>
-      <div className="left-arrow-div" onClick={handleLeftArrowClick}><img src={leftArrow} width="100%" alt="leftArrow" /></div>
-      <div className="right-arrow-div" onClick={handleRightArrowClick}><img src={rightArrow} width="100%" alt="rightArrow" /></div>
+      <div
+        className="left-arrow-div"
+        style={!photoIndex ? { display: 'none' } : { display: 'block' }}
+        onClick={handleLeftArrowClick}
+      >
+        <img src={leftArrow} width="100%" alt="leftArrow" />
+      </div>
+      <div
+        className="right-arrow-div"
+        style={(photoIndex === photos.length - 1) ? { display: 'none' } : { display: 'block' }}
+        onClick={handleRightArrowClick}
+      >
+        <img src={rightArrow} width="100%" alt="rightArrow" />
+      </div>
       <img src={image.url || imageNotAvailable} className="main-photo-img" alt="mainphoto" />
     </div>
   );
