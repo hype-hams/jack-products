@@ -18,10 +18,10 @@ router.get('/cart', controllers.details.getCart);
 router.post('/interactions', controllers.details.addInteraction);
 
 // //product q_a
-router.get('/q_a', controllers.q_a.getQuestions)
-router.get('/q_a', controllers.q_a.getAllAnswers)
-router.post('/q_a', controllers.q_a.postQuestion)
-// router.post('/q_a', controllers.q_a.postAnswer)
+router.get('/q_a/getQuestions', controllers.q_a.getQuestions);
+router.get('/q_a/getAnswers', controllers.q_a.getAllAnswers);
+router.post('/q_a/ask', controllers.q_a.postQuestion);
+router.post('/q_a/reply', controllers.q_a.postAnswer);
 
 // related:cesar
 router.get('/related/:product_id', controllers.related.getRelatedProducts);
