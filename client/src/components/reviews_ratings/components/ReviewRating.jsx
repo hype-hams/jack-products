@@ -9,7 +9,7 @@ import SortBar from './SortBar.jsx';
 
 const ReviewRating = ({productId, productName}) => {
 
-  // const [reviewList, setReviewList] = useState([]);
+  const [reviewList, setReviewList] = useState([]);
   const [productRating, setProductRating] = useState([]);
   const [recommended, setRecommended] = useState([]);
   const [avgRate, setAvgRate] = useState('');
@@ -25,19 +25,19 @@ const ReviewRating = ({productId, productName}) => {
     return <Modal showModal={showModal} setShowModal={setShowModal}/>
   }
 
-  // const getReviews = () => {
-  //   axios.get('/api/reviews', {
-  //     params: {
-  //       product_id: productId,
-  //       sort: dropSort,
-  //       count: 5
-  //     }
-  //   })
-  //   .then((response) => {
-  //     console.log('review rating get req', response.data)
-  //     setReviewList(response.data)
-  //   })
-  // }
+  const getReviews = () => {
+    axios.get('/api/reviews', {
+      params: {
+        product_id: productId,
+        sort: dropSort,
+        count: 5
+      }
+    })
+    .then((response) => {
+      console.log('review rating get req', response.data)
+      setReviewList(response.data)
+    })
+  }
 
   const getMeta = () => {
     axios.get(`/api/reviews/meta?product_id=${productId}`)
@@ -53,10 +53,9 @@ const ReviewRating = ({productId, productName}) => {
   }
 
   useEffect(() => {
-    // console.log('rating filter', ratingFilter)
-    // getReviews()
+    getReviews()
     getMeta()
-  }, [])
+  }, [dropSort])
 
 
   let charTable = productRating.map((charObj, ind) =>     <ProductBreakdown charObj={charObj} key={ind}/>)
@@ -88,14 +87,16 @@ const ReviewRating = ({productId, productName}) => {
       </div>
 
       <div className="review-box">
-        <header><b>Reviews</b></header>
-        <SortBar
+          <SortBar
           setDropSort={setDropSort}/>
+
+        <header><b>Reviews</b></header>
+
         <div>
           <ReviewList
-            // reviewList={reviewList}
-            // getReviews={getReviews}
+            reviewList={reviewList}
             dropSort={dropSort}
+            setReviewList={setReviewList}
             productId={productId}/>
         </div>
 

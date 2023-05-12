@@ -118,3 +118,8 @@
   color: #ccc;
 }
 
+/* SORT BAR */
+.sortbar {
+  display: inline-flexbox;
+  float: right;
+}
