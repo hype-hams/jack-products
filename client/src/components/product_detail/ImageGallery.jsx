@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
@@ -13,11 +15,19 @@ function ImageGallery({ photos }) {
   const [photoIndex, setPhotoIndex] = useState(0);
   const scrollRef = useRef(null);
 
+  useEffect(() => {
+    setImage(photos[0]); // Update the currently displayed image when the photos prop changes
+    setPhotoIndex(0); // after switching to a new style, need to reset index to 0
+    scrollRef.current = document.querySelector('.first-thumbnail');
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, [photos]);
+
   const handleThumbnailClick = (e) => {
     e.preventDefault();
     const index = Number(e.target.name); // fixed the bug: typeof e.target.name is string
     setImage(photos[index]);
     setPhotoIndex(index);
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
 
   const handleLeftArrowClick = (e) => {
@@ -26,10 +36,8 @@ function ImageGallery({ photos }) {
       const index = photoIndex - 1;
       setImage(photos[index]);
       setPhotoIndex(index);
-      scrollRef.current?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'end',
-      });
+      scrollRef.current = document.querySelector('.selected-thumbnail');
+      scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   };
 
@@ -39,39 +47,47 @@ function ImageGallery({ photos }) {
       const index = photoIndex + 1;
       setImage(photos[index]);
       setPhotoIndex(index);
-      scrollRef.current?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'end',
-      });
+      scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   };
 
-  useEffect(() => {
-    setImage(photos[0]); // Update the currently displayed image when the photos prop changes
-    setPhotoIndex(0); // after switching to a new style, need to reset index to 0
-  }, [photos]);
+  const handleUpArrowClick = (e) => {
+    e.preventDefault();
+    scrollRef.current = document.querySelector('.first-thumbnail');
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+
+  const handleDownArrowClick = (e) => {
+    e.preventDefault();
+    scrollRef.current = document.querySelector('.last-thumbnail');
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
 
   return (
     <div className="image-gallery-div">
       <div className="image-gallery-thumbnails-div">
         {photos.map((item, index) => (
           // using photoIndex + 1 so that when handling right arrow click ref is the current one
-          <div ref={(index === photoIndex + 1) ? scrollRef : null} style={(index === photoIndex) ? { borderBottom: 'thick solid white' } : { borderBottom: 'none' }} onClick={handleThumbnailClick} key={item.url}>
+          <div
+            ref={(index === photoIndex + 1) ? scrollRef : null}
+            style={(index === photoIndex) ? { borderBottom: 'thick solid white' } : { borderBottom: 'none' }}
+            className={(index === 0) ? 'first-thumbnail' : ((index === photoIndex) ? 'selected-thumbnail' : ((index === photos.length - 1) ? 'last-thumbnail' : 'image-gallery-thumbnail-div'))}
+            onClick={handleThumbnailClick}
+            key={index}
+          >
             <img src={item.thumbnail_url || imageNotAvailable} name={index} className="image-gallery-thumbnail-img" alt="thumbnail" />
           </div>
         ))}
       </div>
       <div
         className="up-arrow-div"
-        style={!photoIndex ? { display: 'none' } : { display: 'block' }}
-        onClick={handleLeftArrowClick}
+        onClick={handleUpArrowClick}
       >
         <img src={upArrow} width="100%" alt="leftArrow" />
       </div>
       <div
         className="down-arrow-div"
-        style={(photoIndex === photos.length - 1) ? { display: 'none' } : { display: 'block' }}
-        onClick={handleRightArrowClick}
+        onClick={handleDownArrowClick}
       >
         <img src={downArrow} width="100%" alt="rightArrow" />
       </div>

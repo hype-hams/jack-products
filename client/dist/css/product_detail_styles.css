@@ -7,7 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
-  min-width: 800px;
+  min-width: 1000px;
 }
 
 .product-detail-div {
@@ -19,7 +19,7 @@ body {
 .image-gallery-div {
   max-height: 730px;
   min-width: 500px;
-  width: 60%;
+  width: auto;
   display: flex;
   position: relative;
 
@@ -58,9 +58,8 @@ body {
 .main-photo-img {
   /* showing the middle of the photo */
   align-items: center;
-  min-width: 800px;
-  max-width: 1000px;
-  min-height: 730px;
+  width: 1000px;
+  height: 730px;
 
   /* images cover the entire div without stretching */
   object-fit: cover;
@@ -104,7 +103,7 @@ body {
 /*************** Right part of product detail ***************/
 .product-detail-div__right {
   width: 40%;
-  min-width: 400px;
+  min-width: 450px;
   position: relative;
   margin-left: 50px;
   margin-top: 20px;
