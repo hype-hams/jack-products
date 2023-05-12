@@ -65,9 +65,9 @@ const Pre_Modal = ({ card , currProduct})=> {
                 <table>
                     <thead>
                         <tr>
-                            <th>{currProduct.name}</th>
+                            <th className='CurrProductName'>{currProduct.name}</th>
                             <th> </th>
-                            <th>{card.name}</th>
+                            <th className='comparedProdName'>{card.name}</th>
                         </tr>
                     </thead>
                     <tbody>
