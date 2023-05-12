@@ -17,7 +17,6 @@ function AddToCart({ skus }) {
   const selectRef = useRef(null);
 
   useEffect(() => {
-    console.log('skus: ', skus);
     if (!skus[0].size) {
       setSizeDropdown(true); // no stock, diable size dropdown
       setSizeOptions(<option>OUT OF STOCK</option>);
@@ -59,7 +58,7 @@ function AddToCart({ skus }) {
     e.preventDefault();
     if (selectedSize === 'SELECT SIZE') {
       console.log('ref: ', selectRef.current);
-      selectRef.current.click();
+      selectRef.current.focus();
     } else {
       const id = skus.find((item) => item.size === selectedSize).sku_id;
       console.log(`Adding { sku_id: ${id}, count: ${selectedQty} } to cart.....`);
@@ -83,7 +82,7 @@ function AddToCart({ skus }) {
     <div className="selectors">
       <form>
         <label>
-          <select id="size-selector" ref={selectRef} disabled={sizeDropdown} value={selectedSize} onClick={() => console.log('click')} onChange={handleSizeChange} required>
+          <select id="size-selector" ref={selectRef} disabled={sizeDropdown} value={selectedSize} onChange={handleSizeChange} required>
             {sizeOptions}
           </select>
         </label>
@@ -92,9 +91,9 @@ function AddToCart({ skus }) {
             {qtyOptions}
           </select>
         </label>
+        <br />
+        {showButton && <input type="submit" value="ADD TO BAG" id="addToCart-btn" onClick={handleAddToCartClick} />}
       </form>
-      <br />
-      {showButton && <button id="addToCart-btn" onClick={handleAddToCartClick}>ADD TO BAG</button>}
     </div>
   );
 }
