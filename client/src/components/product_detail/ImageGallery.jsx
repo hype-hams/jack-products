@@ -3,8 +3,8 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef } from 'react';
 import imageNotAvailable from './images/imageNotAvailable.png';
-// import leftArrow from './images/leftArrow.png';
-// import rightArrow from './images/rightArrow.png';
+import leftArrow from './images/leftArrow.png';
+import rightArrow from './images/rightArrow.png';
 
 function ImageGallery({ photos }) {
   const [image, setImage] = useState(photos[0]);
