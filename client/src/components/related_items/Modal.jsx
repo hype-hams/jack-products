@@ -3,8 +3,6 @@ import React, {useState} from 'react';
 
 const Modal = ({showModal, closeModal, children})=>{
 
-    // const [visible, setVisible] = useState(showModal)
-
     return (
         <div>
             {showModal ? (
