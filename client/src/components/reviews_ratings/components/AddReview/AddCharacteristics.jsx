@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 
-const AddCharacteristics = ({charObj}) => {
+const AddCharacteristics = ({charObj, characteristics, setCharacteristics}) => {
   //Checks characteristics on product
   const presentCharacteristics = {
     135219: 'Fit',
@@ -106,40 +106,48 @@ const AddCharacteristics = ({charObj}) => {
   //     5: 'Runs long'
   //   }
   // }
-
+  const setCharObj = (charID, value) => {
+    setCharacteristics({...characteristics, [charID]: Number(value)})
+  }
 
   return (
-    <section>
-      <label>{charOption}:</label>
+    <section className="add-char">
+      <label className="add-review-char"
+        >{charOption}:</label>
       <label>
         <input name={charObj.id}
           type="radio"
-          value="1"/>
-        <small>{char1}</small>
+          value="1"
+          onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
+        <small className="review-char-text">{char1}</small>
       </label>
       <label>
         <input name={charObj.id}
           type="radio"
-          value="2"/>
-        <small>{char2}</small>
+          value="2"
+          onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
+        <small className="review-char-text">{char2}</small>
       </label>
       <label>
         <input name={charObj.id}
           type="radio"
-          value="3"/>
-        <small>{char3}</small>
+          value="3"
+          onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
+        <small className="review-char-text">{char3}</small>
       </label>
       <label>
         <input name={charObj.id}
           type="radio"
-          value="4"/>
-        <small>{char4}</small>
+          value="4"
+          onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
+        <small className="review-char-text">{char4}</small>
       </label>
       <label>
         <input name={charObj.id}
           type="radio"
-          value="5"/>
-        <small>{char5}</small>
+          value="5"
+          onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
+        <small className="review-char-text">{char5}</small>
       </label>
 
     </section>
