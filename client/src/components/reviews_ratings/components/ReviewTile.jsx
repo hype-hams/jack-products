@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Stars from './Stars.jsx';
 import ReviewHelpers from './ReviewHelpers.jsx';
 import axios from 'axios';
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const ReviewTile = ({revObj}) => {
+const ReviewTile = ({revObj, setReviewList}) => {
+
   // revObj = {
   //   key:revObj.review_id,
   //   id:revObj.review_id,
@@ -31,9 +32,11 @@ const ReviewTile = ({revObj}) => {
   }
 
   const helpfulCheck = () => {
-    let yescheck = document.getElementById('yeshelp');
+    let yescheck = document.getElementById('yeshelp' + revObj.review_id );
     // let nocheck = document.getElementById('nohelp');
-    if(yescheck.checked || nocheck.checked) {
+    console.log('helpful check id name', yescheck)
+    console.log('this is tile review obj', revObj)
+    if(yescheck.checked) {
       yescheck.disabled = true;
       // nocheck.disabled = true;
       document.getElementById('yestext').style.color = 'gray';
@@ -46,7 +49,7 @@ const ReviewTile = ({revObj}) => {
     }
   }
 
-  const BodyLength = () => {
+  const bodyLength = () => {
     let b250 = <span id="beforeshow">{revObj.body.substring(0, 250)}</span>
     let a250 = revObj.body.substring(250)
     let button;
@@ -61,7 +64,15 @@ const ReviewTile = ({revObj}) => {
         {button}</span></div>
     )
   }
-
+  const revPhotos = revObj.photos.map((photo) => {
+    return <img className="review-photo"
+      src={photo.url}
+      key={photo.id}
+      alt=""
+      height="100"
+      width="auto" />
+  })
+  //REPORT REVIEW
   const reportReview = () => {
     axios({
       method: 'PUT',
@@ -70,13 +81,17 @@ const ReviewTile = ({revObj}) => {
     })
       .then((response) => {
         console.log('review reported and removed pending investigation')
-        return true
+        setReviewList(oldRev => {
+          return oldRev.filter(revTile => revTile.review_id !== revObj.review_id)
+        })
+        // return true
       })
+
   }
 
   return (
     <div>
-      <form>
+      <form className="review-tile">
         <div>
           {reviewStars()}
         </div>
@@ -94,8 +109,16 @@ const ReviewTile = ({revObj}) => {
           </div>
 
           <div className="review-body">
-            <BodyLength />
+            {bodyLength()}
           </div>
+
+          <div className="posted-image">
+            {
+              revPhotos.length !== 0 ? revPhotos
+              : null
+            }
+          </div>
+
           <div className="seller-response">
             {ReviewHelpers.sellerResponse(revObj.response)}
           </div>
@@ -107,7 +130,7 @@ const ReviewTile = ({revObj}) => {
         <section>
           <div id="helpful-checker">
             <label>Was this helpful?</label>
-            <input id="yeshelp"
+            <input id={"yeshelp" + revObj.review_id}
               type="radio"
               value="yes"
               name="helpful"
