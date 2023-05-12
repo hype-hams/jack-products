@@ -26,7 +26,10 @@ const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick}) => {
     }
     const effectHandler = () =>{
         // localStorage.setItem("OutfitList", JSON.stringify(list));
-        var outfitList= [...JSON.parse(localStorage.getItem("OutfitList"))]
+        let outfitList = []
+        if(JSON.parse(localStorage.getItem("OutfitList"))){
+            outfitList= [...JSON.parse(localStorage.getItem("OutfitList"))]
+        }
         console.log(outfitList);
         setList(outfitList);
 
