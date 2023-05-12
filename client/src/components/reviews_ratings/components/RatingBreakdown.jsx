@@ -29,10 +29,9 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
   useEffect(()=> {
     totalRev()
   }, [])
-
+//controls filtering by stars
   const rateFilter = (e) => {
     let val = e.target.id
-    // console.log('this is rate filter', val)
     if (ratingFilter[e.target.id] === true) {
       setRatingFilter((prevFilter) => {
         return {...prevFilter, [val]: false}})
@@ -41,7 +40,6 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
         return {...prevFilter, [val]: true}})
     }
     console.log('this is rate state', ratingFilter)
-    // console.log('this is a test', test)
   }
 
 
@@ -69,9 +67,6 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
     </section>
     )
 });
-
-  //Rating Click Filter
-  // const starFilter = () => {}
 
   return (
     <section>
