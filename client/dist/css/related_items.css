@@ -3,7 +3,9 @@
 .RelatedItemsList, .OutfitList {
     display: flex;
     flex-direction: row;
-    overflow-x: scroll;
+    /* justify-content: center; */
+    /* flex-wrap: wrap; */
+    overflow-x: auto;
 }
 
 .RelatedItemCard, .OutfitListCard {

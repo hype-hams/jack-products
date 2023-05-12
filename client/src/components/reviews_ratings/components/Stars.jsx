@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReviewHelpers from './ReviewHelpers.jsx';
-import { faStar, faStarHalfStroke} from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import {faStarHalfStroke} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -46,24 +47,24 @@ const Stars = ({productId, rating}) => {
     const starArr = [];
     //avg star val
     const filled = calcStar()
-    //converts to quarter
+    const partialVal = filled - Math.floor(filled)
+    const partStar = partialStar(partialVal)
+    const empty = 5 - Math.ceil(filled)
+
+    console.log('this is partial' , partialVal)
+    console.log('this is part Star', partStar)
+    const result = []
     for(let i = 0; i < Math.floor(filled); i++) {
       starArr.push(1)
       // starArr.push(<FontAwesomeIcon icon={faStar} className="fa fa-star empty-star full-star" key={i}/>)
     }
-    if(filled < 5) {
-      //decimal for partial star
-      const partialVal = filled - Math.floor(filled)
-      //converts to quarter
-      const partStar = partialStar(partialVal)
-      starArr.push(partStar)
-      // starArr.push(<FontAwesomeIcon icon={faStarHalfStroke} key={partStar} className="fa fa-star empty-star" id={"star-" + (partStar*100)}/>)
-      // console.log('this is starArr', starArr.length)
-      const empty = 5 - starArr.length
-      // console.log('this is starArr empty', empty)
+    if(partStar > 0) {
+      //  result.push(<FontAwesomeIcon icon={faStar} key={partStar} className="fa fa-star empty-star" id={"star-" + (partStar*100).toString()}/>)
+      result.push(<FontAwesomeIcon icon={faStarHalfStroke} className="fa fa-star full-star"/>);
+    }
+    if(empty > 0) {
       for(let i = 0; i < empty; i++) {
-        starArr.push(0)
-        // starArr.push(<FontAwesomeIcon icon={faStar} key={i+1337} className="fa fa-star empty-star" />)
+        result.push(<FontAwesomeIcon icon={faStar} key={i+1337} className="fa fa-star empty-star" />)
       }
       // console.log('this is starArr', starArr)
 
@@ -100,6 +101,9 @@ const Stars = ({productId, rating}) => {
         <label id="avg-rate-bar"
 >{renderStarBar()}</label> &emsp;
         <big><b>{calcStar()}</b></big>
+      </p>
+      <div className="avg-rating">
+        <label>{renderStarBar()}</label>
       </div>
     </div>
   )
