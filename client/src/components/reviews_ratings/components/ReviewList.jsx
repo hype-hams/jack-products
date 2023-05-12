@@ -61,7 +61,6 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
   let alteredList = reviewList
     .filter((tile) => {
       if (starFilter().length > 0) {
-        console.log('this is tile rating', tile.rating)
         return starFilter().includes(tile.rating) === true
         // return
       }
@@ -75,9 +74,6 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
 
   return (
     <div>
-      <section>
-        {starFilter()}
-      </section>
         <div>
         {
           alteredList.length !== 0 ? alteredList

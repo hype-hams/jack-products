@@ -12,7 +12,7 @@ const Stars = ({productId, rating}) => {
   const getStars = () => {
       const metaData = axios.get(`/api/reviews/meta?product_id=${productId}`)
       .then(response => {
-        console.log('this is stars data', response.data.ratings)
+        // console.log('this is stars data', response.data.ratings)
         setAvgRate(response.data.ratings)
       })
   }
@@ -47,8 +47,8 @@ const Stars = ({productId, rating}) => {
     const partStar = partialStar(partialVal)
     const empty = 5 - Math.ceil(filled)
 
-    console.log('this is partial', partialVal)
-    console.log('this is part Star', partStar)
+    // console.log('this is partial', partialVal)
+    // console.log('this is part Star', partStar)
     const result = []
     for(let i = 0; i < Math.floor(filled); i++) {
       result.push(<FontAwesomeIcon icon={faStar} className="fa fa-star empty-star full-star" key={i}/>)

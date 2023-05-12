@@ -69,6 +69,37 @@ const ReviewRating = ({productId, productName}) => {
 
   let charTable = productRating.map((charObj, ind) =>     <ProductBreakdown charObj={charObj} key={ind}/>)
 
+  const applyStars = () => {
+    let starStr = ''
+    for(let key in ratingFilter) {
+      if(ratingFilter[key] === true) {
+        starStr += `${key}, `
+        console.log('ratingFilter kye', ratingFilter.key)
+      }
+    }
+    console.log('this is star string', starStr)
+    //check star str
+    if(starStr.length > 0) {
+      starStr = starStr.slice(0, -2)
+      return (
+        <div>
+          <p>Filtering reviews by {starStr} stars</p>
+          <button type="button"
+            onClick={(e) => {
+              setRatingFilter({
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false
+              })
+            }}
+            >Reset Filter</button>
+        </div>
+      )
+    }
+
+  }
 
   //ratings filter needs to pass do wn without without influence on sorbar. should combo
   return (
@@ -79,7 +110,8 @@ const ReviewRating = ({productId, productName}) => {
         <div>
           <section className="breakdown">
             <h4>Rating Breakdown</h4>
-            {/* {rateTable} */}
+            {applyStars()}
+
             <RatingBreakdown recommended={recommended}
               ratingFilter={ratingFilter}
               setRatingFilter={setRatingFilter}
