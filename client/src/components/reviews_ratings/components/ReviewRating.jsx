@@ -9,7 +9,7 @@ import SortBar from './SortBar.jsx';
 
 const ReviewRating = ({productId, productName}) => {
 
-  const [reviewList, setReviewList] = useState([]);
+  // const [reviewList, setReviewList] = useState([]);
   const [productRating, setProductRating] = useState([]);
   const [recommended, setRecommended] = useState([]);
   const [avgRate, setAvgRate] = useState('');
@@ -25,24 +25,23 @@ const ReviewRating = ({productId, productName}) => {
     return <Modal showModal={showModal} setShowModal={setShowModal}/>
   }
 
-  const getReviews = () => {
-    axios.get('/api/reviews', {
-      params: {
-        product_id: productId,
-        sort: dropSort,
-        count: 5
-      }
-    })
-    .then((response) => {
-      console.log('review rating get req', response.data)
-      setReviewList(response.data)
-    })
-  }
+  // const getReviews = () => {
+  //   axios.get('/api/reviews', {
+  //     params: {
+  //       product_id: productId,
+  //       sort: dropSort,
+  //       count: 5
+  //     }
+  //   })
+  //   .then((response) => {
+  //     console.log('review rating get req', response.data)
+  //     setReviewList(response.data)
+  //   })
+  // }
 
   const getMeta = () => {
     axios.get(`/api/reviews/meta?product_id=${productId}`)
       .then(response => {
-
         setProductRating(Object.values(response.data.characteristics))
         setRecommended(response.data.recommended)
         //WILL GIVE OBJ
@@ -54,9 +53,10 @@ const ReviewRating = ({productId, productName}) => {
   }
 
   useEffect(() => {
-    getReviews()
+    // console.log('rating filter', ratingFilter)
+    // getReviews()
     getMeta()
-  }, [dropSort])
+  }, [])
 
 
   let charTable = productRating.map((charObj, ind) =>     <ProductBreakdown charObj={charObj} key={ind}/>)
@@ -93,7 +93,10 @@ const ReviewRating = ({productId, productName}) => {
           setDropSort={setDropSort}/>
         <div>
           <ReviewList
-            reviewList={reviewList}/>
+            // reviewList={reviewList}
+            // getReviews={getReviews}
+            dropSort={dropSort}
+            productId={productId}/>
         </div>
 
         <div>
