@@ -79,8 +79,10 @@ body {
   overflow-y: auto;
 
   /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 /* Hide the scrollbar for Chrome */
@@ -148,109 +150,92 @@ body {
 }
 
 .selectors {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
   margin-top: 40px;
+  color: rgb(60, 60, 60);
 }
 
-#size-selector,
-#quantity-selector {
-  min-height: 50px;
-  padding: 10px;
-  padding-right: 50px;
-  margin-right: 20px;
-  border: 0;
-  outline: 1px solid;
-  border-right: 16px solid transparent;
-}
-
-#addToCart-btn {
-  min-height: 50px;
-  padding: 10px;
-  padding-right: 150px;
-  margin-right: 20px;
-  margin-top: 30px;
-  background-color: transparent;
-  border-width: 1px;
-  border-color: black;
-}
-
-.question {
-  padding: 5px;
-  box-sizing: border-box;
-  overflow-wrap: break-word;
-  display: inline-block;
-  border-style: solid;
-  border-radius: 25px;
-  border-color: rgb(167, 162, 162);
-  border-width: 2px;
-}
-.questionmodal-title {
-  display: inline-block;
-  text-align: center;
-  margin: 0;
-}
-.questionmodal-full {
-margin: 15px;
-}
-.questionmodal-container {
-  width: 425px;
-  height: 325px;
-  border-radius: 12px;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.size-selector-div {
   display: flex;
-  flex-direction: column;
-  padding: 25px;
-}
-#questionmodal-body {
-  width: 400px;
-  height: 100px;
-  flex: 50%;
-  display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-}
-#questionmodal-textarea {
-  width: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  resize: none;
-}
-
-
-.questionmodal-close {
-  display: flex;
-  justify-content: flex-end;
-}
-.questionmodal-close button {
-  background-color: transparent;
-  border: none;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-
-.questionmodal-footer {
-  flex: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.questionmodal-footer button {
-  width: 75px;
-  height: 23px;
-  margin: 10px;
-  border: none;
-  background-color: cornflowerblue;
-  color: white;
+  padding: 7px 15px;
+  width: 200px;
+  height: 40px;
   border-radius: 8px;
-  font: 16px;
+  border: 1.2px solid #a8a8a8;
+  margin-right: 30px;
   cursor: pointer;
 }
 
-#cancelBtn {
-  background-color: crimson;
+.quantity-selector-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 15px;
+  width: 120px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1.2px solid #a8a8a8;
+  cursor: pointer;
+}
+
+.size-selector-div:hover,
+.quantity-selector-div:hover,
+.add-to-cart-btn:hover {
+  border: 1.5px solid #3b3b3b;
+}
+
+.size-dropdown-menu-div {
+  position: absolute;
+  top: 60px;
+  width: 231px;
+  height: auto;
+  padding: 15px 0;
+  border-radius: 8px;
+  border: 1px solid #a8a8a8;
+  background-color: white;
+}
+
+.qty-dropdown-menu-div {
+  position: absolute;
+  top: 60px;
+  left: 261px;
+  width: 151px;
+  height: auto;
+  padding: 15px 0;
+  margin-right: 100px;
+  border-radius: 8px;
+  border: 1px solid #a8a8a8;
+  background-color: white;
+}
+
+.size-dropdown-menu-div>section,
+.qty-dropdown-menu-div>section {
+  padding: 10px 15px;
+}
+
+.size-dropdown-menu-div>section:hover,
+.qty-dropdown-menu-div>section:hover {
+  background-color: rgb(228, 243, 250);
+}
+
+.add-to-cart-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+  width: 300px;
+  height: 55px;
+  border-radius: 8px;
+  border: 1.2px solid #a8a8a8;
+  background-color: white;
+  color: rgb(60, 60, 60);
+  margin-top: 30px;
+  margin-right: 50px;
+  cursor: pointer;
 }
 
 /************************************************************/
