@@ -210,6 +210,7 @@ body {
   border-radius: 8px;
   border: 1px solid #a8a8a8;
   background-color: white;
+  z-index: 10;
 }
 
 .size-dropdown-menu-div>section,
