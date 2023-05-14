@@ -39,7 +39,7 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
       setRatingFilter((prevFilter) => {
         return {...prevFilter, [val]: true}})
     }
-    console.log('this is rate state', ratingFilter)
+    // console.log('this is rate state', ratingFilter)
   }
 
 
@@ -70,13 +70,14 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
 
   return (
     <section>
-      <div>
+      <div className="avg-star-rating">
         <Stars rating={rating}
           productId={productId}/>
         {/* TODO: style stars here */}
-        <small>{totalReviews}&ensp;reviews</small>
+        {/* <small>{totalReviews}&ensp;reviews</small> */}
       </div>
       <div>
+        <small>{totalReviews}&ensp;reviews</small>
         {totalRev()}
       </div>
       <div className="ratingBreakdown">

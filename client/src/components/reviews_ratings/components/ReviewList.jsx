@@ -33,7 +33,7 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
 
   const handleScroll = () => {
     if (window.innerHeight + document.documentElement.scrollTop >= 2315 || isLoading) {
-      console.log(document.documentElement.offsetHeight)
+      // console.log(document.documentElement.offsetHeight)
       return;
     }
     getReviews();

@@ -40,7 +40,6 @@ const ReviewRating = ({productId, productName}) => {
       }
     })
     .then((response) => {
-      console.log('review rating get req', response.data)
       setReviewList(response.data)
     })
   }
@@ -74,10 +73,9 @@ const ReviewRating = ({productId, productName}) => {
     for(let key in ratingFilter) {
       if(ratingFilter[key] === true) {
         starStr += `${key}, `
-        console.log('ratingFilter kye', ratingFilter.key)
       }
     }
-    console.log('this is star string', starStr)
+    // console.log('this is star string', starStr)
     //check star str
     if(starStr.length > 0) {
       starStr = starStr.slice(0, -2)
@@ -104,8 +102,7 @@ const ReviewRating = ({productId, productName}) => {
   //ratings filter needs to pass do wn without without influence on sorbar. should combo
   return (
     <div className="RR-module">
-      <h2>Ratings & Reviews</h2>
-
+        {/* <h2>Ratings & Reviews</h2> */}
       <div className="breakdown-box">
         <div>
           <section className="breakdown">
@@ -128,30 +125,31 @@ const ReviewRating = ({productId, productName}) => {
         </div>
       </div>
 
-      <div className="review-box">
-          <SortBar
-          setDropSort={setDropSort}/>
+        <div className="review-box">
+            <SortBar
+              setDropSort={setDropSort}/>
 
-        <header><b>Reviews</b></header>
+          <div>
+            <ReviewList
+              ratingFilter={ratingFilter}
+              reviewList={reviewList}
+              dropSort={dropSort}
+              setReviewList={setReviewList}
+              productId={productId}/>
+          </div>
+          {/* <div>
+            <SortBar
+              setDropSort={setDropSort}/>
+          </div> */}
+          <div>
+            <Modal showModal={showModal}
+            productId={productId}
+            productName={productName}
+            productRating={productRating}
+            setShowModal={setShowModal}/>
+          </div>
 
-        <div>
-          <ReviewList
-            ratingFilter={ratingFilter}
-            reviewList={reviewList}
-            dropSort={dropSort}
-            setReviewList={setReviewList}
-            productId={productId}/>
         </div>
-
-        <div>
-          <Modal showModal={showModal}
-          productId={productId}
-          productName={productName}
-          productRating={productRating}
-          setShowModal={setShowModal}/>
-        </div>
-
-      </div>
 
     </div>
   )
