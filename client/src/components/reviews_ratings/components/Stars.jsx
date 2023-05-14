@@ -42,28 +42,44 @@ const Stars = ({productId, rating}) => {
 
   //renders avg star bar
   const renderStarBar = () => {
+    const starArr = [];
+    //avg star val
     const filled = calcStar()
-    const partialVal = filled - Math.floor(filled)
-    const partStar = partialStar(partialVal)
-    const empty = 5 - Math.ceil(filled)
-
-    // console.log('this is partial', partialVal)
-    // console.log('this is part Star', partStar)
-    const result = []
+    //converts to quarter
     for(let i = 0; i < Math.floor(filled); i++) {
-      result.push(<FontAwesomeIcon icon={faStar} className="fa fa-star empty-star full-star" key={i}/>)
+      starArr.push(1)
+      // starArr.push(<FontAwesomeIcon icon={faStar} className="fa fa-star empty-star full-star" key={i}/>)
     }
-    if(partStar > 0) {
-      result.push(<FontAwesomeIcon icon={faStar} key={partStar} className="fa fa-star empty-star" id={"star-" + (partStar*100).toString()}/>)
-    }
-    if(empty > 0) {
+    if(filled < 5) {
+      //decimal for partial star
+      const partialVal = filled - Math.floor(filled)
+      //converts to quarter
+      const partStar = partialStar(partialVal)
+      starArr.push(partStar)
+      // starArr.push(<FontAwesomeIcon icon={faStar} key={partStar} className={"star-" + (partStar*100)}/>)
+      // console.log('this is starArr', starArr.length)
+      const empty = 5 - starArr.length
+      // console.log('this is starArr empty', empty)
       for(let i = 0; i < empty; i++) {
-      result.push(<FontAwesomeIcon icon={faStar} key={i+1337} className="fa fa-star empty-star" />)
+        starArr.push(0)
+        // starArr.push(<FontAwesomeIcon icon={faStar} key={i+1337} className="fa fa-star empty-star" />)
       }
-    }
-    //if conditional to check and generate 1/4 stars
+      console.log('this is starArr', starArr)
 
-    return result
+
+    }
+    // return starArr
+    // console.log('this is starArr', starArr.length)
+    const stars = starArr.map((val, i) => {
+      return <label key={i}
+        id="avg-rate"
+        style={{background: `linear-gradient(90deg, gold
+        ${val * 100}%, white ${val * 100}%)`}}>
+          <FontAwesomeIcon icon={faStar} key={i} className="empty-star "/>
+        </label>
+      })
+      return stars
+
   }
 
 
@@ -74,12 +90,10 @@ const Stars = ({productId, rating}) => {
 
   return (
     <div>
-      <p id="avgStars">
-        <big><b>{calcStar()}</b></big>
-      </p>
       <div className="avg-rating">
-        <label>{renderStarBar()}</label>
-
+        <label id="avg-rate-bar"
+>{renderStarBar()}</label> &emsp;
+        <big><b>{calcStar()}</b></big>
       </div>
 
     </div>

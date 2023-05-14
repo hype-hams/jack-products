@@ -85,13 +85,13 @@ function App(props) {
                   styles={styles} />
 >>>>>>> 1e766a6 (for cesar to use the modal)
               </div>
-              <div className="related-items">
+              {/* <div className="related-items">
                 <RelatedItems key={product.id}
                   currProduct={product}
                   currPhotoURL={styles.results[0].photos[0].thumbnail_url}
                   IDlist={related}
                   handleRelatedItemClick={handleRelatedItemClick} />
-              </div>
+              </div> */}
 
               <div className="rating-review">
 <<<<<<< HEAD

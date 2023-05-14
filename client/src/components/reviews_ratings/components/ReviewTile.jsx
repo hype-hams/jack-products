@@ -133,7 +133,7 @@ const ReviewTile = ({revObj, setReviewList}) => {
             {ReviewHelpers.checkRecommend(revObj.recommend)}
           </div>
         </div>
-        <section>
+        <section className="tile-helpful-report">
           <div id="helpful-checker">
             <label>Was this helpful?</label>
             <input id={"yeshelp" + revObj.review_id}
@@ -156,6 +156,7 @@ const ReviewTile = ({revObj, setReviewList}) => {
               found this helpful
             </small>
           </div>
+
           <div className="report-review">
             <button type="button"
               onClick={reportReview}>Report Review</button>
