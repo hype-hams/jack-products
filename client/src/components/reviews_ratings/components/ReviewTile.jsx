@@ -161,7 +161,6 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
             <button type="button"
               onClick={reportReview}>Report Review</button>
           </div>
-
         </section>
       </form>
     </div>

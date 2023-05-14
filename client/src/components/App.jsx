@@ -27,6 +27,8 @@ function App(props) {
 
   // const [productId, setProductId] = useState('40344')
   // const [productName, setProductName] = useState('Camo Onesie');
+  // const [productId, setProductId] = useState('40344')
+  // const [productName, setProductName] = useState('Camo Onesie');
 
   const fetchDataById = async (id = 40344) => {
     try {

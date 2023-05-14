@@ -10,7 +10,7 @@
     background: rgb(235, 233, 233);
     width: 220px;
     height: 400px;
-    margin: 15px; 
+    margin: 15px;
     background-size: cover;
     border-radius: 20px;
 
@@ -21,7 +21,7 @@
     height: 400px;
     min-width: 220px;
     min-height: 400px;
-    margin: 15px; 
+    margin: 15px;
     /* background-size: cover; */
     border-radius: 20px;
     background-color: skyblue;
