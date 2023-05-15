@@ -69,6 +69,7 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
     })
     .map((revObj, ind) =>
       <ReviewTile
+      productId={productId}
         setReviewList={setReviewList}
         revObj={revObj}
         key={ind}/>)

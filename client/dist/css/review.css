@@ -14,7 +14,7 @@
 .empty-star {
   display: inline-block;
   position: relative;
-  /* content:"\f005"; */
+  content:"\f005";
   top: 0;
   left: 0;
   font-family: 'Font Awesome 5 Free';
@@ -27,16 +27,13 @@
   font-family: 'Font Awesome 5 Free';
   left: 0;
   top: 0;
+  /* background: whit */
   overflow: hidden;
   color: gold;
 }
-#avg-rate-bar {
-  background-clip: transparent;
-  -webkit-background-clip: transparent;
-  -webkit-text-fill-color: gold;
-  -webkit-
-}
-/*#star-25 {
+
+
+/* #star-25 {
 display: inline-block;
   content:"\f005";
   position: relative;
@@ -45,18 +42,17 @@ display: inline-block;
   overflow: hidden;
   color: gold;
 } */
-/* .star-50 {
+/* #star-50 {
   display: inline-block;
   content:"\f005";
-  position: absolute;
-  width: 50%;
+  position: relative;
+  font-family: 'Font Awesome 5 Free';
   left: 0;
   top: 0;
   overflow: hidden;
   color: gold;
 } */
-/*
-#star-75 {
+/* #star-75 {
 display: inline-block;
   content:"\f005";
   position: relative;

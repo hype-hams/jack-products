@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReviewHelpers from './ReviewHelpers.jsx';
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faStarHalfStroke} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -40,6 +40,7 @@ const Stars = ({productId, rating}) => {
     }
   }
 
+
   //renders avg star bar
   const renderStarBar = () => {
     const starArr = [];
@@ -56,7 +57,7 @@ const Stars = ({productId, rating}) => {
       //converts to quarter
       const partStar = partialStar(partialVal)
       starArr.push(partStar)
-      // starArr.push(<FontAwesomeIcon icon={faStar} key={partStar} className={"star-" + (partStar*100)}/>)
+      // starArr.push(<FontAwesomeIcon icon={faStarHalfStroke} key={partStar} className="fa fa-star empty-star" id={"star-" + (partStar*100)}/>)
       // console.log('this is starArr', starArr.length)
       const empty = 5 - starArr.length
       // console.log('this is starArr empty', empty)
@@ -64,19 +65,24 @@ const Stars = ({productId, rating}) => {
         starArr.push(0)
         // starArr.push(<FontAwesomeIcon icon={faStar} key={i+1337} className="fa fa-star empty-star" />)
       }
-      console.log('this is starArr', starArr)
-
+      // console.log('this is starArr', starArr)
 
     }
     // return starArr
     // console.log('this is starArr', starArr.length)
     const stars = starArr.map((val, i) => {
+      const starStyle = {
+        border:`solid 1px black`,
+        borderRadius:'5px',
+        background: `linear-gradient(90deg, gold
+          ${val * 100}%, white ${val * 100}%)`,
+          WebkitBackgroundFill: 'text',
+          WebkitTextFillColor: 'grey',
+      }
       return <label key={i}
         id="avg-rate"
-        style={{background: `linear-gradient(90deg, gold
-        ${val * 100}%, white ${val * 100}%)`}}>
-          <FontAwesomeIcon icon={faStar} key={i} className="empty-star "/>
-        </label>
+        style={starStyle}
+        >★</label>
       })
       return stars
 
