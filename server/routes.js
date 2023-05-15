@@ -22,6 +22,11 @@ router.get('/q_a/getQuestions', controllers.q_a.getQuestions);
 router.get('/q_a/getAnswers', controllers.q_a.getAllAnswers);
 router.post('/q_a/ask', controllers.q_a.postQuestion);
 router.post('/q_a/reply', controllers.q_a.postAnswer);
+router.put('/q_a/question/upvote', controllers.q_a.upvoteQuestion);
+router.put('/q_a/question/:question_id/report', controllers.q_a.reportQuestion);
+router.put('/q_a/answer/:answer_id/upvote', controllers.q_a.upvoteAnswer);
+router.put('/q_a/answer/:answer_id/report', controllers.q_a.reportAnswer);
+
 
 // related:cesar
 router.get('/related/:product_id', controllers.related.getRelatedProducts);

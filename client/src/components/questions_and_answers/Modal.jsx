@@ -3,11 +3,20 @@ import axios from 'axios';
 
 const { useState } = React;
 
-function Modal({ closeModal, modalType, setModalType, question }) {
+function Modal({ closeModal, modalType, product_id }) {
+
+  console.log(product_id);
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [body, setBody] = useState('');
+
+
+  const resetStates = () => {
+    setUsername('');
+    setEmail('');
+    setBody('');
+  };
 
   const modalData = {};
   if (modalType === 'Question') {
@@ -18,18 +27,26 @@ function Modal({ closeModal, modalType, setModalType, question }) {
     modalData.body = 'Compose your Answer here!';
   }
 
-  console.log(modalType)
-
-  const postData = {
-    // question: question.id
-  }
 
   const submitQuestion = () => {
+    console.log(modalType)
     console.log('Question submission')
-    // axios.post('/api/q_a/ask', {});
+    axios.post('/api/q_a/ask', {
+      product_id: product_id,
+      body: body,
+      email: email,
+      name: username,
+    })
+    .then(() => {
+      resetStates();
+    })
+    .catch((err) => {
+      console.error('ERROR IN QUESTION SUBMISSION:  ', err);
+    });
   };
 
   const submitAnswer = () => {
+    console.log(modalType[0])
 
     axios.post('/api/q_a/reply', {
       question_id: modalType[1].question_id,
@@ -37,10 +54,13 @@ function Modal({ closeModal, modalType, setModalType, question }) {
       name: username,
       email: email,
       photos: []
-    });
-    setUsername('');
-    setEmail('');
-    setBody('');
+    })
+    .then(() => {
+      resetStates();
+    })
+    .catch((err) => {
+      console.error('ERROR IN ANSWER SUBMISSION:  ', err);
+    })
   };
 
   return (
@@ -83,7 +103,6 @@ function Modal({ closeModal, modalType, setModalType, question }) {
               type="submit"
               id="Qsubmission"
               onClick={() => {
-                console.log('clicked')
                 if (modalType[0] === 'Question') {
                   submitQuestion();
                 } else {

@@ -1,59 +1,72 @@
 
-.avg-rating {
+/* .avg-rating {
   position: inline-block;
   box-sizing: border-box;
   display: flex;
   justify-content: start;
   align-items: center;
-}
+} */
+/* .avg-star-rating {
+  display: inline-flex;
+  position: relative;
+} */
+
 .empty-star {
   display: inline-block;
   position: relative;
-  font-size: 1em;
+  content:"\f005";
+  top: 0;
+  left: 0;
+  font-family: 'Font Awesome 5 Free';
   color: #efefef;
 }
-.full-star {
+ .full-star {
   display: inline-block;
+  content:"\f005";
+  position: relative;
+  font-family: 'Font Awesome 5 Free';
+  left: 0;
+  top: 0;
+  /* background: whit */
+  overflow: hidden;
+  color: gold;
+}
+
+
+/* #star-25 {
+display: inline-block;
   content:"\f005";
   position: relative;
   left: 0;
   top: 0;
   overflow: hidden;
   color: gold;
-}
-#star-25 {
-  /* display: inline; */
-  content: "\f005";
+} */
+/* #star-50 {
+  display: inline-block;
+  content:"\f005";
+  position: relative;
+  font-family: 'Font Awesome 5 Free';
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  color: gold;
+} */
+/* #star-75 {
+display: inline-block;
+  content:"\f005";
   position: relative;
   left: 0;
   top: 0;
-  width: 25%;
   overflow: hidden;
   color: gold;
-}
-#star-50 {
-  /* display: inline; */
-  content: "\f005";
-  position: relative;
-  left: 0;
-  top: 0;
-  width: 50%;
-  overflow: hidden;
-  color: gold;
-}
-#star-75 {
-  /* display: inline; */
-  content: "\f005";
-  position: relative;
-  left: 0;
-  top: 0;
-  width: 75%;
-  overflow: hidden;
-  color: gold;
-}
+} */
+
 
 .RR-module {
   float: left;
+  max-width: fit-content;
+  width: auto;
   /* box-sizing: border-box; */
 }
 .breakdown-box {
@@ -65,9 +78,12 @@
 }
 .review-box {
   box-sizing: border-box;
-  display: inline-flex;
-  float: left;
+  display: inline;
+  float: right;
   width: 65%;
+  /* padding: 10px; */
+  /* flex-direction: row-reverse; */
+  height: 600px;
 }
 .sortbar {
   flex-wrap: wrap;
@@ -76,10 +92,8 @@
   width: 300px;
   height: min-content;
   border: 1px solid gray;
-  padding: 20px;
-  padding-top: 0%;
   padding-left: 10px;
-  margin: 10px;
+  padding-right: 10px;
   border-radius: .6em;
 }
 .product-word {
@@ -98,7 +112,7 @@
 .rating-bar {
   width: 250px;
 }
-.rating-number {
+.star-vote {
   display: flex;
   font-size: .4em;
   justify-content: flex-end;
@@ -116,6 +130,29 @@
 }
 .off {
   color: #ccc;
+}
+
+.infinite-reviews {
+  max-height: 650px;
+  overflow-y: scroll;
+}
+/* Review Tile */
+.review-tile {
+  max-width: 700px;
+  width: auto;
+  overflow-wrap: break-word;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+}
+.tile-helpful-report {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-star-name {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* SORT BAR */

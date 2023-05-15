@@ -1,51 +1,83 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Stars from './Stars.jsx';
 
-const RatingBreakdown = ({rating, recommended, setRatingFilter, avgRate, productId}) => {
+const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, avgRate, productId}) => {
+  const [totalReviews, setTotalReviews] = useState('')
   let recommendPercent = Number(recommended.true)/(Number(recommended.true) + Number(recommended.false)) * 100;
 
-  const totalRatings = () => {
-    let totalVal = 0;
-      for(const key in avgRate) {
-        totalVal += avgRate[key]*key;
-      }
-      return totalVal
+  //total ratings: votes*value
+
+  //total reviews for given product
+  const totalRev = () => {
+  axios.get('/api/reviews', {
+    params: {
+    product_id: productId,
+    sort: 'newest',
+    count: 1000000000
+    }
+  })
+  .then((response) => {
+    console.log('total reviews', response.data.length)
+    setTotalReviews(response.data.length)
+  })
+  .catch((error) => {
+      console.log('this is error counting total reviews', error)
+    })
+  }
+  useEffect(()=> {
+    totalRev()
+  }, [])
+//controls filtering by stars
+  const rateFilter = (e) => {
+    let val = e.target.id
+    if (ratingFilter[e.target.id] === true) {
+      setRatingFilter((prevFilter) => {
+        return {...prevFilter, [val]: false}})
+    } else {
+      setRatingFilter((prevFilter) => {
+        return {...prevFilter, [val]: true}})
+    }
+    // console.log('this is rate state', ratingFilter)
   }
 
 
-
   // Rating breakdown Bar
-  const stars = rating.map((obj, ind) => (
+  const stars = rating.map((obj, ind) => {
+    let counter =  0
+
+    return (
     <section key={ind}>
-      <label id={obj.id}>
-        <small
-          onClick={(e)=>{setRatingFilter(e.target.value)}}>
+      <label>
+        <small id={obj.id}
+          onClick={rateFilter}>
           {obj.id} stars
         </small>
       </label> &ensp;
       <meter className="rating-bar"
         value={obj.val}
-        max="1000"></meter>
+        max='1000'></meter>
       {/* TODO COLOR CHANGE */}
       <small>
-        <label className="rating-number">
+        <label className="star-vote">
           {obj.val}
         </label>
       </small>
     </section>
-  ));
-
-  //Rating Click Filter
-  // const starFilter = () => {}
+    )
+});
 
   return (
     <section>
-      <div>
+      <div className="avg-star-rating">
         <Stars rating={rating}
           productId={productId}/>
         {/* TODO: style stars here */}
-        <small>{totalRatings()}&ensp;reviews</small>
+        {/* <small>{totalReviews}&ensp;reviews</small> */}
+      </div>
+      <div>
+        <small>{totalReviews}&ensp;reviews</small>
+        {totalRev()}
       </div>
       <div className="ratingBreakdown">
         {stars}

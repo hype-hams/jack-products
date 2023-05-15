@@ -4,8 +4,22 @@ import ReviewHelpers from './ReviewHelpers.jsx';
 import axios from 'axios';
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const ReviewTile = ({revObj, setReviewList}) => {
+const ReviewTile = ({revObj, setReviewList, productId}) => {
+  const [revBody, setRevBody] = useState('');
+  const [showMore, setShowMore] = useState(false);
 
+  useEffect (() => {
+    if(revObj.body.length > 250) {
+      setRevBody(`${revObj.body.slice(0, 251)}`)
+      setShowMore(true)
+    } else {
+      setRevBody(revObj.body)
+    }
+  }, [revObj.body])
+  const fullBody = () => {
+    setShowMore(false);
+    setRevBody(revObj.body);
+  }
   // revObj = {
   //   key:revObj.review_id,
   //   id:revObj.review_id,
@@ -49,21 +63,6 @@ const ReviewTile = ({revObj, setReviewList}) => {
     }
   }
 
-  const bodyLength = () => {
-    let b250 = <span id="beforeshow">{revObj.body.substring(0, 250)}</span>
-    let a250 = revObj.body.substring(250)
-    let button;
-    if(a250.length > 0) {
-      button = <button
-        onClick={() => {
-          document.getElementById('beforeshow').innerText = revObj.body.substring(0, 250) + a250
-          }}>Show more.s..</button>
-    }
-    return (
-      <div><span id="beforeshow">{b250}
-        {button}</span></div>
-    )
-  }
   const revPhotos = revObj.photos.map((photo) => {
     return <img className="review-photo"
       src={photo.url}
@@ -71,7 +70,8 @@ const ReviewTile = ({revObj, setReviewList}) => {
       alt=""
       height="100"
       width="auto" />
-  })
+  });
+
   //REPORT REVIEW
   const reportReview = () => {
     axios({
@@ -84,24 +84,25 @@ const ReviewTile = ({revObj, setReviewList}) => {
         setReviewList(oldRev => {
           return oldRev.filter(revTile => revTile.review_id !== revObj.review_id)
         })
-        // return true
-      })
-
+      });
   }
 
   return (
     <div>
       <form className="review-tile">
-        <div>
-          {reviewStars()}
-        </div>
+        <section className="review-star-name">
+          <div className="review-stars">
+            {reviewStars()}
+            {/* <Stars productId={revObj.review_id} rating={revObj.rating}/> */}
+          </div>
 
-        <div className="review-namedate">
-          {revObj.reviewer_name}&ensp;
-          <small style={{color:'gray'}}>
-            {ReviewHelpers.alterDate(revObj.date)}
-          </small>
-        </div>
+          <div className="review-namedate">
+            {revObj.reviewer_name}&ensp;
+            <sup style={{color:'gray'}}>
+              {ReviewHelpers.alterDate(revObj.date)}
+            </sup>
+          </div>
+        </section>
 
         <div>
           <div className="review-summary">
@@ -109,8 +110,14 @@ const ReviewTile = ({revObj, setReviewList}) => {
           </div>
 
           <div className="review-body">
-            {bodyLength()}
+            {revBody}
           </div>
+          {
+            showMore ? <button type="button"
+              className="full-body-tile"
+              onClick={fullBody}>Show More...</button>
+              : null
+          }
 
           <div className="posted-image">
             {
@@ -127,7 +134,7 @@ const ReviewTile = ({revObj, setReviewList}) => {
             {ReviewHelpers.checkRecommend(revObj.recommend)}
           </div>
         </div>
-        <section>
+        <section className="tile-helpful-report">
           <div id="helpful-checker">
             <label>Was this helpful?</label>
             <input id={"yeshelp" + revObj.review_id}
