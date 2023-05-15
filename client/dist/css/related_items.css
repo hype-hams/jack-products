@@ -23,14 +23,7 @@
     border-radius: 10px;
 }
 
-/* .RelatedItemCardText p{
-    /* padding:50px; 
-    text-align: left;
 
-}
-.RelatedItemCard h2{
-    
-} */
 .RelatedItemCard:hover, .OutfitListCard:hover {
     background-color: white;
     cursor: pointer;
@@ -86,30 +79,11 @@
 } */
 
 
-/***For Outfit list***/
 
 
 
 
 
 
-/****Modal (will merge with erics later)****/
-.Modal-backg {
-    background-color: rgba(0, 0, 0, 0.2);
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.Modal-inside {
-  background-color: white;
-  padding: 20px;
-  width: 50%;
-  margin: 0 auto;
-}
 
