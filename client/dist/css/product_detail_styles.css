@@ -11,46 +11,66 @@ body {
 }
 
 .product-detail-div {
-  min-height: 600px;
+  min-height: 680px;
   display: flex;
 }
 
 /********************** Image Gallery **********************/
 .image-gallery-div {
-  max-height: 680px;
-  min-width: 300px;
+  max-height: 730px;
+  min-width: 500px;
   width: 60%;
+  display: flex;
   position: relative;
-  overflow: hidden;
+
   /* image doesn't overflow the div */
+  overflow: hidden;
+}
+
+.left-arrow-div {
+  position: absolute;
+  width: 35px;
+  top: 300px;
+  left: 150px;
+}
+
+.right-arrow-div {
+  position: absolute;
+  width: 35px;
+  top: 300px;
+  right: 20px;
 }
 
 .main-photo-img {
+  /* showing the middle of the photo */
+  align-items: center;
   min-width: 800px;
   max-width: 1000px;
-  min-height: 600px;
-  object-fit: cover;
+  min-height: 730px;
+
   /* images cover the entire div without stretching */
+  object-fit: cover;
 }
 
 .image-gallery-thumbnails-div {
   position: absolute;
   left: 50px;
   top: 20px;
-  width: 100px;
-  height: 600px;
+  width: 85px;
+  height: 680px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   overflow: hidden;
 }
 
 .image-gallery-thumbnail-img {
-  border: 1px;
+  border-color: rgb(219, 219, 219);
+  border-width: 1px;
+  border-style: solid;
   border-radius: 10%;
-  width: 100px;
-  height: 100px;
-  min-height: 100px;
+  width: 83px;
+  height: 83px;
   object-fit: cover;
 }
 
@@ -64,11 +84,14 @@ body {
   margin-left: 50px;
   margin-top: 20px;
 }
-.product-detail-div__right > h1 {
+
+.product-detail-div__right>h1 {
   font-size: 40px;
 }
+
 /* style-thumbnails-div contains all the style thumbnails */
 .style-thumbnails-div {
+  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
   margin-right: 20px;
@@ -87,6 +110,7 @@ body {
 
 .checkmark {
   position: absolute;
+  width: 20%;
   top: 10px;
   right: 10px;
 }
@@ -100,7 +124,7 @@ body {
 }
 
 .selectors {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 #size-selector,
@@ -119,10 +143,90 @@ body {
   padding: 10px;
   padding-right: 150px;
   margin-right: 20px;
-  margin-top: 20px;
+  margin-top: 30px;
   background-color: transparent;
   border-width: 1px;
   border-color: black;
+}
+
+.question {
+  padding: 5px;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  display: inline-block;
+  border-style: solid;
+  border-radius: 25px;
+  border-color: rgb(167, 162, 162);
+  border-width: 2px;
+}
+.questionmodal-title {
+  display: inline-block;
+  text-align: center;
+  margin: 0;
+}
+.questionmodal-full {
+margin: 15px;
+}
+.questionmodal-container {
+  width: 425px;
+  height: 325px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+#questionmodal-body {
+  width: 400px;
+  height: 100px;
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#questionmodal-textarea {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  resize: none;
+}
+
+
+.questionmodal-close {
+  display: flex;
+  justify-content: flex-end;
+}
+.questionmodal-close button {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+
+.questionmodal-footer {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.questionmodal-footer button {
+  width: 75px;
+  height: 23px;
+  margin: 10px;
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 8px;
+  font: 16px;
+  cursor: pointer;
+}
+
+#cancelBtn {
+  background-color: crimson;
 }
 
 /************************************************************/

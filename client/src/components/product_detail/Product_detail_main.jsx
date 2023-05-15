@@ -27,7 +27,7 @@ function ProductDetail({ product, styles }) {
   return (
     <div className="product-detail-section">
       <div className="product-detail-div">
-        <ImageGallery style={style} />
+        <ImageGallery photos={style.photos} />
         <div className="product-detail-div__right">
           <small>Read all reviews</small>
           <h3>{product.category}</h3>

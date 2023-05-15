@@ -105,9 +105,6 @@ const Stars = ({productId, rating}) => {
     </div>
   )
 
-
-
-
 }
 
 export default Stars;

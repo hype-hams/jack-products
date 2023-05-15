@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 // import Card from './RelatedItemCard.jsx'
 import OutfitListCard from './OutfitListCard.jsx'
 
-const OutfitList = ({currProduct, currPhotoURL}) => {
+const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick}) => {
     const [list, setList] = useState([]);
-    
-    
+
     const addCard = (e)=>{
         e.preventDefault();
-        let collection = []
+        let collection = [];
+        if(JSON.parse(localStorage.getItem("OutfitList"))){
+            collection = [...JSON.parse(localStorage.getItem("OutfitList"))]
+        }
         collection.push(currProduct)
         //getting rid of potential duplicates
         let memo = new Set();
@@ -17,20 +19,48 @@ const OutfitList = ({currProduct, currPhotoURL}) => {
             memo.add(prop.id);
             return !dup;
         })
-        console.log(collection)
+        //console.log(collection)
         setList(collection)
+        localStorage.setItem("OutfitList", JSON.stringify(collection))
+       
     }
+    const effectHandler = () =>{
+        // localStorage.setItem("OutfitList", JSON.stringify(list));
+        let outfitList = []
+        if(JSON.parse(localStorage.getItem("OutfitList"))){
+            outfitList= [...JSON.parse(localStorage.getItem("OutfitList"))]
+        }
+        console.log(outfitList);
+        setList(outfitList);
+
+    }
+
+    const deleteCard = (id) => {
+        let newList = [...list];
+        newList = newList.filter(item=> item.id !== id );
+        setList(newList);
+        localStorage.removeItem("Outfit");
+        localStorage.setItem("OutfitList", JSON.stringify(newList));
+    }
+
+    useEffect(()=>{
+        effectHandler();
+    },[]);
+
 
 
     return (
-        <div className='OutfitList'>
+        <div >
             <header>
                 <h2>Outfit List</h2>
             </header>
             <form onSubmit={addCard}>
                 <input type="submit" value="Add to Outfit" />
             </form>
-            {list.map(card=> <OutfitListCard card={card} currPhotoURL={currPhotoURL}/>)}
+            <div className='OutfitList'>
+                {list ? list.map(card=> <OutfitListCard key={card.id} card={card} 
+                onDelete={deleteCard} handleRelatedItemClick={handleRelatedItemClick}/>) : null}
+            </div>
         </div>
     )
 }
