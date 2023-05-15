@@ -126,6 +126,18 @@ button {
   cursor: pointer;
 }
 
+.Upvote {
+  color: rgb(140, 139, 139);
+  cursor: pointer;
+
+}
+
+
+
 #cancelBtn {
   background-color: crimson;
+}
+
+.disabled{
+  pointer-events: none;
 }

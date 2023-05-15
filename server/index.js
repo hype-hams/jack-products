@@ -18,3 +18,16 @@ app.use('/api', router);
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 module.exports = app;
+<<<<<<< Updated upstream
+=======
+
+const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
+
+app.listen(PORT);
+console.log(`Server listening at http://localhost:${PORT}`);
+// app.listen(PORT);
+// console.log(`Server listening at http://localhost:${PORT}`);
+
+module.exports = app;
+>>>>>>> Stashed changes

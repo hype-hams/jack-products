@@ -1,5 +1,6 @@
 /* eslint-disable no-trailing-spaces */
 import React from 'react';
+import axios from 'axios';
 import Answers from './Answers.jsx';
 
 const { useState } = React;
@@ -25,8 +26,28 @@ const { useState } = React;
   */
 // const { useState } = React;
 
-function QuestionBody({ question, answers, modalType, setModalType, modalIsOpen }) {
+function QuestionBody({
+  question, answers, modalType, setModalType, modalIsOpen,
+}) {
   const [answersAll, setAnswersAll] = useState(false);
+
+  const handleQUpvote = () => {
+    axios.put('/api/q_a/question/upvote', {
+      question_id: question.question_id,
+    });
+  };
+
+  const handleQReport = () => {
+    axios.put(`/api/q_a/question/${question.question_id}/report`, {
+      question_id: question.question_id,
+    })
+      .then(() => {
+        console.log('QUESTION ', question.question_id, 'HAS BEEN REPORTED');
+      })
+      .catch((err) => {
+        console.error('ERROR REPORTING QUESTION AT ID: ', question.question_id, '  ', err);
+      });
+  };
 
   return (
     <div className="question">
@@ -36,12 +57,31 @@ function QuestionBody({ question, answers, modalType, setModalType, modalIsOpen 
         {' '}
         {question.question_body}
       </p>
-      <span>
-        Helpfullness:
+      Helpful?
+      &emsp;
+      <button
+        className="Upvote"
+        type="button"
+        onClick={(event) => {
+          event.preventDefault();
+          handleQUpvote();
+        }}
+      >
+        Yes :
         &emsp;
         {question.question_helpfulness}
-      </span>
-      <button type="button" className="report">Report</button>
+      </button>
+      <button
+        type="button"
+        className="report"
+        onClick={(e) => {
+          e.preventDefault();
+          handleQReport();
+        }}
+      >
+        Report
+
+      </button>
       <button
         type="button"
         className="reply"
@@ -51,7 +91,6 @@ function QuestionBody({ question, answers, modalType, setModalType, modalIsOpen 
         }}
       >
         Reply
-
       </button>
 
       <hr />
