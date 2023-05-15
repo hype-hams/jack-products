@@ -70,7 +70,8 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
       alt=""
       height="100"
       width="auto" />
-  })
+  });
+
   //REPORT REVIEW
   const reportReview = () => {
     axios({
@@ -83,7 +84,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
         setReviewList(oldRev => {
           return oldRev.filter(revTile => revTile.review_id !== revObj.review_id)
         })
-      })
+      });
   }
 
   return (
