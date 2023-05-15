@@ -4,7 +4,7 @@ import ReviewHelpers from './ReviewHelpers.jsx';
 import axios from 'axios';
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const ReviewTile = ({revObj, setReviewList}) => {
+const ReviewTile = ({revObj, setReviewList, productId}) => {
   const [revBody, setRevBody] = useState('');
   const [showMore, setShowMore] = useState(false);
 
@@ -93,6 +93,7 @@ const ReviewTile = ({revObj, setReviewList}) => {
         <section className="review-star-name">
           <div className="review-stars">
             {reviewStars()}
+            {/* <Stars productId={revObj.review_id} rating={revObj.rating}/> */}
           </div>
 
           <div className="review-namedate">
