@@ -31,9 +31,9 @@ const OutfitListCard = ({card, onDelete , handleRelatedItemClick}) =>{
             <div className='OutfitListCard'>
                     <div onClick={()=>{handleRelatedItemClick(card.id)}}>    
                         <img className="image" src={`${photoURL}`} /> 
-                        <p>{card.category}</p>
-                        <h3>{card.name}</h3>
-                        <h4>${card.default_price}</h4>
+                        <p className="category">{card.category}</p>
+                        <h3 className='productName'>{card.name}</h3>
+                        <h4 className='price'>${card.default_price}</h4>
                         <p>{card.rating}</p>
                     </div>
             </div>
