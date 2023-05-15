@@ -1,9 +1,13 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExpand, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import imageNotAvailable from './images/imageNotAvailable.png';
 import leftArrow from './images/leftArrow.png';
 import rightArrow from './images/rightArrow.png';
@@ -13,6 +17,10 @@ import downArrow from './images/downArrow.png';
 function ImageGallery({ photos }) {
   const [image, setImage] = useState(photos[0]);
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const [icon, setIcon] = useState(<FontAwesomeIcon icon={faExpand} size="xl" style={{ color: '#e8e8e8' }} />);
+  const [expandedView, setExpandedView] = useState(null);
+  const [zoom, setZoom] = useState(false);
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -23,15 +31,13 @@ function ImageGallery({ photos }) {
   }, [photos]);
 
   const handleThumbnailClick = (e) => {
-    e.preventDefault();
     const index = Number(e.target.name); // fixed the bug: typeof e.target.name is string
     setImage(photos[index]);
     setPhotoIndex(index);
     scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
 
-  const handleLeftArrowClick = (e) => {
-    e.preventDefault();
+  const handleLeftArrowClick = () => {
     if (photoIndex > 0 && photoIndex <= photos.length - 1) { // fixed some bugs here
       const index = photoIndex - 1;
       setImage(photos[index]);
@@ -41,8 +47,7 @@ function ImageGallery({ photos }) {
     }
   };
 
-  const handleRightArrowClick = (e) => {
-    e.preventDefault();
+  const handleRightArrowClick = () => {
     if (photoIndex >= 0 && photoIndex < photos.length - 1) { // fixed some bugs here
       const index = photoIndex + 1;
       setImage(photos[index]);
@@ -51,26 +56,66 @@ function ImageGallery({ photos }) {
     }
   };
 
-  const handleUpArrowClick = (e) => {
-    e.preventDefault();
+  const handleUpArrowClick = () => {
     scrollRef.current = document.querySelector('.first-thumbnail');
     scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
 
-  const handleDownArrowClick = (e) => {
-    e.preventDefault();
+  const handleDownArrowClick = () => {
     scrollRef.current = document.querySelector('.last-thumbnail');
     scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
 
+  const changeToExpandedView = () => {
+    setIcon(<FontAwesomeIcon icon={faCircleXmark} size="2xl" style={{ color: '#474747' }} />);
+    setExpandedView({ position: 'absolute', zIndex: '900' });
+    setZoom(false);
+    document.querySelector('.main-photo-img').style.cursor = 'zoom-in';
+  };
+
+  const changeToDefaultView = () => {
+    setIcon(<FontAwesomeIcon icon={faExpand} size="2xl" style={{ color: '#e8e8e8' }} />);
+    setExpandedView({ position: 'relative', zIndex: '0' });
+    setZoom(false);
+    document.querySelector('.main-photo-img').style.cursor = null; // clear the zoom-in/out cursor
+  };
+
+  const handleIconClick = () => {
+    if (expanded) {
+      changeToDefaultView();
+    } else {
+      changeToExpandedView();
+    }
+    setExpanded(!expanded);
+  };
+
+  const handleMainImageClick = (e) => {
+    setExpanded(true);
+    changeToExpandedView();
+    if (!zoom) {
+      e.target.style.cursor = 'zoom-in';
+      document.querySelector('.main-photo-img').style.transform = null;
+      // setZoom(true);
+    } else {
+      e.target.style.cursor = 'zoom-out';
+      document.querySelector('.main-photo-img').style.transform = 'scale(2.5)';
+
+      // setZoom(false);
+    }
+    setZoom(!zoom);
+  };
+
   return (
-    <div className="image-gallery-div">
+    <div className="image-gallery-div" style={expandedView}>
+      <div className="expanded-view-icon" onClick={handleIconClick}>
+        {icon}
+      </div>
       <div className="image-gallery-thumbnails-div">
         {photos.map((item, index) => (
           // using photoIndex + 1 so that when handling right arrow click ref is the current one
           <div
             ref={(index === photoIndex + 1) ? scrollRef : null}
-            style={(index === photoIndex) ? { borderBottom: 'thick solid white' } : { borderBottom: 'none' }}
+            style={{ borderBottom: (index === photoIndex) ? 'thick solid white' : 'none' }}
             className={(index === 0) ? 'first-thumbnail' : ((index === photoIndex) ? 'selected-thumbnail' : ((index === photos.length - 1) ? 'last-thumbnail' : 'image-gallery-thumbnail-div'))}
             onClick={handleThumbnailClick}
             key={index}
@@ -79,33 +124,27 @@ function ImageGallery({ photos }) {
           </div>
         ))}
       </div>
-      <div
-        className="up-arrow-div"
-        onClick={handleUpArrowClick}
-      >
+      <div className="up-arrow-div" onClick={handleUpArrowClick}>
         <img src={upArrow} width="100%" alt="leftArrow" />
       </div>
-      <div
-        className="down-arrow-div"
-        onClick={handleDownArrowClick}
-      >
+      <div className="down-arrow-div" onClick={handleDownArrowClick}>
         <img src={downArrow} width="100%" alt="rightArrow" />
       </div>
       <div
         className="left-arrow-div"
-        style={!photoIndex ? { display: 'none' } : { display: 'block' }}
+        style={{ display: photoIndex ? 'block' : 'none' }}
         onClick={handleLeftArrowClick}
       >
         <img src={leftArrow} width="100%" alt="leftArrow" />
       </div>
       <div
         className="right-arrow-div"
-        style={(photoIndex === photos.length - 1) ? { display: 'none' } : { display: 'block' }}
+        style={{ display: (photoIndex === photos.length - 1) ? 'none' : 'block' }}
         onClick={handleRightArrowClick}
       >
         <img src={rightArrow} width="100%" alt="rightArrow" />
       </div>
-      <img src={image.url || imageNotAvailable} className="main-photo-img" alt="mainphoto" />
+      <img src={image.url || imageNotAvailable} onClick={handleMainImageClick} className="main-photo-img" alt="mainphoto" />
     </div>
   );
 }
