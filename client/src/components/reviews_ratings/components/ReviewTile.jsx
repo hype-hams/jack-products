@@ -70,7 +70,8 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
       alt=""
       height="100"
       width="auto" />
-  })
+  });
+  
   //REPORT REVIEW
   const reportReview = () => {
     axios({
@@ -83,31 +84,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
         setReviewList(oldRev => {
           return oldRev.filter(revTile => revTile.review_id !== revObj.review_id)
         })
-      })
-  }
-  const revPhotos = revObj.photos.map((photo) => {
-    return <img className="review-photo"
-      src={photo.url}
-      key={photo.id}
-      alt=""
-      height="100"
-      width="auto" />
-  })
-  //REPORT REVIEW
-  const reportReview = () => {
-    axios({
-      method: 'PUT',
-      url: '/api/reviews/:review_id/report',
-      data: {review_id: revObj.review_id}
-    })
-      .then((response) => {
-        console.log('review reported and removed pending investigation')
-        setReviewList(oldRev => {
-          return oldRev.filter(revTile => revTile.review_id !== revObj.review_id)
-        })
-        // return true
-      })
-
+      });
   }
 
   return (
