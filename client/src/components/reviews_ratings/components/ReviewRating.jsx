@@ -18,7 +18,13 @@ const ReviewRating = ({productId, productName}) => {
 //MODAL REDO
   const [showModal, setShowModal] = useState(false);
 //RatingStarFilter
-  const [ratingFilter, setRatingFilter] = useState('');
+  const [ratingFilter, setRatingFilter] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false
+  });
   const addReview = (e) => {
     e.preventDefault
     setShowModal(!showModal)
@@ -34,7 +40,6 @@ const ReviewRating = ({productId, productName}) => {
       }
     })
     .then((response) => {
-      console.log('review rating get req', response.data)
       setReviewList(response.data)
     })
   }
@@ -49,6 +54,9 @@ const ReviewRating = ({productId, productName}) => {
         //WILL GIVE ARRAY OF OBJECTS
         setRating(Object.entries(response.data.ratings).map(entry => { return {id: Number(entry[0]), val: Number(entry[1])}}).reverse())
       })
+      .catch((err) => {
+        console.log('error on reviewrsating', err)
+      })
 
   }
 
@@ -60,18 +68,49 @@ const ReviewRating = ({productId, productName}) => {
 
   let charTable = productRating.map((charObj, ind) =>     <ProductBreakdown charObj={charObj} key={ind}/>)
 
+  const applyStars = () => {
+    let starStr = ''
+    for(let key in ratingFilter) {
+      if(ratingFilter[key] === true) {
+        starStr += `${key}, `
+      }
+    }
+    // console.log('this is star string', starStr)
+    //check star str
+    if(starStr.length > 0) {
+      starStr = starStr.slice(0, -2)
+      return (
+        <div>
+          <p>Filtering reviews by {starStr} stars</p>
+          <button type="button"
+            onClick={(e) => {
+              setRatingFilter({
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false
+              })
+            }}
+            >Reset Filter</button>
+        </div>
+      )
+    }
+
+  }
 
   //ratings filter needs to pass do wn without without influence on sorbar. should combo
   return (
     <div className="RR-module">
-      <h2>Ratings & Reviews</h2>
-
+        {/* <h2>Ratings & Reviews</h2> */}
       <div className="breakdown-box">
         <div>
           <section className="breakdown">
             <h4>Rating Breakdown</h4>
-            {/* {rateTable} */}
+            {applyStars()}
+
             <RatingBreakdown recommended={recommended}
+              ratingFilter={ratingFilter}
               setRatingFilter={setRatingFilter}
               rating={rating}
               avgRate={avgRate}
@@ -86,29 +125,31 @@ const ReviewRating = ({productId, productName}) => {
         </div>
       </div>
 
-      <div className="review-box">
-          <SortBar
-          setDropSort={setDropSort}/>
+        <div className="review-box">
+            <SortBar
+              setDropSort={setDropSort}/>
 
-        <header><b>Reviews</b></header>
+          <div>
+            <ReviewList
+              ratingFilter={ratingFilter}
+              reviewList={reviewList}
+              dropSort={dropSort}
+              setReviewList={setReviewList}
+              productId={productId}/>
+          </div>
+          {/* <div>
+            <SortBar
+              setDropSort={setDropSort}/>
+          </div> */}
+          <div>
+            <Modal showModal={showModal}
+            productId={productId}
+            productName={productName}
+            productRating={productRating}
+            setShowModal={setShowModal}/>
+          </div>
 
-        <div>
-          <ReviewList
-            reviewList={reviewList}
-            dropSort={dropSort}
-            setReviewList={setReviewList}
-            productId={productId}/>
         </div>
-
-        <div>
-          <Modal showModal={showModal}
-          productId={productId}
-          productName={productName}
-          productRating={productRating}
-          setShowModal={setShowModal}/>
-        </div>
-
-      </div>
 
     </div>
   )
