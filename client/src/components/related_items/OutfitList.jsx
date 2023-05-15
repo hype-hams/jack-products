@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 // import Card from './RelatedItemCard.jsx'
 import OutfitListCard from './OutfitListCard.jsx'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
 
 const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick}) => {
     const [list, setList] = useState([]);
@@ -47,17 +49,21 @@ const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick}) => {
         effectHandler();
     },[]);
 
-
-
     return (
         <div >
             <header>
                 <h2>Outfit List</h2>
             </header>
-            <form onSubmit={addCard}>
+            {/* <form onSubmit={addCard}>
                 <input type="submit" value="Add to Outfit" />
-            </form>
+            </form> */}
             <div className='OutfitList'>
+                <button className='addToOutfitBttn' onClick={addCard}>
+                    <div className='faPlus'>
+                        <FontAwesomeIcon  icon={faPlus} />
+                    </div> 
+                    <p>Add to Outfit</p>
+                </button>
                 {list ? list.map(card=> <OutfitListCard key={card.id} card={card} 
                 onDelete={deleteCard} handleRelatedItemClick={handleRelatedItemClick}/>) : null}
             </div>
