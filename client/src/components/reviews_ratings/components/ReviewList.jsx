@@ -48,6 +48,7 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
     return result
   }
 
+
   useEffect(() => {
     // console.log(dropSort)
     window.addEventListener('scroll', handleScroll);

@@ -13,6 +13,29 @@
     margin: 15px; 
     background-size: cover;
     border-radius: 20px;
+
+}
+
+.addToOutfitBttn{
+    width: 220px;
+    height: 400px;
+    min-width: 220px;
+    min-height: 400px;
+    margin: 15px; 
+    /* background-size: cover; */
+    border-radius: 20px;
+    background-color: skyblue;
+    border: none;
+}
+.addToOutfitBttn:hover{
+    cursor: pointer;
+    transform: scale(1.03);
+    transition: all 1s ease;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: #9BDDFF;
+}
+.faPlus{
+    font-size: 70px;
 }
 
 .image{
@@ -29,6 +52,7 @@
     cursor: pointer;
     transform: scale(1.03);
     transition: all 1s ease;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .ComparisonModalBttn {
@@ -70,20 +94,12 @@
     background-color: #AA0000;
 }
 
-
-
-/* .ComparisonModalBttn .icon{
-    background: url(images/comparison.png) no-repeat;
-    width: 20px;
-    height: 20px;
-} */
-
-
-
-
-
-
-
-
+.category, .productName, .price{
+    /* padding: 20px; */
+    padding-left:8px
+}
+.category {
+    font-size: small;
+}
 
 

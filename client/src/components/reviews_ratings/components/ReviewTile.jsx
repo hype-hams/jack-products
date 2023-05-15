@@ -85,11 +85,34 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
         })
       })
   }
+  const revPhotos = revObj.photos.map((photo) => {
+    return <img className="review-photo"
+      src={photo.url}
+      key={photo.id}
+      alt=""
+      height="100"
+      width="auto" />
+  })
+  //REPORT REVIEW
+  const reportReview = () => {
+    axios({
+      method: 'PUT',
+      url: '/api/reviews/:review_id/report',
+      data: {review_id: revObj.review_id}
+    })
+      .then((response) => {
+        console.log('review reported and removed pending investigation')
+        setReviewList(oldRev => {
+          return oldRev.filter(revTile => revTile.review_id !== revObj.review_id)
+        })
+        // return true
+      })
+
+  }
 
   return (
     <div>
       <form className="review-tile">
-
         <section className="review-star-name">
           <div className="review-stars">
             {reviewStars()}
@@ -156,6 +179,10 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
             <small style={{color:'gray'}}>
               found this helpful
             </small>
+          </div>
+          <div className="report-review">
+            <button type="button"
+              onClick={reportReview}>Report Review</button>
           </div>
 
           <div className="report-review">
