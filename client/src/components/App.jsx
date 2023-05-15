@@ -80,9 +80,9 @@ function App(props) {
                 <QA productID={product.id} />
               </div>
               <div className="rating-review">
-                <ReviewRating productId={productId}
-                  productName={productName}/>
-              </div> 
+                {/* <ReviewRating productId={productId}
+                  productName={productName}/> */}
+              </div>
             </ProductContext.Provider>
           </div>
         )
