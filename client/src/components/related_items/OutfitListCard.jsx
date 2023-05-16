@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Stars from '../reviews_ratings/components/Stars.jsx'
 
 const OutfitListCard = ({card, onDelete , handleRelatedItemClick}) =>{
     const [photoURL, setPhotoURL] = useState('')
@@ -31,10 +32,14 @@ const OutfitListCard = ({card, onDelete , handleRelatedItemClick}) =>{
             <div className='OutfitListCard'>
                     <div onClick={()=>{handleRelatedItemClick(card.id)}}>    
                         <img className="image" src={`${photoURL}`} /> 
-                        <p className="category">{card.category}</p>
-                        <h3 className='productName'>{card.name}</h3>
-                        <h4 className='price'>${card.default_price}</h4>
-                        <p>{card.rating}</p>
+                        <div className='cardText'>
+                            <p className="category">{card.category}</p>
+                            <h3 className='productName'>{card.name}</h3>
+                            <h4 className='price'>${card.default_price}</h4>
+                            <div className='stars'>
+                                <Stars productId={card.id} />
+                            </div>
+                        </div>
                     </div>
             </div>
         </div>
