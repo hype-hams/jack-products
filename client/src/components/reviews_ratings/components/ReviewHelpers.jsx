@@ -8,7 +8,7 @@ const ReviewHelpers = {
   checkRecommend: (recommend) => {
     if(recommend) {
       return (
-        <p>I recommend this product. <span style={{color:'gray'}}>&#10003;</span></p>
+        <p>I recommend this product. <span style={{color:'green'}}>&#10003;</span></p>
       )
     }
   },

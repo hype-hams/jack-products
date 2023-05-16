@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Modal from './Modal.jsx';
-import { faCodeCompare } from "@fortawesome/free-solid-svg-icons";
+import { faCodeCompare, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -65,17 +65,17 @@ const Pre_Modal = ({ card , currProduct})=> {
                 <table>
                     <thead>
                         <tr>
-                            <th>{currProduct.name}</th>
-                            <th> </th>
-                            <th>{card.name}</th>
+                            <th className='CurrProductName'><h3>{currProduct.name}</h3></th>
+                            <td> <h3>Comparing</h3>  </td>
+                            <th className='comparedProdName'><h3>{card.name}</h3></th>
                         </tr>
                     </thead>
                     <tbody>
                         {features.map(item=>
                         <tr key={item.value_feature}>
-                            <td>{item.currProductFeature ? '✅' : null}</td>
-                            <td>{item.value_feature}</td>
-                            <td>{item.comparedProductFeature ? '✅' : null}</td>
+                            <td>{item.currProductFeature ? <FontAwesomeIcon icon={faCheck} /> : null}</td>
+                            <td className='productFeature'>{item.value_feature}</td>
+                            <td>{item.comparedProductFeature ? <FontAwesomeIcon icon={faCheck} /> : null}</td>
                         </tr>)}
                     </tbody>
                 </table>

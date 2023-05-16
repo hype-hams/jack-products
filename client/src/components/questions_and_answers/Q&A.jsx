@@ -9,6 +9,8 @@ const { useState, useEffect } = React;
 
 function QA({ productID }) {
   let topTwo = [];
+
+  const [filter, setFilter] = useState('');
   const [questions, setQuestions] = useState([]);
   const [questionsAll, setQuestionsAll] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
@@ -16,27 +18,13 @@ function QA({ productID }) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalType, setModalType] = useState([]);
 
-  const getQuestionsByProductID = async () => {
-    // Retrieve questions from productID
-    try {
-      const questionsResponse = await fetch(`/api/q_a/getQuestions?product_id=${productID}`);
-      const parsedQuestions = await questionsResponse.json();
-      console.log('parsed Data:  ', parsedQuestions);
-      qCheck([parsedQuestions]);
-      setQuestions(parsedQuestions.results);
-      topTwo = [questions[0], questions[1]];
+  console.log('filter', filter);
 
-      // Set Answers
-      setAnswers(parsedQuestions.results[0].answers);
-      console.log('Answers:  ', parsedQuestions.results[0].answers);
-    } catch (err) {
-      console.error('ERROR FETCHING QUESTIONS: ', err);
-    }
-  };
 
   const qCheck = async (data) => {
     // If the questions list is empty, collapse it
     // Otherwise render 4 questions as default
+    console.log('data:', questions);
     if (data.length === 0) {
       setCollapsed(true);
     } else {
@@ -44,12 +32,38 @@ function QA({ productID }) {
     }
   };
 
+  const getQuestionsByProductID = async (filter) => {
+    // Retrieve questions from productID
+    if (filter !== '') {
+      setQuestions(filter);
+    } else {
+      try {
+        const questionsResponse = await fetch(`/api/q_a/getQuestions?product_id=${productID}`);
+        const parsedQuestions = await questionsResponse.json();
+        console.log('parsed Data:  ', parsedQuestions);
+        setQuestions(parsedQuestions.results);
+        topTwo = [questions[0], questions[1]];
+        qCheck(parsedQuestions.results);
+
+        // Set Answers
+        setAnswers(parsedQuestions.results[0].answers);
+        console.log('Answers:  ', parsedQuestions.results[0].answers);
+      } catch (err) {
+        console.error('ERROR FETCHING QUESTIONS: ', err);
+      }
+
+    }
+  };
+
   useEffect(() => {
-    getQuestionsByProductID();
-  }, []);
+    getQuestionsByProductID(filter);
+    qCheck(questions);
+  }, [filter]);
+
 
   return (
     <div>
+      <Search questions={questions} setQuestions={setQuestions} filter={filter} setFilter={setFilter} />
       {
         collapsed ? (
           <div>
@@ -67,12 +81,11 @@ function QA({ productID }) {
                 Submit a Question
 
               </button>
-              {modalIsOpen && <Modal closeModal={setIsOpen} modalType={modalType} setModalType={setModalType} />}
+              {modalIsOpen && <Modal closeModal={setIsOpen} modalType={modalType} product_id={productID} />}
             </div>
           </div>
         ) : (
           <div>
-            <Search questions={questions} setQuestions={setQuestions} />
             <button
               type="button"
               className="Question-button"
@@ -84,7 +97,7 @@ function QA({ productID }) {
             >
               Submit a Question
             </button>
-            {modalIsOpen && <Modal closeModal={setIsOpen} modalType={modalType} setModalType={setModalType} />}
+            {modalIsOpen && <Modal closeModal={setIsOpen} modalType={modalType} product_id={productID} />}
             <ol>
               {
                 questionsAll ? (

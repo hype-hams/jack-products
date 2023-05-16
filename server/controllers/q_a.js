@@ -49,6 +49,9 @@ module.exports = {
     // req will vary based off how modal looks
     axios.post(serverAPI, req.body, {
       headers: headAuth,
+      params: {
+        product_id: req.product_id,
+      },
     })
       .then((response) => {
         res.status(201).send(response.data);
@@ -72,8 +75,69 @@ module.exports = {
         res.status(201).send(response.data);
       })
       .catch((err) => {
-        console.error('PROBLEM WITH POSTING QUESTION: ', err);
+        console.error('PROBLEM WITH POSTING ANSWER: ', err);
       });
   },
 
+  upvoteQuestion: (req, res) => {
+    axios.put(`${serverAPI}/${req.body.question_id}/helpful`, req.body, {
+      headers: headAuth,
+      params: {
+        product_id: req.body.product_id,
+      },
+    })
+      .then((response) => {
+        res.status(204).send(response.data);
+      })
+      .catch((err) => {
+        console.error('PROBLEM UPVOTING QUESTION:  ', err);
+      });
+  },
+
+  reportQuestion: (req, res) => {
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${req.body.question_id}/report`, req.body, {
+      headers: headAuth,
+      params: {
+        question_id: req.body.question_id,
+      },
+    })
+      .then((response) => {
+        res.status(204).send(response.data);
+      })
+      .catch((err) => {
+        console.error('PROBLEM REPORTING QUESTION:  ', err);
+      });
+  },
+  // Can optimize the two functions below, by combining them and swapping the final endpoint with a passable tag
+  // So it can just read the require task and run from there
+
+  upvoteAnswer: (req, res) => {
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${req.body.answer_id}/helpful`, req.body, {
+      headers: headAuth,
+      params: {
+        answer_id: req.body.answer_id,
+      },
+    })
+      .then((response) => {
+        res.status(204).send(response.data);
+      })
+      .catch((err) => {
+        console.error('PROBLEM UPVOTING QUESTION:  ', err);
+      });
+  },
+
+  reportAnswer: (req, res) => {
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${req.body.answer_id}/report`, req.body, {
+      headers: headAuth,
+      params: {
+        answer_id: req.body.answer_id,
+      },
+    })
+      .then((response) => {
+        res.status(204).send(response.data);
+      })
+      .catch((err) => {
+        console.error('PROBLEM REPORTING ANSWER:  ', err);
+      });
+  },
 };
