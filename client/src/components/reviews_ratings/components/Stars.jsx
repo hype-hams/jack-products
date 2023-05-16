@@ -101,12 +101,8 @@ const Stars = ({productId, rating}) => {
 >{renderStarBar()}</label> &emsp;
         <big><b>{calcStar()}</b></big>
       </div>
-
     </div>
   )
-
-
-
 
 }
 

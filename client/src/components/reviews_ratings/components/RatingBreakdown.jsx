@@ -4,7 +4,6 @@ import Stars from './Stars.jsx';
 
 const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, avgRate, productId}) => {
   const [totalReviews, setTotalReviews] = useState('')
-
   let recommendPercent = Number(recommended.true)/(Number(recommended.true) + Number(recommended.false)) * 100;
 
   //total ratings: votes*value

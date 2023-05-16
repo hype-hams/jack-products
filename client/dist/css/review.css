@@ -132,6 +132,7 @@ display: inline-block;
 .off {
   color: #ccc;
 }
+
 .infinite-reviews {
   max-height: 650px;
   overflow-y: scroll;

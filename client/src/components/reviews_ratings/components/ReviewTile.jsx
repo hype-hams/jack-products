@@ -70,7 +70,8 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
       alt=""
       height="100"
       width="auto" />
-  })
+  });
+
   //REPORT REVIEW
   const reportReview = () => {
     axios({
@@ -83,13 +84,12 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
         setReviewList(oldRev => {
           return oldRev.filter(revTile => revTile.review_id !== revObj.review_id)
         })
-      })
+      });
   }
 
   return (
     <div>
       <form className="review-tile">
-
         <section className="review-star-name">
           <div className="review-stars">
             {reviewStars()}
@@ -157,7 +157,6 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
               found this helpful
             </small>
           </div>
-
           <div className="report-review">
             <button type="button"
               onClick={reportReview}>Report Review</button>

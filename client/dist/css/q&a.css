@@ -1,0 +1,143 @@
+body {
+  font-family: sans-serif, arial;
+  margin: 50px;
+}
+
+
+.question {
+  padding: 5px;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  display: inline-block;
+  border-style: solid;
+  border-radius: 25px;
+  border-color: rgb(167, 162, 162);
+  border-width: 2px;
+}
+.questionmodal-title {
+  display: inline-block;
+  text-align: center;
+  margin: 0;
+}
+.questionmodal-full {
+margin: 15px;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+.questionmodal-container {
+  width: 425px;
+  height: 325px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+/************* BUTTONS *************/
+
+button {
+  cursor: pointer;
+  font-size: medium;
+}
+
+
+.reply {
+  display: flex;
+  float: right;
+  margin-right: 5px;
+  justify-content:flex-end;
+  background: transparent;
+  color: cornflowerblue;
+  border: none;
+}
+
+.moreAnswers {
+  display: flex;
+  float: right;
+  margin-right: 5px;
+  margin-top: 5px;
+  justify-content:flex-end;
+  background: transparent;
+  color: cornflowerblue;
+  border: none;
+}
+
+.report {
+  display: flex;
+  float: right;
+  margin-right: 5px;
+  margin-left: 5px;
+  justify-content:flex-end;
+  background: transparent;
+  color: cornflowerblue;
+  border: none;
+}
+
+
+#questionmodal-body {
+  width: 400px;
+  height: 100px;
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#questionmodal-textarea {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  resize: none;
+}
+
+
+.questionmodal-close {
+  display: flex;
+  justify-content: flex-end;
+}
+.questionmodal-close button {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+
+.questionmodal-footer {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.questionmodal-footer button {
+  width: 75px;
+  height: 23px;
+  margin: 10px;
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 8px;
+  font: 16px;
+  cursor: pointer;
+}
+
+.Upvote {
+  color: rgb(140, 139, 139);
+  cursor: pointer;
+
+}
+
+
+
+#cancelBtn {
+  background-color: crimson;
+}
+
+.disabled{
+  pointer-events: none;
+}

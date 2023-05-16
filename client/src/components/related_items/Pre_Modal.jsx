@@ -1,15 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Modal from './Modal.jsx';
-const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
+import { faCodeCompare, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 const Pre_Modal = ({ card , currProduct})=> {
     const [features, setFeatures] = useState([])
     const [showModal,setShowModal] = useState(false);
@@ -59,26 +53,31 @@ const Pre_Modal = ({ card , currProduct})=> {
         setFeatures(filterFeatures());
         setShowModal(!showModal);
     }
+
     const closeModal = ()=>{
         setShowModal(false)
     }
 
     return (
         <div>
-            <button onClick={clickHandler}>⭐</button>
-            <Modal showModal={showModal} closeModal={closeModal}>
+            <button className="ComparisonModalBttn" onClick={clickHandler}><FontAwesomeIcon icon={faCodeCompare}/></button>
+            <Modal key={card.id} showModal={showModal} closeModal={closeModal}>
                 <table>
-                    <tr>
-                        <th>{currProduct.name}</th>
-                        <th> </th>
-                        <th>{card.name}</th>
-                    </tr>
-                        {features.map(item=>
+                    <thead>
                         <tr>
-                            <td>{item.currProductFeature ? '✅' : null}</td>
-                            <td>{item.value_feature}</td>
-                            <td>{item.comparedProductFeature ? '✅' : null}</td>
+                            <th className='CurrProductName'><h3>{currProduct.name}</h3></th>
+                            <td> <h3>Comparing</h3>  </td>
+                            <th className='comparedProdName'><h3>{card.name}</h3></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {features.map(item=>
+                        <tr key={item.value_feature}>
+                            <td>{item.currProductFeature ? <FontAwesomeIcon icon={faCheck} /> : null}</td>
+                            <td className='productFeature'>{item.value_feature}</td>
+                            <td>{item.comparedProductFeature ? <FontAwesomeIcon icon={faCheck} /> : null}</td>
                         </tr>)}
+                    </tbody>
                 </table>
             </Modal>
         </div>

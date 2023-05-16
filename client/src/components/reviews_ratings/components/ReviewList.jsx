@@ -24,7 +24,7 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
       setReviewList((prevList) => [...prevList, ...response.data])
       setPage((prevPage) => prevPage + 1)
     } catch(error) {
-      console.log('there was an error', err)
+      console.log('there was an error', error)
       setError(error)
     } finally {
       setIsLoading(false)
@@ -47,6 +47,7 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
     }
     return result
   }
+
 
   useEffect(() => {
     // console.log(dropSort)
