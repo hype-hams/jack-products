@@ -4,6 +4,7 @@ import Stars from './Stars.jsx';
 
 const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, avgRate, productId}) => {
   const [totalReviews, setTotalReviews] = useState('')
+
   let recommendPercent = Number(recommended.true)/(Number(recommended.true) + Number(recommended.false)) * 100;
 
   //total ratings: votes*value
@@ -18,7 +19,6 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
     }
   })
   .then((response) => {
-    console.log('total reviews', response.data.length)
     setTotalReviews(response.data.length)
   })
   .catch((error) => {
@@ -42,32 +42,30 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
   }
 
 
-
   // Rating breakdown Bar
   const stars = rating.map((obj, ind) => {
-    let counter =  0
     return (
-      <section key={ind}>
-        <label>
-          <small id={obj.id}
-            onClick={rateFilter}>
-            {obj.id} stars
-          </small>
-        </label> &ensp;
-        <meter className="rating-bar"
-          value={obj.val}
-          max='1000'></meter>
-        {/* TODO COLOR CHANGE */}
-        <small>
-          <label className="star-vote">
-            {obj.val}
-          </label>
+    <section key={ind}>
+
+      <label>
+        <small id={obj.id}
+          onClick={rateFilter}>
+          {obj.id} stars
         </small>
-      </section>
+      </label> &ensp;
+
+      <meter className="rating-bar"
+        value={obj.val}
+        max='1000'></meter>
+
+      <small>
+        <label className="star-vote">
+          {obj.val}
+        </label>
+      </small>
+    </section>
     )
-  });
-
-
+});
 
   return (
     <section>
@@ -77,20 +75,16 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
         {/* TODO: style stars here */}
         {/* <small>{totalReviews}&ensp;reviews</small> */}
       </div>
-
       <div>
         <small>{totalReviews}&ensp;reviews</small>
         {totalRev()}
       </div>
-
       <div className="ratingBreakdown">
         {stars}
       </div>
-
       <div className="ratingBreakdown-recommend">
         <p>{recommendPercent.toFixed(2)}% of reviews recommend this product</p>
       </div>
-
     </section>
   )
 }
