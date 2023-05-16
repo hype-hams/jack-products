@@ -4,7 +4,7 @@ import React from 'react';
 // import fetchMock from 'jest-fetch-mock';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import AddToCart from '../components/product_detail/AddToCart.jsx';
+import AddToCart from '../AddToCart.jsx';
 
 describe('Should have "SELECT SIZE" inside AddToCart component', () => {
   it('renders the component with the correct text', async () => {
