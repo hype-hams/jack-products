@@ -36,7 +36,7 @@ const ReviewRating = ({productId, productName}) => {
       params: {
         product_id: productId,
         sort: dropSort,
-        count: 5
+        count: 1000
       }
     })
     .then((response) => {
@@ -129,7 +129,7 @@ const ReviewRating = ({productId, productName}) => {
             <SortBar
               setDropSort={setDropSort}/>
 
-          <div>
+          <div className="review-list">
             <ReviewList
               ratingFilter={ratingFilter}
               reviewList={reviewList}

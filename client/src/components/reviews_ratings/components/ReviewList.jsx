@@ -17,7 +17,7 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
         params: {
           product_id: productId,
           sort: dropSort,
-          count: 5,
+          count: 1000,
           page: page
         }
       })
@@ -32,7 +32,7 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
   }
 
   const handleScroll = () => {
-    if (window.innerHeight + document.documentElement.scrollTop >= 2315 || isLoading) {
+    if (window.innerHeight + document.documentElement.scrollTop >= 2300 || isLoading) {
       // console.log(document.documentElement.offsetHeight)
       return;
     }
@@ -57,6 +57,7 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
 
   useEffect(() => {
     getReviews()
+    console.log('this is new drop sort', dropSort)
   }, [dropSort])
 
 

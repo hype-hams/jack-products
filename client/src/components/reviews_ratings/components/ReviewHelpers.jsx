@@ -1,4 +1,3 @@
-// import API_KEY from '../../../../../.env'
 
 import React from 'react';
 import axios from 'axios';
@@ -26,7 +25,7 @@ const ReviewHelpers = {
     axios({
       method: 'PUT',
       url: '/api/reviews/:review_id/helpful',
-      // headers: {Authorization: API_KEY},
+
       data: {review_id: review_id}
     })
       .then((response) => {
