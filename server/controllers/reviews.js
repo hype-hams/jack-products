@@ -93,8 +93,7 @@ module.exports = {
       headers: headAuth,
     })
       .then((response) => {
-        res.status(204)
-        // .send(response.data);
+        res.status(204).send(response.data);
       })
       .catch((err) => [
         res.status(500).send(err),
@@ -105,8 +104,7 @@ module.exports = {
       headers: headAuth,
     })
       .then((response) => {
-        res.status(204)
-        // .send(response.data);
+        res.status(204).send(response.data);
       })
       .catch((err) => {
         res.status(500).send(err);
