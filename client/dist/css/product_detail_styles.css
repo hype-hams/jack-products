@@ -269,6 +269,8 @@ body {
 }
 
 .share-on-social-media {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+  margin: 5px 100px 20px 0;
 }
