@@ -7,8 +7,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef } from 'react';
 import MainImage from './MainImage.jsx';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faExpand, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import imageNotAvailable from './images/imageNotAvailable.png';
 import leftArrow from './images/leftArrow.png';
 import rightArrow from './images/rightArrow.png';
@@ -29,10 +27,14 @@ function ImageGallery({ photos }) {
   }, [photos]);
 
   const handleThumbnailClick = (e) => {
-    const index = Number(e.target.name); // fixed the bug: typeof e.target.name is string
-    setImage(photos[index]);
-    setPhotoIndex(index);
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (e.target.name) { // click on other element, e.target.name is undefined will cause bug
+      const index = Number(e.target.name); // typeof e.target.name is string
+      if (typeof index === 'number') {
+        setImage(photos[index]);
+        setPhotoIndex(index);
+        scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
   };
 
   const handleLeftArrowClick = () => {
