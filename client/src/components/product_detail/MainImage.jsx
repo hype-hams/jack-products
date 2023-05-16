@@ -13,22 +13,23 @@ function MainImage({ image, setExpandedView }) {
   const [expanded, setExpanded] = useState(false);
   const [zoom, setZoom] = useState(false);
   const [imgPos, setImgPos] = useState({ x: 0, y: 0 });
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [pan, setPan] = useState(false);
 
   const handleMouseMove = (e) => {
-    const img = e.target;
-    const rect = img.getBoundingClientRect();
+    const rect = e.target.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    const imgX = x * (img.naturalWidth / img.clientWidth);
-    const imgY = y * (img.naturalHeight / img.clientHeight);
-    setImgPos({ x: imgX, y: imgY });
+    const mouseX = (e.clientX / rect.width) * 800;
+    const mouseY = (e.clientY / rect.height) * 800;
+    setImgPos({ x, y });
+    setMousePos({ x: -mouseX, y: -mouseY });
   };
 
   const changeToExpandedView = () => {
     setZoom(false);
     setIcon(<FontAwesomeIcon icon={faCircleXmark} size="2xl" style={{ color: '#474747' }} />);
     setExpandedView({ position: 'absolute', zIndex: '900' });
-    document.querySelector('.main-image-img').style.cursor = 'zoom-in';
     document.querySelector('.main-image-img').style['object-fit'] = 'contain';
   };
 
@@ -56,17 +57,21 @@ function MainImage({ image, setExpandedView }) {
       e.target.style.cursor = 'zoom-in';
       document.querySelector('.main-image-img').style.transform = null;
       document.querySelector('.main-image-img').style['transform-origin'] = null;
+      setPan(false);
     } else {
       e.target.style.cursor = 'zoom-out';
       document.querySelector('.main-image-img').style['transform-origin'] = `${imgPos.x}px ${imgPos.y}px`;
-      document.querySelector('.main-image-img').style.transform = 'scale(2.5)';
+      setPan(true);
     }
     setZoom(!zoom);
   };
+
+  const zoomedStyle = { transform: pan ? `scale(2.5) translate(${mousePos.x}px, ${mousePos.y}px)` : 'none' };
+
   return (
-    <div className="main-image-div">
+    <div className="main-image-div" onMouseMove={handleMouseMove}>
       <div className="expanded-view-icon" onClick={handleIconClick}>{icon}</div>
-      <img src={image.url || imageNotAvailable} onMouseMove={handleMouseMove} onClick={handleMainImageClick} className="main-image-img" alt="main" />
+      <img src={image.url || imageNotAvailable} style={zoomedStyle} onClick={handleMainImageClick} className="main-image-img" alt="main" />
     </div>
   );
 }
