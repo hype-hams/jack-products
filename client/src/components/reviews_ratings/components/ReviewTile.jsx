@@ -48,8 +48,8 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
   const helpfulCheck = () => {
     let yescheck = document.getElementById('yeshelp' + revObj.review_id );
     // let nocheck = document.getElementById('nohelp');
-    console.log('helpful check id name', yescheck)
-    console.log('this is tile review obj', revObj)
+    // console.log('helpful check id name', yescheck)
+    // console.log('this is tile review obj', revObj)
     if(yescheck.checked) {
       yescheck.disabled = true;
       // nocheck.disabled = true;
@@ -58,7 +58,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
     }
     if(yescheck.checked) {
       //NEED TO GRAB HELPFULNESS DATA
-      console.log('yes was checked  ')
+      // console.log('yes was checked  ')
       ReviewHelpers.markHelpful(revObj.review_id)
     }
   }
@@ -70,8 +70,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
       alt=""
       height="100"
       width="auto" />
-  });
-
+  })
   //REPORT REVIEW
   const reportReview = () => {
     axios({
@@ -84,12 +83,13 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
         setReviewList(oldRev => {
           return oldRev.filter(revTile => revTile.review_id !== revObj.review_id)
         })
-      });
+      })
   }
 
   return (
     <div>
       <form className="review-tile">
+
         <section className="review-star-name">
           <div className="review-stars">
             {reviewStars()}
@@ -157,6 +157,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
               found this helpful
             </small>
           </div>
+
           <div className="report-review">
             <button type="button"
               onClick={reportReview}>Report Review</button>
@@ -167,4 +168,4 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
     </div>
   )
 }
-export default ReviewTile;
+	export default ReviewTile;

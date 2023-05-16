@@ -101,12 +101,12 @@ function QA({ productID }) {
             <ol>
               {
                 questionsAll ? (
-                  questions.map((item) => <QuestionBody question={item} answers={answers} modalType={modalType} setModalType={setModalType} modalIsOpen={setIsOpen} />)
+                  questions.map((item) => <QuestionBody question={item} key={item.question_id} answers={answers} modalType={modalType} setModalType={setModalType} modalIsOpen={setIsOpen} />)
                 ) : (
-                  topTwo.map((item) => <QuestionBody question={item} answers={answers} modalType={modalType} setModalType={setModalType} modalIsOpen={setIsOpen} />)
+                  topTwo.map((item) => <QuestionBody question={item} key={item.question_id} answers={answers} modalType={modalType} setModalType={setModalType} modalIsOpen={setIsOpen} />)
                 )
               }
-              {questions.map((item) => <QuestionBody question={item} answers={answers} modalType={modalType} setModalType={setModalType} modalIsOpen={setIsOpen} />)}
+              {questions.map((item) => <QuestionBody question={item} key={item.question_id} answers={answers} modalType={modalType} setModalType={setModalType} modalIsOpen={setIsOpen} />)}
             </ol>
           </div>
         )

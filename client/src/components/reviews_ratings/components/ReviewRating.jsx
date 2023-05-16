@@ -26,7 +26,7 @@ const ReviewRating = ({productId, productName}) => {
     5: false
   });
   const addReview = (e) => {
-    e.preventDefault
+    e.preventDefault()
     setShowModal(!showModal)
     return <Modal showModal={showModal} setShowModal={setShowModal}/>
   }
@@ -36,7 +36,7 @@ const ReviewRating = ({productId, productName}) => {
       params: {
         product_id: productId,
         sort: dropSort,
-        count: 5
+        count: 1000
       }
     })
     .then((response) => {
@@ -52,7 +52,11 @@ const ReviewRating = ({productId, productName}) => {
         //WILL GIVE OBJ
         setAvgRate(response.data.ratings)
         //WILL GIVE ARRAY OF OBJECTS
-        setRating(Object.entries(response.data.ratings).map(entry => { return {id: Number(entry[0]), val: Number(entry[1])}}).reverse())
+        setRating(Object.entries(response.data.ratings).map(entry => {
+          return {
+            id: Number(entry[0]), val: Number(entry[1])
+          }
+        }))
       })
       .catch((err) => {
         console.log('error on reviewrsating', err)
@@ -99,10 +103,9 @@ const ReviewRating = ({productId, productName}) => {
 
   }
 
-  //ratings filter needs to pass do wn without without influence on sorbar. should combo
+
   return (
     <div className="RR-module">
-        {/* <h2>Ratings & Reviews</h2> */}
       <div className="breakdown-box">
         <div>
           <section className="breakdown">
@@ -129,7 +132,7 @@ const ReviewRating = ({productId, productName}) => {
             <SortBar
               setDropSort={setDropSort}/>
 
-          <div>
+          <div className="review-list">
             <ReviewList
               ratingFilter={ratingFilter}
               reviewList={reviewList}
@@ -137,10 +140,7 @@ const ReviewRating = ({productId, productName}) => {
               setReviewList={setReviewList}
               productId={productId}/>
           </div>
-          {/* <div>
-            <SortBar
-              setDropSort={setDropSort}/>
-          </div> */}
+
           <div>
             <Modal showModal={showModal}
             productId={productId}

@@ -3,7 +3,7 @@ require("dotenv").config();
 const app = require('../index.js');
 //Test Files
 // const productTest = require('./product-test.js');
-const reviewTest = require('./review-test.js');
+const reviewTest = require('./review.test.js');
 // const qaTest = require('./qa-test.js');
 // const relatedTest = require('./related-test.js');
 
@@ -11,8 +11,8 @@ const reviewTest = require('./review-test.js');
 let server;
 //server start
 beforeAll(() => {
-  server = app.listen(process.env.PORT, () => {
-    console.log(`test app server is listening on ${process.env.PORT}`);
+  server = app.listen(3000, () => {
+    console.log(`test app server is listening on 3000`);
   })
 });
 // describe('Server Routes Testing', () => {
@@ -26,3 +26,6 @@ afterAll((done) => {
   server.close(done)
 });
 
+// describe('Server Side Testing', () => {
+//   reviewTest(app);
+// })
