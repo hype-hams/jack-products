@@ -1,3 +1,4 @@
+
 import React from 'react';
 import axios from 'axios';
 
@@ -24,6 +25,7 @@ const ReviewHelpers = {
     axios({
       method: 'PUT',
       url: '/api/reviews/:review_id/helpful',
+
       data: {review_id: review_id}
     })
       .then((response) => {

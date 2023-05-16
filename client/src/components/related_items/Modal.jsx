@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { isDOMComponent } from 'react-dom/test-utils';
 
 
 const Modal = ({showModal, closeModal, children})=>{
@@ -8,19 +9,23 @@ const Modal = ({showModal, closeModal, children})=>{
     const modalRef = useRef(null);
 
     const clickedOutside = (e) => {
-
+        if(showModal && modalRef.current && !modalRef.current.contains(e.target)) {
+            closeModal();
+        }
     }
     
-    
     useEffect(()=>{
-
+        document.addEventListener('mousedown', clickedOutside);
+        return ()=> {
+            document.removeEventListener('mousedown', clickedOutside);
+        }
     },[showModal])
 
     return (
         <div>
             {showModal ? (
-                <div className='Modal-backg' ref={modalRef} onClick={closeModal}>
-                    <div className='Modal-inside'>
+                <div className='Modal-backg' >
+                    <div className='Modal-inside' ref={modalRef}>
                         <button className="closeModal" onClick={()=>{closeModal();}}>
                             <FontAwesomeIcon icon={faXmark} />
                         </button>

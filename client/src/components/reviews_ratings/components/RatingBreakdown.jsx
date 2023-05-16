@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Stars from './Stars.jsx';
 
@@ -42,6 +43,7 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
   }
 
 
+
   // Rating breakdown Bar
   const stars = rating.map((obj, ind) => {
     let counter =  0
@@ -66,9 +68,12 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
     </section>
     )
 });
+    )
+});
 
   return (
     <section>
+      <div className="avg-star-rating">
       <div className="avg-star-rating">
         <Stars rating={rating}
           productId={productId}/>

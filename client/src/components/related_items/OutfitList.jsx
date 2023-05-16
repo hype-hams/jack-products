@@ -62,7 +62,8 @@ const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick}) => {
                     <div className='faPlus'>
                         <FontAwesomeIcon  icon={faPlus} />
                     </div> 
-                    <p>Add to Outfit</p>
+                    <p>Add Current Product</p> 
+                    <p> To Outfit</p>
                 </button>
                 {list ? list.map(card=> <OutfitListCard key={card.id} card={card} 
                 onDelete={deleteCard} handleRelatedItemClick={handleRelatedItemClick}/>) : null}
