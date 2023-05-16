@@ -1,6 +1,7 @@
 /** @jest-environment jsdom */
 import {render, screen} from '@testing-library/react'
 import RelatedItems from '../RelatedItems.jsx';
+import RelatedItemCard from '../RelatedItemCard.jsx';
 import '@testing-library/jest-dom'
 import axios from 'axios';
 import Jest from 'jest'
@@ -48,13 +49,15 @@ describe(RelatedItems, () => {
         expect(getByText('Outfit List')).toBeInTheDocument();
     });
 
-    it('Check if images render properly for Outfit List', async ()=>{
+    it('Check if images render properly for Related Items List for when photo does not exist', async ()=>{
         const resProd = await axios.get('http://localhost:3000/api/products/40344/') ;
-        const relatedProd = await axios.get('http://localhost:3000/api/products/40344/related');
-        render(<RelatedItems currProduct={resProd.data} IDlist={relatedProd.data} handleRelatedItemClick={null} />);
-        // const image = document.querySelector('img');
+        const relatedProdList = await axios.get('http://localhost:3000/api/products/40344/related');
+        const relatedProdExample = await axios.get('http://localhost:3000/api/products/40345/')
+        // console.error(relatedProd.data)
+        await render(<RelatedItems currProduct={resProd.data} IDlist={relatedProdList.data} handleRelatedItemClick={null} />);
+        const theCard = await render(<RelatedItemCard card={relatedProdExample.data} currProduct={resProd.data} handleRelatedItemClick={null} />);
+        console.log(theCard);
         const image = screen.getByRole('img');
-        expect(image).toHaveAttribute(src, 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80')
+        expect(image).toHaveAttribute('src', 'images/image-not-found-icon.png');
     });
-
 });
