@@ -98,10 +98,10 @@ const Stars = ({productId, rating}) => {
   return (
     <div>
       <div className="avg-rating">
-        <label id="avg-rate-bar"
->{renderStarBar()}</label> &emsp;
+        <label id="avg-rate-bar">
+          {renderStarBar()}</label> &emsp;
         <big><b>{calcStar()}</b></big>
-      </p>
+      </div>
       <div className="avg-rating">
         <label>{renderStarBar()}</label>
       </div>

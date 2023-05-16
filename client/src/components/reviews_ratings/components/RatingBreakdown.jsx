@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Stars from './Stars.jsx';
 
@@ -47,49 +46,51 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
   // Rating breakdown Bar
   const stars = rating.map((obj, ind) => {
     let counter =  0
-
     return (
-    <section key={ind}>
-      <label>
-        <small id={obj.id}
-          onClick={rateFilter}>
-          {obj.id} stars
+      <section key={ind}>
+        <label>
+          <small id={obj.id}
+            onClick={rateFilter}>
+            {obj.id} stars
+          </small>
+        </label> &ensp;
+        <meter className="rating-bar"
+          value={obj.val}
+          max='1000'></meter>
+        {/* TODO COLOR CHANGE */}
+        <small>
+          <label className="star-vote">
+            {obj.val}
+          </label>
         </small>
-      </label> &ensp;
-      <meter className="rating-bar"
-        value={obj.val}
-        max='1000'></meter>
-      {/* TODO COLOR CHANGE */}
-      <small>
-        <label className="star-vote">
-          {obj.val}
-        </label>
-      </small>
-    </section>
+      </section>
     )
-});
-    )
-});
+  });
+
+
 
   return (
     <section>
-      <div className="avg-star-rating">
       <div className="avg-star-rating">
         <Stars rating={rating}
           productId={productId}/>
         {/* TODO: style stars here */}
         {/* <small>{totalReviews}&ensp;reviews</small> */}
       </div>
+
       <div>
         <small>{totalReviews}&ensp;reviews</small>
         {totalRev()}
       </div>
+
       <div className="ratingBreakdown">
         {stars}
       </div>
+
       <div className="ratingBreakdown-recommend">
         <p>{recommendPercent.toFixed(2)}% of reviews recommend this product</p>
       </div>
+
     </section>
   )
 }

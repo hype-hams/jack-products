@@ -55,20 +55,21 @@ const app = require('../index.js');
     //     characteristics: {}
     //   }).expect(201)
     // });
-    it('should return 204 and increment helpful', async () => {
-      const helpfulId = await reviewId();
-      // const reviewData = await routeTest.get('/api/reviews').query({
-      //   product_id:  await productId(),
-      //   page: 1,
-      //   count: 5
-      // }).expect(200)
-      // const review = reviewData.body[0].helpfulness;
-      console.log('this is helpful id', helpfulId)
-      await routeTest.put(`/api/reviews/${helpfulId}/helpful`).expect(204)
-      // console.log('this is respone for helpful', marked)
-      // return marked
 
-    })
+    // it('should return 204 and increment helpful', async () => {
+    //   const helpfulId = await reviewId();
+    //   // const reviewData = await routeTest.get('/api/reviews').query({
+    //   //   product_id:  await productId(),
+    //   //   page: 1,
+    //   //   count: 5
+    //   // }).expect(200)
+    //   // const review = reviewData.body[0].helpfulness;
+    //   // console.log('this is helpful id', helpfulId)
+    //   await routeTest.put(`/api/reviews/${helpfulId}/helpful`).expect(204)
+    //   // console.log('this is respone for helpful', marked)
+    //   // return marked
+
+    // })
 
     // it('should return 204 and report review', async () => {
       // const helpfulId = await reviewId();

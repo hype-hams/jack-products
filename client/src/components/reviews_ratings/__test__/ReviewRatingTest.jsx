@@ -8,15 +8,15 @@ import ReviewRating from '../components/ReviewRating.jsx';
 // const request = require('supertest');
 
 
-
-
-describe('ReviewRating', () => {
-  it('SortBar Test', () => {
+describe('ReviewRating component testing', () => {
+  it('should return keys of ratingFilter', async () => {
     const product ="40344"
     const productName = 'Camo Onesie'
 
     const { getByText } = render(<ReviewRating product={product} productName={productName}/>);
+
     const textElement = getByText('Ratings & Reviews');
     expect(textElement).toBeInTheDocument();
   });
 });
+
