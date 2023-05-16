@@ -178,7 +178,9 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
                 <sup>*</sup>
               </label>
 <br></br>
-              {addChar}
+              <section className="add-char-component">
+                {addChar}
+              </section>
             </section>
 <br></br>
             <section className="review-summary">

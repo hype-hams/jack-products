@@ -65,29 +65,30 @@ display: inline-block;
 
 .RR-module {
   float: left;
-  max-width: fit-content;
-  width: auto;
+  min-width: fit-content;
+  width: 100%;
+  justify-content: flex-end;
   /* box-sizing: border-box; */
 }
 .breakdown-box {
   box-sizing: border-box;
-  /* justify-content: start; */
-  /* float: left; */
+  min-width: fit-content;
+  max-width: min-content;
   float: left;
   width: 30%;
 }
 .review-box {
   box-sizing: border-box;
   display: inline;
-  float: right;
+  float: left;
   width: 65%;
+  /* align-self: flex-end; */
+  /* justify-content: flex-end; */
   /* padding: 10px; */
   /* flex-direction: row-reverse; */
   height: 600px;
 }
-.sortbar {
-  flex-wrap: wrap;
-}
+
 .breakdown {
   width: 300px;
   height: min-content;
@@ -154,8 +155,49 @@ display: inline-block;
   justify-content: space-between;
 }
 
+.review-list {
+  display: inline-flex;
+  min-width: fit-content;
+  float: left;
+}
 /* SORT BAR */
 .sortbar {
-  display: inline-flexbox;
-  float: right;
+  display: inline-flex;
+  flex-wrap: nowrap;
+
+  /* float: left; */
+}
+/* ADD CHARACTERISTICS REVIEW MODAL */
+.add-char-component {
+  display: inline-grid;
+  /* align-items: flex-end; */
+  justify-content: space-between;
+  width: 600px;
+}
+.add-char {
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.add-char-input {
+  display: inline-flex;
+  flex-direction: column;
+}
+.review-char-text {
+  font-size: xx-small;
+}
+.add-review-char-name {
+  margin-right: 10px;
+}
+.add-review-char-button {
+  margin-left: auto;
+  display: inline-flex;
+  /* align-items: flex-end; */
+  justify-content: space-evenly;
+  min-width: 100%;
+  max-width: 100%;
+  /* float: right; */
+  /* vertical-align: middle; */
+  width:85%;
 }
