@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Pre_Modal from './Pre_Modal.jsx'
 import axios from 'axios'
+import Stars from '../reviews_ratings/components/Stars.jsx'
 
 const RelatedItemCard = ({card,  currProduct, handleRelatedItemClick}) => {
     
@@ -19,6 +20,7 @@ const RelatedItemCard = ({card,  currProduct, handleRelatedItemClick}) => {
             console.error(err);
         });
     }
+
     
     useEffect(()=>{
         GETPhotoURL();
@@ -28,12 +30,16 @@ const RelatedItemCard = ({card,  currProduct, handleRelatedItemClick}) => {
         <div>
             <Pre_Modal key={card.id} card={card}  currProduct={currProduct} />
             <div className='RelatedItemCard'>
-                    <div className='RelatedItemCardText' onClick={()=>{handleRelatedItemClick(card.id)}} >
+                    <div onClick={()=>{handleRelatedItemClick(card.id)}} >
                         <img className="image" src={`${photoURL}`} /> 
-                        <p className="category">{card.category}</p>
-                        <h3 className='productName'>{card.name}</h3>
-                        <h4 className='price'>${card.default_price}</h4>
-                        <p>{card.rating}</p>
+                        <div className='cardText'>
+                            <p className="category">{card.category}</p>
+                            <h3 className='productName'>{card.name}</h3>
+                            <h4 className='price'>${card.default_price}</h4>
+                            <div className='stars'>
+                                <Stars productId={card.id} />
+                            </div>
+                        </div>
                     </div>
             </div>
         </div>
