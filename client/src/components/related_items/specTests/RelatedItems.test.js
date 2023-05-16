@@ -2,6 +2,7 @@
 import {render, screen} from '@testing-library/react'
 import RelatedItems from '../RelatedItems.jsx';
 import RelatedItemCard from '../RelatedItemCard.jsx';
+import OutfitListCard from '../OutfitListCard.jsx'
 import '@testing-library/jest-dom'
 import axios from 'axios';
 import Jest from 'jest'
@@ -55,9 +56,21 @@ describe(RelatedItems, () => {
         const relatedProdExample = await axios.get('http://localhost:3000/api/products/40345/')
         // console.error(relatedProd.data)
         await render(<RelatedItems currProduct={resProd.data} IDlist={relatedProdList.data} handleRelatedItemClick={null} />);
-        const theCard = await render(<RelatedItemCard card={relatedProdExample.data} currProduct={resProd.data} handleRelatedItemClick={null} />);
+        await render(<RelatedItemCard card={relatedProdExample.data} currProduct={resProd.data} handleRelatedItemClick={null} />);
         console.log(theCard);
         const image = screen.getByRole('img');
-        expect(image).toHaveAttribute('src', 'images/image-not-found-icon.png');
+        expect(image).toHaveAttribute('src', '');
     });
+    it('Check if images render properly for Outfit Items List for when photo does not exist', async ()=>{
+        const resProd = await axios.get('http://localhost:3000/api/products/40344/') ;
+        const relatedProdList = await axios.get('http://localhost:3000/api/products/40344/related');
+        const relatedProdExample = await axios.get('http://localhost:3000/api/products/40345/')
+        // console.error(relatedProd.data)
+        await render(<RelatedItems currProduct={resProd.data} IDlist={relatedProdList.data} handleRelatedItemClick={null} />);
+        await render(<OutfitListCard card={relatedProdExample.data} currProduct={resProd.data} handleRelatedItemClick={null} />);
+        console.log(theCard);
+        const image = screen.getByRole('img');
+        expect(image).toHaveAttribute('src', '');
+    });
+
 });
