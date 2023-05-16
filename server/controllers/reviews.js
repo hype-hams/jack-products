@@ -54,18 +54,35 @@ module.exports = {
     };
     return axios(options)
       .then((response) => {
-        res.status(202).send(response.data);
+        res.status(200).send(response.data);
       })
       .catch((err) => {
         res.status(500).send(err);
       });
   },
   postReview: (req, res) => {
-    axios.post(serverAPI, req.body, {
+    const options = {
+      method: 'POST',
+      url: serverAPI,
       headers: headAuth,
-    })
+      params: {
+        product_id: req.body.product_id,
+        rating: req.body.rating,
+        summary: req.body.summary,
+        body: req.body.body,
+        recommend: req.body.recommend,
+        name: req.body.name,
+        email: req.body.email,
+        photos: req.body.photos,
+        characteristics: req.body.characteristics
+      }
+    }
+    // axios.post(serverAPI, req.body, {
+    //   headers: headAuth,
+    // })
+    return axios(options)
       .then((response) => {
-        res.status(201).send(response.data);
+        res.status(201);
       })
       .catch((err) => {
         res.status(500).send(`unable to post: ${err}`);

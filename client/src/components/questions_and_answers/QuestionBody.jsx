@@ -50,7 +50,7 @@ function QuestionBody({
   };
 
   return (
-    <div className="question">
+    <div className="question" key={question.question_id}>
       <span className="asker_ name">{question.asker_name}</span>
       <p className="question_body">
         Q:

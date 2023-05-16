@@ -40,8 +40,8 @@ const Pre_Modal = ({ card , currProduct})=> {
 
     const clickHandler = (e) => {
         e.preventDefault();
-        
-        card.features.map(feature=>{    
+
+        card.features.map(feature=>{
             feature.item = card.name,
             feature.value_feature= `${feature.value} ${feature.feature}`
         });
@@ -49,7 +49,7 @@ const Pre_Modal = ({ card , currProduct})=> {
             feature.item = currProduct.name;
             feature.value_feature= `${feature.value} ${feature.feature}`;
         });
-         
+
         setFeatures(filterFeatures());
         setShowModal(!showModal);
     }
