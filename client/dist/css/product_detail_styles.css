@@ -6,7 +6,7 @@ body {
 .product-detail-section {
   display: flex;
   flex-direction: column;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   min-width: 1000px;
 }
 
@@ -265,6 +265,12 @@ body {
 /************************************************************/
 
 .product-description {
+  font-family: "Georgia", serif;
+  padding: 0 180px 0 80px;
+  font-size: 1.8em;
+  font-weight: 500;
+  line-height: 1.7;
+  color: #373737;
   margin-top: 20px;
 }
 
@@ -272,5 +278,5 @@ body {
   display: flex;
   justify-content: flex-end;
   gap: 30px;
-  margin: 5px 100px 20px 0;
+  margin: 5px 120px 20px 0;
 }
