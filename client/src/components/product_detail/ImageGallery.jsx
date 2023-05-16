@@ -6,8 +6,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExpand, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import MainImage from './MainImage.jsx';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faExpand, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import imageNotAvailable from './images/imageNotAvailable.png';
 import leftArrow from './images/leftArrow.png';
 import rightArrow from './images/rightArrow.png';
@@ -17,10 +18,7 @@ import downArrow from './images/downArrow.png';
 function ImageGallery({ photos }) {
   const [image, setImage] = useState(photos[0]);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [expanded, setExpanded] = useState(false);
-  const [icon, setIcon] = useState(<FontAwesomeIcon icon={faExpand} size="xl" style={{ color: '#e8e8e8' }} />);
   const [expandedView, setExpandedView] = useState(null);
-  const [zoom, setZoom] = useState(false);
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -66,50 +64,8 @@ function ImageGallery({ photos }) {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
 
-  const changeToExpandedView = () => {
-    setIcon(<FontAwesomeIcon icon={faCircleXmark} size="2xl" style={{ color: '#474747' }} />);
-    setExpandedView({ position: 'absolute', zIndex: '900' });
-    setZoom(false);
-    document.querySelector('.main-photo-img').style.cursor = 'zoom-in';
-  };
-
-  const changeToDefaultView = () => {
-    setIcon(<FontAwesomeIcon icon={faExpand} size="2xl" style={{ color: '#e8e8e8' }} />);
-    setExpandedView({ position: 'relative', zIndex: '0' });
-    setZoom(false);
-    document.querySelector('.main-photo-img').style.cursor = null; // clear the zoom-in/out cursor
-  };
-
-  const handleIconClick = () => {
-    if (expanded) {
-      changeToDefaultView();
-    } else {
-      changeToExpandedView();
-    }
-    setExpanded(!expanded);
-  };
-
-  const handleMainImageClick = (e) => {
-    setExpanded(true);
-    changeToExpandedView();
-    if (!zoom) {
-      e.target.style.cursor = 'zoom-in';
-      document.querySelector('.main-photo-img').style.transform = null;
-      // setZoom(true);
-    } else {
-      e.target.style.cursor = 'zoom-out';
-      document.querySelector('.main-photo-img').style.transform = 'scale(2.5)';
-
-      // setZoom(false);
-    }
-    setZoom(!zoom);
-  };
-
   return (
     <div className="image-gallery-div" style={expandedView}>
-      <div className="expanded-view-icon" onClick={handleIconClick}>
-        {icon}
-      </div>
       <div className="image-gallery-thumbnails-div">
         {photos.map((item, index) => (
           // using photoIndex + 1 so that when handling right arrow click ref is the current one
@@ -144,7 +100,7 @@ function ImageGallery({ photos }) {
       >
         <img src={rightArrow} width="100%" alt="rightArrow" />
       </div>
-      <img src={image.url || imageNotAvailable} onClick={handleMainImageClick} className="main-photo-img" alt="mainphoto" />
+      <MainImage image={image} setExpandedView={setExpandedView} />
     </div>
   );
 }
