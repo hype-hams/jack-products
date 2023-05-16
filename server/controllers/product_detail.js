@@ -112,7 +112,6 @@ module.exports = {
   // Adds a interaction to the db.
   // req.body format: { "element": "xxx", "widget": "xxx", "time": "xxx" }
   addInteraction: (req, res) => {
-    console.log('addInteraction body: ', req.body);
     axios.post(`${url}/interactions`, req.body, {
       headers: {
         Authorization: `${process.env.API_KEY}`,
