@@ -82,13 +82,14 @@ function ImageGallery({ photos }) {
           </div>
         ))}
       </div>
-      <div className="up-arrow-div" onClick={handleUpArrowClick}>
+      <div className="up-arrow-div" data-testid="up-arrow" onClick={handleUpArrowClick}>
         <img src={upArrow} width="100%" alt="leftArrow" />
       </div>
-      <div className="down-arrow-div" onClick={handleDownArrowClick}>
+      <div className="down-arrow-div" data-testid="down-arrow" onClick={handleDownArrowClick}>
         <img src={downArrow} width="100%" alt="rightArrow" />
       </div>
       <div
+        data-testid="left-arrow"
         className="left-arrow-div"
         style={{ display: photoIndex ? 'block' : 'none' }}
         onClick={handleLeftArrowClick}
@@ -96,6 +97,7 @@ function ImageGallery({ photos }) {
         <img src={leftArrow} width="100%" alt="leftArrow" />
       </div>
       <div
+        data-testid="right-arrow"
         className="right-arrow-div"
         style={{ display: (photoIndex === photos.length - 1) ? 'none' : 'block' }}
         onClick={handleRightArrowClick}
