@@ -94,7 +94,7 @@ function AddToCart({ skus }) {
     }
   };
 
-  const disabledStyle = { color: 'rgb(192, 192, 192)', cursor: 'not-allowed' };
+  const disabledStyle = { color: 'rgb(192, 192, 192)', cursor: 'default' };
 
   return (
     <div className="selectors">

@@ -82,10 +82,10 @@ function ImageGallery({ photos }) {
           </div>
         ))}
       </div>
-      <div className="up-arrow-div" onClick={handleUpArrowClick}>
+      <div className="up-arrow-div" data-testid="up-arrow" onClick={handleUpArrowClick}>
         <img src={upArrow} width="100%" alt="leftArrow" />
       </div>
-      <div className="down-arrow-div" onClick={handleDownArrowClick}>
+      <div className="down-arrow-div" data-testid="down-arrow" onClick={handleDownArrowClick}>
         <img src={downArrow} width="100%" alt="rightArrow" />
       </div>
       <div

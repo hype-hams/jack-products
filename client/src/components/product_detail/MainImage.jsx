@@ -70,7 +70,7 @@ function MainImage({ image, setExpandedView }) {
 
   return (
     <div className="main-image-div" onMouseMove={handleMouseMove}>
-      <div className="expanded-view-icon" onClick={handleIconClick}>{icon}</div>
+      <div className="expanded-view-icon" data-testid="icon" onClick={handleIconClick}>{icon}</div>
       <img src={image.url || imageNotAvailable} style={zoomedStyle} onClick={handleMainImageClick} className="main-image-img" alt="main" />
     </div>
   );
