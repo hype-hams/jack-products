@@ -9,9 +9,7 @@ import {
 import '@testing-library/jest-dom';
 import AddToCart from '../AddToCart.jsx';
 import ImageGallery from '../ImageGallery.jsx';
-import MainImage from '../MainImage.jsx';
 import ProductDetail from '../Product_detail_main.jsx';
-import Style from '../Style.jsx';
 import App from '../../App.jsx';
 
 // scrollIntoView is not implemented in jsdom
@@ -118,11 +116,15 @@ describe('Testing not null data in <ProductDetail />', () => {
       }],
   };
 
-  it('Should have "Read all reviews" on the page', async () => {
+  it('Should have "Read all reviews" on the page, click on it will invoke scrollIntoView', async () => {
     const { getByText } = render(<ProductDetail product={product} styles={styles} />);
-    const textElement = getByText('Read all reviews');
-    expect(textElement).toBeInTheDocument();
+    const element = getByText('Read all reviews');
+    expect(element).toBeInTheDocument();
     expect(getByText('Camo Onesie')).toBeInTheDocument();
+    fireEvent.click(element);
+    await waitFor(() => {
+      expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalled();
+    });
   });
 
   it('Should be able to click Add to cart button, when size is not selected, select menu pop up', async () => {
@@ -290,6 +292,26 @@ describe('Tesing in <ImageGallery />', () => {
     fireEvent.click(up);
     await waitFor(() => {
       expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalled();
+    });
+  });
+
+  it('Should be able to click on the second thumbnail, and left arrow will appear', async () => {
+    const onePhoto = [
+      {
+        thumbnail_url: 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+        url: 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+      }, {
+        thumbnail_url: 'https://images.unsplash.com/photo-1515110371136-7e393289662c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+        url: 'https://images.unsplash.com/photo-1515110371136-7e393289662c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1656&q=80',
+      }];
+    render(<ImageGallery photos={onePhoto} />);
+    const img = screen.getAllByAltText('thumbnail');
+    expect(img[1]).toBeInTheDocument();
+    fireEvent.click(img[1]);
+    const left = screen.getByTestId('left-arrow');
+    await waitFor(() => {
+      const computedStyle = window.getComputedStyle(left);
+      expect(computedStyle.display).toBe('block');
     });
   });
 });
