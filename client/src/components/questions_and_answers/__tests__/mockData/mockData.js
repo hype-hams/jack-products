@@ -1,6 +1,6 @@
 export const mockData = [
   {
-    product_id: '123',
+    product_id: 123,
     results: [
       {
         question_id: 100,
@@ -31,7 +31,7 @@ export const mockData = [
     ],
   },
   {
-    product_id: '1234',
+    product_id: 1234,
     results: [
       {
         question_id: 100,
