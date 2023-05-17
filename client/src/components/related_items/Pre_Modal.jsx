@@ -7,9 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Pre_Modal = ({ card , currProduct, test})=> {
     const [features, setFeatures] = useState([])
     const [showModal,setShowModal] = useState(false);
-    if(test){
-        setShowModal(true);
-    }
+  
 
     const filterFeatures = () =>{
         var filteredFeatures =[];
@@ -59,6 +57,14 @@ const Pre_Modal = ({ card , currProduct, test})=> {
 
     const closeModal = ()=>{
         setShowModal(false)
+    }
+
+   // useEffect for test
+    if(test){
+        useEffect(()=>{
+            setShowModal(true);
+            setFeatures(filterFeatures());
+        }, [test])
     }
 
     return (

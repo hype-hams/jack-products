@@ -26,10 +26,12 @@ const OutfitListCard = ({card, onDelete , handleRelatedItemClick}) =>{
     useEffect(()=>{
         GETPhotoURL();
     },[]);
+
+
     return (
         <div>
             <button className="OutfitListDeleteBttn" onClick={onClickHandler}><FontAwesomeIcon icon={faTrashCan} /></button>
-            <div className='OutfitListCard'>
+            <div data-testid="OutfitListCardTest" className='OutfitListCard'>
                     <div onClick={()=>{handleRelatedItemClick(card.id)}}>    
                         <img className="image" src={`${photoURL}`} /> 
                         <div className='cardText'>

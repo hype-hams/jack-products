@@ -24,7 +24,7 @@ const Modal = ({showModal, closeModal, children})=>{
         <div>
             {showModal ? (
                 <div className='Modal-backg' >
-                    <div className='Modal-inside' ref={modalRef}>
+                    <div data-testid="modalTest" className='Modal-inside' ref={modalRef}>
                         <button className="closeModal" onClick={()=>{closeModal();}}>
                             <FontAwesomeIcon icon={faXmark} />
                         </button>
