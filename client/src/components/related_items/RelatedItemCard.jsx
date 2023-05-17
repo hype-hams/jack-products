@@ -31,7 +31,7 @@ const RelatedItemCard = ({card,  currProduct, handleRelatedItemClick}) => {
             <Pre_Modal key={card.id} card={card}  currProduct={currProduct} />
             <div className='RelatedItemCard'>
                     <div onClick={()=>{handleRelatedItemClick(card.id)}} >
-                        <img className="image" src={`${photoURL}`} /> 
+                        <img data-testid="testImage" className="image" src={`${photoURL}`} /> 
                         <div className='cardText'>
                             <p className="category">{card.category}</p>
                             <h3 className='productName'>{card.name}</h3>
