@@ -4,9 +4,12 @@ import { faCodeCompare, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-const Pre_Modal = ({ card , currProduct})=> {
+const Pre_Modal = ({ card , currProduct, test})=> {
     const [features, setFeatures] = useState([])
     const [showModal,setShowModal] = useState(false);
+    if(test){
+        setShowModal(true);
+    }
 
     const filterFeatures = () =>{
         var filteredFeatures =[];
