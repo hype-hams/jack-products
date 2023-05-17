@@ -106,6 +106,7 @@ body {
 .main-image-div{
   width: 100%; /* when expand it will show the whole screen*/
   background-color: white;
+  overflow: hidden;
 }
 
 .main-image-img {
@@ -138,7 +139,13 @@ body {
 .product-detail-div__right>h1 {
   font-size: 40px;
 }
-
+.product-detail-div__right>small {
+  font-size: 0.9em;
+  cursor: pointer;
+}
+.product-detail-div__right>small:hover {
+  text-decoration: underline;
+}
 /* style-thumbnails-div contains all the style thumbnails */
 .style-thumbnails-div {
   margin-top: 20px;

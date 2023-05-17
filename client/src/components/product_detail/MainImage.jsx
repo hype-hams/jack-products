@@ -13,17 +13,10 @@ function MainImage({ image, setExpandedView }) {
   const [expanded, setExpanded] = useState(false);
   const [zoom, setZoom] = useState(false);
   const [imgPos, setImgPos] = useState({ x: 0, y: 0 });
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [pan, setPan] = useState(false);
 
   const handleMouseMove = (e) => {
-    const rect = e.target.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const mouseX = (e.clientX / rect.width) * 800;
-    const mouseY = (e.clientY / rect.height) * 800;
-    setImgPos({ x, y });
-    setMousePos({ x: -mouseX, y: -mouseY });
+    setImgPos({ x: e.clientX, y: e.clientY });
   };
 
   const changeToExpandedView = () => {
@@ -60,13 +53,12 @@ function MainImage({ image, setExpandedView }) {
       setPan(false);
     } else {
       e.target.style.cursor = 'zoom-out';
-      document.querySelector('.main-image-img').style['transform-origin'] = `${imgPos.x}px ${imgPos.y}px`;
       setPan(true);
     }
     setZoom(!zoom);
   };
 
-  const zoomedStyle = { transform: pan ? `scale(2.5) translate(${mousePos.x}px, ${mousePos.y}px)` : 'none' };
+  const zoomedStyle = pan ? { transformOrigin: `${imgPos.x}px ${imgPos.y}px`, transform: 'scale(2.5)' } : { transform: 'none' };
 
   return (
     <div className="main-image-div" onMouseMove={handleMouseMove}>
