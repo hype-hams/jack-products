@@ -3,7 +3,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 // import fetchMock from 'jest-fetch-mock';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import {
+  render, screen, fireEvent, waitFor,
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import AddToCart from '../AddToCart.jsx';
 import ImageGallery from '../ImageGallery.jsx';
@@ -77,14 +79,8 @@ describe('Passing not null data in <ProductDetail />', () => {
             url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
           }],
         skus: {
-          1394769: {
-            quantity: 8,
-            size: 'XS',
-          },
-          1394770: {
-            quantity: 16,
-            size: 'S',
-          },
+          1394769: { quantity: 8, size: 'XS' },
+          1394770: { uantity: 16, size: 'S' },
         },
       },
       {
@@ -108,29 +104,17 @@ describe('Passing not null data in <ProductDetail />', () => {
           },
         ],
         skus: {
-          1394775: {
-            quantity: 8,
-            size: 'XS',
-          },
-          1394776: {
-            quantity: 16,
-            size: 'S',
-          },
-          1394777: {
-            quantity: 17,
-            size: 'M',
-          },
-          1394778: {
-            quantity: 10,
-            size: 'L',
-          },
+          1394775: { quantity: 8, size: 'XS' },
+          1394776: { quantity: 16, size: 'S' },
+          1394777: { quantity: 17, size: 'M' },
+          1394778: { quantity: 10, size: 'L' },
         },
       }],
   };
+  Element.prototype.scrollIntoView = jest.fn();
 
   it('Should have "Read all reviews" inside ProductDetail component', async () => {
     // scrollIntoView is not implemented in jsdom
-    Element.prototype.scrollIntoView = jest.fn();
     const { getByText } = render(<ProductDetail product={product} styles={styles} />);
     const textElement = getByText('Read all reviews');
     expect(textElement).toBeInTheDocument();
@@ -138,13 +122,23 @@ describe('Passing not null data in <ProductDetail />', () => {
   });
 
   it('Should be able to click Add to cart button, when size is not selected, select menu pop up', async () => {
-    // scrollIntoView is not implemented in jsdom
-    Element.prototype.scrollIntoView = jest.fn();
     const { getByText } = render(<ProductDetail product={product} styles={styles} />);
     const button = screen.getByText('ADD TO BAG').closest('button');
     fireEvent.click(button);
     const menu = getByText('XS');
     expect(menu).toBeTruthy();
+  });
+
+  it('Should be able to select size and add to cart is enabled', async () => {
+    render(<ProductDetail product={product} styles={styles} />);
+    const selector = screen.getByText('SELECT SIZE');
+    expect(selector).toBeInTheDocument();
+    await fireEvent.click(selector);
+    const size = screen.getByText('XS');
+    await fireEvent.click(size);
+    expect(size).toBeTruthy();
+    const button = screen.getByText('ADD TO BAG').closest('button');
+    expect(button).toBeEnabled();
   });
 });
 
@@ -179,5 +173,85 @@ describe('When photos url and skus are null', () => {
     expect(button).toBeDisabled();
     const element = getByText('OUT OF STOCK');
     expect(element).toBeTruthy();
+  });
+});
+
+describe('Passing not null data in <ProductDetail />', () => {
+  const photos = [
+    {
+      thumbnail_url: 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      url: 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+    },
+    {
+      thumbnail_url: 'https://images.unsplash.com/photo-1507920676663-3b72429774ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
+      url: 'https://images.unsplash.com/photo-1507920676663-3b72429774ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80',
+    },
+    {
+      thumbnail_url: 'https://images.unsplash.com/photo-1544376664-80b17f09d399?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      url: 'https://images.unsplash.com/photo-1544376664-80b17f09d399?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1525&q=80',
+    },
+    {
+      thumbnail_url: 'https://images.unsplash.com/photo-1513531926349-466f15ec8cc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      url: 'https://images.unsplash.com/photo-1513531926349-466f15ec8cc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+    },
+    {
+      thumbnail_url: 'https://images.unsplash.com/photo-1517278322228-3fe7a86cf6f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
+      url: 'https://images.unsplash.com/photo-1517278322228-3fe7a86cf6f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80',
+    },
+    {
+      thumbnail_url: 'https://images.unsplash.com/photo-1517720359744-6d12f8a09b10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      url: 'https://images.unsplash.com/photo-1517720359744-6d12f8a09b10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80',
+    },
+    {
+      thumbnail_url: 'https://images.unsplash.com/photo-1530821875964-91927b611bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      url: 'https://images.unsplash.com/photo-1530821875964-91927b611bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+    },
+    {
+      thumbnail_url: 'https://images.unsplash.com/photo-1519862170344-6cd5e49cb996?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      url: 'https://images.unsplash.com/photo-1519862170344-6cd5e49cb996?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+    },
+    {
+      thumbnail_url: 'https://images.unsplash.com/photo-1558014356-f7c41bc744f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      url: 'https://images.unsplash.com/photo-1558014356-f7c41bc744f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+    },
+    {
+      thumbnail_url: 'https://images.unsplash.com/photo-1542818212-9899bafcb9db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      url: 'https://images.unsplash.com/photo-1542818212-9899bafcb9db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1526&q=80',
+    },
+    {
+      thumbnail_url: 'https://images.unsplash.com/photo-1515110371136-7e393289662c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      url: 'https://images.unsplash.com/photo-1515110371136-7e393289662c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1656&q=80',
+    },
+  ];
+
+  it('Should render main images', async () => {
+    render(<ImageGallery photos={photos} />);
+    const img = screen.getByAltText('main');
+    expect(img).toBeInTheDocument();
+  });
+
+  it('Should have left arrow but display is none', async () => {
+    render(<ImageGallery photos={photos} />);
+    const left = screen.getByTestId('left-arrow');
+    expect(left).toBeInTheDocument();
+    const computedStyle = window.getComputedStyle(left);
+    expect(computedStyle.display).toBe('none');
+  });
+
+  it('After click on right arrow, left arrow display should be block, click on right arrow again, left arrow should be none', async () => {
+    render(<ImageGallery photos={photos} />);
+    const right = screen.getByTestId('right-arrow');
+    expect(right).toBeInTheDocument();
+    fireEvent.click(right);
+    const left = screen.getByTestId('left-arrow');
+    await waitFor(() => {
+      const computedStyle = window.getComputedStyle(left);
+      expect(computedStyle.display).toBe('block');
+    });
+    fireEvent.click(left);
+    await waitFor(() => {
+      const computedStyle = window.getComputedStyle(left);
+      expect(computedStyle.display).toBe('none');
+    });
   });
 });
