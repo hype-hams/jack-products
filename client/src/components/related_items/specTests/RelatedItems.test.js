@@ -1,40 +1,21 @@
 /** @jest-environment jsdom */
-import {render, screen} from '@testing-library/react'
 import RelatedItems from '../RelatedItems.jsx';
+import RelatedItemCard from '../RelatedItemCard.jsx';
+import OutfitListCard from '../OutfitListCard.jsx'
+import Pre_Modal from '../Pre_Modal.jsx';
+import Modal from '../Modal.jsx';
+import OutfitList from '../OutfitList.jsx';
+
+import {render, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import axios from 'axios';
 import Jest from 'jest'
+import {product, related, cardProduct, noPhotoURL} from './mockData.js'
+
 
 
 describe(RelatedItems, () => {
     it('Renders Related Items header properly', ()=>{
-        const product ={
-            "id": 40344,
-            "campus": "hr-rfp",
-            "name": "Camo Onesie",
-            "slogan": "Blend in to your crowd",
-            "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
-            "category": "Jackets",
-            "default_price": "140.00",
-            "created_at": "2021-08-13T14:38:44.509Z",
-            "updated_at": "2021-08-13T14:38:44.509Z",
-            "features": [
-                {
-                    "feature": "Fabric",
-                    "value": "Canvas"
-                },
-                {
-                    "feature": "Buttons",
-                    "value": "Brass"
-                }
-            ]
-        };
-        const related = [
-            40345,
-            40346,
-            40351,
-            40350
-        ];
         const {getByText} = render(<RelatedItems currProduct={product} IDlist={related} handleRelatedItemClick={null} />);
         expect(getByText('Related Items')).toBeInTheDocument();
     });
@@ -48,13 +29,33 @@ describe(RelatedItems, () => {
         expect(getByText('Outfit List')).toBeInTheDocument();
     });
 
-    it('Check if images render properly for Outfit List', async ()=>{
+    it('Check if images render properly for Related Items List for when photo does not exist', async ()=>{
         const resProd = await axios.get('http://localhost:3000/api/products/40344/') ;
-        const relatedProd = await axios.get('http://localhost:3000/api/products/40344/related');
-        render(<RelatedItems currProduct={resProd.data} IDlist={relatedProd.data} handleRelatedItemClick={null} />);
-        // const image = document.querySelector('img');
-        const image = screen.getByRole('img');
-        expect(image).toHaveAttribute(src, 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80')
+        const relatedProdList = await axios.get('http://localhost:3000/api/products/40344/related');
+        const relatedProdExample = await axios.get('http://localhost:3000/api/products/40345/')
+        // console.error(relatedProd.data)
+        await render(<RelatedItems currProduct={resProd.data} IDlist={relatedProdList.data} handleRelatedItemClick={null} />);
+        await render(<RelatedItemCard card={relatedProdExample.data} currProduct={resProd.data} handleRelatedItemClick={null} />);
+        // console.log(theCard);
+        const image = await screen.getByTestId('testImage');
+        expect(image).toBeVisible();
     });
+    it('Check if images render properly for Outfit Items List for when photo does not exist', async ()=>{
+        await render(<RelatedItems currProduct={product} IDlist={related} handleRelatedItemClick={null} />);
+        await render(<OutfitListCard card={cardProduct} currProduct={product} handleRelatedItemClick={null} />);
+        const image = await screen.getByRole('img');
+        expect(image).toBeVisible();
+    });
+
+    it('Check if modal is poping up properly', async ()=>{
+        await render(<Pre_Modal currProduct={product}  card={cardProduct} test={true}/>);
+        const modalRender= await screen.getByTestId('modalTest');
+        expect(modalRender).toBeVisible();
+    });
+    it('Check if OutfitList card renders properly when added', async ()=>{
+        await render(<OutfitList currProduct={product} currPhotoURL={null} handleRelatedItemClick={null} test={true}/>)
+        const cardRender = await screen.getByTestId('OutfitListCardTest');
+        expect(cardRender).toBeVisible();
+    })
 
 });

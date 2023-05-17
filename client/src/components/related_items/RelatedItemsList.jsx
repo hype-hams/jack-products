@@ -36,7 +36,7 @@ const RelatedItemsList = ({IDlist,  currProduct, handleRelatedItemClick}) => {
         <div className='RelatedItemsList'>
             {list.map(card=><RelatedItemCard key={card.id} card={card} currProduct={ currProduct} handleRelatedItemClick={handleRelatedItemClick} />)}
         </div>
-    )
+    );
 }
 
 export default RelatedItemsList;

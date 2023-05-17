@@ -1,18 +1,17 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/prop-types */
-/* eslint-disable max-len */
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faPinterest } from '@fortawesome/free-brands-svg-icons';
 import AddToCart from './AddToCart.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import Style from './Style.jsx';
 
-const axios = require('axios');
-
 function ProductDetail({ product, styles }) {
-  // styles.results is an array storing all styles, set the first style object in array as default style
+  // styles.results is an array storing all styles, set the first style object as default style
   const [style, setStyle] = useState(styles.results[0]);
 
   // change style when user click on thumbnail
@@ -45,7 +44,14 @@ function ProductDetail({ product, styles }) {
             {style.name}
           </p>
           <div className="style-thumbnails-div">
-            {styles.results.map((item) => (<Style style={item} selectedStyleId={style.style_id} handleClick={handleThumbnailOnClick} key={item.style_id} />))}
+            {styles.results.map((item) => (
+              <Style
+                style={item}
+                selectedStyleId={style.style_id}
+                handleClick={handleThumbnailOnClick}
+                key={item.style_id}
+              />
+            ))}
           </div>
           <AddToCart skus={skusArray} />
         </div>
@@ -53,13 +59,13 @@ function ProductDetail({ product, styles }) {
       <div className="product-description"><p>{product.description}</p></div>
       <div className="share-on-social-media">
         <a className="fb-share-button" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" rel="noreferrer">
-          <img src="https://mississippiriverdelta.org/files/2021/04/download-icon-share-facebook-svg-eps-png-psd-ai-vector-el-fonts-facebook-share-png-1600_522.png" alt="facebook-share" width="7%" />
+          <FontAwesomeIcon icon={faFacebook} size="2xl" style={{ color: '#4267b2' }} />
         </a>
         <a className="twitter-share-button" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHeBJpTHmu42JlXBIpJaQpzO86vaBNBevrFq4ZsvgGO15cDMP29qRmyBJ9pipIMaYZtg&usqp=CAU" alt="twitter-share" width="7%" />
+          <FontAwesomeIcon icon={faTwitter} size="2xl" style={{ color: '#1da1f2' }} />
         </a>
         <a className="pinterest-share-button" target="_blank" rel="noreferrer" href="https://www.pinterest.com/pin/create/button/">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1Ev4FtVSjkHTnLVaXCmGMDWK2AvY4MTMbXv-YPvEEE0VIuh64erHSx15eeHWC3jVc9g&usqp=CAU" alt="pinterest-share" width="7%" />
+          <FontAwesomeIcon icon={faPinterest} size="2xl" style={{ color: '#e60023' }} />
         </a>
       </div>
     </div>

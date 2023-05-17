@@ -6,8 +6,8 @@ body {
 .product-detail-section {
   display: flex;
   flex-direction: column;
-  margin-bottom: 50px;
-  min-width: 800px;
+  margin-bottom: 20px;
+  min-width: 1000px;
 }
 
 .product-detail-div {
@@ -17,14 +17,31 @@ body {
 
 /********************** Image Gallery **********************/
 .image-gallery-div {
-  max-height: 730px;
-  min-width: 500px;
-  width: 60%;
+  height: 750px;
+  min-width: 950px;
+  width: 95%;
   display: flex;
+  align-items: center;
   position: relative;
 
   /* image doesn't overflow the div */
   overflow: hidden;
+}
+
+.up-arrow-div {
+  position: absolute;
+  width: 35px;
+  top: 5px;
+  left: 70px;
+  cursor: pointer;
+}
+
+.down-arrow-div {
+  position: absolute;
+  width: 35px;
+  bottom: 5px;
+  left: 70px;
+  cursor: pointer;
 }
 
 .left-arrow-div {
@@ -32,6 +49,7 @@ body {
   width: 35px;
   top: 300px;
   left: 150px;
+  cursor: pointer;
 }
 
 .right-arrow-div {
@@ -39,29 +57,32 @@ body {
   width: 35px;
   top: 300px;
   right: 20px;
-}
-
-.main-photo-img {
-  /* showing the middle of the photo */
-  align-items: center;
-  min-width: 800px;
-  max-width: 1000px;
-  min-height: 730px;
-
-  /* images cover the entire div without stretching */
-  object-fit: cover;
+  cursor: pointer;
 }
 
 .image-gallery-thumbnails-div {
   position: absolute;
   left: 50px;
-  top: 20px;
-  width: 85px;
-  height: 680px;
+  top: 40px;
+  width: 80px;
+  height: 650px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow: hidden;
+
+  /* make the thumbnails list div scrollable */
+  overflow-y: auto;
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* Hide the scrollbar for Chrome */
+.image-gallery-thumbnails-div::-webkit-scrollbar {
+  display: none;
 }
 
 .image-gallery-thumbnail-img {
@@ -69,20 +90,49 @@ body {
   border-width: 1px;
   border-style: solid;
   border-radius: 10%;
-  width: 83px;
-  height: 83px;
+  width: 78px;
+  height: 78px;
   object-fit: cover;
+  cursor: pointer;
+}
+
+/********************** Main Image **********************/
+.expanded-view-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.main-image-div{
+  width: 100%; /* when expand it will show the whole screen*/
+  background-color: white;
+}
+
+.main-image-img {
+  /* showing the middle of the photo */
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  width: 100%;
+  height: 750px;
+  background-color: white;
+
+  /* images cover the entire div without stretching */
+  object-fit: cover;
+  cursor: url('data:image/svg+xml;charset=utf-8,<svg height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" fill="grey" /></svg>'), auto;
 }
 
 /************************************************************/
 
+
+
 /*************** Right part of product detail ***************/
 .product-detail-div__right {
-  width: 40%;
-  min-width: 400px;
+  max-width: 650px;
+  min-height: 750px;
+  min-width: 550px;
   position: relative;
-  margin-left: 50px;
-  margin-top: 20px;
+  padding: 20px 20px 0px 50px;
 }
 
 .product-detail-div__right>h1 {
@@ -94,7 +144,6 @@ body {
   margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
-  margin-right: 20px;
   gap: 20px 20px;
 }
 
@@ -106,6 +155,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  cursor: pointer;
 }
 
 .checkmark {
@@ -123,40 +173,112 @@ body {
   background-color: rgb(255, 241, 241);
 }
 
+/******************* Selectors ***************************/
 .selectors {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
   margin-top: 40px;
+  color: rgb(60, 60, 60);
 }
 
-#size-selector,
-#quantity-selector {
-  min-height: 50px;
-  padding: 10px;
-  padding-right: 50px;
-  margin-right: 20px;
-  border: 0;
-  outline: 1px solid;
-  border-right: 16px solid transparent;
+.size-selector-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 15px;
+  width: 200px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1.2px solid #a8a8a8;
+  margin-right: 30px;
+  cursor: pointer;
 }
 
-#addToCart-btn {
-  min-height: 50px;
-  padding: 10px;
-  padding-right: 150px;
-  margin-right: 20px;
+.quantity-selector-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 15px;
+  width: 120px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1.2px solid #a8a8a8;
+  cursor: pointer;
+}
+
+.size-selector-div:hover,
+.quantity-selector-div:hover,
+.add-to-cart-btn:hover {
+  border: 1.5px solid #3b3b3b;
+}
+
+.size-dropdown-menu-div {
+  position: absolute;
+  top: 60px;
+  width: 231px;
+  height: auto;
+  padding: 15px 0;
+  border-radius: 8px;
+  border: 1px solid #a8a8a8;
+  background-color: white;
+}
+
+.qty-dropdown-menu-div {
+  position: absolute;
+  top: 60px;
+  left: 261px;
+  width: 151px;
+  height: auto;
+  padding: 15px 0;
+  margin-right: 100px;
+  border-radius: 8px;
+  border: 1px solid #a8a8a8;
+  background-color: white;
+  z-index: 10;
+}
+
+.size-dropdown-menu-div>section,
+.qty-dropdown-menu-div>section {
+  padding: 10px 15px;
+}
+
+.size-dropdown-menu-div>section:hover,
+.qty-dropdown-menu-div>section:hover {
+  background-color: rgb(228, 243, 250);
+}
+
+.add-to-cart-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+  width: 300px;
+  height: 55px;
+  border-radius: 8px;
+  border: 1.2px solid #a8a8a8;
+  background-color: white;
+  color: rgb(60, 60, 60);
   margin-top: 30px;
-  background-color: transparent;
-  border-width: 1px;
-  border-color: black;
+  margin-right: 50px;
+  cursor: pointer;
 }
-
 
 /************************************************************/
 
 .product-description {
+  font-family: "Georgia", serif;
+  padding: 0 180px 0 80px;
+  font-size: 1.8em;
+  font-weight: 500;
+  line-height: 1.7;
+  color: #373737;
   margin-top: 20px;
 }
 
 .share-on-social-media {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+  margin: 5px 120px 20px 0;
 }

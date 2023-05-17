@@ -4,11 +4,17 @@ import OutfitListCard from './OutfitListCard.jsx'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 
-const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick}) => {
+const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick, test}) => {
     const [list, setList] = useState([]);
 
-    const addCard = (e)=>{
+    const eventHandler = (e) => {
         e.preventDefault();
+        addCard();
+    }
+    
+    
+    const addCard = ()=>{
+       
         let collection = [];
         if(JSON.parse(localStorage.getItem("OutfitList"))){
             collection = [...JSON.parse(localStorage.getItem("OutfitList"))]
@@ -49,6 +55,12 @@ const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick}) => {
         effectHandler();
     },[]);
 
+    if(test){
+        useEffect(()=>{
+            addCard();
+        },[test])
+    }
+
     return (
         <div >
             <header>
@@ -58,7 +70,7 @@ const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick}) => {
                 <input type="submit" value="Add to Outfit" />
             </form> */}
             <div className='OutfitList'>
-                <button className='addToOutfitBttn' onClick={addCard}>
+                <button className='addToOutfitBttn' onClick={eventHandler}>
                     <div className='faPlus'>
                         <FontAwesomeIcon  icon={faPlus} />
                     </div> 
