@@ -34,7 +34,8 @@ const SetStars = ({rating, setRating}) => {
   //   )
   // }
   return (
-    <div className="star-rating">
+    <div className="star-rating"
+      data-testid="ModalSetStars">
       {[...Array(5)].map((star, index) => {
         index += 1;
         return (

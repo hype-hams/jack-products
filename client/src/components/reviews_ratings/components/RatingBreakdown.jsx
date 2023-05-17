@@ -15,7 +15,7 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
     params: {
     product_id: productId,
     sort: 'newest',
-    count: 1000000000
+    count: 1000000
     }
   })
   .then((response) => {
@@ -68,7 +68,7 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
 });
 
   return (
-    <section>
+    <section >
       <div className="avg-star-rating">
         <Stars rating={rating}
           productId={productId}/>
@@ -79,7 +79,7 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
         <small>{totalReviews}&ensp;reviews</small>
         {totalRev()}
       </div>
-      <div className="ratingBreakdown">
+      <div className="ratingBreakdown" data-testid="RatingBreakdownBar">
         {stars}
       </div>
       <div className="ratingBreakdown-recommend">

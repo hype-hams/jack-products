@@ -10,7 +10,7 @@
     "server-dev": "nodemon server/app.js",
     "lint": "eslint",
     "lint:fix": "npm run lint -- --fix",
-    "coverage": "open ./coverage/lcov-report/index.html"
+    "coverage": "npx open ./coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",

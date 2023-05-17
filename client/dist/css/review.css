@@ -97,6 +97,9 @@ display: inline-block;
   padding-right: 10px;
   border-radius: .6em;
 }
+.product-breakdown {
+padding-bottom: 1em;
+}
 .product-word {
   display: flex;
   font-size: .4em;

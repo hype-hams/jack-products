@@ -45,21 +45,21 @@ const Stars = ({productId, rating}) => {
   const renderStarBar = () => {
     const starArr = [];
     //avg star val
-    const filled = calcStar()
+    const filled = calcStar();
     //converts to quarter
     for(let i = 0; i < Math.floor(filled); i++) {
-      starArr.push(1)
+      starArr.push(1);
       // starArr.push(<FontAwesomeIcon icon={faStar} className="fa fa-star empty-star full-star" key={i}/>)
     }
     if(filled < 5) {
       //decimal for partial star
-      const partialVal = filled - Math.floor(filled)
+      const partialVal = filled - Math.floor(filled);
       //converts to quarter
-      const partStar = partialStar(partialVal)
-      starArr.push(partStar)
+      const partStar = partialStar(partialVal);
+      starArr.push(partStar);
       // starArr.push(<FontAwesomeIcon icon={faStarHalfStroke} key={partStar} className="fa fa-star empty-star" id={"star-" + (partStar*100)}/>)
       // console.log('this is starArr', starArr.length)
-      const empty = 5 - starArr.length
+      const empty = 5 - starArr.length;
       // console.log('this is starArr empty', empty)
       for(let i = 0; i < empty; i++) {
         starArr.push(0)
@@ -80,6 +80,7 @@ const Stars = ({productId, rating}) => {
           WebkitTextFillColor: 'grey',
       }
       return <label key={i}
+        data-testid="★"
         id="avg-rate"
         style={starStyle}
         >★</label>
@@ -97,15 +98,15 @@ const Stars = ({productId, rating}) => {
   return (
     <div>
       <div className="avg-rating">
-        <label id="avg-rate-bar">
+        <label id="avg-rate-bar"
+          data-testid="StarsAvgRateBar">
           {renderStarBar()}</label> &emsp;
-        <big><b>{calcStar()}</b></big>
+        <big
+        data-testid="StarsAvgRateVal"><b>{calcStar()}</b></big>
       </div>
 
     </div>
   )
-
-
 
 
 }

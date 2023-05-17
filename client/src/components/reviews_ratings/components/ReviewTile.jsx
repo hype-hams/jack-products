@@ -88,7 +88,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
 
   return (
     <div>
-      <form className="review-tile">
+      <form className="review-tile" data-testid="review-tile">
 
         <section className="review-star-name">
           <div className="review-stars">

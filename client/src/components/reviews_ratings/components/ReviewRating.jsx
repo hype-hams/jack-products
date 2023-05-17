@@ -15,8 +15,6 @@ const ReviewRating = ({productId, productName}) => {
   const [avgRate, setAvgRate] = useState('');
   const [rating, setRating] = useState([]);
   const [dropSort, setDropSort] = useState('relevant');
-//MODAL REDO
-  const [showModal, setShowModal] = useState(false);
 //RatingStarFilter
   const [ratingFilter, setRatingFilter] = useState({
     1: false,
@@ -25,11 +23,11 @@ const ReviewRating = ({productId, productName}) => {
     4: false,
     5: false
   });
-  const addReview = (e) => {
-    e.preventDefault()
-    setShowModal(!showModal)
-    return <Modal showModal={showModal} setShowModal={setShowModal}/>
-  }
+  // const addReview = (e) => {
+  //   e.preventDefault()
+  //   setShowModal(!showModal)
+  //   return <Modal showModal={showModal} setShowModal={setShowModal}/>
+  // }
 
   const getReviews = () => {
     axios.get('/api/reviews', {
@@ -121,7 +119,7 @@ const ReviewRating = ({productId, productName}) => {
           </section>
         </div>
         <div>
-          <section className="breakdown">
+          <section className="breakdown product-breakdown">
             <h4>Product Breakdown</h4>
             {charTable}
           </section>
@@ -142,11 +140,10 @@ const ReviewRating = ({productId, productName}) => {
           </div>
 
           <div>
-            <Modal showModal={showModal}
+            <Modal
             productId={productId}
             productName={productName}
-            productRating={productRating}
-            setShowModal={setShowModal}/>
+            productRating={productRating}/>
           </div>
 
         </div>
