@@ -35,14 +35,14 @@ function ProductDetail({ product, styles }) {
           <small onClick={handleReadAllReviewClick}>Read all reviews</small>
           <h2>{product.category}</h2>
           <h1>{product.name}</h1>
-          <p>
+          <span>
             {style.sale_price ? (
               <p>
                 <s>{`$${style.original_price}`}</s>
                 <span style={{ color: 'red' }}>{` $${style.sale_price}`}</span>
               </p>
             ) : `$${style.original_price}`}
-          </p>
+          </span>
           <p>
             <b>STYLE &gt; </b>
             {style.name}
