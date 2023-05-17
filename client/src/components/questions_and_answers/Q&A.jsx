@@ -62,7 +62,8 @@ function QA({ productID }) {
 
 
   return (
-    <div>
+    <div data-testid="qa-1">
+      <h1>Questions and answers</h1>
       <Search questions={questions} setQuestions={setQuestions} filter={filter} setFilter={setFilter} />
       {
         collapsed ? (
