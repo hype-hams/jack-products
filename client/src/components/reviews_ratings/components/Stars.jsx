@@ -5,17 +5,17 @@ import { faStar, faStarHalfStroke} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-const Stars = ({productId, rating}) => {
-  const [avgRate, setAvgRate] = useState('')
+const Stars = ({productId, rating, avgRate}) => {
+  // const [avgRate, setAvgRate] = useState('')
   // const [avg, setAvg] = useState(calcStar)
   //Grabs star information from server
-  const getStars = () => {
-      const metaData = axios.get(`/api/reviews/meta?product_id=${productId}`)
-      .then(response => {
-        // console.log('this is stars data', response.data.ratings)
-        setAvgRate(response.data.ratings)
-      })
-  }
+  // const getStars = () => {
+  //     const metaData = axios.get(`/api/reviews/meta?product_id=${productId}`)
+  //     .then(response => {
+  //       // console.log('this is stars data', response.data.ratings)
+  //       setAvgRate(response.data.ratings)
+  //     })
+  // }
   //calculates avg star rating
   const calcStar = () => {
     let totalRate = 0;
@@ -39,8 +39,6 @@ const Stars = ({productId, rating}) => {
       return .75
     }
   }
-
-
   //renders avg star bar
   const renderStarBar = () => {
     const starArr = [];
@@ -57,52 +55,42 @@ const Stars = ({productId, rating}) => {
       //converts to quarter
       const partStar = partialStar(partialVal);
       starArr.push(partStar);
-      // starArr.push(<FontAwesomeIcon icon={faStarHalfStroke} key={partStar} className="fa fa-star empty-star" id={"star-" + (partStar*100)}/>)
-      // console.log('this is starArr', starArr.length)
+
       const empty = 5 - starArr.length;
-      // console.log('this is starArr empty', empty)
       for(let i = 0; i < empty; i++) {
         starArr.push(0)
-        // starArr.push(<FontAwesomeIcon icon={faStar} key={i+1337} className="fa fa-star empty-star" />)
       }
-      // console.log('this is starArr', starArr)
 
     }
-    // return starArr
-    // console.log('this is starArr', starArr.length)
-    const stars = starArr.map((val, i) => {
-      const starStyle = {
-        border:`solid 1px black`,
-        borderRadius:'5px',
-        background: `linear-gradient(90deg, gold
-          ${val * 100}%, white ${val * 100}%)`,
-          WebkitBackgroundFill: 'text',
-          WebkitTextFillColor: 'grey',
-      }
-      return <label key={i}
-        data-testid="★"
-        id="avg-rate"
-        style={starStyle}
-        >★</label>
-      })
-      return stars
-
+    return starArr
   }
 
+  const stars = renderStarBar().map((val, i) => {
+    const starStyle = {
+      background: `linear-gradient(90deg, gold
+        ${val * 100}%, gray ${val * 100}%)`,
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+    }
+    return (<label key={i}
+      data-testid="★"
+      id="avg-rate"
+      style={starStyle}
+      >★</label>)
+    })
 
-  useEffect(() => {
-    getStars()
-    // calcStar()
-  }, [])
+  // useEffect(() => {
+  //   // getStars()
+  // }, [])
 
   return (
     <div>
       <div className="avg-rating">
         <label id="avg-rate-bar"
           data-testid="StarsAvgRateBar">
-          {renderStarBar()}</label> &emsp;
-        <big
-        data-testid="StarsAvgRateVal"><b>{calcStar()}</b></big>
+          {stars}</label> &emsp;
+
+        <big><b>{calcStar()}</b></big>
       </div>
 
     </div>

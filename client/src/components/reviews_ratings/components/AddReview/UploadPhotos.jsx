@@ -18,10 +18,10 @@ const UploadPhotos = ({photos, setPhotos}) => {
       // alert('you can only upload 5 images')
     }
 }
-const uploadFiles = (e) => {
-  e.preventDefault()
-  console.log('this is photos', photos)
-}
+// const uploadFiles = (e) => {
+//   e.preventDefault()
+//   console.log('this is photos', photos)
+// }
 
 return (
   <section>
@@ -32,12 +32,15 @@ return (
       </div>
       <div className="form-group">
           <input name="photos"
+          aria-label="photos"
           type="file"
           disabled={false}
           id="form-control"
           onChange={uploadMultipleFiles} multiple />
       </div>
-      <button type="button" onClick={uploadFiles}>Upload</button>
+      <button type="button"
+        // onClick={uploadFiles}
+        aria-label="upload" >Upload</button>
   </section>
   )
 }

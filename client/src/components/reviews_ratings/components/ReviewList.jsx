@@ -17,7 +17,7 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
         params: {
           product_id: productId,
           sort: dropSort,
-          count: 1000,
+          count: 10000,
           page: page
         }
       })
@@ -32,7 +32,8 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
   }
 
   const handleScroll = () => {
-    if (window.innerHeight + document.documentElement.scrollTop >= 2300 || isLoading) {
+    if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight || isLoading) {
+      //3600
       // console.log(document.documentElement.offsetHeight)
       return;
     }
@@ -55,10 +56,10 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isLoading]);
 
-  useEffect(() => {
-    getReviews()
-    console.log('this is new drop sort', dropSort)
-  }, [dropSort])
+  // useEffect(() => {
+  //   getReviews()
+  //   // console.log('this is new drop sort', dropSort)
+  // }, [dropSort])
 
 
   let alteredList = reviewList
@@ -78,7 +79,9 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
 
   return (
     <div>
-        <div className="infinite-reviews">
+        <div className="infinite-reviews"
+        data-testid="ReviewList"
+        >
         {
           alteredList.length !== 0 ? alteredList
           : <p>no reviews found</p>
