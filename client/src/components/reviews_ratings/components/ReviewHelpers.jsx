@@ -28,9 +28,6 @@ const ReviewHelpers = {
 
       data: {review_id: review_id}
     })
-      .then((response) => {
-        return true
-      })
   },
 
 

@@ -137,6 +137,7 @@ const Modal = ({productRating, productName, productId, test}) => {
   return (
     <div className="modal-button" data-testid="modalTest">
       <button type="button"
+      data-testid="buttonClick"
         aria-label="modal-tester"
         onClick={() => setShowModal(!showModal)}>
         Add Review
@@ -152,6 +153,7 @@ const Modal = ({productRating, productName, productId, test}) => {
       >
         <div ref={modalRef} className="Modal-inside">
           <form onSubmit={validateForm}
+            name="modal-form"
             data-testid="modal-form">
             <h1>Write Your Review</h1>
             <h3>About your {productName}</h3>
@@ -261,6 +263,7 @@ const Modal = ({productRating, productName, productId, test}) => {
 <br></br>
             {/* do not alter */}
             <button type="button"
+            data-testid="buttonClick"
               onClick={() => setShowModal(false)}>Cancel</button>
             <button
               type="submit">Submit Review</button>
