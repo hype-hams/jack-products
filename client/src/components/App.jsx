@@ -7,8 +7,8 @@
 import React, { useState, useEffect, createContext } from 'react';
 import ProductDetail from './product_detail/Product_detail_main.jsx';
 import RelatedItems from './related_items/RelatedItems.jsx';
-import QA from './questions_and_answers/Q&A.jsx'
-import ReviewRating from './reviews_ratings/components/ReviewRating.jsx'
+import QA from './questions_and_answers/Q&A.jsx';
+import ReviewRating from './reviews_ratings/components/ReviewRating.jsx';
 
 export const ProductContext = createContext(null);
 /* using useContext instruction:
@@ -25,11 +25,6 @@ function App(props) {
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // const [productId, setProductId] = useState('40344')
-  // const [productName, setProductName] = useState('Camo Onesie');
-  // const [productId, setProductId] = useState('40344')
-  // const [productName, setProductName] = useState('Camo Onesie');
-
   const fetchDataById = async (id = 40344) => {
     try {
       setLoading(true); // clear the prev state
@@ -43,13 +38,11 @@ function App(props) {
       const styleResponse = await fetch(`/api/products/${id}/styles`);
       const styleData = await styleResponse.json();
       setStyles(styleData);
-      console.log('styleData: ', styleData);
 
       // fetching Product Related data
       const relatedResponse = await fetch(`/api/products/${id}/related`);
       const relatedData = await relatedResponse.json();
       setRelated(relatedData);
-      console.log('relatedData: ', relatedData);
 
       setLoading(false);
     } catch (err) {
@@ -74,7 +67,7 @@ function App(props) {
         ) : (
           <div>
             <ProductContext.Provider value={{ product, setProduct }}>
-              <div className='product-detail'>
+              <div className="product-detail">
                 <ProductDetail product={product} styles={styles} />
               </div>
               <div className="related-items">
@@ -84,8 +77,10 @@ function App(props) {
                 <QA productID={product.id} />
               </div>
               <div className="rating-review">
-                <ReviewRating productId={product.id}
-                  productName={product.name}/>
+                <ReviewRating
+                  productId={product.id}
+                  productName={product.name}
+                />
               </div>
             </ProductContext.Provider>
           </div>
@@ -94,10 +89,6 @@ function App(props) {
     </div>
 
   );
-};
+}
 
-// {/* <ProductDetail /> */}
 export default App;
-
-
-// {related.map((item) => <div key={item} onClick={() => handleRelatedItemClick(item)}>{item}</div>)}
