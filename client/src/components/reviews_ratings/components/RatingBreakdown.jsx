@@ -73,7 +73,7 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
     <section data-testid="RatingBreakdown">
       <div className="avg-star-rating">
         <Stars rating={rating}
-          avgRate={avgRate}
+        avgRate={avgRate}
           productId={productId}/>
         {/* TODO: style stars here */}
         {/* <small>{totalReviews}&ensp;reviews</small> */}

@@ -57,8 +57,6 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
       // document.getElementById('notext').style.color = 'gray';
     }
     if(yescheck.checked) {
-      //NEED TO GRAB HELPFULNESS DATA
-      // console.log('yes was checked  ')
       ReviewHelpers.markHelpful(revObj.review_id)
     }
   }
@@ -93,7 +91,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
         <section className="review-star-name">
           <div className="review-stars">
             {reviewStars()}
-            {/* <Stars productId={revObj.review_id} rating={revObj.rating}/> */}
+            {/* <Stars productId={revObj.review_id} avgRate={revObj.rating}/> */}
           </div>
 
           <div className="review-namedate">

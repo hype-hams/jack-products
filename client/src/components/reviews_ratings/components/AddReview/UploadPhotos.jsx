@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react';
 const UploadPhotos = ({photos, setPhotos}) => {
   let fileObj = []
   let fileArr = []
-  // const [uploadImage, setUploadImage] = useState(null)
 
   const uploadMultipleFiles = (e) => {
     fileObj.push(e.target.files)
@@ -15,7 +14,6 @@ const UploadPhotos = ({photos, setPhotos}) => {
     if (photos.length === 4) {
       let maxPhotos = document.getElementById('form-control')
       maxPhotos.disabled = true
-      // alert('you can only upload 5 images')
     }
 }
 // const uploadFiles = (e) => {
@@ -24,7 +22,7 @@ const UploadPhotos = ({photos, setPhotos}) => {
 // }
 
 return (
-  <section>
+  <section className="upload">
       <div className="multi-preview">
           {(photos || []).map((url, ind) => (
               <img src={url} alt="..." width={"100px"} key={ind}/>
@@ -38,9 +36,9 @@ return (
           id="form-control"
           onChange={uploadMultipleFiles} multiple />
       </div>
-      <button type="button"
+      {/* <button type="button"
         // onClick={uploadFiles}
-        aria-label="upload" >Upload</button>
+        aria-label="upload" >Upload</button> */}
   </section>
   )
 }

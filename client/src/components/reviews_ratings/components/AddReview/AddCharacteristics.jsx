@@ -107,7 +107,6 @@ const AddCharacteristics = ({charObj, characteristics, setCharacteristics}) => {
   //   }
   // }
     const clickHandle = (e) => {
-      console.log('THS IS EVENT', e.target)
       setCharacteristics({...characteristics, [e.target.name]: e.target.value})
     }
   // const setCharObj = (charID, value) => {

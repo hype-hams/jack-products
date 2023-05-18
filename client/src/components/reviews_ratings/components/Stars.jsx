@@ -6,17 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const Stars = ({productId, rating, avgRate}) => {
-  // const [avgRate, setAvgRate] = useState('')
-  // const [avg, setAvg] = useState(calcStar)
-  //Grabs star information from server
-  // const getStars = () => {
-  //     const metaData = axios.get(`/api/reviews/meta?product_id=${productId}`)
-  //     .then(response => {
-  //       // console.log('this is stars data', response.data.ratings)
-  //       setAvgRate(response.data.ratings)
-  //     })
-  // }
-  //calculates avg star rating
+
   const calcStar = () => {
     let totalRate = 0;
     let totalVal = 0;
