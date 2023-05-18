@@ -18,7 +18,7 @@ body {
 /********************** Image Gallery **********************/
 .image-gallery-div {
   height: 750px;
-  min-width: 950px;
+  min-width: 60%;
   width: 95%;
   display: flex;
   align-items: center;
@@ -145,8 +145,8 @@ body {
 
 /*************** Right part of product detail ***************/
 .product-detail-div__right {
-  max-width: 650px;
   min-height: 750px;
+  width: 49%;
   min-width: 550px;
   position: relative;
   padding: 20px 20px 0px 50px;
