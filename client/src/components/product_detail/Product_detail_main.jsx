@@ -11,7 +11,7 @@ import ImageGallery from './ImageGallery.jsx';
 import Style from './Style.jsx';
 import Stars from '../reviews_ratings/components/Stars.jsx';
 
-function ProductDetail({ product, styles }) {
+function ProductDetail({ product, styles, avgRate }) {
   // styles.results is an array storing all styles, set the first style object as default style
   const [style, setStyle] = useState(styles.results[0]);
 
@@ -33,8 +33,10 @@ function ProductDetail({ product, styles }) {
       <div className="product-detail-div">
         <ImageGallery photos={style.photos} />
         <div className="product-detail-div__right">
-          <div className="star"><Stars productId={product.id} /></div>
-          <small onClick={handleReadAllReviewClick}>Read all reviews</small>
+          <div className="star-and-review">
+            <Stars avgRate={avgRate} />
+            <small onClick={handleReadAllReviewClick}>Read all reviews</small>
+          </div>
           <h2>{product.category}</h2>
           <h1>{product.name}</h1>
           <span>
