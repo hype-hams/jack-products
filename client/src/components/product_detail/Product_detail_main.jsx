@@ -15,6 +15,7 @@ function ProductDetail({ product, styles }) {
   // styles.results is an array storing all styles, set the first style object as default style
   const [style, setStyle] = useState(styles.results[0]);
 
+
   // change style when user click on thumbnail
   const handleThumbnailOnClick = (styleId) => {
     const newStyle = styles.results.filter((item) => item.style_id === styleId);

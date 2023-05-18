@@ -7,6 +7,7 @@ import {
   render, screen, fireEvent, waitFor, cleanup, act,
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import axios from 'axios';
 import AddToCart from '../AddToCart.jsx';
 import ImageGallery from '../ImageGallery.jsx';
 import ProductDetail from '../Product_detail_main.jsx';
@@ -25,6 +26,22 @@ afterAll(() => {
 });
 afterEach(() => {
   cleanup();
+});
+
+jest.mock('axios');
+
+axios.get.mockImplementation((url) => {
+  if (url === '/api/reviews/meta?product_id=40344') {
+    return Promise.resolve({
+      data: {
+        product_id: '40351',
+        ratings: {
+          1: '16', 2: '9', 3: '34', 4: '12', 5: '75',
+        },
+      },
+    });
+  }
+  return Promise.reject(new Error('Mock axios error'));
 });
 
 describe('Testing in <App />', () => {
