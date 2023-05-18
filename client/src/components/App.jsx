@@ -44,7 +44,7 @@ function App(props) {
       const relatedResponse = await fetch(`/api/products/${id}/related`);
       const relatedData = await relatedResponse.json();
       setRelated(relatedData);
-      // reviews/meta?product_id=40344
+
       // fetching Ratings data
       const ratingsResponse = await fetch(`/api/reviews/meta?product_id=${id}`);
       const ratingsData = await ratingsResponse.json();
