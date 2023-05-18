@@ -69,10 +69,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-
+  transition: transform 0.5s ease-in-out !important;
   /* make the thumbnails list div scrollable */
   overflow-y: auto;
-
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none;
   /* IE and Edge */
@@ -86,14 +85,19 @@ body {
 }
 
 .image-gallery-thumbnail-img {
-  border-color: rgb(219, 219, 219);
-  border-width: 1px;
+  border-color: rgb(213, 213, 213);
+  border-width: 1.4px;
   border-style: solid;
   border-radius: 10%;
   width: 78px;
   height: 78px;
   object-fit: cover;
   cursor: pointer;
+  transition: opacity 0.3s ease-in-out !important;
+}
+
+.image-gallery-thumbnail-img:hover {
+  opacity: 1 !important;
 }
 
 /********************** Main Image **********************/
@@ -103,8 +107,19 @@ body {
   right: 20px;
   cursor: pointer;
 }
-.main-image-div{
-  width: 100%; /* when expand it will show the whole screen*/
+
+.up-arrow-div:hover,
+.down-arrow-div:hover,
+.left-arrow-div:hover,
+.right-arrow-div:hover,
+.expanded-view-icon:hover {
+  transform: scale(1.5);
+  transition: transform 0.3s ease-in-out
+}
+
+.main-image-div {
+  width: 100%;
+  /* when expand it will show the whole screen*/
   background-color: white;
   overflow: hidden;
 }
@@ -117,10 +132,9 @@ body {
   width: 100%;
   height: 750px;
   background-color: white;
-
   /* images cover the entire div without stretching */
   object-fit: cover;
-  cursor: url('data:image/svg+xml;charset=utf-8,<svg height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" fill="grey" /></svg>'), auto;
+  cursor: url('data:image/svg+xml;charset=utf-8,<svg height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" fill="white" stroke="grey" stroke-width="10" /></svg>'), auto;
 }
 
 /************************************************************/
@@ -139,13 +153,22 @@ body {
 .product-detail-div__right>h1 {
   font-size: 40px;
 }
+
 .product-detail-div__right>small {
+  text-decoration: underline;
   font-size: 0.9em;
   cursor: pointer;
 }
-.product-detail-div__right>small:hover {
-  text-decoration: underline;
+.product-detail-div__right>b {
+  display: flex;
+  align-items: center;
 }
+
+.star {
+  transform: scale(0.7) translate(-22%);;
+  margin-bottom: 5px;
+}
+
 /* style-thumbnails-div contains all the style thumbnails */
 .style-thumbnails-div {
   margin-top: 20px;
@@ -166,10 +189,10 @@ body {
 }
 
 .checkmark {
-  position: absolute;
-  width: 20%;
-  top: 10px;
-  right: 10px;
+  position: absolute !important;
+  width: 20% !important;
+  top: 10px !important;
+  right: 10px !important;
 }
 
 .style-each-thumbnail-img {
@@ -178,6 +201,16 @@ body {
   object-fit: cover;
   border-radius: 50%;
   background-color: rgb(255, 241, 241);
+  transition: filter 0.3s ease-in-out;
+}
+
+.style-each-thumbnail-img:hover {
+  filter: none !important;
+}
+
+.style-each-thumbnail-div:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s ease-in-out;
 }
 
 /******************* Selectors ***************************/
@@ -197,7 +230,7 @@ body {
   width: 200px;
   height: 40px;
   border-radius: 8px;
-  border: 1.2px solid #a8a8a8;
+  border: 1.2px solid #c8c8c8;
   margin-right: 30px;
   cursor: pointer;
 }
@@ -210,14 +243,15 @@ body {
   width: 120px;
   height: 40px;
   border-radius: 8px;
-  border: 1.2px solid #a8a8a8;
+  border: 1.2px solid #c8c8c8;
   cursor: pointer;
 }
 
 .size-selector-div:hover,
 .quantity-selector-div:hover,
 .add-to-cart-btn:hover {
-  border: 1.5px solid #3b3b3b;
+  border-color: rgba(130, 148, 153, 0.41);
+  box-shadow: inset 0px 0px 1px 1px rgba(130, 148, 153, 0.41);
 }
 
 .size-dropdown-menu-div {
@@ -263,7 +297,7 @@ body {
   width: 300px;
   height: 55px;
   border-radius: 8px;
-  border: 1.2px solid #a8a8a8;
+  border: 1.2px solid #c8c8c8;
   background-color: white;
   color: rgb(60, 60, 60);
   margin-top: 30px;

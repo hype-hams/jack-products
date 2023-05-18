@@ -9,6 +9,7 @@ import { faFacebook, faTwitter, faPinterest } from '@fortawesome/free-brands-svg
 import AddToCart from './AddToCart.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import Style from './Style.jsx';
+import Stars from '../reviews_ratings/components/Stars.jsx';
 
 function ProductDetail({ product, styles }) {
   // styles.results is an array storing all styles, set the first style object as default style
@@ -32,6 +33,7 @@ function ProductDetail({ product, styles }) {
       <div className="product-detail-div">
         <ImageGallery photos={style.photos} />
         <div className="product-detail-div__right">
+          <div className="star"><Stars productId={product.id} /></div>
           <small onClick={handleReadAllReviewClick}>Read all reviews</small>
           <h2>{product.category}</h2>
           <h1>{product.name}</h1>
