@@ -43,6 +43,7 @@ function AddToCart({ skus }) {
     } else {
       setSize('SELECT SIZE');
       setQuantity('-');
+      setQtyOptions([]);
       setDisable(false);
       // handle close the menu when clicking on elsewhere
       document.body.addEventListener('click', handleClickOnPage);
