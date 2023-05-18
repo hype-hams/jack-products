@@ -6,10 +6,10 @@ const SortBar = ({setDropSort}) => {
   return (
     <section className="sortbar">
      <select id="sortbar"
+      aria-label="sortbar"
       onChange={(e) => {
         e.preventDefault()
         const selection = e.target.value
-        // console.log(selection)
         setDropSort(selection)
       }}>
         <option value="relevant">Relevant</option>

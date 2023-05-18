@@ -23,18 +23,14 @@ const ReviewRating = ({productId, productName}) => {
     4: false,
     5: false
   });
-  // const addReview = (e) => {
-  //   e.preventDefault()
-  //   setShowModal(!showModal)
-  //   return <Modal showModal={showModal} setShowModal={setShowModal}/>
-  // }
+
 
   const getReviews = () => {
     axios.get('/api/reviews', {
       params: {
         product_id: productId,
         sort: dropSort,
-        count: 1000
+        count: 10000
       }
     })
     .then((response) => {

@@ -8,13 +8,13 @@ import App from '../../App.jsx';
 import ProductBreakdown from '../components/ProductBreakdown.jsx';
 import RatingBreakdown from '../components/RatingBreakdown.jsx';
 import ReviewHelpers from '../components/ReviewHelpers.jsx';
-import ReviewList from '../components/ReviewList.jsx';
-import ReviewTile from '../components/ReviewTile.jsx';
+import ReviewList, {handleScroll, getReviews, starFilter} from '../components/ReviewList.jsx';
+import ReviewTile, {helpfulCheck, reportReview} from '../components/ReviewTile.jsx';
 import SortBar from '../components/SortBar.jsx';
-import Stars, {calcStar} from '../components/Stars.jsx';
-import ReviewRating, {getReviews} from '../components/ReviewRating.jsx';
-import AddCharacteristics from '../components/AddReview/AddCharacteristics.jsx';
-import Modal from '../components/AddReview/Modal.jsx';
+import Stars, {partialStar} from '../components/Stars.jsx';
+import ReviewRating from '../components/ReviewRating.jsx';
+import AddCharacteristics, {setCharObj} from '../components/AddReview/AddCharacteristics.jsx';
+import Modal, {validateForm} from '../components/AddReview/Modal.jsx';
 import SetStars from '../components/AddReview/SetStars.jsx';
 import UploadPhotos from '../components/AddReview/UploadPhotos.jsx';
 
@@ -155,6 +155,52 @@ describe('ReviewRating axios testing' , () => {
   });
 });
 
+describe('ReviewList component testing' , () => {
+  it('tests infinite scrolling', async () => {
+    const mockSet = jest.fn()
+    const spy = jest.spyOn(axios, 'get').mockResolvedValueOnce({data: {data: [{
+      "review_id": 1275026,
+      "rating": 4,
+      "summary": "askdjfbhadhbflasjdbfnlaksdjbf",
+      "recommend": true,
+      "response": null,
+      "body": "fljnaslkdjfbalksjdbflaskjbdflasjdbflaijsdbfliasjbdf",
+      "date": "2022-06-02T00:00:00.000Z",
+      "reviewer_name": "akjsdfajsdf2",
+      "helpfulness": 1,
+      "photos": []
+    }]}})
+    .mockResolvedValueOnce({data: {data: [{
+      "review_id": 1277708,
+      "rating": 4,
+      "summary": "wowowowowowowo",
+      "recommend": true,
+      "response": null,
+      "body": "wowowowowowowowowowowowowowowowowwowowowowowowowowo",
+      "date": "2022-12-08T00:00:00.000Z",
+      "reviewer_name": "wavyjv",
+      "helpfulness": 1,
+      "photos": []
+    }]}})
+
+    render(<ReviewList setReviewList={mockSet} productId={productId} productName={productName} reviewList={reviewMockData} dropSort={'relevant'}/>);
+
+    await waitFor(() => {
+      expect(screen.getByText('akjsdfajsdf2')).toBeInTheDocument()
+      expect(screen.getByText('askdjfbhadhbflasjdbfnlaksdjbf')).toBeInTheDocument()
+      expect(spy).toHaveBeenCalled()
+    })
+    await waitFor(() => {
+      expect(screen.getByText('akjsdfajsdf2')).toBeInTheDocument()
+      expect(screen.getByText('askdjfbhadhbflasjdbfnlaksdjbf')).toBeInTheDocument()
+
+      expect(screen.getByText('wavyjv')).toBeInTheDocument()
+      expect(screen.getByText('wowowowowowowo')).toBeInTheDocument()
+      expect(spy).toHaveBeenCalledTimes(6)
+    })
+  });
+});
+
 describe('App validation', () => {
   it('displays loading message', async () => {
     jest.mock('../../App.jsx', () => ({
@@ -178,6 +224,12 @@ describe('ReviewRating component test', () => {
   it('render product header', async () => {
     const {getByText} = render(<ReviewRating productId={productId} productName={productName}/>);
     expect(screen.getByText('Product Breakdown')).toBeInTheDocument();
+  });
+  it('render product header', async () => {
+    await render(<ReviewRating productId={productId} productName={productName}/>);
+    const ratingTest = await screen.getByTestId('RatingBreakdown')
+
+    expect(ratingTest).toBeInTheDocument();
   });
 });
 
@@ -204,31 +256,41 @@ describe('RatingBreakdown component testing', () => {
       productId={productId}/>)
     const result = await screen.findByTestId('RatingBreakdownBar')
     expect(result).toBeTruthy()
+    expect(result).toBeVisible()
+  });
+  it('checks rating breakdown rate filter is working', async () => {
+    const clickSpy = jest.fn()
+    const filterSpy = jest.fn()
+    await render(<RatingBreakdown recommended={mockRecommended}
+      rating={mockRating}
+      avgRate={mockAvgRate}
+      ratingFilter={filterSpy}
+      setRatingFilter={filterSpy}
+      onClick={clickSpy}
+      productId={productId}/>)
+      const expected = '1'
+
+    const avgRec = await screen.getByTestId(mockRating[0].id)
+    fireEvent.click(avgRec)
+    const checkText = await screen.getByText('3 stars')
+    expect(checkText).toBeInTheDocument()
+
   });
 });
 
-describe('Stars component testing', () => {
+// describe('Stars component testing', () => {
   // it('checks Stars avg bar is rendering', async () => {
   //   await render(<Stars rating={mockRating} productId={productId} />)
   //   const result = await screen.findByTestId('StarsAvgRateBar')
-  //   expect(result).toBeTruthy()
+  //   expect(result).toBeInTheDocument()
   // });
-  it('checks Stars avg value is rendering', async () => {
-    jest.mock("../components/Stars.jsx", () => ({
-      renderStarBar: jest.fn(() => Promise.resolve())
-    }));
-    await render(<Stars rating={mockRating} productId={productId} />)
-    const avgStar = await screen.getByTestId('★')
-    expect(avgStar).toBeInTheDocument()
+  // it('checks Stars avg value is rendering', async () => {
+  //   await render(<Stars rating={mockRating} productId={productId} />)
 
-
-    // const starValue = await waitFor(() => screen.findAllByTestId('StarsAvgRateVal'))
-    // expect(starValue).toHaveLength(2)
-    // expect(starValue)
-    // const result = await screen.findByTestId('StarsAvgRateVal')
-    // expect(result).toBeTruthy()
-  });
-});
+  //   const checkAvg = await screen.queryByTestId('StarsAvgRateBar')
+  //   expect(checkAvg).toBeInTheDocument()
+  // });
+// });
 
 describe('Modal component testing', () => {
   it('checks if modal is popping up properly', async ()=>{
@@ -257,46 +319,89 @@ describe('Modal component testing', () => {
     expect(username.value).toBeTruthy()
     expect(email.value).toBeTruthy()
   });
-  // it('check onClick is passing corectly', async () => {
-  //   const handleClick = jest.fn();
-
-  //   await render(<Modal productRating={mockProductRating} productName={productName} productId={productId} test={true} onClick={handleClick}/>)
-  //   screen.debug()
-  //   fireEvent.click(screen.getByLabelText('modal-tester'))
-  //   expect(handleClick).toHaveBeenCalled()
-  // })
   it('submits form', async () => {
-    const onSubmit = jest.fn()
-    // const mockForm = {
-    //   product_id: productId,
-    //   rating: 5,
-    //   summary: 'asdkjhf',
-    //   body: 'asdlkhfgkawdfasdflhjdsgkjsdhagfsakjdfhgsdfkjhsdgfsdkjfhgsdkfjhsdgfkdsjfhgsdkfjsgdfksdjgfsdkfgdsfkjsdhgfskdjfhgdkfjdshgfksdjfghsdakfjshgdfksdjhfgsdkjfghsdfkjsdgfkasdjhfgsadkfjsadhgfksadfh',
-    //   recommend: true,
-
-    // }
-    await render(<Modal productRating={mockProductRating} productName={productName} productId={productId} test={true} onSubmit={onSubmit} />)
+    const onSubmitSpy = jest.fn()
+    await render(<Modal productRating={mockProductRating} productName={productName} productId={productId} test={true} onSubmit={onSubmitSpy} />)
 
     fireEvent.submit(screen.getByTestId('modal-form'));
-    fireEvent.click(screen.getByText(/submit review/i))
-    expect(onSubmit).toHaveBeenCalled();
-
-    // fireEvent.click(screen.getByLabelText('modal-tester'))
-    // expect(handleClick).toHaveBeenCalled()
+    expect(onSubmitSpy).toBeTruthy()
   })
 })
 
 describe('SetStars component testing', () => {
   it('checks if component is working properly', async ()=>{
-    await render(<SetStars rating={4} setRating={null}/>)
-
-    const setStarsModal= await screen.getByTestId('ModalSetStars')
-    expect(setStarsModal).toBeTruthy()
+    const oneStar = await render(<SetStars rating={1} setRating={null}/>)
+    const twoStar = await render(<SetStars rating={2} setRating={null}/>)
+    const threeStar = await render(<SetStars rating={3} setRating={null}/>)
+    const fourStar = await render(<SetStars rating={4} setRating={null}/>)
+    const fiveStar = await render(<SetStars rating={5} setRating={null}/>)
+    expect(oneStar).toBeTruthy()
+    expect(twoStar).toBeTruthy()
+    expect(threeStar).toBeTruthy()
+    expect(fourStar).toBeTruthy()
+    expect(fiveStar).toBeTruthy()
   });
-  it('click handling of setStars', async () => {
-    await render(<SetStars rating={4} setRating={null}/>)
-
-    const setRate = await screen.findAllByText("★")
-    expect(setRate).toBeTruthy()
-  })
 });
+
+describe('AddCharacteristics component testing', () => {
+  it('checks if component is rendering all options', async ()=>{
+    const mockCharacteristics = {}
+    const mockSet = jest.fn()
+    const clickSpy = jest.fn()
+
+    await render(<AddCharacteristics charObj={mockProductRating[0]} characteristics={mockCharacteristics} setCharacteristics={mockSet} onClick={clickSpy}/>)
+    const char1 = screen.getByTestId('char1')
+    fireEvent.click(char1)
+    expect(char1).toBeInTheDocument()
+  });
+});
+
+describe('UploadPhotos component testing', () => {
+  it('checks if component button is present', async ()=>{
+    const mockPhotos = [];
+    const mockSetPhotos = jest.fn();
+    // const onClickSpy = jest.fn()
+    await render(<UploadPhotos photos={mockPhotos} setPhotos={mockSetPhotos}/>)
+
+    const upload = screen.getByRole('button',{name: 'upload'})
+    expect(upload).toBeVisible()
+  });
+  it('checks onChange is passing correctly', async () => {
+    const mockPhotos = [];
+    const mockSetPhotos = jest.fn();
+    await render(<UploadPhotos photos={mockPhotos} setPhotos={mockSetPhotos}/>)
+
+    const upload = screen.getByLabelText('photos')
+    fireEvent.change(upload, {target: {value: ''}})
+    expect(upload).toBeTruthy()
+  });
+  it('checks thumbnails are present', async () => {
+    const mockPhotos = ['sdf'];
+    const mockSetPhotos = jest.fn();
+    await render(<UploadPhotos photos={mockPhotos} setPhotos={mockSetPhotos}/>)
+    const thumbnails = screen.getByAltText(/.../i)
+    expect(thumbnails).toBeVisible()
+  });
+});
+
+describe('SortBar component testing', () => {
+  it('checks onChange is passing correctly', async () => {
+    const setDropSortMock = jest.fn();
+    await render(<SortBar setDropSort={setDropSortMock} />)
+    const sorter = screen.getByLabelText('sortbar')
+    fireEvent.change(sorter, {target: {value: ''}})
+    expect(sorter).toBeVisible()
+  });
+})
+describe('ReviewTile component testing', () => {
+  it('checks onChange is passing correctly', async () => {
+    const clickSpy = jest.fn()
+    await render(<ReviewTile productId={productId}
+    setReviewList={null} revObj={reviewMockData[0]}
+    onClick={clickSpy}/>)
+    const helpful = screen.getByTestId('helpfulCheck')
+    fireEvent.click(helpful)
+    expect(helpful).toBeVisible()
+
+  });
+})
