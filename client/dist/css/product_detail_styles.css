@@ -156,19 +156,21 @@ body {
   font-size: 40px;
 }
 
-.product-detail-div__right>small {
-  text-decoration: underline;
-  font-size: 0.9em;
-  cursor: pointer;
-}
 .product-detail-div__right>b {
   display: flex;
   align-items: center;
 }
 
-.star {
-  transform: scale(0.7) translate(-22%);;
-  margin-bottom: 5px;
+.star-and-review {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+}
+
+.star-and-review>small {
+  text-decoration: underline;
+  font-size: 0.9em;
+  cursor: pointer;
 }
 
 /* style-thumbnails-div contains all the style thumbnails */
