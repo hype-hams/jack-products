@@ -33,6 +33,7 @@ h1 {
   position: absolute;
   min-width: 1000px;
   width: 100vw;
+  max-width: fit-content;
 }
 h1 {
   margin: 0;
@@ -41,7 +42,7 @@ h1 {
   display: inline-flex;
   justify-content: space-between;
   position: relative;
-  max-width: 956px;
+  max-width: 1058px;
   width: inherit;
 }
 /* .breakdown-tile {
@@ -50,13 +51,14 @@ h1 {
 .top-sortbar {
   display: inline-flex;
   position: relative;
-  float: inline-end;
+  /* float: inline-end; */
 }
 .breakdown-box {
   box-sizing: border-box;
   min-width: fit-content;
   max-width: min-content;
   float: left;
+  margin-left: 20px;
   width: 50vw;
 }
 .review-box {
@@ -129,7 +131,7 @@ padding-bottom: 1em;
 }
 /* Review Tile */
 .review-tile {
-  max-width: 700px;
+  max-width: 900px;
   width: auto;
   overflow-wrap: break-word;
   border: 1px solid black;
