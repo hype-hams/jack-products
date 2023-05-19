@@ -64,12 +64,14 @@ const Modal = ({productRating, productName, productId, test}) => {
         photos: photos,
         characteristics: characteristics
       }
+      console.log('this is submission', form)
       axios.post(`./api/reviews?product_id=${form.product_id}`, form)
       .then(() => {
         setShowModal(false)
       })
       .catch((err) => {
         console.log('failed to post review', err)
+        setShowModal(false)
       })
     } else {
       let alertInfo = '';
@@ -190,7 +192,7 @@ const Modal = ({productRating, productName, productId, test}) => {
             </section> */}
 <br></br>
             {/* <section className="upload"> */}
-                <UploadPhotos photos={photos} setPhotos={setPhotos}/>
+              <UploadPhotos photos={photos} setPhotos={setPhotos}/>
             {/* </section> */}
 <br></br>
             <Username setUsername={setUsername}/>
