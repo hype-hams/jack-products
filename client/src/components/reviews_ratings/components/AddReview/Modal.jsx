@@ -1,12 +1,14 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import axios from 'axios';
 import AddCharacteristics from './AddCharacteristics.jsx'
 import SetStars from './SetStars.jsx';
 import UploadPhotos from './UploadPhotos.jsx';
 
-const Modal = ({showModal, setShowModal, productRating, productName, productId}) => {
+const Modal = ({productRating, productName, productId, test}) => {
   const modalRef = useRef(null);
   //posting use state
+  const [showModal, setShowModal] = useState(false);
+
   const [rating, setRating] = useState(0);
   const [recommend, setRecommend] = useState(true);
   const [characteristics, setCharacteristics] = useState({});
@@ -96,7 +98,6 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
         photos: photos,
         characteristics: characteristics
       }
-      console.log('this is submission', form)
       axios.post(`./api/reviews?product_id=${form.product_id}`, form)
       .then(() => {
         console.log(`Posted review`)
@@ -127,9 +128,17 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
     }
   }
 
+  if(test){
+    useEffect(()=>{
+      setShowModal(true);
+    }, [test])
+  }
+
   return (
-    <div className="modal-button">
+    <div className="modal-button" data-testid="modalTest">
       <button type="button"
+      data-testid="buttonClick"
+        aria-label="modal-tester"
         onClick={() => setShowModal(!showModal)}>
         Add Review
       </button>
@@ -143,7 +152,9 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
         }}
       >
         <div ref={modalRef} className="Modal-inside">
-          <form onSubmit={validateForm}>
+          <form onSubmit={validateForm}
+            name="modal-form"
+            data-testid="modal-form">
             <h1>Write Your Review</h1>
             <h3>About your {productName}</h3>
             <section className="stars">
@@ -186,6 +197,8 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
             <section className="review-summary">
               <label>Review Summary</label><br></br>
               <input name="summary"
+                aria-label="summary-input"
+                aria-selected="true"
                 type="text"
                 placeholder="Example: Best purchase ever!"
                 size="30"
@@ -200,7 +213,8 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
               </label><br></br>
               <textarea name="body"
               maxLength = '1000'
-
+              aria-label="summary-body"
+              aria-selected="true"
                 rows="10"
                 cols="70"
                 placeholder="Why did you like the product or not?"
@@ -220,6 +234,8 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
               <sup>*</sup>
               </label>
               <input name="name"
+              aria-label="username"
+              aria-selected="true"
                 type="text"
                 placeholder="Example: jackson11!"
                 size="30"
@@ -234,6 +250,8 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
               <sup>*</sup>
               </label>
                 <input name="email"
+                aria-label="email"
+                aria-selected="true"
                   type="email"
                   placeholder="Example: jackson11@email.com"
                   size="30"
@@ -245,6 +263,7 @@ const Modal = ({showModal, setShowModal, productRating, productName, productId})
 <br></br>
             {/* do not alter */}
             <button type="button"
+            data-testid="buttonClick"
               onClick={() => setShowModal(false)}>Cancel</button>
             <button
               type="submit">Submit Review</button>

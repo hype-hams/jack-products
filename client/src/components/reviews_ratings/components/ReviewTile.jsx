@@ -88,7 +88,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
 
   return (
     <div>
-      <form className="review-tile">
+      <form className="review-tile" data-testid="review-tile">
 
         <section className="review-star-name">
           <div className="review-stars">
@@ -141,6 +141,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
               type="radio"
               value="yes"
               name="helpful"
+              data-testid="helpfulCheck"
               onClick={helpfulCheck}>
             </input><span id="yestext">Yes</span>
             {/* <input id="nohelp"
@@ -158,7 +159,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
             </small>
           </div>
 
-          <div className="report-review">
+          <div className="report-review" data-testid="reportReview">
             <button type="button"
               onClick={reportReview}>Report Review</button>
           </div>

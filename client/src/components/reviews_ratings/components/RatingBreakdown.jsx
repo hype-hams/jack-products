@@ -9,13 +9,13 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
 
   //total ratings: votes*value
 
-  //total reviews for given product
+  // total reviews for given product
   const totalRev = () => {
   axios.get('/api/reviews', {
     params: {
     product_id: productId,
     sort: 'newest',
-    count: 1000000000
+    count: 1000000
     }
   })
   .then((response) => {
@@ -41,14 +41,16 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
     // console.log('this is rate state', ratingFilter)
   }
 
-
   // Rating breakdown Bar
   const stars = rating.map((obj, ind) => {
     return (
     <section key={ind}>
 
-      <label>
+      <label data-testid="FilterStar">
         <small id={obj.id}
+          data-testid={obj.id}
+          value={obj.id}
+          aria-label={obj.id}
           onClick={rateFilter}>
           {obj.id} stars
         </small>
@@ -65,12 +67,13 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
       </small>
     </section>
     )
-});
+  });
 
   return (
-    <section>
+    <section data-testid="RatingBreakdown">
       <div className="avg-star-rating">
         <Stars rating={rating}
+          avgRate={avgRate}
           productId={productId}/>
         {/* TODO: style stars here */}
         {/* <small>{totalReviews}&ensp;reviews</small> */}
@@ -79,7 +82,7 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
         <small>{totalReviews}&ensp;reviews</small>
         {totalRev()}
       </div>
-      <div className="ratingBreakdown">
+      <div className="ratingBreakdown" data-testid="RatingBreakdownBar">
         {stars}
       </div>
       <div className="ratingBreakdown-recommend">

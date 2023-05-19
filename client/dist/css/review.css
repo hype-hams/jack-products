@@ -27,7 +27,6 @@
   font-family: 'Font Awesome 5 Free';
   left: 0;
   top: 0;
-  /* background: whit */
   overflow: hidden;
   color: gold;
 }
@@ -96,6 +95,9 @@ display: inline-block;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: .6em;
+}
+.product-breakdown {
+padding-bottom: 1em;
 }
 .product-word {
   display: flex;

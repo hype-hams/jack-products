@@ -6,7 +6,7 @@ const ProductBreakdown = ({charObj}) => {
 //size, length. comfort, quality, width, fit
 
 //charObj = {id: ###, value: #.###}
-
+// console.log('this is charOBJ', charObj)
   const presentCharacteristics = {
     135219: 'Fit',
     135220: 'Length',
@@ -34,9 +34,11 @@ const ProductBreakdown = ({charObj}) => {
       <div>
         <div className="product-name-bar">
           <small className="product-name"
+            data-testid="ProductBreakdownTestChar"
           >{charPresent}</small>
 
            <meter className="product-bar"
+            data-testid="ProductBreakdownTestMeter"
           value={charObj.value} max='5'></meter>
         </div>
         <div className="product-word">

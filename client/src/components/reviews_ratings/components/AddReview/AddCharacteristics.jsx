@@ -106,9 +106,13 @@ const AddCharacteristics = ({charObj, characteristics, setCharacteristics}) => {
   //     5: 'Runs long'
   //   }
   // }
-  const setCharObj = (charID, value) => {
-    setCharacteristics({...characteristics, [charID]: Number(value)})
-  }
+    const clickHandle = (e) => {
+      console.log('THS IS EVENT', e.target)
+      setCharacteristics({...characteristics, [e.target.name]: e.target.value})
+    }
+  // const setCharObj = (charID, value) => {
+  //   setCharacteristics({...characteristics, [charID]: Number(value)})
+  // }
 
   return (
     <section className="add-char">
@@ -120,35 +124,43 @@ const AddCharacteristics = ({charObj, characteristics, setCharacteristics}) => {
           <input name={charObj.id}
             type="radio"
             value="1"
-            onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
+            data-testid="char1"
+            onClick={clickHandle}/>
           <small className="review-char-text">{char1}</small>
         </label>
         <label className="add-char-input">
           <input name={charObj.id}
             type="radio"
             value="2"
-            onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
+            data-testid="char2"
+            onClick={clickHandle}/>
           <small className="review-char-text">{char2}</small>
         </label>
         <label className="add-char-input">
           <input name={charObj.id}
             type="radio"
             value="3"
-            onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
+            data-testid="char3"
+            onClick={clickHandle}
+            />
           <small className="review-char-text">{char3}</small>
         </label>
         <label className="add-char-input">
           <input name={charObj.id}
             type="radio"
             value="4"
-            onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
+            data-testid="char4"
+            onClick={clickHandle}
+            />
           <small className="review-char-text">{char4}</small>
         </label>
         <label className="add-char-input">
           <input name={charObj.id}
             type="radio"
             value="5"
-            onClick={(e)=> setCharObj(charObj.id, e.target.value)}/>
+            data-testid="char5"
+            // onClick={(e)=> setCharObj(charObj.id, e.target.value)}
+            onClick={clickHandle}/>
           <small className="review-char-text">{char5}</small>
         </label>
       </section>

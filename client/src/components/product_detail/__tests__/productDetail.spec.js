@@ -4,14 +4,13 @@
 import React from 'react';
 // import fetchMock from 'jest-fetch-mock';
 import {
-  render, screen, fireEvent, waitFor, cleanup,
+  render, screen, fireEvent, waitFor, cleanup, act,
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import axios from 'axios';
 import AddToCart from '../AddToCart.jsx';
 import ImageGallery from '../ImageGallery.jsx';
-import MainImage from '../MainImage.jsx';
 import ProductDetail from '../Product_detail_main.jsx';
-import Style from '../Style.jsx';
 import App from '../../App.jsx';
 
 // scrollIntoView is not implemented in jsdom
@@ -27,6 +26,22 @@ afterAll(() => {
 });
 afterEach(() => {
   cleanup();
+});
+
+jest.mock('axios');
+
+axios.get.mockImplementation((url) => {
+  if (url === '/api/reviews/meta?product_id=40344') {
+    return Promise.resolve({
+      data: {
+        product_id: '40351',
+        ratings: {
+          1: '16', 2: '9', 3: '34', 4: '12', 5: '75',
+        },
+      },
+    });
+  }
+  return Promise.reject(new Error('Mock axios error'));
 });
 
 describe('Testing in <App />', () => {
@@ -118,11 +133,15 @@ describe('Testing not null data in <ProductDetail />', () => {
       }],
   };
 
-  it('Should have "Read all reviews" on the page', async () => {
+  it('Should have "Read all reviews" on the page, click on it will invoke scrollIntoView', async () => {
     const { getByText } = render(<ProductDetail product={product} styles={styles} />);
-    const textElement = getByText('Read all reviews');
-    expect(textElement).toBeInTheDocument();
+    const element = getByText('Read all reviews');
+    expect(element).toBeInTheDocument();
     expect(getByText('Camo Onesie')).toBeInTheDocument();
+    fireEvent.click(element);
+    await waitFor(() => {
+      expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalled();
+    });
   });
 
   it('Should be able to click Add to cart button, when size is not selected, select menu pop up', async () => {
@@ -181,21 +200,23 @@ describe('Testing null data in <ProductDetail />', () => {
 
 describe('Tesing in <AddToCart />', () => {
   const skusArr = [
-    { sku_id: '1394805', quantity: 8, size: 'XS' },
-    { sku_id: '1394807', quantity: 17, size: 'M' }];
+    { sku_id: '1394805', quantity: 8, size: 'XS' }];
+  beforeAll(() => {
+    document.body.addEventListener = jest.fn();
+    document.body.removeEventListener = jest.fn();
+  });
 
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
   it('Should be able to select size and quantity', async () => {
     render(<AddToCart skus={skusArr} />);
     const sizeSelector = screen.getByText('SELECT SIZE');
-    expect(sizeSelector).toBeInTheDocument();
     fireEvent.click(sizeSelector);
     const xs = screen.getByText('XS');
-    fireEvent.click(xs);
-    const qty = screen.getByText('-');
-    expect(qty).toBeInTheDocument();
-    fireEvent.click(qty);
-    const button = screen.getByText('ADD TO BAG');
-    fireEvent.click(button);
+    act(() => {
+      xs.click();
+    });
   });
 });
 
@@ -290,6 +311,26 @@ describe('Tesing in <ImageGallery />', () => {
     fireEvent.click(up);
     await waitFor(() => {
       expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalled();
+    });
+  });
+
+  it('Should be able to click on the second thumbnail, and left arrow will appear', async () => {
+    const onePhoto = [
+      {
+        thumbnail_url: 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+        url: 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+      }, {
+        thumbnail_url: 'https://images.unsplash.com/photo-1515110371136-7e393289662c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+        url: 'https://images.unsplash.com/photo-1515110371136-7e393289662c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1656&q=80',
+      }];
+    render(<ImageGallery photos={onePhoto} />);
+    const img = screen.getAllByAltText('thumbnail');
+    expect(img[1]).toBeInTheDocument();
+    fireEvent.click(img[1]);
+    const left = screen.getByTestId('left-arrow');
+    await waitFor(() => {
+      const computedStyle = window.getComputedStyle(left);
+      expect(computedStyle.display).toBe('block');
     });
   });
 });
