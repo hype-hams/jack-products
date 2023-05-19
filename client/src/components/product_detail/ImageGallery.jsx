@@ -17,6 +17,7 @@ function ImageGallery({ photos }) {
   const [image, setImage] = useState(photos[0]);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [expandedView, setExpandedView] = useState(null);
+  const [changeStyle, setChangeStyle] = useState(null);
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -66,22 +67,22 @@ function ImageGallery({ photos }) {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
 
+  const thumbnailsList = photos.map((item, index) => (
+    // using photoIndex + 1 so that when handling right arrow click ref is the current one
+    <div
+      ref={(index === photoIndex + 1) ? scrollRef : null}
+      style={{ borderBottom: (index === photoIndex) ? 'thick solid white' : 'none' }}
+      className={(index === 0) ? 'first-thumbnail' : ((index === photoIndex) ? 'selected-thumbnail' : ((index === photos.length - 1) ? 'last-thumbnail' : 'image-gallery-thumbnail-div'))}
+      onClick={handleThumbnailClick}
+      key={index}
+    >
+      <img src={item.thumbnail_url || imageNotAvailable} name={index} style={{ opacity: (index === photoIndex) ? 1 : 0.7 }} className="image-gallery-thumbnail-img" alt="thumbnail" />
+    </div>
+  ));
+
   return (
     <div className="image-gallery-div" style={expandedView}>
-      <div className="image-gallery-thumbnails-div">
-        {photos.map((item, index) => (
-          // using photoIndex + 1 so that when handling right arrow click ref is the current one
-          <div
-            ref={(index === photoIndex + 1) ? scrollRef : null}
-            style={{ borderBottom: (index === photoIndex) ? 'thick solid white' : 'none' }}
-            className={(index === 0) ? 'first-thumbnail' : ((index === photoIndex) ? 'selected-thumbnail' : ((index === photos.length - 1) ? 'last-thumbnail' : 'image-gallery-thumbnail-div'))}
-            onClick={handleThumbnailClick}
-            key={index}
-          >
-            <img src={item.thumbnail_url || imageNotAvailable} name={index} className="image-gallery-thumbnail-img" alt="thumbnail" />
-          </div>
-        ))}
-      </div>
+      <div className="image-gallery-thumbnails-div" style={changeStyle}>{thumbnailsList}</div>
       <div className="up-arrow-div" data-testid="up-arrow" onClick={handleUpArrowClick}>
         <img src={upArrow} width="100%" alt="leftArrow" />
       </div>
@@ -104,7 +105,7 @@ function ImageGallery({ photos }) {
       >
         <img src={rightArrow} width="100%" alt="rightArrow" />
       </div>
-      <MainImage image={image} setExpandedView={setExpandedView} />
+      <MainImage image={image} setExpandedView={setExpandedView} setChangeStyle={setChangeStyle} />
     </div>
   );
 }
