@@ -36,8 +36,21 @@ transform: translate(-50%, -50%);
   border-width: 2px;
   border-radius: 10px;
   border-color: rgb(140, 139, 139);
-  width: 80%;
+  width: 95%;
   margin: 5px;
+}
+.questionmodal-header {
+  margin: 3px;
+}
+.QAauth {
+  margin: 3px;
+  color: rgb(140, 139, 139);
+  font-size: small;
+}
+
+.QAdate {
+  float:right;
+  color: rgb(140, 139, 139);
 }
 .answer-innerbody {
   padding: 5px;
@@ -61,7 +74,7 @@ transform: translate(-50%, -50%);
 }
 
 .wholeQA{
-  width: 100%;
+  width: 75%;
   margin: 0;
 
 }
@@ -73,6 +86,7 @@ transform: translate(-50%, -50%);
   width: 100%;
   max-height: 800px;
   overflow-y: scroll;
+  padding-left: 0px;
 }
 
 .qa-searchform {

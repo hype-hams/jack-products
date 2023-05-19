@@ -14,13 +14,23 @@ function Answers({question, answersAll, getQuestionsByProductID}) {
   // Finishing component thought; small detail is show answers should not render if 2 or less answers
 
   const [answers, setAnswers] = useState(question.answers);
-
+  const [isDisabled, setIsDisabled] = useState(false);
   const mouseOver = e => {
     e.target.style.height = '1.2em'
   };
 
   const mouseExit = e => {
     e.target.style.height = '1em'
+  }
+
+  const dateHandle = (d) => {
+    return new Date(d)
+      .toLocaleDateString('en-US',
+        {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      })
   }
 
   const handleAUpvote = (answerId) => {
@@ -41,7 +51,9 @@ function Answers({question, answersAll, getQuestionsByProductID}) {
       answer_id: answerId,
     })
       .then(() => {
-        console.log('REPORT FOR ANSWER ', answerId, ' SUBMITTED');
+        setAnswers(oldA => {
+          return oldA.filter(currAns => currAns.answer_id !== answer.answer_id)
+        })
       })
       .catch((err) => {
         console.error('ERROR REPORTING ANSWER AT ID: ', answerId, '  ', err);
@@ -50,7 +62,7 @@ function Answers({question, answersAll, getQuestionsByProductID}) {
 
   let answerArr = Object.entries(answers)
     .map((item) => ({
-      answerer_name: item[1].answerer_name, id: item[1].id, body: item[1].body, helpfulness: item[1].helpfulness,
+      answerer_name: item[1].answerer_name, id: item[1].id, body: item[1].body, helpfulness: item[1].helpfulness, date: item[1].date,
     }));
   if (!answersAll) {
     answerArr = answerArr.slice(0, 2);
@@ -61,6 +73,7 @@ function Answers({question, answersAll, getQuestionsByProductID}) {
         <div key={item.id} className="answer-individual">
           <span className="answerer"  id="italics">
             {item.answerer_name}
+            <span className="QAdate">{dateHandle(item.date)}</span>
           &#10;
             <p className="answerBody">
               A:
@@ -74,7 +87,9 @@ function Answers({question, answersAll, getQuestionsByProductID}) {
               <button
                 className="Upvote"
                 type="button"
+                disabled={isDisabled}
                 onClick={(e) => {
+                  setIsDisabled(true);
                   e.preventDefault();
                   handleAUpvote(item.id);
                 }}

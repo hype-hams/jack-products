@@ -15,7 +15,7 @@ const search = ({ questions, filter, setFilter, setFilteredList, filteredList, g
       setFilteredList(questions.filter((question) => question.question_body.match(searchInput)));
     } else if (searchInput === '') {
       setFilter('');
-      getQuestionsByProductID();
+      setFilteredList(questions);
     }
   };
 
