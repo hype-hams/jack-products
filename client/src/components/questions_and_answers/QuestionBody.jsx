@@ -44,6 +44,7 @@ function QuestionBody({
       });
   };
 
+
   const mouseOver = (e) => {
     e.target.style.height = '1.2em';
   };
@@ -62,6 +63,11 @@ function QuestionBody({
       },
     );
 
+    let answerArr = Object.entries(question.answers)
+    .map((item) => ({
+      answerer_name: item[1].answerer_name, id: item[1].id, body: item[1].body, helpfulness: item[1].helpfulness, date: item[1].date,
+    }));
+
   const handleQReport = () => {
     axios.put(`/api/q_a/question/${question.question_id}/report`, {
       question_id: question.question_id,
@@ -73,6 +79,8 @@ function QuestionBody({
         console.error('ERROR REPORTING QUESTION AT ID: ', question.question_id, '  ', err);
       });
   };
+  console.log(answerArr);
+
 
   return (
     <div className="question-innerbody">
@@ -132,7 +140,26 @@ function QuestionBody({
         onMouseLeave={mouseExit}
       />
 
-      <button
+      {answerArr.length > 2 ? (
+              <button
+                type="button"
+                className="moreAnswers"
+                onClick={(event) => {
+                  if (!answersAll) {
+                    event.target.innerHTML = 'Show less Answers';
+                  } else {
+                    event.target.innerHTML = 'Show more Answers';
+                  }
+                  setAnswersAll(!answersAll);
+                }}
+              >
+                Show more Answers
+              </button>
+            )
+
+              : null}
+
+      {/* <button
         type="button"
         className="moreAnswers"
         onClick={(event) => {
@@ -145,7 +172,7 @@ function QuestionBody({
         }}
       >
         Show more Answers
-      </button>
+      </button> */}
     </div>
   );
 }

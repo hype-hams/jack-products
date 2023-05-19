@@ -51,9 +51,6 @@ function Answers({question, answersAll, getQuestionsByProductID}) {
       answer_id: answerId,
     })
       .then(() => {
-        setAnswers(oldA => {
-          return oldA.filter(currAns => currAns.answer_id !== answer.answer_id)
-        })
       })
       .catch((err) => {
         console.error('ERROR REPORTING ANSWER AT ID: ', answerId, '  ', err);
