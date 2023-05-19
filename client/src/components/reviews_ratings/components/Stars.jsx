@@ -5,27 +5,21 @@ import { faStar, faStarHalfStroke} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-const Stars = ({productId, rating, avgRate}) => {
-  // const [avgRate, setAvgRate] = useState('')
-  // const [avg, setAvg] = useState(calcStar)
-  //Grabs star information from server
-  // const getStars = () => {
-  //     const metaData = axios.get(`/api/reviews/meta?product_id=${productId}`)
-  //     .then(response => {
-  //       // console.log('this is stars data', response.data.ratings)
-  //       setAvgRate(response.data.ratings)
-  //     })
-  // }
-  //calculates avg star rating
+const Stars = ({productId, avgRate}) => {
+
   const calcStar = () => {
-    let totalRate = 0;
-    let totalVal = 0;
-    for(const key in avgRate) {
-      totalRate += Number(avgRate[key]);
-      totalVal += avgRate[key]*key;
+    if(typeof avgRate !== 'number'){
+      let totalRate = 0;
+      let totalVal = 0;
+      for(const key in avgRate) {
+        totalRate += Number(avgRate[key]);
+        totalVal += avgRate[key]*key;
+      }
+      let average = (totalVal/totalRate).toFixed(1);
+      return average
+    } else {
+      return avgRate
     }
-    let average = (totalVal/totalRate).toFixed(1);
-    return average
   }
   //set quarter star value
   const partialStar = (val) => {
@@ -69,8 +63,9 @@ const Stars = ({productId, rating, avgRate}) => {
     const starStyle = {
       background: `linear-gradient(90deg, gold
         ${val * 100}%, gray ${val * 100}%)`,
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
+      WebkitTextFillColor: `transparent`,
+      BackgroundClip: 'text',
+      WebkitBackgroundClip: `text`,
     }
     return (<label key={i}
       data-testid="★"
@@ -78,10 +73,6 @@ const Stars = ({productId, rating, avgRate}) => {
       style={starStyle}
       >★</label>)
     })
-
-  // useEffect(() => {
-  //   // getStars()
-  // }, [])
 
   return (
     <div>

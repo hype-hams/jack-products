@@ -2,33 +2,18 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Stars from './Stars.jsx';
 
-const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, avgRate, productId}) => {
-  const [totalReviews, setTotalReviews] = useState('')
+const RatingBreakdown = ({rating, recommended, total, ratingFilter, setRatingFilter, productId, avgRate}) => {
 
   let recommendPercent = Number(recommended.true)/(Number(recommended.true) + Number(recommended.false)) * 100;
 
-  //total ratings: votes*value
-
-  // total reviews for given product
-  const totalRev = () => {
-  axios.get('/api/reviews', {
-    params: {
-    product_id: productId,
-    sort: 'newest',
-    count: 1000000
+  const barTotal = () => {
+    let rateBarTotal = 0
+    for(const key in avgRate) {
+      rateBarTotal += Number(avgRate[key])
     }
-  })
-  .then((response) => {
-    setTotalReviews(response.data.length)
-  })
-  .catch((error) => {
-      console.log('this is error counting total reviews', error)
-    })
+    return rateBarTotal
   }
-  useEffect(()=> {
-    totalRev()
-  }, [])
-//controls filtering by stars
+
   const rateFilter = (e) => {
     let val = e.target.id
     if (ratingFilter[e.target.id] === true) {
@@ -38,7 +23,6 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
       setRatingFilter((prevFilter) => {
         return {...prevFilter, [val]: true}})
     }
-    // console.log('this is rate state', ratingFilter)
   }
 
   // Rating breakdown Bar
@@ -58,7 +42,7 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
 
       <meter className="rating-bar"
         value={obj.val}
-        max='1000'></meter>
+        max={barTotal()}></meter>
 
       <small>
         <label className="star-vote">
@@ -72,15 +56,13 @@ const RatingBreakdown = ({rating, recommended, ratingFilter, setRatingFilter, av
   return (
     <section data-testid="RatingBreakdown">
       <div className="avg-star-rating">
-        <Stars rating={rating}
+        <Stars
           avgRate={avgRate}
           productId={productId}/>
-        {/* TODO: style stars here */}
-        {/* <small>{totalReviews}&ensp;reviews</small> */}
+        {/* <big><b></b></big> */}
       </div>
       <div>
-        <small>{totalReviews}&ensp;reviews</small>
-        {totalRev()}
+        <small>{barTotal()}&ensp;reviews</small>
       </div>
       <div className="ratingBreakdown" data-testid="RatingBreakdownBar">
         {stars}

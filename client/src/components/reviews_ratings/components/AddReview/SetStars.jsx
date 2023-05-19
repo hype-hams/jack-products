@@ -1,15 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-//1 star - “Poor”
-	// 2 stars - “Fair”
-	// 3 stars - “Average”
-	// 4 stars - “Good”
-	// 5 stars - “Great”
 
 const SetStars = ({rating, setRating}) => {
-  // const [personalRating, setPersonalRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [ratingDescription, setRatingDescription] = useState('')
 
@@ -27,37 +18,32 @@ const SetStars = ({rating, setRating}) => {
     }
   },[rating])
 
-  // const clickHandle = (index) => {
-  //   setRating(index)
-  //   return (
-  //   <div>{ratingDescription}</div>
-  //   )
-  // }
+
   return (
-    <div className="star-rating"
-      data-testid="ModalSetStars">
-      {[...Array(5)].map((star, index) => {
-        index += 1;
-        return (
-          <button id="personal-rating"
-            name="rating"
-            type="button"
-            key={index}
-            className={index <= (hover || rating) ? "on" : "off"}
-            onClick={() => setRating(index)}
-            onMouseEnter={() => setHover(index)}
-            onMouseLeave={() => setHover(rating)}
-          >
-            <span className="star">&#9733;</span>
-          </button>
-        );
-      })} &ensp;
-        {ratingDescription}
-    </div>
+    <section className="stars">
+      <label><b>Star Rating</b></label>
+        <div className="star-rating"
+          data-testid="ModalSetStars">
+          {[...Array(5)].map((star, index) => {
+            index += 1;
+            return (
+              <button id="personal-rating"
+                name="rating"
+                type="button"
+                key={index}
+                className={index <= (hover || rating) ? "on" : "off"}
+                onClick={() => setRating(index)}
+                onMouseEnter={() => setHover(index)}
+                onMouseLeave={() => setHover(rating)}
+              >
+                <span className="star">&#9733;</span>
+              </button>
+            );
+          })} &ensp;
+            {ratingDescription}
+        </div>
+    </section>
   );
-
-
-
 }
 
 export default SetStars
