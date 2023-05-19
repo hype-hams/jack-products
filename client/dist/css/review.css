@@ -1,7 +1,4 @@
-body {
-  font-family: sans-serif, arial;
-  margin: 50px;
-}
+
 h1 {
   margin: 0;
 }
@@ -42,8 +39,10 @@ h1 {
   display: inline-flex;
   justify-content: space-between;
   position: relative;
-  max-width: 1058px;
+  max-width: 1180px;
   width: inherit;
+  margin-bottom: 20px;
+  margin-top: 30px;
 }
 /* .breakdown-tile {
   position: relative;
@@ -60,6 +59,7 @@ h1 {
   float: left;
   margin-left: 20px;
   width: 50vw;
+  margin-right: 30px;
 }
 .review-box {
   box-sizing: border-box;
@@ -77,6 +77,7 @@ h1 {
   padding-left: 10px;
   padding-right: 10px;
   border-radius: .6em;
+  margin-bottom: 30px;
 }
 /* .product-range {
   padding-left: 6em;
@@ -128,6 +129,7 @@ padding-bottom: 1em;
 .infinite-reviews {
   max-height: 650px;
   overflow-y: scroll;
+  margin-bottom: 40px;
 }
 /* Review Tile */
 .review-tile {
@@ -137,6 +139,7 @@ padding-bottom: 1em;
   border: 1px solid black;
   border-radius: 10px;
   padding: 5px;
+  margin-bottom: 10px;
 }
 .tile-helpful-report {
   display: flex;
@@ -157,6 +160,7 @@ padding-bottom: 1em;
   display: inline-flex;
   font-size: larger;
   border: none;
+  margin-top: 20px;
   justify-content: center;
   background-color: #efefef;
   width: -webkit-fill-available;
