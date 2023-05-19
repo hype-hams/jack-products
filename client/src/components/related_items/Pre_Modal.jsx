@@ -73,11 +73,14 @@ const Pre_Modal = ({ card , currProduct, test})=> {
         <div>
             <button className="ComparisonModalBttn" onClick={clickHandler}><FontAwesomeIcon icon={faCodeCompare}/></button>
             <Modal key={card.id} showModal={showModal} closeModal={closeModal}>
-                <table>
+                <table className='comprison-table'>
                     <thead>
                         <tr>
+                            <td> <h5 className='comparing'>Comparing</h5>  </td>
+                        </tr>
+                        <tr>
                             <th className='CurrProductName'><h3>{currProduct.name}</h3></th>
-                            <td> <h3>Comparing</h3>  </td>
+                            <th></th>
                             <th className='comparedProdName'><h3>{card.name}</h3></th>
                         </tr>
                     </thead>
