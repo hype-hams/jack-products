@@ -1,9 +1,11 @@
 /* eslint-disable no-trailing-spaces */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import axios from 'axios';
 import Answers from './Answers.jsx';
 
-const { useState } = React;
+const { useState, useEffect } = React;
 
 // Maybe use div here to render it as multiple variables rather than a list
 // Here we return the basic Structure of the individual questions
@@ -24,17 +26,30 @@ const { useState } = React;
       -The button will then be replaced by a collapse button that will revert changes
 
   */
-// const { useState } = React;
 
 function QuestionBody({
-  question, answers, modalType, setModalType, modalIsOpen,
+  question, answers, modalType, setModalType, modalIsOpen, getQuestionsByProductID,
 }) {
   const [answersAll, setAnswersAll] = useState(false);
 
   const handleQUpvote = () => {
     axios.put('/api/q_a/question/upvote', {
       question_id: question.question_id,
-    });
+    })
+      .then(() => {
+        getQuestionsByProductID();
+      })
+      .catch((err) => {
+        console.error('ERROR IN RERENDER FOR UPVOTE: ', err);
+      });
+  };
+
+  const mouseOver = (e) => {
+    e.target.style.height = '1.2em';
+  };
+
+  const mouseExit = (e) => {
+    e.target.style.height = '1em';
   };
 
   const handleQReport = () => {
@@ -42,6 +57,7 @@ function QuestionBody({
       question_id: question.question_id,
     })
       .then(() => {
+        getQuestionsByProductID();
         console.log('QUESTION ', question.question_id, 'HAS BEEN REPORTED');
       })
       .catch((err) => {
@@ -50,52 +66,59 @@ function QuestionBody({
   };
 
   return (
-    <div className="question" key={question.question_id}>
-      <span className="asker_ name">{question.asker_name}</span>
-      <p className="question_body">
-        Q:
-        {' '}
-        {question.question_body}
-      </p>
-      Helpful?
-      &emsp;
-      <button
-        className="Upvote"
-        type="button"
-        onClick={(event) => {
-          event.preventDefault();
-          handleQUpvote();
-        }}
-      >
-        Yes :
+    <div className="question-innerbody">
+
+      <div className="question" key={question.question_id}>
+        <span className="asker-name" id="italics">{question.asker_name}</span>
+        <p className="question_body">
+          Q:
+          {' '}
+          {question.question_body}
+        </p>
+        Helpful?
         &emsp;
-        {question.question_helpfulness}
-      </button>
-      <button
-        type="button"
-        className="report"
-        onClick={(e) => {
-          e.preventDefault();
-          handleQReport();
-        }}
-      >
-        Report
+        <button
+          className="Upvote"
+          type="button"
+          onClick={(event) => {
+            event.preventDefault();
+            handleQUpvote();
+          }}
+        >
+          <FontAwesomeIcon icon={faArrowUp} style={{ color: 'blue' }} onMouseOver={mouseOver} onMouseLeave={mouseExit} />
+        &emsp;
+          {question.question_helpfulness}
+        </button>
+        <button
+          type="button"
+          className="report"
+          onClick={(e) => {
+            e.preventDefault();
+            handleQReport();
+          }}
+        >
+          Report
 
-      </button>
-      <button
-        type="button"
-        className="reply"
-        onClick={() => {
-          setModalType(['Reply', question]);
-          modalIsOpen(true);
-        }}
-      >
-        Reply
-      </button>
+        </button>
+        <button
+          type="button"
+          className="reply"
+          onClick={() => {
+            setModalType(['Reply', question]);
+            modalIsOpen(true);
+          }}
+        >
+          Reply
+        </button>
+      </div>
 
-      <hr />
-
-      <Answers answers={answers} answersAll={answersAll} />
+      <Answers
+        question={question}
+        answersAll={answersAll}
+        getQuestionsByProductID={getQuestionsByProductID}
+        onMouseEnter={mouseOver}
+        onMouseLeave={mouseExit}
+      />
 
       <button
         type="button"

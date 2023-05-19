@@ -10,11 +10,15 @@ module.exports = {
   getQuestions: (req, res) => {
     // Will get all Questions in the database
     // *** THIS WILL EITHER INCLUDE THE ANSWERS OR INCLUDE AN ID FOR THE ANSWERS ***
-    const params = req.query.product_id;
     const options = {
       method: 'get',
-      url: `${serverAPI}?product_id=${params}`,
+      url: `${serverAPI}`,
       headers: headAuth,
+      params: {
+        product_id: req.query.product_id,
+        page: 1,
+        count: 100,
+      },
     };
     return axios(options)
       .then((response) => {
@@ -80,10 +84,11 @@ module.exports = {
   },
 
   upvoteQuestion: (req, res) => {
+    console.log('upvote body: ', req.body.question_id);
     axios.put(`${serverAPI}/${req.body.question_id}/helpful`, req.body, {
       headers: headAuth,
       params: {
-        product_id: req.body.product_id,
+        question_id: req.body.question_id,
       },
     })
       .then((response) => {
