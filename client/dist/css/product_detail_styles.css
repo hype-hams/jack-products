@@ -9,7 +9,6 @@ body {
   flex-direction: column;
   margin-bottom: 20px;
   min-width: 1000px;
-  max-width: fit-content;
 }
 
 .product-detail-div {
@@ -21,7 +20,7 @@ body {
 .image-gallery-div {
   margin-left: 10px;
   height: 700px;
-  min-width: 57%;
+  min-width: 56%;
   width: 95%;
   display: flex;
   align-items: center;
