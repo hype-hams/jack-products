@@ -18,7 +18,6 @@ const search = ({ questions, filter, setFilter, setFilteredList, filteredList, g
       setFilteredList(questions);
     }
   };
-
   useEffect(() => {
 
   }, [filteredList]);
