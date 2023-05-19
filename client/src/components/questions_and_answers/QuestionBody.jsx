@@ -28,11 +28,11 @@ const { useState, useEffect } = React;
   */
 
 function QuestionBody({
-  question, answers, modalType, setModalType, modalIsOpen, getQuestionsByProductID,
+  question, setQuestions, answers, modalType, setModalType, modalIsOpen, getQuestionsByProductID,
 }) {
   const [answersAll, setAnswersAll] = useState(false);
-
-  const handleQUpvote = () => {
+  const [isDisabled, setIsDisabled] = useState(false);
+  const handleQUpvote = (event) => {
     axios.put('/api/q_a/question/upvote', {
       question_id: question.question_id,
     })
@@ -52,13 +52,22 @@ function QuestionBody({
     e.target.style.height = '1em';
   };
 
+  const dateHandle = (d) => new Date(d)
+    .toLocaleDateString(
+      'en-US',
+      {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      },
+    );
+
   const handleQReport = () => {
     axios.put(`/api/q_a/question/${question.question_id}/report`, {
       question_id: question.question_id,
     })
       .then(() => {
-        getQuestionsByProductID();
-        // console.log('QUESTION ', question.question_id, 'HAS BEEN REPORTED');
+        setQuestions((oldQ) => oldQ.filter((currQues) => currQues.question_id !== question.question_id));
       })
       .catch((err) => {
         console.error('ERROR REPORTING QUESTION AT ID: ', question.question_id, '  ', err);
@@ -70,6 +79,7 @@ function QuestionBody({
 
       <div className="question" key={question.question_id}>
         <span className="asker-name" id="italics">{question.asker_name}</span>
+        <span className="QAdate">{dateHandle(question.question_date)}</span>
         <p className="question_body">
           Q:
           {' '}
@@ -80,9 +90,11 @@ function QuestionBody({
         <button
           className="Upvote"
           type="button"
+          disabled={isDisabled}
           onClick={(event) => {
+            setIsDisabled(true);
             event.preventDefault();
-            handleQUpvote();
+            handleQUpvote(event);
           }}
         >
           <FontAwesomeIcon icon={faArrowUp} style={{ color: 'blue' }} onMouseOver={mouseOver} onMouseLeave={mouseExit} />

@@ -15,21 +15,22 @@ const search = ({ questions, filter, setFilter, setFilteredList, filteredList, g
       setFilteredList(questions.filter((question) => question.question_body.match(searchInput)));
     } else if (searchInput === '') {
       setFilter('');
-      getQuestionsByProductID();
+      setFilteredList(questions);
     }
   };
-
   useEffect(() => {
 
   }, [filteredList]);
 
   return (
-    <form className="qa-searchform">
+    <form className="qa-searchform"
+      onSubmit={(event) => {
+      event.preventDefault();
+    }}>
       <input
         className="qa-search"
         type="text"
         placeholder="Search for keywords..."
-        value={searchInput}
         onChange={(event) => {
           event.preventDefault();
           setSearchInput(event.target.value);

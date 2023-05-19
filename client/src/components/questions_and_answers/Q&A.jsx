@@ -96,6 +96,7 @@ function QA({ productID }) {
                 closeModal={setIsOpen}
                 modalType={modalType}
                 product_id={productID}
+                setIsOpen={setIsOpen}
               />
               )}
             </div>
@@ -126,6 +127,7 @@ function QA({ productID }) {
               closeModal={setIsOpen}
               modalType={modalType}
               product_id={productID}
+              setIsOpen={setIsOpen}
             />
             )}
             <ol className="questionslist">
@@ -134,6 +136,7 @@ function QA({ productID }) {
                   questions.map((item) => (
                     <QuestionBody
                       question={item}
+                      setQuestions={setQuestions}
                       key={item.question_id}
                       answers={answers}
                       modalType={modalType}
@@ -146,6 +149,7 @@ function QA({ productID }) {
                   questions.slice(0, 2).map((item) => (
                     <QuestionBody
                       question={item}
+                      setQuestions={setQuestions}
                       key={item.question_id}
                       answers={answers}
                       modalType={modalType}
