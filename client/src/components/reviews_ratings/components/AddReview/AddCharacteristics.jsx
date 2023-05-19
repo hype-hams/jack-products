@@ -153,7 +153,7 @@ const AddCharacteristics = ({charObj, characteristics, setCharacteristics}) => {
             />
           <small className="review-char-text">{char4}</small>
         </label>
-        <label className="add-char-input">
+        <label className="add-char-input" id="input5">
           <input name={charObj.id}
             type="radio"
             value="5"

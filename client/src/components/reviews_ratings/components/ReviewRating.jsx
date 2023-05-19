@@ -7,7 +7,7 @@ import ProductBreakdown from './ProductBreakdown.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import SortBar from './SortBar.jsx';
 
-const ReviewRating = ({productId, productName}) => {
+const ReviewRating = ({productId, productName}) => { //metaData prop
 
   const [reviewList, setReviewList] = useState([]);
   const [productRating, setProductRating] = useState([]);
@@ -15,7 +15,6 @@ const ReviewRating = ({productId, productName}) => {
   const [avgRate, setAvgRate] = useState('');
   const [rating, setRating] = useState([]);
   const [dropSort, setDropSort] = useState('relevant');
-//RatingStarFilter
   const [ratingFilter, setRatingFilter] = useState({
     1: false,
     2: false,
@@ -25,22 +24,27 @@ const ReviewRating = ({productId, productName}) => {
   });
 
 
-  const getReviews = () => {
-    axios.get('/api/reviews', {
+  const getReviews = async () => {
+    try {
+      const response = await axios.get('/api/reviews', {
       params: {
         product_id: productId,
         sort: dropSort,
-        count: 10000
+        count: 200
       }
     })
-    .then((response) => {
+    // .then((response) => {
       setReviewList(response.data)
-    })
+    // })
+    }catch(error){
+      console.log(error)
+    }
   }
 
   const getMeta = () => {
     axios.get(`/api/reviews/meta?product_id=${productId}`)
       .then(response => {
+        // setMetaData(response.data)
         setProductRating(Object.values(response.data.characteristics))
         setRecommended(response.data.recommended)
         //WILL GIVE OBJ
@@ -73,7 +77,6 @@ const ReviewRating = ({productId, productName}) => {
         starStr += `${key}, `
       }
     }
-    // console.log('this is star string', starStr)
     //check star str
     if(starStr.length > 0) {
       starStr = starStr.slice(0, -2)
@@ -100,10 +103,11 @@ const ReviewRating = ({productId, productName}) => {
 
   return (
     <div className="RR-module">
+      <h1>Ratings & Reviews</h1>
       <div className="breakdown-box">
         <div>
           <section className="breakdown">
-            <h4>Rating Breakdown</h4>
+            <h4 className="rate-break-head">Rating Breakdown</h4>
             {applyStars()}
 
             <RatingBreakdown recommended={recommended}
@@ -111,6 +115,7 @@ const ReviewRating = ({productId, productName}) => {
               setRatingFilter={setRatingFilter}
               rating={rating}
               avgRate={avgRate}
+              total={reviewList.length}
               productId={productId}/>
           </section>
         </div>
@@ -120,26 +125,23 @@ const ReviewRating = ({productId, productName}) => {
             {charTable}
           </section>
         </div>
+        <div>
+            <Modal
+            productId={productId}
+            productName={productName}
+            productRating={productRating}/>
+          </div>
       </div>
 
         <div className="review-box">
             <SortBar
               setDropSort={setDropSort}/>
-
           <div className="review-list">
             <ReviewList
               ratingFilter={ratingFilter}
               reviewList={reviewList}
-              dropSort={dropSort}
               setReviewList={setReviewList}
               productId={productId}/>
-          </div>
-
-          <div>
-            <Modal
-            productId={productId}
-            productName={productName}
-            productRating={productRating}/>
           </div>
 
         </div>

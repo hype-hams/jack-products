@@ -25,6 +25,8 @@ function App(props) {
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [metaData, setMetaData] = useState(null)
+
   // const [productId, setProductId] = useState('40344')
   // const [productName, setProductName] = useState('Camo Onesie');
   // const [productId, setProductId] = useState('40344')
@@ -66,6 +68,15 @@ function App(props) {
     fetchDataById();
   }, []);
 
+  useEffect(() => {
+    if(product){
+      axios.get(`/api/reviews/meta?product_id=${product.id}`)
+        .then(response => {
+          setMetaData(response.data)
+        })
+    }
+  }, [product])
+
   return (
     <div>
       {
@@ -85,6 +96,7 @@ function App(props) {
               </div>
               <div className="rating-review">
                 <ReviewRating productId={product.id}
+                  metaData={metaData}
                   productName={product.name}/>
               </div>
             </ProductContext.Provider>

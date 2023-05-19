@@ -102,8 +102,9 @@ const Modal = ({productRating, productName, productId, test}) => {
   // }
 
   return (
-    <div className="modal-button" data-testid="modalTest">
+    <div className="modal-div" data-testid="modalTest">
       <button type="button"
+      className="modal-button-add"
       data-testid="buttonClick"
         aria-label="modal-tester"
         onClick={() => setShowModal(!showModal)}>
