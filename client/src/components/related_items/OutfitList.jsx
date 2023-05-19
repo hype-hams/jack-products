@@ -3,9 +3,12 @@ import React, {useState, useEffect} from 'react';
 import OutfitListCard from './OutfitListCard.jsx'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
+import Carousel from './Carousel.jsx';
 
 const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick, test}) => {
     const [list, setList] = useState([]);
+    const [lastIndex, setLastIndex] = useState(4)
+    const [startIndex, setStartIndex] = useState(0);
 
     const eventHandler = (e) => {
         e.preventDefault();
@@ -38,7 +41,7 @@ const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick, test}) =
         if(JSON.parse(localStorage.getItem("OutfitList"))){
             outfitList= [...JSON.parse(localStorage.getItem("OutfitList"))]
         }
-        console.log(outfitList);
+        // console.log(outfitList);
         setList(outfitList);
 
     }
@@ -66,9 +69,6 @@ const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick, test}) =
             <header>
                 <h2>Outfit List</h2>
             </header>
-            {/* <form onSubmit={addCard}>
-                <input type="submit" value="Add to Outfit" />
-            </form> */}
             <div className='OutfitList'>
                 <button className='addToOutfitBttn' onClick={eventHandler}>
                     <div className='faPlus'>
@@ -77,8 +77,17 @@ const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick, test}) =
                     <p>Add Current Product</p> 
                     <p> To Outfit</p>
                 </button>
-                {list ? list.map(card=> <OutfitListCard key={card.id} card={card} 
-                onDelete={deleteCard} handleRelatedItemClick={handleRelatedItemClick}/>) : null}
+                <Carousel startIndex={startIndex} 
+                            setStartIndex={setStartIndex} 
+                            lastIndex={lastIndex} 
+                            setLastIndex={setLastIndex}
+                            maxIndex={list.length}>
+                   {list ? list.map((card, index)=>{
+                        if(index >= startIndex && index < lastIndex) 
+                            return <OutfitListCard key={card.id} card={card} 
+                                onDelete={deleteCard} handleRelatedItemClick={handleRelatedItemClick}/>;
+                    }) : null}
+                </Carousel>
             </div>
         </div>
     )

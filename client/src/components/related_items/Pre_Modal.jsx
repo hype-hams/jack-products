@@ -42,13 +42,15 @@ const Pre_Modal = ({ card , currProduct, test})=> {
     const clickHandler = (e) => {
         e.preventDefault();
 
+        
+
         card.features.map(feature=>{
-            feature.item = card.name,
-            feature.value_feature= `${feature.value} ${feature.feature}`
+            feature.item = card.name;
+            feature.value_feature= [feature.value, feature.feature].filter(s => !!s).join(' ')
         });
         currProduct.features.map(feature=>{
             feature.item = currProduct.name;
-            feature.value_feature= `${feature.value} ${feature.feature}`;
+            feature.value_feature= [feature.value, feature.feature].filter(s => !!s).join(' ')
         });
 
         setFeatures(filterFeatures());
@@ -82,7 +84,7 @@ const Pre_Modal = ({ card , currProduct, test})=> {
                     <tbody>
                         {features.map(item=>
                         <tr key={item.value_feature}>
-                            <td>{item.currProductFeature ? <FontAwesomeIcon icon={faCheck} /> : null}</td>
+                            <td>{item.currProductFeature ? <FontAwesomeIcon icon={faCheck} /> : <area></area>}</td>
                             <td className='productFeature'>{item.value_feature}</td>
                             <td>{item.comparedProductFeature ? <FontAwesomeIcon icon={faCheck} /> : null}</td>
                         </tr>)}
