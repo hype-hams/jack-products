@@ -156,21 +156,6 @@ function QuestionBody({
             )
 
               : null}
-
-      {/* <button
-        type="button"
-        className="moreAnswers"
-        onClick={(event) => {
-          if (!answersAll) {
-            event.target.innerHTML = 'Show less Answers';
-          } else {
-            event.target.innerHTML = 'Show more Answers';
-          }
-          setAnswersAll(!answersAll);
-        }}
-      >
-        Show more Answers
-      </button> */}
     </div>
   );
 }
