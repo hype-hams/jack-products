@@ -79,8 +79,6 @@ function QuestionBody({
         console.error('ERROR REPORTING QUESTION AT ID: ', question.question_id, '  ', err);
       });
   };
-  console.log(answerArr);
-
 
   return (
     <div className="question-innerbody">
