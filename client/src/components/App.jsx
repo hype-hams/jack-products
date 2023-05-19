@@ -65,14 +65,6 @@ function App(props) {
     fetchDataById();
   }, []);
 
-  useEffect(() => {
-    if(product){
-      axios.get(`/api/reviews/meta?product_id=${product.id}`)
-        .then(response => {
-          setMetaData(response.data)
-        })
-    }
-  }, [product])
 
   return (
     <div>
