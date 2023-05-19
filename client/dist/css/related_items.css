@@ -20,6 +20,11 @@
     display: flex;
 }
 
+.faCheck{
+    color: #159947
+}
+
+
 .RelatedItemCard, .OutfitListCard {
     background: rgb(235, 233, 233);
     width: 220px;
