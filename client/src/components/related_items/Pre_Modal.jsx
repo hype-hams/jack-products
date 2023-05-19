@@ -76,7 +76,7 @@ const Pre_Modal = ({ card , currProduct, test})=> {
                 <table className='comprison-table'>
                     <thead>
                         <tr>
-                            <td> <h5 className='comparing'>Comparing</h5>  </td>
+                            <td> <h5 className='comparing'>Comparing...</h5>  </td>
                         </tr>
                         <tr>
                             <th className='CurrProductName'><h3>{currProduct.name}</h3></th>
@@ -87,9 +87,9 @@ const Pre_Modal = ({ card , currProduct, test})=> {
                     <tbody>
                         {features.map(item=>
                         <tr key={item.value_feature}>
-                            <td>{item.currProductFeature ? <FontAwesomeIcon icon={faCheck} /> : <area></area>}</td>
+                            <td>{item.currProductFeature ? <FontAwesomeIcon className='faCheck' icon={faCheck} /> : <area></area>}</td>
                             <td className='productFeature'>{item.value_feature}</td>
-                            <td>{item.comparedProductFeature ? <FontAwesomeIcon icon={faCheck} /> : null}</td>
+                            <td>{item.comparedProductFeature ? <FontAwesomeIcon className='faCheck' icon={faCheck} /> : null}</td>
                         </tr>)}
                     </tbody>
                 </table>
