@@ -1,8 +1,9 @@
 body {
   font-family: sans-serif, arial;
   margin: 50px;
+  max-width: fit-content;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
 .product-detail-section {
   display: flex;
   flex-direction: column;
@@ -17,8 +18,9 @@ body {
 
 /********************** Image Gallery **********************/
 .image-gallery-div {
+  margin-left: 10px;
   height: 750px;
-  min-width: 60%;
+  min-width: 56%;
   width: 95%;
   display: flex;
   align-items: center;
@@ -145,15 +147,16 @@ body {
 
 /*************** Right part of product detail ***************/
 .product-detail-div__right {
-  min-height: 750px;
+  min-height: 700px;
   width: 49%;
   min-width: 550px;
   position: relative;
-  padding: 20px 20px 0px 50px;
+  padding: 20px 0px 0px 50px;
 }
 
 .product-detail-div__right>h1 {
   font-size: 40px;
+  line-height: 70px;
 }
 
 .product-detail-div__right>b {
@@ -222,7 +225,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  margin-top: 40px;
+  margin-top: 30px;
   color: rgb(60, 60, 60);
 }
 
