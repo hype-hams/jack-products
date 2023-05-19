@@ -1,43 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
+import SortBar from './SortBar.jsx';
 
 
-const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSort}) => {
+const ReviewList = ({productId, ratingFilter, reviewList, setReviewList, dropSort}) => {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null)
 
-
-  const getReviews = async () => {
-    setError(null)
-    setIsLoading(true)
-    try {
-      const response = await axios.get('/api/reviews', {
-        params: {
-          product_id: productId,
-          sort: dropSort,
-          count: 10000,
-          page: page
-        }
-      })
-      setReviewList((prevList) => [...prevList, ...response.data])
-      setPage((prevPage) => prevPage + 1)
-    } catch(error) {
-      console.log('there was an error', error)
-      setError(error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
   const handleScroll = () => {
+    //stub of object instead of window
     if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight || isLoading) {
-      //3600
-      // console.log(document.documentElement.offsetHeight)
       return;
     }
-    getReviews();
+    // getReviews();
   };
   const starFilter = () => {
     let result = []
@@ -48,40 +25,38 @@ const ReviewList = ({productId, setReviewList, ratingFilter, reviewList, dropSor
     }
     return result
   }
-
-
   useEffect(() => {
-    // console.log(dropSort)
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isLoading]);
 
   // useEffect(() => {
   //   getReviews()
-  //   // console.log('this is new drop sort', dropSort)
   // }, [dropSort])
-
 
   let alteredList = reviewList
     .filter((tile) => {
       if (starFilter().length > 0) {
         return starFilter().includes(tile.rating) === true
-        // return
       }
       return true
     })
     .map((revObj, ind) =>
       <ReviewTile
       productId={productId}
-        setReviewList={setReviewList}
+      setReviewList={setReviewList}
         revObj={revObj}
         key={ind}/>)
 
+
   return (
     <div>
+        <div>
+        {/* <SortBar
+              setDropSort={setDropSort}/> */}
+        </div>
         <div className="infinite-reviews"
-        data-testid="ReviewList"
-        >
+        data-testid="ReviewList">
         {
           alteredList.length !== 0 ? alteredList
           : <p>no reviews found</p>

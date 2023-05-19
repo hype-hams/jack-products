@@ -6,7 +6,6 @@ const ProductBreakdown = ({charObj}) => {
 //size, length. comfort, quality, width, fit
 
 //charObj = {id: ###, value: #.###}
-// console.log('this is charOBJ', charObj)
   const presentCharacteristics = {
     135219: 'Fit',
     135220: 'Length',

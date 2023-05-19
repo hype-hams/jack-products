@@ -33,7 +33,6 @@ function App(props) {
       const productResponse = await fetch(`/api/products/${id}`);
       const productData = await productResponse.json();
       setProduct(productData);
-      console.log('productData: ', productData);
 
       // fetching Product Styles data
       const styleResponse = await fetch(`/api/products/${id}/styles`);
@@ -57,7 +56,6 @@ function App(props) {
   };
 
   const handleRelatedItemClick = (itemId) => {
-    console.log(itemId, ' is clicked!');
     fetchDataById(itemId);
   };
 
@@ -83,6 +81,7 @@ function App(props) {
                 <QA productID={product.id} />
               </div>
               <div className="rating-review">
+
                 <ReviewRating
                   productId={product.id}
                   productName={product.name}

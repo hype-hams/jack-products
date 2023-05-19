@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Stars from '../reviews_ratings/components/Stars.jsx'
 
 const Card = ({card, onDelete , currProduct, handleRelatedItemClick, relatedItems}) =>{
-    const [photoURL, setPhotoURL] = useState('')
+    const [photoURL, setPhotoURL] = useState(null)
     const [price, setPrice] = useState({final_price: card.default_price, discount:false});
-    const [avgRate, setAvgRate] = useState('')
+    const [avgRate, setAvgRate] = useState(null)
 
     const GETStyle = (id = card.id) =>{
         const url = `/api/products`
@@ -18,17 +18,17 @@ const Card = ({card, onDelete , currProduct, handleRelatedItemClick, relatedItem
             if(result.length === 0){
                 result = [...res.data.results];
             }
-            console.log('style:' , result);
-            result[0].photos[0].thumbnail_url? setPhotoURL(result[0].photos[0].thumbnail_url): 
+            // console.log('style:' , result);
+            result[0].photos[0].thumbnail_url? setPhotoURL(result[0].photos[0].thumbnail_url):
                                         setPhotoURL('images/image-not-found-icon.png');
-            result[0].sale_price? setPrice( 
+            result[0].sale_price? setPrice(
                 {
-                    original_price:result[0].original_price, 
-                    final_price: result[0].sale_price, 
+                    original_price:result[0].original_price,
+                    final_price: result[0].sale_price,
                     discount:true
                 })
-                : setPrice({final_price: result[0].original_price, discount:false}); 
-           
+                : setPrice({final_price: result[0].original_price, discount:false});
+
         }).catch(err=>{
             console.error(err);
         });
@@ -44,7 +44,7 @@ const Card = ({card, onDelete , currProduct, handleRelatedItemClick, relatedItem
     const onClickHandler = ()=>{
         onDelete(card.id);
     }
-    
+
     useEffect(()=>{
         GETStyle();
         getStars();
@@ -54,28 +54,28 @@ const Card = ({card, onDelete , currProduct, handleRelatedItemClick, relatedItem
     const cardContent = () => {
         return (
             <div onClick={()=>{handleRelatedItemClick(card.id)}}>
-                        <img data-testid="testImage" className="image" src={`${photoURL}`} /> 
+                        {photoURL && <img data-testid="testImage" className="image" src={`${photoURL}`} />}
                         <div className='cardText'>
                             <p className="category">{card.category}</p>
                             <h3 className='productName'>{card.name}</h3>
-                            {!price.discount? 
+                            {!price.discount?
                                 <h4 className='original-price'>
                                     ${price.final_price}
-                                </h4>: 
+                                </h4>:
                                 <span>
                                     <h4 className='price-discount'>
                                         <del className='original-price-marked'>
                                             ${price.original_price}
-                                        </del> 
+                                        </del>
                                         &nbsp; ${price.final_price}
                                     </h4>
                                 </span>}
                                 <div className='stars'>
-                                    <Stars avgRate={avgRate} />
+                                    {avgRate && <Stars avgRate={avgRate} />}
                                 </div>
                         </div>
-                </div> 
-         
+                </div>
+
             );
     }
 

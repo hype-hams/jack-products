@@ -7,8 +7,8 @@ const SortBar = ({setDropSort}) => {
     <section className="sortbar">
      <select id="sortbar"
       aria-label="sortbar"
+      default="relevant"
       onChange={(e) => {
-        e.preventDefault()
         const selection = e.target.value
         setDropSort(selection)
       }}>

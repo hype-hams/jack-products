@@ -19,17 +19,17 @@ function QA({ productID }) {
   const [modalType, setModalType] = useState([]);
   const [filteredList, setFilteredList] = useState('');
 
-  console.log('filter', filter);
+  // console.log('filter', filter);
 
   const qCheck = async (data) => {
     // If the questions list is empty, collapse it
     // Otherwise render 4 questions as default
-    console.log('qCheck:', data);
+    // console.log('qCheck:', data);
     if (data.length === 0) {
-      console.log('collapsing');
+      // console.log('collapsing');
       setCollapsed(true);
     } else {
-      console.log('uncollapsing');
+      // console.log('uncollapsing');
       setCollapsed(false);
     }
   };
@@ -37,21 +37,21 @@ function QA({ productID }) {
   const getQuestionsByProductID = async () => {
     // Retrieve questions from productID
     if (filter.length !== 0) {
-      console.log('filter: ', filter);
+      // console.log('filter: ', filter);
       setQuestions(filteredList);
     } else {
       setFilter('');
       try {
-        console.log('testest');
+        // console.log('testest');
         const questionsResponse = await fetch(`/api/q_a/getQuestions?product_id=${productID}`);
         const parsedQuestions = await questionsResponse.json();
-        console.log('parsed Data:  ', parsedQuestions);
+        // console.log('parsed Data:  ', parsedQuestions);
         setQuestions(parsedQuestions.results.sort((a, b) => parseFloat(b.score) - parseFloat(a.score)));
         qCheck(parsedQuestions.results);
 
         // Set Answers
         setAnswers(parsedQuestions.results[0].answers);
-        console.log('Answers:  ', parsedQuestions.results[0].answers);
+        // console.log('Answers:  ', parsedQuestions.results[0].answers);
       } catch (err) {
         console.error('ERROR FETCHING QUESTIONS: ', err);
       }
