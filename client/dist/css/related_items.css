@@ -1,11 +1,21 @@
 
 /***Related Items list*****/
-.RelatedItemsList, .OutfitList {
+/* .OutfitList {
     display: flex;
     flex-direction: row;
     /* justify-content: center; */
-    /* flex-wrap: wrap; */
+    /* flex-wrap: wrap;
     overflow-x: auto;
+} */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+.inner-carousel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    flex-wrap: wrap;
+
+    /* overflow-x: auto; */
 }
 
 .RelatedItemCard, .OutfitListCard {
@@ -15,7 +25,7 @@
     margin: 15px; 
     background-size: cover;
     border-radius: 20px;
-
+    font-family: 'Raleway', sans-serif;
 }
 
 .addToOutfitBttn{
@@ -28,6 +38,8 @@
     border-radius: 20px;
     background-color: skyblue;
     border: none;
+    float:left;
+    font-family: 'Raleway', sans-serif;
 }
 .addToOutfitBttn:hover{
     cursor: pointer;
@@ -96,8 +108,7 @@
     background-color: #AA0000;
 }
 
-
-.category, .productName, .price, .stars{
+.category, .productName, .original-price, .stars{
     /* padding: 20px; */
     padding-left:8px
 }
@@ -106,10 +117,33 @@
     font-size: small;
 }
 
-.cardText{
+.cardText {
     /* max-width: 100px ; */
     max-height: 20px;
 }
+.scroll-right{
+    float:right;
+    height: 450px;
+    border-radius: 10%;
+    border:none;
+}
 
+.scroll-left{
+    float:left;
+    height: 450px;
+    border-radius: 10%;
+    border:none;
+} 
+
+.scroll-left:hover, .scroll-right:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    cursor:pointer;
+    transform: scale(1.03);
+    transition-duration: 0.5s;
+} 
+
+.original-price-marked{
+    color: red
+}
 
 

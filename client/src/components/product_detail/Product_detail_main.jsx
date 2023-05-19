@@ -9,8 +9,9 @@ import { faFacebook, faTwitter, faPinterest } from '@fortawesome/free-brands-svg
 import AddToCart from './AddToCart.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import Style from './Style.jsx';
+import Stars from '../reviews_ratings/components/Stars.jsx';
 
-function ProductDetail({ product, styles }) {
+function ProductDetail({ product, styles, avgRate }) {
   // styles.results is an array storing all styles, set the first style object as default style
   const [style, setStyle] = useState(styles.results[0]);
 
@@ -18,6 +19,10 @@ function ProductDetail({ product, styles }) {
   const handleThumbnailOnClick = (styleId) => {
     const newStyle = styles.results.filter((item) => item.style_id === styleId);
     setStyle(newStyle[0]); // filter return an array
+  };
+
+  const handleReadAllReviewClick = () => {
+    document.querySelector('.rating-review')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const skusArray = Object.entries(style.skus)
@@ -28,17 +33,20 @@ function ProductDetail({ product, styles }) {
       <div className="product-detail-div">
         <ImageGallery photos={style.photos} />
         <div className="product-detail-div__right">
-          <small>Read all reviews</small>
-          <h3>{product.category}</h3>
+          <div className="star-and-review">
+            <Stars avgRate={avgRate} />
+            <small onClick={handleReadAllReviewClick}>Read all reviews</small>
+          </div>
+          <h2>{product.category}</h2>
           <h1>{product.name}</h1>
-          <small>
+          <span>
             {style.sale_price ? (
               <p>
                 <s>{`$${style.original_price}`}</s>
                 <span style={{ color: 'red' }}>{` $${style.sale_price}`}</span>
               </p>
             ) : `$${style.original_price}`}
-          </small>
+          </span>
           <p>
             <b>STYLE &gt; </b>
             {style.name}
