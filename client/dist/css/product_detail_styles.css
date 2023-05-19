@@ -3,7 +3,7 @@ body {
   margin: 50px;
   max-width: fit-content;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
 .product-detail-section {
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@ body {
 /********************** Image Gallery **********************/
 .image-gallery-div {
   margin-left: 10px;
-  height: 700px;
+  height: 750px;
   min-width: 56%;
   width: 95%;
   display: flex;
@@ -132,7 +132,7 @@ body {
   justify-self: center;
   align-items: center;
   width: 100%;
-  height: 700px;
+  height: 750px;
   background-color: white;
 
   transition: transform 0.5s ease-in-out !important;
@@ -156,6 +156,7 @@ body {
 
 .product-detail-div__right>h1 {
   font-size: 40px;
+  line-height: 70px;
 }
 
 .product-detail-div__right>b {
