@@ -32,7 +32,6 @@ const ReviewList = ({productId, ratingFilter, reviewList, setReviewList, dropSor
 
   // useEffect(() => {
   //   getReviews()
-  //   // console.log('this is new drop sort', dropSort)
   // }, [dropSort])
 
   let alteredList = reviewList

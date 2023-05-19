@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+p, h2, h3, h5 {
+  font-family: 'Raleway', sans-serif;
+}
 .Modal-backg {
   background-color: rgba(0, 0, 0, 0.4);
   height: 100vh;
@@ -21,8 +25,6 @@
   max-width: -webkit-fill-available;
   min-height: 50px;
   border: none;
-  /* background: linear-gradient(180deg, transparent 30%, aquamarine);  */
-  /* background: radial-gradient(transparent 30%, aquamarine); */
 }
 .Modal-inside{
   border: 2px solid black;
@@ -30,11 +32,11 @@
   padding: 20px;
   width:fit-content;
   text-align: left;
-
   margin: 0 auto;
-  box-shadow: 20px 20px gray;
+  box-shadow: 20px 20px 4px gray;
   border-radius: 20px;
-  max-height: 100vh;
+  max-height: 90vh;
+  min-width: min-content;
   max-width: 50vw;
   overflow-y: auto;
 }
@@ -81,6 +83,7 @@
   border: 2px black solid;
   border-radius: 4px;
   text-align: center;
+  box-shadow: 25px 25px 4px gray;
 }
 .close-modal-photo {
   float: right;

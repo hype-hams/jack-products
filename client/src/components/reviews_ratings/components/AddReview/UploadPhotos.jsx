@@ -8,9 +8,7 @@ const UploadPhotos = ({photos, setPhotos}) => {
   const uploadMultipleFiles = (e) => {
     fileObj.push(e.target.files)
     for (let i = 0; i < fileObj[0].length; i++) {
-      // console.log('photos', fileObj[0][i])
       fileArr.push(URL.createObjectURL(fileObj[0][i]))
-      // console.log('photos', fileArr)
     }
     setPhotos([...photos, fileArr[0]])
     setCount(count + 1)

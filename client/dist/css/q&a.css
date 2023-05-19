@@ -2,7 +2,7 @@ body {
   font-family: sans-serif, arial;
   margin: 50px;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
 .questionmodal-title {
   display: block;
   text-align: center;

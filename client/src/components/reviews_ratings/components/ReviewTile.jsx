@@ -76,7 +76,6 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
       data: {review_id: revObj.review_id}
     })
       .then((response) => {
-        // console.log('review reported and removed pending investigation')
         setReviewList(oldRev => {
           return oldRev.filter(revTile => revTile.review_id !== revObj.review_id)
         })
