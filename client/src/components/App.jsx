@@ -77,7 +77,7 @@ function App(props) {
                 <ProductDetail product={product} styles={styles} avgRate={avgRate} />
               </div>
               <div className="related-items">
-                <RelatedItems key={product.id} currProduct={product} currPhotoURL={styles.results[0].photos[0].thumbnail_url} IDlist={related} handleRelatedItemClick={handleRelatedItemClick} avgRate={avgRate} />
+                <RelatedItems key={product.id} currProduct={product} IDlist={related} handleRelatedItemClick={handleRelatedItemClick}/>
               </div>
               <div className="Q&A">
                 <QA productID={product.id} />

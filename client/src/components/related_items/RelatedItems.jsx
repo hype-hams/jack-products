@@ -5,7 +5,7 @@ import RelatedItemsList from './RelatedItemsList.jsx';
 import OutfitList from './OutfitList.jsx';
 import axios from 'axios';
  
-const RelatedItems = ({currProduct, currPhotoURL, IDlist, handleRelatedItemClick}) => {
+const RelatedItems = ({currProduct, IDlist, handleRelatedItemClick}) => {
     
     return (
     <div className='RelatedItems'>
@@ -13,10 +13,15 @@ const RelatedItems = ({currProduct, currPhotoURL, IDlist, handleRelatedItemClick
         <h1>Related Items</h1>
       </header>
         <div>
-          <RelatedItemsList key={currProduct.id} IDlist={IDlist} currProduct={currProduct} handleRelatedItemClick= {handleRelatedItemClick} />
+          <RelatedItemsList key={currProduct.id} 
+          IDlist={IDlist} 
+          currProduct={currProduct} 
+          handleRelatedItemClick={handleRelatedItemClick}/>
         </div>
         <div>
-          <OutfitList key={currProduct.id} currPhotoURL={currPhotoURL} currProduct={currProduct} handleRelatedItemClick={handleRelatedItemClick}/>
+          <OutfitList key={currProduct.id} 
+          currProduct={currProduct} 
+          handleRelatedItemClick={handleRelatedItemClick}/>
         </div>
     </div>
   );

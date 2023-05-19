@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react';
-// import Card from './RelatedItemCard.jsx'
-import OutfitListCard from './OutfitListCard.jsx'
+import Card from './Card.jsx'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import Carousel from './Carousel.jsx';
 
-const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick, test}) => {
+const OutfitList = ({currProduct, handleRelatedItemClick, test}) => {
     const [list, setList] = useState([]);
     const [lastIndex, setLastIndex] = useState(4)
     const [startIndex, setStartIndex] = useState(0);
@@ -84,7 +83,7 @@ const OutfitList = ({currProduct, currPhotoURL, handleRelatedItemClick, test}) =
                             maxIndex={list.length}>
                    {list ? list.map((card, index)=>{
                         if(index >= startIndex && index < lastIndex) 
-                            return <OutfitListCard key={card.id} card={card} 
+                            return <Card key={card.id} card={card} 
                                 onDelete={deleteCard} handleRelatedItemClick={handleRelatedItemClick}/>;
                     }) : null}
                 </Carousel>

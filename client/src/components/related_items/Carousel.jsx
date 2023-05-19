@@ -7,7 +7,7 @@ const Carousel = ({startIndex, setStartIndex, lastIndex, setLastIndex, maxIndex,
     const handleLeftClick = (e) => {
         if(startIndex > 0){
             setStartIndex(startIndex - 1);
-            setLastIndex(lastIndex-1)
+            setLastIndex(lastIndex - 1 )
         }
     }
 
