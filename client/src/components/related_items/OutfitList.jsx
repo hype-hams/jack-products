@@ -26,6 +26,9 @@ const OutfitList = ({currProduct, handleRelatedItemClick, test}) => {
         let memo = new Set();
         collection = collection.filter(prop=>{
             const dup = memo.has(prop.id);
+            if(dup){
+                alert('You already added this item to list!');
+            }
             memo.add(prop.id);
             return !dup;
         })
