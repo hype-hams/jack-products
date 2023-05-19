@@ -128,6 +128,7 @@ padding-bottom: 1em;
 .infinite-reviews {
   max-height: 650px;
   overflow-y: scroll;
+  margin-bottom: 40px;
 }
 /* Review Tile */
 .review-tile {
