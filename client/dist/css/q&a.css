@@ -3,19 +3,8 @@ body {
   margin: 50px;
 }
 
-
-.question {
-  padding: 5px;
-  box-sizing: border-box;
-  overflow-wrap: break-word;
-  display: inline-block;
-  border-style: solid;
-  border-radius: 25px;
-  border-color: rgb(167, 162, 162);
-  border-width: 2px;
-}
 .questionmodal-title {
-  display: inline-block;
+  display: block;
   text-align: center;
   margin: 0;
 }
@@ -26,6 +15,7 @@ top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
 }
+
 .questionmodal-container {
   width: 425px;
   height: 325px;
@@ -35,6 +25,67 @@ transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   padding: 25px;
+}
+
+.question-innerbody {
+  padding: 5px;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  display: inline-block;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 10px;
+  border-color: rgb(140, 139, 139);
+  width: 80%;
+  margin: 5px;
+}
+.answer-innerbody {
+  padding: 5px;
+  overflow-wrap: break-word;
+  display: inline-block;
+  width: 95%;
+  margin-bottom: 15px;
+}
+.answer-individual {
+  margin-bottom: 5px;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, transparent, rgb(140, 139, 139)
+  , transparent) 90% 1;
+}
+
+.question {
+  border-bottom: 3px solid;
+  padding: 10px;
+  border-image: linear-gradient(to right, transparent, rgb(140, 139, 139)
+  , transparent) 90% 1;
+}
+
+.wholeQA{
+  width: 100%;
+  margin: 0;
+
+}
+
+
+
+.questionslist {
+  display: block;
+  width: 100%;
+  max-height: 800px;
+  overflow-y: scroll;
+}
+
+.qa-searchform {
+  margin-top: 10px;
+  margin-left: 50px;
+}
+
+.qa-search {
+  width: 33%;
+}
+
+.qa-header {
+  margin-bottom: 5px;
 }
 
 /************* BUTTONS *************/
@@ -53,6 +104,16 @@ button {
   background: transparent;
   color: cornflowerblue;
   border: none;
+
+}
+
+.moreQuestions, .Question-button {
+  margin-left: 50px;
+  background: transparent;
+  color: cornflowerblue;
+  border: none;
+  left: 10px;
+  margin-bottom: 20px;
 }
 
 .moreAnswers {
@@ -95,6 +156,7 @@ button {
 }
 
 
+
 .questionmodal-close {
   display: flex;
   justify-content: flex-end;
@@ -129,7 +191,8 @@ button {
 .Upvote {
   color: rgb(140, 139, 139);
   cursor: pointer;
-
+  border: none;
+  background-color: transparent;
 }
 
 
@@ -140,4 +203,15 @@ button {
 
 .disabled{
   pointer-events: none;
+}
+
+/* Text Edits */
+
+.asker-name {
+  font-size: large;
+  color: rgb(87, 85, 85);
+}
+
+#italics {
+  transform: skew(5deg,0deg);
 }

@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Stars from '../reviews_ratings/components/Stars.jsx'
 
 const Card = ({card, onDelete , currProduct, handleRelatedItemClick, relatedItems}) =>{
-    const [photoURL, setPhotoURL] = useState('')
+    const [photoURL, setPhotoURL] = useState(null)
     const [price, setPrice] = useState({final_price: card.default_price, discount:false});
-    const [avgRate, setAvgRate] = useState('')
+    const [avgRate, setAvgRate] = useState(null)
 
     const GETStyle = (id = card.id) =>{
         const url = `/api/products`
@@ -44,7 +44,7 @@ const Card = ({card, onDelete , currProduct, handleRelatedItemClick, relatedItem
     const onClickHandler = ()=>{
         onDelete(card.id);
     }
-    
+
     useEffect(()=>{
         GETStyle();
         getStars();
@@ -54,7 +54,7 @@ const Card = ({card, onDelete , currProduct, handleRelatedItemClick, relatedItem
     const cardContent = () => {
         return (
             <div onClick={()=>{handleRelatedItemClick(card.id)}}>
-                        <img data-testid="testImage" className="image" src={`${photoURL}`} /> 
+                        {photoURL && <img data-testid="testImage" className="image" src={`${photoURL}`} />}
                         <div className='cardText'>
                             <p className="category">{card.category}</p>
                             <h3 className='productName'>{card.name}</h3>
@@ -71,7 +71,7 @@ const Card = ({card, onDelete , currProduct, handleRelatedItemClick, relatedItem
                                     </h4>
                                 </span>}
                                 <div className='stars'>
-                                    <Stars avgRate={avgRate} />
+                                    {avgRate && <Stars avgRate={avgRate} />}
                                 </div>
                         </div>
                 </div> 

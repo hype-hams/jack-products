@@ -1,21 +1,34 @@
 /* eslint-disable max-len */
 import React from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
-const { useState, useEffect } = React;
-
-function Answers({ answers, answersAll }) {
+const { useState } = React;
+// answers, answersAll
+function Answers({question, answersAll, getQuestionsByProductID}) {
   // QUICK THOUGHT: RENDER TWO ANSWERS TO START, THEN
   // WHEN DIV IS CLICKED ON SET STATE TO CLICKED AND RENDER ONLY THAT QUESITON
   // AND ALL ANSWERS
 
   // Finishing component thought; small detail is show answers should not render if 2 or less answers
 
+  const [answers, setAnswers] = useState(question.answers);
+
+  const mouseOver = e => {
+    e.target.style.height = '1.2em'
+  };
+
+  const mouseExit = e => {
+    e.target.style.height = '1em'
+  }
+
   const handleAUpvote = (answerId) => {
     axios.put(`/api/q_a/answer/${answerId}/upvote`, {
       answer_id: answerId,
     })
       .then(() => {
+        getQuestionsByProductID();
         console.log('ANSWER ', answerId, 'HAS BEEN UPOVOTED');
       })
       .catch((err) => {
@@ -43,10 +56,10 @@ function Answers({ answers, answersAll }) {
     answerArr = answerArr.slice(0, 2);
   }
   return (
-    <div>
+    <div className="answer-innerbody">
       { answerArr.map((item) => (
-        <div key={item.id}>
-          <span className="answerer">
+        <div key={item.id} className="answer-individual">
+          <span className="answerer"  id="italics">
             {item.answerer_name}
           &#10;
             <p className="answerBody">
@@ -66,7 +79,7 @@ function Answers({ answers, answersAll }) {
                   handleAUpvote(item.id);
                 }}
               >
-                Yes :
+                <FontAwesomeIcon icon={faArrowUp} style={{color: "#e73636",}} onMouseOver={mouseOver} onMouseLeave={mouseExit}/>
                 &emsp;
                 {item.helpfulness}
               </button>
@@ -83,7 +96,6 @@ function Answers({ answers, answersAll }) {
 
             </button>
           </span>
-          <hr />
         </div>
       ))}
     </div>

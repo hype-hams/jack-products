@@ -33,15 +33,15 @@ const PhotoModal = ({url}) => {
                 setShowModal(false)
               }}>
                 <div ref={modalRef} className="Modal-photo">
-                <button type="button"
-                  className="close-modal-photo"
-                  onClick={() => setShowModal(false)}>
-                    x
-                </button>
-                <img className="review-photo-expanded"
-                  src={url}
-                  onError={handleError}
-                  alt="photo" />
+                  <img className="review-photo-expanded"
+                    src={url}
+                    onError={handleError}
+                    alt="photo" />
+                  <button type="button"
+                    className="close-modal-photo"
+                    onClick={() => setShowModal(false)}>
+                      x
+                  </button>
 
                 </div>
             </div>

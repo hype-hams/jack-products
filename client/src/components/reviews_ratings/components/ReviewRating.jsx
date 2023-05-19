@@ -103,48 +103,57 @@ const ReviewRating = ({productId, productName}) => { //metaData prop
 
   return (
     <div className="RR-module">
-      <h1>Ratings & Reviews</h1>
-      <div className="breakdown-box">
-        <div>
-          <section className="breakdown">
-            <h4 className="rate-break-head">Rating Breakdown</h4>
-            {applyStars()}
+      <div className="title-sort">
+        <h1>Ratings & Reviews</h1>
+      </div>
+      <div className="top-sortbar">
+            <SortBar
+              setDropSort={setDropSort}/>
+          </div>
+      <div className="breakdown-tile">
+        <div className="breakdown-box">
+          <div>
+            <section className="breakdown">
+              <h4 className="rate-break-head">Rating Breakdown</h4>
+              {applyStars()}
+              <RatingBreakdown recommended={recommended}
+                ratingFilter={ratingFilter}
+                setRatingFilter={setRatingFilter}
+                rating={rating}
+                avgRate={avgRate}
+                total={reviewList.length}
+                productId={productId}/>
+            </section>
+          </div>
 
-            <RatingBreakdown recommended={recommended}
-              ratingFilter={ratingFilter}
-              setRatingFilter={setRatingFilter}
-              rating={rating}
-              avgRate={avgRate}
-              total={reviewList.length}
-              productId={productId}/>
-          </section>
-        </div>
-        <div>
-          <section className="breakdown product-breakdown">
-            <h4>Product Breakdown</h4>
-            {charTable}
-          </section>
-        </div>
-        <div>
+          <div>
+            <section className="breakdown product-breakdown">
+              <h4>Product Breakdown</h4>
+              {charTable}
+            </section>
+          </div>
+
+          <div>
             <Modal
             productId={productId}
             productName={productName}
             productRating={productRating}/>
           </div>
-      </div>
-
-        <div className="review-box">
-            <SortBar
-              setDropSort={setDropSort}/>
-          <div className="review-list">
-            <ReviewList
-              ratingFilter={ratingFilter}
-              reviewList={reviewList}
-              setReviewList={setReviewList}
-              productId={productId}/>
-          </div>
-
         </div>
+
+          <div className="review-box">
+              {/* <SortBar
+                setDropSort={setDropSort}/> */}
+            <div className="review-list">
+              <ReviewList
+                ratingFilter={ratingFilter}
+                reviewList={reviewList}
+                setReviewList={setReviewList}
+                productId={productId}/>
+            </div>
+
+          </div>
+      </div>
 
     </div>
   )
