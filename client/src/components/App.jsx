@@ -65,6 +65,15 @@ function App(props) {
     fetchDataById();
   }, []);
 
+  useEffect(() => {
+    if(product){
+      axios.get(`/api/reviews/meta?product_id=${product.id}`)
+        .then(response => {
+          setMetaData(response.data)
+        })
+    }
+  }, [product])
+
   return (
     <div>
       {
@@ -83,6 +92,7 @@ function App(props) {
                 <QA productID={product.id} />
               </div>
               <div className="rating-review">
+
                 <ReviewRating
                   productId={product.id}
                   productName={product.name}

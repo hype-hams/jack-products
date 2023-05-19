@@ -4,9 +4,11 @@ import ReviewHelpers from './ReviewHelpers.jsx';
 import axios from 'axios';
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PhotoModal from './PhotoModal.jsx'
 const ReviewTile = ({revObj, setReviewList, productId}) => {
   const [revBody, setRevBody] = useState('');
   const [showMore, setShowMore] = useState(false);
+  const [helpful, setHelpful] = useState(revObj.helpfulness)
 
   useEffect (() => {
     if(revObj.body.length > 250) {
@@ -16,6 +18,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
       setRevBody(revObj.body)
     }
   }, [revObj.body])
+
   const fullBody = () => {
     setShowMore(false);
     setRevBody(revObj.body);
@@ -47,30 +50,24 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
 
   const helpfulCheck = () => {
     let yescheck = document.getElementById('yeshelp' + revObj.review_id );
-    // let nocheck = document.getElementById('nohelp');
-    // console.log('helpful check id name', yescheck)
-    // console.log('this is tile review obj', revObj)
     if(yescheck.checked) {
       yescheck.disabled = true;
-      // nocheck.disabled = true;
       document.getElementById('yestext').style.color = 'gray';
-      // document.getElementById('notext').style.color = 'gray';
+      setHelpful(helpful+1)
     }
     if(yescheck.checked) {
-      //NEED TO GRAB HELPFULNESS DATA
-      // console.log('yes was checked  ')
       ReviewHelpers.markHelpful(revObj.review_id)
     }
   }
 
-  const revPhotos = revObj.photos.map((photo) => {
-    return <img className="review-photo"
-      src={photo.url}
-      key={photo.id}
-      alt=""
-      height="100"
-      width="auto" />
-  })
+  const handleError = (e) => {
+    e.target.onerror = null
+    e.target.src = "images/image-not-found-icon.png"
+  }
+
+  const revPhotos = revObj.photos.map((photo) =>
+  <PhotoModal key={photo.id} url={photo.url}/>
+  )
   //REPORT REVIEW
   const reportReview = () => {
     axios({
@@ -79,7 +76,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
       data: {review_id: revObj.review_id}
     })
       .then((response) => {
-        console.log('review reported and removed pending investigation')
+        // console.log('review reported and removed pending investigation')
         setReviewList(oldRev => {
           return oldRev.filter(revTile => revTile.review_id !== revObj.review_id)
         })
@@ -93,7 +90,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
         <section className="review-star-name">
           <div className="review-stars">
             {reviewStars()}
-            {/* <Stars productId={revObj.review_id} rating={revObj.rating}/> */}
+            {/* <Stars productId={revObj.review_id} avgRate={revObj.rating}/> */}
           </div>
 
           <div className="review-namedate">
@@ -144,15 +141,9 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
               data-testid="helpfulCheck"
               onClick={helpfulCheck}>
             </input><span id="yestext">Yes</span>
-            {/* <input id="nohelp"
-              type="radio"
-              value="no"
-              name="helpful"
-              onClick={helpfulCheck}>
-            </input><span id="notext">No</span>&ensp; */}
             <small className="helpful-review"
               style={{color:'green'}}>
-              {revObj.helpfulness}&nbsp;
+              {helpful}&nbsp;
             </small>
             <small style={{color:'gray'}}>
               found this helpful
