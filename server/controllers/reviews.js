@@ -34,7 +34,7 @@ module.exports = {
         } else if (sortTerm === 'relevant') {
           response.data.results.sort((a, b) => {
             // dynamic sort based on days since post * helpful
-            return ((500/(new Date(b.date).getTime()*86400000))*b.helpfulness) - ((500/(new Date(a.date).getTime()*86400000))*a.helpfulness)
+            return ((500/(new Date(b.date).getTime())*86400000)*b.helpfulness) - ((500/(new Date(a.date).getTime())*86400000)*a.helpfulness)
           })
         }
         res.status(200).send(response.data.results)
