@@ -47,9 +47,6 @@ const RelatedItemsList = ({IDlist, currProduct, handleRelatedItemClick}) => {
                         handleRelatedItemClick={handleRelatedItemClick}
                         relatedItems={true}/>
                 })}
-                {/* {list.map((card,index)=>{
-                        return <RelatedItemCard key={card.id} card={card} currProduct={ currProduct} handleRelatedItemClick={handleRelatedItemClick}/>
-                })} */}
             </Carousel>
          </div> 
     );

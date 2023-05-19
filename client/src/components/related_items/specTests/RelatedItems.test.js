@@ -1,7 +1,6 @@
 /** @jest-environment jsdom */
 import RelatedItems from '../RelatedItems.jsx';
-import RelatedItemCard from '../RelatedItemCard.jsx';
-import OutfitListCard from '../OutfitListCard.jsx'
+import Card from '../Card.jsx'
 import Pre_Modal from '../Pre_Modal.jsx';
 import Modal from '../Modal.jsx';
 import OutfitList from '../OutfitList.jsx';
@@ -35,14 +34,14 @@ describe(RelatedItems, () => {
         const relatedProdExample = await axios.get('http://localhost:3000/api/products/40345/')
         // console.error(relatedProd.data)
         await render(<RelatedItems currProduct={resProd.data} IDlist={relatedProdList.data} handleRelatedItemClick={null} />);
-        await render(<RelatedItemCard card={relatedProdExample.data} currProduct={resProd.data} handleRelatedItemClick={null} />);
+        await render(<Card card={relatedProdExample.data} currProduct={resProd.data} handleRelatedItemClick={null} relatedItems={true} />);
         // console.log(theCard);
         const image = await screen.getByTestId('testImage');
         expect(image).toBeVisible();
     });
     it('Check if images render properly for Outfit Items List for when photo does not exist', async ()=>{
         await render(<RelatedItems currProduct={product} IDlist={related} handleRelatedItemClick={null} />);
-        await render(<OutfitListCard card={cardProduct} currProduct={product} handleRelatedItemClick={null} />);
+        await render(<Card card={cardProduct} currProduct={product} handleRelatedItemClick={null} />);
         const image = await screen.getByRole('img');
         expect(image).toBeVisible();
     });
