@@ -41,7 +41,6 @@ const Modal = ({productRating, productName, productId, test}) => {
       validateRating = true
     }
     if(Object.keys(characteristics).length === productRating.length) {
-      console.log('char is done')
       validateChar = true
     }
     if(bodyText.length >= 50 && bodyText.length <= 1000) {
@@ -65,7 +64,6 @@ const Modal = ({productRating, productName, productId, test}) => {
         photos: photos,
         characteristics: characteristics
       }
-      // console.log('SUBMISSION FORM', form)
       axios.post(`./api/reviews?product_id=${form.product_id}`, form)
       .then(() => {
         setShowModal(false)

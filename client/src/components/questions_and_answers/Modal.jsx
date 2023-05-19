@@ -5,7 +5,7 @@ const { useState } = React;
 
 function Modal({ closeModal, modalType, product_id }) {
 
-  console.log(product_id);
+  // console.log(product_id);
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -29,8 +29,8 @@ function Modal({ closeModal, modalType, product_id }) {
 
 
   const submitQuestion = () => {
-    console.log(modalType)
-    console.log('Question submission')
+    // console.log(modalType)
+    // console.log('Question submission')
     axios.post('/api/q_a/ask', {
       product_id: product_id,
       body: body,
@@ -46,7 +46,7 @@ function Modal({ closeModal, modalType, product_id }) {
   };
 
   const submitAnswer = () => {
-    console.log(modalType[0])
+    // console.log(modalType[0])
 
     axios.post('/api/q_a/reply', {
       question_id: modalType[1].question_id,

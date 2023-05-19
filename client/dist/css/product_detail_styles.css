@@ -1,14 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
 body {
   font-family: sans-serif, arial;
   margin: 50px;
   max-width: fit-content;
 }
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
 .product-detail-section {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
   min-width: 1000px;
+  font-family: 'Raleway', sans-serif;
 }
 
 .product-detail-div {

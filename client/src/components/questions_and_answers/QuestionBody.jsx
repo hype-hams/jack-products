@@ -58,7 +58,7 @@ function QuestionBody({
     })
       .then(() => {
         getQuestionsByProductID();
-        console.log('QUESTION ', question.question_id, 'HAS BEEN REPORTED');
+        // console.log('QUESTION ', question.question_id, 'HAS BEEN REPORTED');
       })
       .catch((err) => {
         console.error('ERROR REPORTING QUESTION AT ID: ', question.question_id, '  ', err);

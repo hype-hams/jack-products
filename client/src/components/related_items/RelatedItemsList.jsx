@@ -11,7 +11,7 @@ const RelatedItemsList = ({IDlist, currProduct, handleRelatedItemClick}) => {
     const [startIndex, setStartIndex] = useState(0);
 
     const GETRelatedProductsProps = ()=>{
-        const url = `/api/products` 
+        const url = `/api/products`
         const promises = IDlist.map(id=> axios.get(`${url}/${id}`));
         Promise.all([...promises]).then(props=> {
             setResponses(props)
@@ -24,7 +24,7 @@ const RelatedItemsList = ({IDlist, currProduct, handleRelatedItemClick}) => {
             data.push(res.data);
         });
         setList(data)
-        console.log('realted items: ',  data)
+        // console.log('realted items: ',  data)
     };
 
 
@@ -40,15 +40,15 @@ const RelatedItemsList = ({IDlist, currProduct, handleRelatedItemClick}) => {
         <div className='RelatedItemsList'>
             <Carousel startIndex={startIndex} setStartIndex={setStartIndex} lastIndex={lastIndex} setLastIndex={setLastIndex} maxIndex={list.length}>
                 {list.map((card,index)=>{
-                     if(index >= startIndex && index < lastIndex) 
-                        return <Card key={card.id}  
-                        card={card} 
-                        currProduct={ currProduct} 
+                     if(index >= startIndex && index < lastIndex)
+                        return <Card key={card.id}
+                        card={card}
+                        currProduct={ currProduct}
                         handleRelatedItemClick={handleRelatedItemClick}
                         relatedItems={true}/>
                 })}
             </Carousel>
-         </div> 
+         </div>
     );
 }
 

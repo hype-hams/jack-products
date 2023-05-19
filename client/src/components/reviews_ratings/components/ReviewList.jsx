@@ -12,8 +12,6 @@ const ReviewList = ({productId, ratingFilter, reviewList, setReviewList, dropSor
   const handleScroll = () => {
     //stub of object instead of window
     if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight || isLoading) {
-      //3600
-      // console.log(document.documentElement.offsetHeight)
       return;
     }
     // getReviews();
@@ -34,7 +32,6 @@ const ReviewList = ({productId, ratingFilter, reviewList, setReviewList, dropSor
 
   // useEffect(() => {
   //   getReviews()
-  //   // console.log('this is new drop sort', dropSort)
   // }, [dropSort])
 
   let alteredList = reviewList

@@ -12,7 +12,7 @@
 .inner-carousel {
     display: flex;
     flex-direction: row;
-    justify-content: center; 
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -29,7 +29,7 @@
     background: rgb(235, 233, 233);
     width: 220px;
     height: 450px;
-    margin: 15px; 
+    margin: 15px;
     background-size: cover;
     border-radius: 20px;
     font-family: 'Raleway', sans-serif;
@@ -40,7 +40,7 @@
     height: 450px;
     min-width: 220px;
     min-height: 450px;
-    margin: 15px; 
+    margin: 15px;
     /* background-size: cover; */
     border-radius: 20px;
     background-color: skyblue;
@@ -140,14 +140,14 @@
     height: 450px;
     border-radius: 10%;
     border:none;
-} 
+}
 
 .scroll-left:hover, .scroll-right:hover{
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     cursor:pointer;
     transform: scale(1.03);
     transition-duration: 0.5s;
-} 
+}
 
 .original-price-marked{
     color: red
