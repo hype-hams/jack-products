@@ -62,7 +62,7 @@ const Stars = ({productId, avgRate}) => {
   const stars = renderStarBar().map((val, i) => {
     const starStyle = {
       background: `linear-gradient(90deg, gold
-        ${val * 100}%, gray ${val * 100}%)`,
+        ${val * 100}%, #757575 ${val * 100}%)`,
       WebkitTextFillColor: `transparent`,
       BackgroundClip: 'text',
       WebkitBackgroundClip: `text`,

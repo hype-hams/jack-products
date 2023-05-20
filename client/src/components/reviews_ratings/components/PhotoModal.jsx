@@ -21,8 +21,7 @@ const PhotoModal = ({url}) => {
             src={url}
             onError={handleError}
             alt="photo"
-            height="100"
-            width="100" />
+            />
         </button>
         {
           showModal ? (

@@ -104,17 +104,20 @@ const ReviewRating = ({productId, productName}) => { //metaData prop
   return (
     <div className="RR-module">
       <div className="title-sort">
-        <h1>Ratings & Reviews</h1>
+        <h2>Ratings & Reviews</h2>
       </div>
+
       <div className="top-sortbar">
             <SortBar
               setDropSort={setDropSort}/>
-          </div>
+      </div>
+
       <div className="breakdown-tile">
         <div className="breakdown-box">
+
           <div>
-            <section className="breakdown">
-              <h4 className="rate-break-head">Rating Breakdown</h4>
+            <section className="breakdown rating-breakdown">
+              <h3 className="break-head">Rating Breakdown</h3>
               {applyStars()}
               <RatingBreakdown recommended={recommended}
                 ratingFilter={ratingFilter}
@@ -128,7 +131,7 @@ const ReviewRating = ({productId, productName}) => { //metaData prop
 
           <div>
             <section className="breakdown product-breakdown">
-              <h4>Product Breakdown</h4>
+              <h3 className="break-head">Product Breakdown</h3>
               {charTable}
             </section>
           </div>
