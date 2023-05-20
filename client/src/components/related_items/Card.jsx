@@ -56,7 +56,7 @@ const Card = ({card, onDelete , currProduct, handleRelatedItemClick, relatedItem
             <div onClick={()=>{handleRelatedItemClick(card.id)}}>
                         {photoURL && <img data-testid="testImage"
                         loading="lazy"
-                        className="image" src={`${photoURL}`} />}
+                        className="image" src={`${photoURL}`} alt="images/image-not-found-icon.png"/>}
                         <div className='cardText'>
                             <p className="category">{card.category}</p>
                             <h3 className='productName'>{card.name}</h3>
@@ -93,7 +93,10 @@ const Card = ({card, onDelete , currProduct, handleRelatedItemClick, relatedItem
                 </div>
                 :
                 <div>
-                    <button className="OutfitListDeleteBttn" onClick={onClickHandler}><FontAwesomeIcon icon={faTrashCan} /></button>
+                    <button className="OutfitListDeleteBttn" 
+                    aria-label="Delete Outfit from list" 
+                    title="Delete" 
+                    onClick={onClickHandler}><FontAwesomeIcon icon={faTrashCan}/></button>
                     <div data-testid="OutfitListCardTest" className='OutfitListCard'>
                         {cardContent()}
                     </div>

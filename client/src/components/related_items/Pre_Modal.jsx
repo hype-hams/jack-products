@@ -71,7 +71,7 @@ const Pre_Modal = ({ card , currProduct, test})=> {
 
     return (
         <div>
-            <button className="ComparisonModalBttn" onClick={clickHandler}><FontAwesomeIcon icon={faCodeCompare}/></button>
+            <button className="ComparisonModalBttn" aria-label="Compare Products" title="Compare Products" onClick={clickHandler}><FontAwesomeIcon icon={faCodeCompare}/></button>
             <Modal key={card.id} showModal={showModal} closeModal={closeModal}>
                 <table className='comprison-table'>
                     <thead>
