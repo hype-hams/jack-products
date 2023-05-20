@@ -1,8 +1,8 @@
 
 
-# FEC Atelier
+# FEC Plumbers Atelier
 
-FEC Atelier is a full-stack web application built to replicate the experience of a physical atelier. It is a place for people to browse and purchase custom-made products.
+FEC Plumbers Atelier is a full-stack web application built to replicate the experience of a physical atelier. It is a place for people to browse and purchase custom-made products.
 
 ## Table of Contents
 1. [Description](#description)
