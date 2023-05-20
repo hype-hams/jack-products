@@ -93,9 +93,9 @@ const Card = ({card, onDelete , currProduct, handleRelatedItemClick, relatedItem
                 </div>
                 :
                 <div>
-                    <button className="OutfitListDeleteBttn" 
-                    aria-label="Delete Outfit from list" 
-                    title="Delete" 
+                    <button className="OutfitListDeleteBttn"
+                    aria-label="Delete Outfit from list"
+                    title="Delete"
                     onClick={onClickHandler}><FontAwesomeIcon icon={faTrashCan}/></button>
                     <div data-testid="OutfitListCardTest" className='OutfitListCard'>
                         {cardContent()}
