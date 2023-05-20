@@ -54,7 +54,9 @@ const Card = ({card, onDelete , currProduct, handleRelatedItemClick, relatedItem
     const cardContent = () => {
         return (
             <div onClick={()=>{handleRelatedItemClick(card.id)}}>
-                        {photoURL && <img data-testid="testImage" className="image" src={`${photoURL}`} />}
+                        {photoURL && <img data-testid="testImage"
+                        loading="lazy"
+                        className="image" src={`${photoURL}`} />}
                         <div className='cardText'>
                             <p className="category">{card.category}</p>
                             <h3 className='productName'>{card.name}</h3>

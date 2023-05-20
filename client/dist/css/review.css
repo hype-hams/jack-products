@@ -112,6 +112,19 @@ padding-bottom: 1em;
 .rating-bar {
   width: 250px;
 }
+.filterstar {
+  font-size: 12px;
+  background: transparent;
+  display:inline-flex;
+}
+.filterstar:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  cursor:pointer;
+  background-color: transparent;
+  background: transparent;
+  transform: scale(1.4);
+  transition-duration: 0.5s;
+}
 .star-vote {
   display: flex;
   font-size: .4em;
@@ -146,16 +159,15 @@ padding-bottom: 1em;
   padding: 5px;
   margin-bottom: 10px;
 }
+.review-star-name {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
 .tile-helpful-report {
   display: flex;
   justify-content: space-between;
 }
-
-.review-star-name {
-  display: flex;
-  justify-content: space-between;
-}
-
 .review-list {
   display: inline-flex;
   min-width: fit-content;
@@ -173,6 +185,7 @@ padding-bottom: 1em;
 .posted-image{
   display: flex;
 }
+
 /* SORT BAR */
 .sortbar {
   display: inline-flex;
