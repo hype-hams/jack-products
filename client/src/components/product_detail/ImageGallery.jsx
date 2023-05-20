@@ -85,10 +85,11 @@ function ImageGallery({ photos }) {
     <div className="image-gallery-div" style={expandedView}>
       <div className="image-gallery-thumbnails-div" style={changeStyle}>{thumbnailsList}</div>
       <div className="up-arrow-div" data-testid="up-arrow" onClick={handleUpArrowClick}>
-        <img src={upArrow} width="100%" loading="lazy" alt="leftArrow" />
+        <img src={upArrow} width="100%" height="100%"
+        loading="lazy" alt="leftArrow" />
       </div>
       <div className="down-arrow-div" data-testid="down-arrow" onClick={handleDownArrowClick}>
-        <img src={downArrow} width="100%" loading="lazy" alt="rightArrow" />
+        <img src={downArrow} width="100%" height="100%" loading="lazy" alt="rightArrow" />
       </div>
       <div
         data-testid="left-arrow"
@@ -104,7 +105,7 @@ function ImageGallery({ photos }) {
         style={{ display: (photoIndex === photos.length - 1) ? 'none' : 'block' }}
         onClick={handleRightArrowClick}
       >
-        <img src={rightArrow} width="100%" loading="lazy" alt="rightArrow" />
+        <img src={rightArrow} width="100%" height="100%" loading="lazy" alt="rightArrow" />
       </div>
       <MainImage image={image} setExpandedView={setExpandedView} setChangeStyle={setChangeStyle} />
     </div>
