@@ -81,7 +81,7 @@ function QuestionBody({
   };
 
   return (
-    <div className="question-innerbody">
+    <li className="question-innerbody">
 
       <div className="question" key={question.question_id}>
         <span className="asker-name" id="italics">{question.asker_name}</span>
@@ -156,7 +156,7 @@ function QuestionBody({
             )
 
               : null}
-    </div>
+    </li>
   );
 }
 export default QuestionBody;

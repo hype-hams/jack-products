@@ -81,7 +81,6 @@ function App(props) {
                 <QA productID={product.id} />
               </div>
               <div className="rating-review">
-
                 <ReviewRating
                   productId={product.id}
                   productName={product.name}
