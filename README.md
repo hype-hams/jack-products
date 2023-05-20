@@ -65,7 +65,7 @@ The authors and contributors of this project are:
 
 - [Sara Li](https://github.com/johndoe)
 - [Eric Lee](https://github.com/Chugale)
-- [Dillon Migdol](https://github.com/janedoe)
+- [Dillon Migdol](https://github.com/Dmigdol)
 - [Cesar Guajardo](https://github.com/janedoe)
 
 ## Wins and Improvements
