@@ -11,13 +11,12 @@ FEC Atelier is a full-stack web application built to replicate the experience of
 4. [Sample .env file](#sample-env-file)
 5. [Authors and Contributors](#authors-and-contributors)
 6. [Wins and Improvements](#wins-and-improvements)
-7. [Tips for a Better Readme](#tips-for-a-better-readme)
 
 ## Description
 
 FEC Atelier is a full-stack web application developed to replicate the experience of a physical atelier, where people can browse and purchase custom-made products. It was built using React, Amazon AWS, Express.js, Jest, Node.js, MySQL, and Sequelize.
 
-The application allows users to view products, create accounts, add items to their carts, and purchase items. It also enables admins to create new products, remove existing products, and manage orders.
+The application allows users to view products, create accounts, add items to their carts, and purchase items.
 
 ## Technologies Used
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -43,18 +42,19 @@ npm install
 Finally, run the project:
 
 ```
-npm run start
+> npm run client-dev
 ```
+then:
+```
+> npm run server-dev
+```
+then run http://localhost:3000
 
 ## Sample .env file
 
 This project requires a .env file in order to connect to the database. The file should include the following information:
 
 ```
-DB_HOST=
-DB_USER=
-DB_PASS=
-DB_NAME=
 PORT=
 API_KEY=
 ```
@@ -63,10 +63,10 @@ API_KEY=
 
 The authors and contributors of this project are:
 
-- [Sara Li](https://github.com/johndoe)
+- [Sara Li](https://github.com/sora62)
 - [Eric Lee](https://github.com/Chugale)
 - [Dillon Migdol](https://github.com/Dmigdol)
-- [Cesar Guajardo](https://github.com/janedoe)
+- [Cesar Guajardo](https://github.com/cesargua)
 
 ## Wins and Improvements
 
@@ -137,44 +137,13 @@ HackReactor FEC
   ### Webpack, Webpack CLI
   ### Nodemon
   ### eslint using HR linter config
-  ### ReactJS, Modal
-  ### Redux
+  ### ReactJS
   ### ExpressJS
-  ### MongoDB
+  ### Jest
+  ### React testing library
+  ### Babel
+  ### Font Awesome
+  
 
-## File Structure
-```
-📦PLUMBERSFEC
- ┣ 📂client
- ┃ ┣ 📂dist
- ┃ ┃ ┣ 📂css
- ┃ ┃ ┃ ┗ 📜styles.css
- ┃ ┃ ┣ 📜bundle.js //will generate automatically when webpack is configured
- ┃ ┃ ┣ 📜bundle.js.map //will generate automatically when webpack is configured
- ┃ ┃ ┗ 📜index.html
- ┃ ┗ 📂src
- ┃ ┃ ┣ 📂components
- ┃ ┃ ┃ ┣ 📂product_detail //feel free to add more files
- ┃ ┃ ┃ ┃ ┗ 📜product_detail_main.jsx
- ┃ ┃ ┃ ┣ 📂questions_and_answers //feel free to add more files
- ┃ ┃ ┃ ┃ ┗ 📜questions_main.jsx
- ┃ ┃ ┃ ┣ 📂related_items //feel free to add more files
- ┃ ┃ ┃ ┃ ┗ 📜related_items_main.jsx
- ┃ ┃ ┃ ┣ 📂reviews   //feel free to add more files
- ┃ ┃ ┃ ┃ ┗ 📜reviews_main.jsx
- ┃ ┃ ┃ ┗ 📜App.jsx
- ┃ ┃ ┗ 📜index.jsx
- ┣ 📂server
- ┃ ┣ 📂src //empty for now
- ┃ ┗ 📜index.js
- ┣ 📜.babelrc
- ┣ 📜.gitignore
- ┣ 📜README.md
- ┣ 📜config.js //in .gitignore, do not push to repo
- ┣ 📜.env //in .gitignore, do not push to repo
- ┣ 📜package-lock.json
- ┣ 📜package.json
- ┗ 📜webpack.config.js
-```
 
 
