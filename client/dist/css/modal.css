@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap'); */
 
-p, h2, h3, h5 {
+/* p, h2, h3, h5 {
   font-family: 'Raleway', sans-serif;
-}
+} */
 
 .Modal-backg {
   background-color: rgba(0, 0, 0, 0.4);
@@ -41,7 +41,7 @@ p, h2, h3, h5 {
   min-width: min-content;
   max-width: 50vw;
   overflow-y: auto;
-  font-family: 'Raleway', sans-serif; 
+  font-family: 'Raleway', sans-serif;
 }
 
 /****Related Items***/
@@ -76,7 +76,7 @@ p, h2, h3, h5 {
 
 .comparing{
   float: left;
-  font-family: 'Raleway', sans-serif; 
+  font-family: 'Raleway', sans-serif;
 }
 
 /* Review Photo */
