@@ -62,7 +62,7 @@
     height: auto;
     width: 100%;
     max-width: 220px ;
-    max-height: 240px;
+    max-height: 240px; 
     /* object-fit: contain; */
     border-radius: 10px;
 }

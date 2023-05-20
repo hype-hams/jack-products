@@ -28,10 +28,6 @@ router.put('/q_a/answer/:answer_id/upvote', controllers.q_a.upvoteAnswer);
 router.put('/q_a/answer/:answer_id/report', controllers.q_a.reportAnswer);
 
 
-// related:cesar
-router.get('/related/:product_id', controllers.related.getRelatedProducts);
-
-
 //reviews:Eric
 router.get('/reviews', controllers.reviews.getReviews);
 router.get('/reviews/meta', controllers.reviews.getProductBreakdown);
