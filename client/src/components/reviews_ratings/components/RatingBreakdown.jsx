@@ -31,13 +31,14 @@ const RatingBreakdown = ({rating, recommended, total, ratingFilter, setRatingFil
     <section key={ind}>
 
       <label data-testid="FilterStar">
-        <small id={obj.id}
+        <div id={obj.id}
+          className="filterstar"
           data-testid={obj.id}
           value={obj.id}
           aria-label={obj.id}
           onClick={rateFilter}>
           {obj.id} stars
-        </small>
+        </div>
       </label> &ensp;
 
       <meter className="rating-bar"

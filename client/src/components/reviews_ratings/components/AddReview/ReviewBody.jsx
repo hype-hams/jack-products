@@ -5,6 +5,7 @@ const ReviewBody = ({bodyText, setBodyText}) => {
 
 
   const onChange = (e)=> {
+    e.preventDefault()
     setBodyText(e.target.value);
     setMinBody('50'-bodyText.length);
     if(bodyText.length >= 50) {
