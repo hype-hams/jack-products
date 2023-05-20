@@ -14,7 +14,7 @@ const Username = ({setUsername}) => {
           maxLength="60"
           onChange={(e)=>{setUsername(e.target.value)}}
         ></input><br></br>
-        <small style={{color:'gray'}}>For privacy reasons, do not use your full name or email address.</small>
+        <small style={{color:'#757575'}}>For privacy reasons, do not use your full name or email address.</small>
       </section>
   )
 }

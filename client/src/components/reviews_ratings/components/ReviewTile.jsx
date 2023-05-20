@@ -52,7 +52,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
     let yescheck = document.getElementById('yeshelp' + revObj.review_id );
     if(yescheck.checked) {
       yescheck.disabled = true;
-      document.getElementById('yestext').style.color = 'gray';
+      document.getElementById('yestext').style.color = '#757575';
       setHelpful(helpful+1)
     }
     if(yescheck.checked) {
@@ -84,7 +84,8 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
 
   return (
     <div>
-      <form className="review-tile" data-testid="review-tile">
+      <form className="review-tile"
+        data-testid="review-tile">
 
         <section className="review-star-name">
           <div className="review-stars">
@@ -94,7 +95,7 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
 
           <div className="review-namedate">
             {revObj.reviewer_name}&ensp;
-            <sup style={{color:'gray'}}>
+            <sup style={{color:'#757575'}}>
               {ReviewHelpers.alterDate(revObj.date)}
             </sup>
           </div>
@@ -132,25 +133,26 @@ const ReviewTile = ({revObj, setReviewList, productId}) => {
         </div>
         <section className="tile-helpful-report">
           <div id="helpful-checker">
-            <label>Was this helpful?</label>
+            <label>Was this helpful?
             <input id={"yeshelp" + revObj.review_id}
+              className="yeshelp"
               type="radio"
               value="yes"
               name="helpful"
               data-testid="helpfulCheck"
               onClick={helpfulCheck}>
-            </input><span id="yestext">Yes</span>
+            </input><span id="yestext">Yes</span></label>
             <small className="helpful-review"
               style={{color:'green'}}>
               {helpful}&nbsp;
             </small>
-            <small style={{color:'gray'}}>
+            <small style={{color:'#757575'}}>
               found this helpful
             </small>
           </div>
 
           <div className="report-review" data-testid="reportReview">
-            <button type="button"
+            <button type="button" className="reporter"
               onClick={reportReview}>Report Review</button>
           </div>
 

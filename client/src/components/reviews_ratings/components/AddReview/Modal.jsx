@@ -64,12 +64,14 @@ const Modal = ({productRating, productName, productId, test}) => {
         photos: photos,
         characteristics: characteristics
       }
+      console.log('this is submission', form)
       axios.post(`./api/reviews?product_id=${form.product_id}`, form)
       .then(() => {
         setShowModal(false)
       })
       .catch((err) => {
         console.log('failed to post review', err)
+        setShowModal(false)
       })
     } else {
       let alertInfo = '';
@@ -127,26 +129,6 @@ const Modal = ({productRating, productName, productId, test}) => {
             <SetStars rating={rating} setRating={setRating}/>
 
             <RecommendProduct setRecommend={setRecommend}/>
-            {/* <section className="recommend"
-              id="modal-recommend">
-              <p>Do you recommend this product?
-                <sup>*</sup>
-              <input
-                type="radio"
-                value={true}
-                name="recommend"
-                defaultChecked
-                onClick={()=>setRecommend(true)}
-              ></input>
-                <span>Yes</span>
-              <input
-              type="radio"
-              value={false}
-              name="recommend"
-              onClick={()=>setRecommend(false)}
-            ></input>
-              <span>No</span></p>
-            </section> */}
 <br></br>
             <section>
               <label><b>Characteristics</b>
@@ -157,77 +139,15 @@ const Modal = ({productRating, productName, productId, test}) => {
             </section>
 <br></br>
             <ReviewSummary setSummary={setSummary}/>
-            {/* <section className="review-summary">
-              <label>Review Summary</label><br></br>
-              <input name="summary"
-                aria-label="summary-input"
-                aria-selected="true"
-                type="text"
-                placeholder="Example: Best purchase ever!"
-                size="30"
-                maxLength="60"
-                onChange={(e)=>{setSummary(e.target.value)}}
-                />
-            </section> */}
 <br></br>
             <ReviewBody bodyText={bodyText} setBodyText={setBodyText}/>
-            {/* <section className="review-body">
-              <label>Review Body
-                <sup>*</sup>
-              </label><br></br>
-              <textarea name="body"
-              maxLength = '1000'
-              aria-label="summary-body"
-              aria-selected="true"
-                rows="10"
-                cols="70"
-                placeholder="Why did you like the product or not?"
-                onChange={onChange}>
-              </textarea><br></br>
-                      <small style={{color:'gray'}}>
-                        Minimum required characters left:{minBody}
-                      </small>
-            </section> */}
 <br></br>
-            {/* <section className="upload"> */}
-                <UploadPhotos photos={photos} setPhotos={setPhotos}/>
-            {/* </section> */}
+              <UploadPhotos photos={photos} setPhotos={setPhotos}/>
 <br></br>
             <Username setUsername={setUsername}/>
-            {/* <section className="username">
-              <label>Username:
-              <sup>*</sup>
-              </label>
-              <input name="name"
-              aria-label="username"
-              aria-selected="true"
-                type="text"
-                placeholder="Example: jackson11!"
-                size="30"
-                maxLength="60"
-                onChange={(e)=>{setUsername(e.target.value)}}
-              ></input><br></br>
-              <small style={{color:'gray'}}>For privacy reasons, do not use your full name or email address.</small>
-            </section> */}
 <br></br>
             <Email setEmail={setEmail} />
-            {/* <section className="email">
-              <label>Email:
-              <sup>*</sup>
-              </label>
-                <input name="email"
-                aria-label="email"
-                aria-selected="true"
-                  type="email"
-                  placeholder="Example: jackson11@email.com"
-                  size="30"
-                  maxLength="60"
-                  onChange={(e)=>{setEmail(e.target.value)}}
-                ></input><br></br>
-                <small style={{color:'gray'}}>For authentication reasons. You will not be emailed.</small>
-            </section> */}
 <br></br>
-            {/* do not alter */}
             <button type="button"
             data-testid="buttonClick"
               onClick={() => setShowModal(false)}>Cancel</button>

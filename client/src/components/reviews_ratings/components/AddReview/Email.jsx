@@ -16,7 +16,7 @@ const Email = ({setEmail}) => {
           maxLength="60"
           onChange={(e)=>{setEmail(e.target.value)}}
         ></input><br></br>
-        <small style={{color:'gray'}}>For authentication reasons. You will not be emailed.</small>
+        <small style={{color:'#757575'}}>For authentication reasons. You will not be emailed.</small>
       </section>
   )
 }

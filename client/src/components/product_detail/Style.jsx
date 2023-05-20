@@ -14,7 +14,7 @@ function Style({ style, selectedStyleId, handleClick }) {
 
   return (
     <div className="style-each-thumbnail-div" data-testid="style-thumbnail" onClick={thumbnailOnClick}>
-      {(style.style_id === selectedStyleId) && <img src={checkmark} className="checkmark" alt="checkmark" />}
+      {(style.style_id === selectedStyleId) && <img src={checkmark} loading="lazy" className="checkmark" alt="checkmark" />}
       <img
         src={style.photos[0].thumbnail_url || imageNotAvailable}
         style={imageStyle}

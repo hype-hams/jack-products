@@ -17,11 +17,11 @@ const PhotoModal = ({url}) => {
         aria-label="modal-tester"
         onClick={() => setShowModal(!showModal)}>
           <img className="review-photo"
+            loading="lazy"
             src={url}
             onError={handleError}
             alt="photo"
-            height="100"
-            width="auto" />
+            />
         </button>
         {
           showModal ? (
