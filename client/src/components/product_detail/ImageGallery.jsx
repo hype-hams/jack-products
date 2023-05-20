@@ -95,7 +95,7 @@ function ImageGallery({ photos }) {
         style={{ display: photoIndex ? 'block' : 'none' }}
         onClick={handleLeftArrowClick}
       >
-        <img src={leftArrow} width="100%" alt="leftArrow" />
+        <img src={leftArrow} width="100%" height="100%" alt="leftArrow" />
       </div>
       <div
         data-testid="right-arrow"

@@ -66,13 +66,13 @@ function ProductDetail({ product, styles, avgRate }) {
       </div>
       <div className="product-description"><p>{product.description}</p></div>
       <div className="share-on-social-media">
-        <a className="fb-share-button" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" rel="noreferrer">
+        <a className="fb-share-button" aria-label="Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" rel="noreferrer">
           <FontAwesomeIcon icon={faFacebook} size="2xl" style={{ color: '#4267b2' }} />
         </a>
-        <a className="twitter-share-button" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet">
+        <a className="twitter-share-button" aria-label="Twitter" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet">
           <FontAwesomeIcon icon={faTwitter} size="2xl" style={{ color: '#1da1f2' }} />
         </a>
-        <a className="pinterest-share-button" target="_blank" rel="noreferrer" href="https://www.pinterest.com/pin/create/button/">
+        <a className="pinterest-share-button" aria-label="Pinterest" target="_blank" rel="noreferrer" href="https://www.pinterest.com/pin/create/button/">
           <FontAwesomeIcon icon={faPinterest} size="2xl" style={{ color: '#e60023' }} />
         </a>
       </div>
