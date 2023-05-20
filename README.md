@@ -1,6 +1,9 @@
 # PLUMBERSFEC
 HackReactor FEC
 
+Team Members: Sara Li, Eric Lee, Cesar Guajardo, Dillon Migdol
+
+
 ## To make new branch:
   ### Step 1: Clone the master repo(if you haven't already, if you have then skip to step 2)
   ```
