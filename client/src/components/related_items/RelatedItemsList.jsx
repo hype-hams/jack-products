@@ -38,6 +38,7 @@ const RelatedItemsList = ({IDlist, currProduct, handleRelatedItemClick}) => {
 
     return (
         <div className='RelatedItemsList'>
+            <h2>Similar Items..</h2>
             <Carousel startIndex={startIndex} setStartIndex={setStartIndex} lastIndex={lastIndex} setLastIndex={setLastIndex} maxIndex={list.length}>
                 {list.map((card,index)=>{
                      if(index >= startIndex && index < lastIndex)
