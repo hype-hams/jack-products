@@ -70,9 +70,9 @@ The authors and contributors of this project are:
 
 ## Wins and Improvements
 
-The project was successful in replicating the experience of a physical atelier with a web application. The application allows users to browse and purchase products, while also enabling admins to create, remove, and manage orders.
+The project was successful in replicating the experience of a physical atelier with a web application. The application allows users to browse and purchase products.
 
-The project could be improved upon in terms of user experience and scalability. The user experience could be improved by adding more features, such as a wishlist and product reviews. Additionally, the application could be made more scalable by refactoring the code and adding more caching.
+The project could be improved upon in terms of user experience and scalability. The user experience could be improved by adding more features, such as a wishlist. Additionally, the application could be made more scalable by refactoring the code and adding more caching.
 
 
 # PLUMBERSFEC
