@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
-const SetStars = ({rating, setRating}) => {
+function SetStars({ rating, setRating }) {
   const [hover, setHover] = useState(0);
-  const [ratingDescription, setRatingDescription] = useState('')
+  const [ratingDescription, setRatingDescription] = useState('');
 
   useEffect(() => {
     if (rating === 5) {
@@ -16,34 +16,38 @@ const SetStars = ({rating, setRating}) => {
     } else if (rating === 1) {
       setRatingDescription('Poor');
     }
-  },[rating])
-
+  }, [rating]);
 
   return (
     <section className="stars">
       <label><b>Star Rating</b></label>
-        <div className="star-rating"
-          data-testid="ModalSetStars">
-          {[...Array(5)].map((star, index) => {
-            index += 1;
-            return (
-              <button id="personal-rating"
-                name="rating"
-                type="button"
-                key={index}
-                className={index <= (hover || rating) ? "on" : "off"}
-                onClick={() => setRating(index)}
-                onMouseEnter={() => setHover(index)}
-                onMouseLeave={() => setHover(rating)}
-              >
-                <span className="star">&#9733;</span>
-              </button>
-            );
-          })} &ensp;
-            {ratingDescription}
-        </div>
+      <div
+        className="star-rating"
+        data-testid="ModalSetStars"
+      >
+        {[...Array(5)].map((star, index) => {
+          index += 1;
+          return (
+            <button
+              id="personal-rating"
+              name="rating"
+              type="button"
+              key={index}
+              className={index <= (hover || rating) ? 'on' : 'off'}
+              onClick={() => setRating(index)}
+              onMouseEnter={() => setHover(index)}
+              onMouseLeave={() => setHover(rating)}
+            >
+              <span className="star">&#9733;</span>
+            </button>
+          );
+        })}
+        {' '}
+&ensp;
+        {ratingDescription}
+      </div>
     </section>
   );
 }
 
-export default SetStars
+export default SetStars;
