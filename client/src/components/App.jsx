@@ -75,17 +75,16 @@ function App(props) {
                 <ProductDetail product={product} styles={styles} avgRate={avgRate} />
               </div>
               <div className="related-items">
-                {/* <RelatedItems key={product.id} currProduct={product} IDlist={related} handleRelatedItemClick={handleRelatedItemClick}/> */}
+                <RelatedItems key={product.id} currProduct={product} IDlist={related} handleRelatedItemClick={handleRelatedItemClick}/>
               </div>
               <div className="Q&A">
                 <QA productID={product.id} />
               </div>
               <div className="rating-review">
-
-                {/* <ReviewRating
+                <ReviewRating
                   productId={product.id}
                   productName={product.name}
-                /> */}
+                />
               </div>
             </ProductContext.Provider>
           </div>
