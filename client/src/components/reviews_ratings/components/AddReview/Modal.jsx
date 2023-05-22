@@ -70,7 +70,11 @@ function Modal({
         characteristics,
       };
       console.log('this is submission', form);
-      axios.post(`./api/reviews?product_id=${form.product_id}`, form)
+      // axios.post({
+      //   method: 'POST';
+      //   url: ''
+      // })
+      axios.post(`/api/reviews`, form)
         .then(() => {
           setShowModal(false);
         })

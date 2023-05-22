@@ -20,24 +20,19 @@ module.exports = {
     };
     return axios(options)
       .then((response) => {
-        let sortTerm = req.query.sort
-        if(sortTerm === undefined) {
-           response.data.results
-        } else if(sortTerm === 'newest') {
-           response.data.results.sort((a, b)=> {
-            return new Date(b.date).getTime() - new Date(a.date).getTime();
-          })
+        const sortTerm = req.query.sort;
+        if (sortTerm === undefined) {
+          response.data.results;
+        } else if (sortTerm === 'newest') {
+          response.data.results.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
         } else if (sortTerm === 'helpful') {
-           response.data.results.sort((a, b) => {
-            return a.helpfulness > b.helpfulness
-          })
+          response.data.results.sort((a, b) => a.helpfulness > b.helpfulness);
         } else if (sortTerm === 'relevant') {
-          response.data.results.sort((a, b) => {
+          response.data.results.sort((a, b) =>
             // dynamic sort based on days since post * helpful
-            return ((500/(new Date(b.date).getTime())*86400000)*b.helpfulness) - ((500/(new Date(a.date).getTime())*86400000)*a.helpfulness)
-          })
+            ((500 / (new Date(b.date).getTime()) * 86400000) * b.helpfulness) - ((500 / (new Date(a.date).getTime()) * 86400000) * a.helpfulness));
         }
-        res.status(200).send(response.data.results)
+        res.status(200).send(response.data.results);
       })
       .catch((err) => {
         res.status(500).send(err);
@@ -65,7 +60,7 @@ module.exports = {
     //   method: 'POST',
     //   url: serverAPI,
     //   headers: headAuth,
-    //   params: {
+    //   data: {
     //     product_id: req.body.product_id,
     //     rating: req.body.rating,
     //     summary: req.body.summary,
@@ -77,12 +72,12 @@ module.exports = {
     //     characteristics: req.body.characteristics
     //   }
     // }
-    axios.post(serverAPI, req.body, {
+    axios.post(`${serverAPI}`, req.body, {
       headers: headAuth,
     })
-    return axios(options)
+    // return axios(options)
       .then((response) => {
-        res.status(201);
+        res.status(200).send(response.data);
       })
       .catch((err) => {
         res.status(500).send(`unable to post: ${err}`);
