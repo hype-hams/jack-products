@@ -1,24 +1,25 @@
 import React from 'react';
 
-const Email = ({setEmail}) => {
-
+function Email({ setEmail }) {
   return (
     <section className="email">
-      <label>Email:
-      <sup>*</sup>
+      <label>
+        Email:
+        <sup>*</sup>
       </label>
-        <input name="email"
-          aria-label="email"
-          aria-selected="true"
-          type="email"
-          placeholder="Example: jackson11@email.com"
-          size="30"
-          maxLength="60"
-          onChange={(e)=>{setEmail(e.target.value)}}
-        ></input><br></br>
-        <small style={{color:'#757575'}}>For authentication reasons. You will not be emailed.</small>
-      </section>
-  )
+      <input
+        name="email"
+        aria-label="email"
+        type="email"
+        placeholder="Example: jackson11@email.com"
+        size="30"
+        maxLength="60"
+        onChange={(e) => { setEmail(e.target.value); }}
+      />
+      <br />
+      <small style={{ color: '#757575' }}>For authentication reasons. You will not be emailed.</small>
+    </section>
+  );
 }
 
-export default Email
+export default Email;
