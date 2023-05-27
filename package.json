@@ -32,6 +32,7 @@
     "babel-loader": "^9.1.2",
     "bluebird": "^3.7.2",
     "cors": "^2.8.5",
+    "curl": "^0.1.4",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
