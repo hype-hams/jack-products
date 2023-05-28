@@ -73,3 +73,7 @@ FROM '/home/jackuzzi/hackreactor/jack-products/CSVs/skus.csv' DELIMITER ',' CSV 
 
 COPY photo (id, style_id, url, thumbnail_url)
 FROM '/home/jackuzzi/hackreactor/jack-products/CSVs/photos.csv' DELIMITER ',' CSV HEADER ENCODING 'UTF8' QUOTE '\' NULL 'null' ESCAPE '''';
+
+-- remove excess characters from urls
+UPDATE photo SET url = Replace (photo.url, '\"', '');
+UPDATE photo SET thumbnail_url = Replace (photo.thumbnail_url, '\"', '');

@@ -8,7 +8,7 @@ module.exports = {
     await pool.query(queryStr, (err, rows) => {
       if (err) {
         callback(err);
-      } else {
+      } else if (rows) {
         callback(null, rows.rows[0].array_agg);
       }
     });

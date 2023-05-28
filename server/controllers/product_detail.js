@@ -19,7 +19,6 @@ module.exports = {
   // Returns all product level information for a specified product id
   getProductById: async (req, res) => {
     const { product_id } = req.params;
-    console.log(req.params);
     await models.products.getOne(req.params, (err, data) => {
       if (err) {
         res.status(500).send(err.message);

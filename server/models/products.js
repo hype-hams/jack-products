@@ -10,7 +10,7 @@ module.exports = {
     await pool.query(queryStr, (err, { rows }) => {
       if (err) {
         callback(err);
-      } else {
+      } else if (rows) {
         callback(null, rows);
       }
     });
@@ -20,7 +20,7 @@ module.exports = {
     await pool.query(queryStr, (err, { rows }) => {
       if (err) {
         callback(err);
-      } else {
+      } else if (rows) {
         const tempArr = [];
         for (let i = 0; i < rows.length; i += 1) {
           tempArr.push({
