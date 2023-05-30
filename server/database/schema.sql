@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS skus (
 CREATE TABLE IF NOT EXISTS photo (
   id SERIAL PRIMARY KEY,
   style_id INT,
-  url VARCHAR(10000),
-  thumbnail_url VARCHAR(10000),
+  url text,
+  thumbnail_url text,
   FOREIGN KEY (style_id) REFERENCES style(id)
 );
 
@@ -71,9 +71,21 @@ FROM '/home/jackuzzi/hackreactor/jack-products/CSVs/styles.csv' DELIMITER ',' CS
 COPY skus (id, style_id, size, quantity)
 FROM '/home/jackuzzi/hackreactor/jack-products/CSVs/skus.csv' DELIMITER ',' CSV HEADER NULL 'null';
 
-COPY photo (id, style_id, url, thumbnail_url)
-FROM '/home/jackuzzi/hackreactor/jack-products/CSVs/photos.csv' DELIMITER ',' CSV HEADER ENCODING 'UTF8' QUOTE '\' NULL 'null' ESCAPE '''';
+COPY public.photo (id, style_id, url, thumbnail_url)
+FROM '/home/jackuzzi/hackreactor/jack-products/CSVs/photos.csv' DELIMITER ',' CSV HEADER ENCODING 'UTF8' QUOTE '"' NULL 'null' ESCAPE '''';
 
--- remove excess characters from urls
-UPDATE photo SET url = Replace (photo.url, '\"', '');
-UPDATE photo SET thumbnail_url = Replace (photo.thumbnail_url, '\"', '');
+-- CREATE INDEXES for tables --
+CREATE INDEX idx_product ON product(id, name, category);
+CREATE INDEX idx_feature ON feature(id, product_id, feature, value);
+CREATE INDEX idx_related ON related(id, product_id, related_id);
+CREATE INDEX idx_photo_style_id ON photo(style_id);
+CREATE INDEX idx_skus_style_id ON skus(style_id);
+CREATE INDEX idx_style_product_id ON style(product_id);
+
+-- ANALYZE TABLES --
+ANALYZE product;
+ANALYZE feature;
+ANALYZE related;
+ANALYZE style;
+ANALYZE skus;
+ANALYZE photo;

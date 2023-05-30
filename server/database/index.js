@@ -8,9 +8,9 @@ const pool = new Pool({
   database: process.env.DB_NAME || 'postgres',
   password: process.env.DB_PASSWORD || '',
   port: 5432,
-  max: 10, // number of allowed connections (default 10)
+  max: 25, // number of allowed connections (default 10)
   connectionTimeoutMillis: 2000, // time in ms to wait for connection to form (default 0)
-  idleTimeoutMillis: 10000, // time connection can sit idle in pool before discarding (d: 10000),
+  idleTimeoutMillis: 1000, // time connection can sit idle in pool before discarding (d: 10000),
   allowExitOnIdle: true, // can node event loop exit process on all connection idle?
 });
 
