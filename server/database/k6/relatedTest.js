@@ -3,8 +3,9 @@ import { check, sleep } from 'k6';
 
 export const options = {
   vus: 1000,
-  duration: '30s',
+  duration: '1m',
   thresholds: {
+
     http_req_duration: ['p(90)<2000'], // 90% of requests must finish under 2 sec
   },
 };

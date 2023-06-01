@@ -28,12 +28,11 @@ module.exports = {
     });
   },
 
-  // Returns the all styles available for the given product
+  // Returns all styles available for the given product
   getStyles: async (req, res) => {
-    const { product_id } = req.params;
     await models.styles.getAll(req.params, (err, data) => {
       if (err) {
-        res.status(500).send(err.message);
+        res.status(500).send(err);
       } else {
         res.status(200).send(data);
       }
@@ -42,7 +41,6 @@ module.exports = {
 
   // // Returns the id's of products related to the product specified
   getRelated: async (req, res) => {
-    const { product_id } = req.params;
     await models.related.getAll(req.params, (err, data) => {
       if (err) {
         res.status(500).send(err.message);
