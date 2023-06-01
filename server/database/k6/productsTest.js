@@ -2,11 +2,15 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export const options = {
-  vus: 1200,
-  duration: '30s',
+  vus: 1000,
   thresholds: {
     http_req_duration: ['p(90)<2000'], // 90% of requests must finish under 2 sec
   },
+  stages: [
+    { duration: '3s', target: 1000 },
+    { duration: '60s', target: 1000 },
+    { duration: '5s', target: 0 },
+  ],
 };
 
 export default () => {

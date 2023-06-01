@@ -55,9 +55,11 @@ CREATE TABLE IF NOT EXISTS photo (
   FOREIGN KEY (style_id) REFERENCES style(id)
 );
 
+
 -- copy CSV data into relevant tables--
 COPY product (id, name, slogan, description, category, default_price)
 FROM '/home/jackuzzi/hackreactor/jack-products/CSVs/product.csv' DELIMITER ',' CSV HEADER;
+
 
 COPY feature (id, product_id, feature, value)
 FROM '/home/jackuzzi/hackreactor/jack-products/CSVs/features.csv' DELIMITER ',' CSV HEADER;
@@ -75,12 +77,14 @@ COPY public.photo (id, style_id, url, thumbnail_url)
 FROM '/home/jackuzzi/hackreactor/jack-products/CSVs/photos.csv' DELIMITER ',' CSV HEADER ENCODING 'UTF8' QUOTE '"' NULL 'null' ESCAPE '''';
 
 -- CREATE INDEXES for tables --
-CREATE INDEX idx_product ON product(id, name, category);
-CREATE INDEX idx_feature ON feature(id, product_id, feature, value);
-CREATE INDEX idx_related ON related(id, product_id, related_id);
-CREATE INDEX idx_photo_style_id ON photo(style_id);
-CREATE INDEX idx_skus_style_id ON skus(style_id);
+CREATE INDEX idx_product_id ON product(id);
+CREATE INDEX idx_feature_product_id ON feature(product_id);
+CREATE INDEX idx_related_product_id ON related(product_id);
 CREATE INDEX idx_style_product_id ON style(product_id);
+CREATE INDEX idx_skus_style_id ON skus(style_id);
+CREATE INDEX idx_photo_style_id ON photo(style_id);
+
+
 
 -- ANALYZE TABLES --
 ANALYZE product;
